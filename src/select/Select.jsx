@@ -1,6 +1,7 @@
 import ReactSelect from 'react-select';
 import PropTypes from 'prop-types';
 import React from 'react';
+import './_select.css'
 import { buildCustomizableComponents, buildCustomStyles } from './helpers/select-helpers';
 
 class Select extends React.PureComponent {

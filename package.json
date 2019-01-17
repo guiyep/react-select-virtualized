@@ -29,6 +29,7 @@
     "react-dom": "^15.0.0 || ^16.0.0"
   },
   "devDependencies": {
+    "@dump247/storybook-state": "^1.5.2",
     "@storybook/addon-actions": "^4.1.6",
     "@storybook/addon-links": "^4.1.6",
     "@storybook/addons": "^4.1.6",
@@ -68,5 +69,8 @@
   "files": [
     "dist"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "react-select": "^2.2.0",
+    "react-virtualized": "^9.21.0"
+  }
 }

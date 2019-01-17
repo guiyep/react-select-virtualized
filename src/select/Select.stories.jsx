@@ -2,9 +2,6 @@ import React, { Fragment } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { withState } from '@dump247/storybook-state';
-import { Button } from 'web-react/components/button';
-
-import DOMAIN from 'web-react/data/domain';
 
 import Select from './Select';
 
@@ -35,7 +32,7 @@ const buildOptionsSize = (size) => {
   );
 };
 
-storiesOf(`${DOMAIN}/Select`, module)
+storiesOf(`Select`, module)
   .addDecorator((story) => <div style={{ width: '500px' }}> {story()} </div>)
   .add('Basic Select', () => <Select options={optionsDefault} />, {
     notes: 'This is the basic definition for a select',
@@ -56,14 +53,14 @@ storiesOf(`${DOMAIN}/Select`, module)
     'Select focus',
     withState({ focus: false })(({ store }) => (
       <Fragment>
-        <Button
+        <button
           onClick={() => {
             store.set({ focus: true });
             action('focus select')();
           }}
         >
           Click me for focusing the Select
-        </Button>
+        </button>
         <br />
         <Select
           focus={store.state.focus}

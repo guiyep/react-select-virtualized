@@ -49,7 +49,7 @@ class Select extends React.PureComponent {
       isMulti: false,
       isClearable: true,
       isDisabled: props.disabled,
-      className: `select-popup${props.styleClass}`,
+      className: `select-popup`,
       isSearchable: true,
       blurInputOnSelect: true,
     };
@@ -94,9 +94,6 @@ Select.propTypes = {
   disableInputOnSelection: PropTypes.bool,
 };
 
-// for now I will set all props optional as undefined. The idea is not validating anymore in the component
-// and start using the default props. I wont do it in the components we already have but keep in mind from now
-// if you are working or modifying this component please update the prop types. GP
 Select.defaultProps = {
   disabled: false,
   styleClass: undefined,

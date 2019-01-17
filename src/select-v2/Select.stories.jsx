@@ -1,0 +1,133 @@
+import React, { Fragment } from 'react';
+import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
+import { withState } from '@dump247/storybook-state';
+
+import Select from './Select';
+
+const optionsDefault = [
+  { value: 'chocolate', label: 'Chocolate', extra: 'yes!, it is very good' },
+  { value: 'strawberry', label: 'Strawberry', extra: 'mmmmm maybe' },
+  { value: 'vanilla', label: 'Vanilla', extra: 'little boring' },
+  { value: 'dulcedeleche', label: 'Dulce De Leche', extra: 'yes!, the best!' },
+];
+
+const defaultValue = { ...optionsDefault[3] };
+
+const buildOptionsSize = (size) => {
+  let count = 0;
+  return new Array(size / optionsDefault.length).fill(null).reduce(
+    (acc) =>
+      acc.concat(
+        optionsDefault.map(({ value, label, extra }) => {
+          count += 1;
+          return {
+            value: `${value} ${count || ''}`,
+            label: `${label} ${count || ''}`,
+            extra,
+          };
+        }),
+      ),
+    [],
+  );
+};
+
+storiesOf(`Select`, module)
+  .addDecorator((story) => <div style={{ width: '500px' }}> {story()} </div>)
+  .add('Basic Select', () => <Select options={optionsDefault} />, {
+    notes: 'This is the basic definition for a select',
+  })
+  .add('Select with default value', () => <Select defaultValue={defaultValue} options={optionsDefault} />, {
+    notes: '',
+  })
+  .add('Select with 5000 elements', () => <Select options={buildOptionsSize(5000)} />, {
+    notes: '',
+  })
+  .add('Select with 10000 elements', () => <Select options={buildOptionsSize(10000)} />, {
+    notes: '',
+  })
+  .add('Select disabled', () => <Select options={optionsDefault} disabled />, {
+    notes: '',
+  })
+  .add(
+    'Select focus',
+    withState({ focus: false })(({ store }) => (
+      <Fragment>
+        <button
+          onClick={() => {
+            store.set({ focus: true });
+            action('focus select')();
+          }}
+        >
+          Click me for focusing the Select
+        </button>
+        <br />
+        <Select
+          focus={store.state.focus}
+          onFocusOut={() => {
+            store.set({ focus: false });
+            action('onFocusOut happened')();
+          }}
+          options={optionsDefault}
+        />
+      </Fragment>
+    )),
+    {
+      notes: '',
+    },
+  )
+  .add(
+    'Select handlers',
+    () => (
+      <Select
+        options={optionsDefault}
+        onBlur={action('onBlur happened')}
+        onValueChange={action('onValueChange happened')}
+      />
+    ),
+    {
+      notes: '',
+    },
+  )
+  .add('Select without any result', () => <Select noOptionsMessage={() => 'No Items To Display'} options={[]} />, {
+    notes: '',
+  })
+  .add(
+    'Select combined item result',
+    () => {
+      const labelFormat = ({ label, extra }, { context }) => {
+        // this can be any JSX
+        if (context === 'value') return `${label} - Should I try it? ${extra}`;
+        // this can be any JSX
+        return `${label} - Should I try it? ${extra}`;
+      };
+
+      return <Select options={buildOptionsSize(3000)} defaultValue={defaultValue} formatOptionLabel={labelFormat} />;
+    },
+    {
+      notes: '',
+    },
+  )
+  .add(
+    'Select grouped result',
+    () => {
+      const op = [
+        { label: 'Group 1', options: buildOptionsSize(40) },
+        { label: 'Group 2', options: buildOptionsSize(40) },
+        { label: 'Group 3', options: buildOptionsSize(40) },
+        { label: 'Group 4', options: buildOptionsSize(40) },
+        { label: 'Group 5', options: buildOptionsSize(40) },
+      ];
+
+      const groupFormat = ({ label, options }) => (
+        <div style={{ background: 'grey', height: '50px' }}>
+          {label} - {options.length} items in this group
+        </div>
+      );
+
+      return <Select options={op} defaultValue={defaultValue} formatGroupLabel={groupFormat} groupLabelHeight={50} />;
+    },
+    {
+      notes: '',
+    },
+  );

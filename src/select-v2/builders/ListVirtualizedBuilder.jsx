@@ -1,9 +1,9 @@
 import { components as ReactSelectComponents } from 'react-select';
 import React from 'react';
-import MenuListVirtualized from '../lists/MenuListVirtualized';
+import ListVirtualized from '../lists/ListVirtualized';
 import { menuListItemHeight } from '../helpers/select-helpers';
 
-const MenuList = ({ optionLabelHeight = menuListItemHeight, defaultValue, valueGetter, listItemClassName }) => (
+const List = ({ optionLabelHeight = menuListItemHeight, defaultValue, valueGetter, listItemClassName }) => (
   props,
 ) => {
   const selectedValue = props.getValue() ? props.getValue()[0] : undefined;
@@ -13,7 +13,7 @@ const MenuList = ({ optionLabelHeight = menuListItemHeight, defaultValue, valueG
   }
 
   return (
-    <MenuListVirtualized
+    <ListVirtualized
       {...props}
       optionLabelHeight={optionLabelHeight}
       selectedValue={selectedValue}
@@ -24,4 +24,4 @@ const MenuList = ({ optionLabelHeight = menuListItemHeight, defaultValue, valueG
   );
 };
 
-export default MenuList;
+export default List;

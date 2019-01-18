@@ -1,5 +1,5 @@
-import SelectGroupedMenuListBuilder from '../builders/GroupedMenuListVirtualizedBuilder';
-import SelectMenuListBuilder from '../builders/SelectMenuListBuilder';
+import SelectGroupedMenuListBuilder from '../builders/GroupedListVirtualizedBuilder';
+import SelectMenuListBuilder from '../builders/ListVirtualizedBuilder';
 import InputBuilder from '../builders/InputBuilder';
 
 const offset = 4;

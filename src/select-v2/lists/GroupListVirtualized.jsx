@@ -1,19 +1,21 @@
-import { List } from 'react-virtualized';
 import React, { useEffect, useRef, memo } from 'react';
 import PropTypes from 'prop-types';
+import { List } from 'react-virtualized';
 import { calculateMenuListHeight, calculateScrollIndex, calculateNextRowIndex } from '../helpers/select-helpers';
-import { virtualizeRowRenderer } from '../helpers/select-list-helper';
+import { calculateGroupRowHeight, virtualizeGroupedRowRenderer } from '../helpers/select-group-list-helper';
 
-const MenuListVirtualized = (props) => {
+const GroupListVirtualized = (props) => {
   let queueScrollToIdx = undefined;
   let focusedItemIndex = undefined;
 
-  const listComponent = useRef('virtualized-list');
+  const listComponent = useRef('virtualized-list-grouped');
 
   useEffect(() => {
     // only scroll to index when we have something in the queue of focused and not visible
     if (listComponent && queueScrollToIdx) {
-      listComponent.scrollToRow(calculateNextRowIndex(focusedItemIndex, queueScrollToIdx, props.options));
+      listComponent.current.scrollToRow(
+        calculateNextRowIndex(focusedItemIndex, queueScrollToIdx, props.flatCollection),
+      );
       queueScrollToIdx = undefined;
     }
   });
@@ -32,18 +34,26 @@ const MenuListVirtualized = (props) => {
       style={{ width: '100%' }}
       height={calculateMenuListHeight({
         maxHeight: props.maxHeight,
-        totalLength: props.children.length,
+        totalLength: props.flatCollection.length,
+        groupLength: props.children.length,
         optionLabelHeight: props.optionLabelHeight,
+        groupLabelHeight: props.groupLabelHeight,
       })}
       scrollToIndex={calculateScrollIndex({
-        children: props.options,
+        children: props.flatCollection,
         selected: props.selectedValue || props.defaultValue,
         valueGetter: props.valueGetter,
       })}
-      rowCount={props.children.length || 0}
-      rowHeight={props.optionLabelHeight}
-      rowRenderer={virtualizeRowRenderer({
-        ...props,
+      rowCount={props.flatCollection.length || 0}
+      rowHeight={calculateGroupRowHeight({
+        children: props.flatCollection,
+        optionLabelHeight: props.optionLabelHeight,
+        groupLabelHeight: props.groupLabelHeight,
+      })}
+      rowRenderer={virtualizeGroupedRowRenderer({
+        children: props.flatCollection,
+        formatGroup: props.formatGroup,
+        listItemClassName: props.listItemClassName,
         onItemFocus: onItemFocus,
       })}
       // the style width 100% will override this prop, we need to set something big because it is a required field
@@ -52,15 +62,17 @@ const MenuListVirtualized = (props) => {
   );
 };
 
-MenuListVirtualized.propTypes = {
+GroupListVirtualized.propTypes = {
   maxHeight: PropTypes.number,
   children: PropTypes.node.isRequired,
   optionLabelHeight: PropTypes.number,
+  groupLabelHeight: PropTypes.number,
   selectedValue: PropTypes.object,
   defaultValue: PropTypes.object,
   valueGetter: PropTypes.func,
+  formatGroup: PropTypes.func.isRequired,
   listItemClassName: PropTypes.string,
-  options: PropTypes.array.isRequired,
+  flatCollection: PropTypes.array.isRequired,
 };
 
-export default memo(MenuListVirtualized);
+export default memo(GroupListVirtualized);

@@ -1,8 +1,6 @@
 import { components as ReactSelectComponents } from 'react-select';
 import React from 'react';
 
-const Option = (props) => <ReactSelectComponents.Option {...props} />;
-
 export const virtualizeRowRenderer = ({ children, listItemClassName, onItemFocus }) => ({
   key,
   index,
@@ -17,7 +15,7 @@ export const virtualizeRowRenderer = ({ children, listItemClassName, onItemFocus
 
   return (
     <div className={listItemClassName} key={key} style={style}>
-      {<Option {...currentProps} />}
+      {<ReactSelectComponents.Option {...currentProps} />}
     </div>
   );
 };

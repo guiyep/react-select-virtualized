@@ -1,7 +1,7 @@
 {
   "name": "react-select-virtualized",
   "version": "1.0.0",
-  "description": "react-select v2 + react-virtualized",
+  "description": "react-select v2 + react-virtualized + react hooks",
   "author": "guiyep",
   "license": "MIT",
   "repository": "guiyep/react-select-virtualized",

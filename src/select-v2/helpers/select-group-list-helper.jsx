@@ -23,8 +23,6 @@ export const flatOptionsChildren = (reactComponent) =>
     ])
     .reduce((accumulator, currentValue) => accumulator.concat(currentValue), []);
 
-const Option = (props) => <ReactSelectComponents.Option {...props} />;
-
 export const virtualizeGroupedRowRenderer = ({ children, formatGroup, listItemClassName, onItemFocus }) => ({
   key,
   index,
@@ -46,7 +44,7 @@ export const virtualizeGroupedRowRenderer = ({ children, formatGroup, listItemCl
           options: currentProps.options,
         })
       ) : (
-        <Option {...currentProps} />
+        <ReactSelectComponents.Option {...currentProps} />
       )}
     </div>
   );

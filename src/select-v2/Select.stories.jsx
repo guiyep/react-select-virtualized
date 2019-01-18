@@ -40,12 +40,26 @@ storiesOf(`Select-v2`, module)
   .add('Select with default value', () => <Select defaultValue={defaultValue} options={optionsDefault} />, {
     notes: '',
   })
-  .add('Select with 5000 elements', () => <Select options={buildOptionsSize(5000)} />, {
-    notes: '',
-  })
-  .add('Select with 10000 elements', () => <Select options={buildOptionsSize(10000)} />, {
-    notes: '',
-  })
+  .add(
+    'Select with 5000 elements',
+    () => {
+      const ops = buildOptionsSize(5000);
+      return <Select options={ops} />;
+    },
+    {
+      notes: '',
+    },
+  )
+  .add(
+    'Select with 10000 elements',
+    () => {
+      const ops = buildOptionsSize(10000);
+      return <Select options={ops} />;
+    },
+    {
+      notes: '',
+    },
+  )
   .add('Select disabled', () => <Select options={optionsDefault} disabled />, {
     notes: '',
   })

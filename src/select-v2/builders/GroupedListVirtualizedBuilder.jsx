@@ -1,10 +1,10 @@
 import React from 'react';
 import { components as ReactSelectComponents } from 'react-select';
-import GroupMenuListVirtualized from '../lists/GroupMenuListVirtualized';
+import GroupListVirtualized from '../lists/GroupListVirtualized';
 import { menuListItemHeight } from '../helpers/select-helpers';
 import { flatOptionsChildren } from '../helpers/select-group-list-helper';
 
-const MenuListWithGroup = ({
+const ListWithGroup = ({
   formatGroup,
   optionLabelHeight = menuListItemHeight,
   groupLabelHeight = menuListItemHeight,
@@ -20,7 +20,7 @@ const MenuListWithGroup = ({
   }
 
   return (
-    <GroupMenuListVirtualized
+    <GroupListVirtualized
       {...props}
       flatCollection={children}
       selectedValue={selectedValue}
@@ -34,4 +34,4 @@ const MenuListWithGroup = ({
   );
 };
 
-export default MenuListWithGroup;
+export default ListWithGroup;

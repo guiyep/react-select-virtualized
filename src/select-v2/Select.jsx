@@ -1,11 +1,13 @@
 import ReactSelect from 'react-select';
 import PropTypes from 'prop-types';
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useImperativeHandle, useState, forwardRef, memo } from 'react';
 import './_select.css';
 import { buildCustomizableComponents, buildCustomStyles } from './helpers/select-helpers';
 
-const PureSelect = (props) => {
-  const reactSelect = useRef(null);
+function Select(props, ref) {
+  const reactSelect = useRef('react-select');
+
+  const [selection, setSelection] = useState(props.defaultValue);
 
   const defaultProps = {
     isMulti: false,
@@ -20,6 +22,7 @@ const PureSelect = (props) => {
     if (props.onValueChange) {
       props.onValueChange(value, { action });
     }
+    setSelection(value);
   };
 
   const onBlur = () => {
@@ -33,9 +36,15 @@ const PureSelect = (props) => {
 
   useEffect(() => {
     if (props.focus) {
-      reactSelect.focus();
+      reactSelect.current.focus();
     }
   });
+
+  useImperativeHandle(ref, () => ({
+    clear: () => {
+      setSelection(null);
+    },
+  }));
 
   return (
     <ReactSelect
@@ -43,76 +52,19 @@ const PureSelect = (props) => {
       {...defaultProps}
       {...props}
       styles={buildCustomStyles(props)}
-      value={props.defaultValue}
+      value={selection}
       onChange={onChangeHandler}
       options={props.options}
       onBlur={onBlur}
       components={buildCustomizableComponents(props)}
     />
   );
-};
+}
 
-// class Select extends React.PureComponent {
-//   constructor(props) {
-//     super(props);
-//     this.onBlur = this.onBlur.bind(this);
-//     this.onChangeHandler = this.onChangeHandler.bind(this);
-//   }
+Select = forwardRef(Select);
 
-//   componentDidUpdate() {
-//     // unfortunately the autoFocus prop from react-select do not support changes on the prop. the focus default state is false and then is apply. as a result
-//     // the focus is never apply. we need to listen to the updates and trigger the react-select focus method when this occurs.
-//     if (this.props.focus) {
-//       this.reactSelect.focus();
-//     }
-//   }
-
-//   onChangeHandler(value, { action }) {
-//     if (this.props.onValueChange) {
-//       this.props.onValueChange(value, { action });
-//     }
-//   }
-
-//   onBlur() {
-//     if (this.props.focus && this.props.onFocusOut) {
-//       this.props.onFocusOut();
-//     }
-//     if (this.props.onBlur) {
-//       this.props.onBlur();
-//     }
-//   }
-
-//   render() {
-//     const props = this.props;
-//     const defaultProps = {
-//       isMulti: false,
-//       isClearable: true,
-//       isDisabled: props.disabled,
-//       className: `select-popup`,
-//       isSearchable: true,
-//       blurInputOnSelect: true,
-//     };
-//     return (
-//       <ReactSelect
-//         ref={(c) => {
-//           this.reactSelect = c;
-//         }}
-//         {...defaultProps}
-//         {...props}
-//         styles={buildCustomStyles(props)}
-//         value={props.empty ? null : this.state.selected}
-//         onChange={this.onChangeHandler}
-//         options={props.options}
-//         onBlur={this.onBlur}
-//         components={buildCustomizableComponents(props)}
-//       />
-//     );
-//   }
-// }
-
-PureSelect.propTypes = {
+Select.propTypes = {
   disabled: PropTypes.bool,
-  styleClass: PropTypes.string,
   name: PropTypes.string,
   placeholder: PropTypes.string,
   listItemClassName: PropTypes.string,
@@ -133,27 +85,12 @@ PureSelect.propTypes = {
   disableInputOnSelection: PropTypes.bool,
 };
 
-PureSelect.defaultProps = {
+Select.defaultProps = {
   disabled: false,
-  styleClass: undefined,
-  name: undefined,
-  placeholder: undefined,
-  listItemClassName: undefined,
   focus: false,
-  onBlur: undefined,
-  onValueChange: undefined,
-  getOptionLabel: undefined,
-  getOptionValue: undefined,
-  formatOptionLabel: undefined,
-  formatGroupLabel: undefined,
-  noOptionsMessage: undefined,
-  onFocusOut: undefined,
   options: [],
-  defaultValue: undefined,
-  optionLabelHeight: undefined,
-  groupLabelHeight: undefined,
   virtualizeList: true,
   disableInputOnSelection: false,
 };
 
-export default PureSelect;
+export default memo(Select);

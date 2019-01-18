@@ -32,7 +32,7 @@ const buildOptionsSize = (size) => {
   );
 };
 
-storiesOf(`Select`, module)
+storiesOf(`Select-v2`, module)
   .addDecorator((story) => <div style={{ width: '500px' }}> {story()} </div>)
   .add('Basic Select', () => <Select options={optionsDefault} />, {
     notes: 'This is the basic definition for a select',
@@ -49,6 +49,22 @@ storiesOf(`Select`, module)
   .add('Select disabled', () => <Select options={optionsDefault} disabled />, {
     notes: '',
   })
+  .add(
+    'Select clear progra',
+    () => {
+      const selectRef = React.createRef();
+      return (
+        <Fragment>
+          <button onClick={() => selectRef.current.clear()}>Click me for clearing the Select default value</button>
+          <br />
+          <Select ref={selectRef} defaultValue={defaultValue} options={optionsDefault} />
+        </Fragment>
+      );
+    },
+    {
+      notes: '',
+    },
+  )
   .add(
     'Select focus',
     withState({ focus: false })(({ store }) => (

@@ -1,6 +1,6 @@
 import { components as ReactSelectComponents } from 'react-select';
 import React from 'react';
-import MenuListVirtualized from '../virtualized-menu-list/MenuListVirtualized';
+import MenuListVirtualized from '../lists/MenuListVirtualized';
 import { menuListItemHeight } from '../helpers/select-helpers';
 
 const MenuList = ({ optionLabelHeight = menuListItemHeight, defaultValue, valueGetter, listItemClassName }) => (

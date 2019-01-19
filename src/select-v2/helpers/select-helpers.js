@@ -1,24 +1,24 @@
-import SelectGroupedMenuListBuilder from '../builders/GroupedListVirtualizedBuilder';
-import SelectMenuListBuilder from '../builders/ListVirtualizedBuilder';
+import SelectGroupedListBuilder from '../builders/GroupedListVirtualizedBuilder';
+import SelectListBuilder from '../builders/ListVirtualizedBuilder';
 import InputBuilder from '../builders/InputBuilder';
 
 const offset = 4;
 
 export const menuListItemHeight = 40;
 
-export const calculateMenuListHeight = ({
+export const getListHeight = ({
   maxHeight = 0,
   totalLength = 0,
   groupLength = 0,
   optionLabelHeight = 1,
   groupLabelHeight = 1,
 }) => {
-  const calculatedHeight =
+  const getHeight =
     totalLength * optionLabelHeight - groupLength * Math.abs(optionLabelHeight - groupLabelHeight);
-  return calculatedHeight > maxHeight ? maxHeight : calculatedHeight;
+  return getHeight > maxHeight ? maxHeight : getHeight;
 };
 
-export const calculateScrollIndex = ({ children, selected, valueGetter }) => {
+export const getScrollIndex = ({ children, selected, valueGetter }) => {
   if (children && selected && valueGetter)
     return children.findIndex(
       (child) => (valueGetter(child) || valueGetter(child.props.data)) === valueGetter(selected),
@@ -26,7 +26,7 @@ export const calculateScrollIndex = ({ children, selected, valueGetter }) => {
   return undefined;
 };
 
-export const calculateNextRowIndex = (prevFocusIndex = 0, nextIndex = 0, options = []) => {
+export const getNextRowIndex = (prevFocusIndex = 0, nextIndex = 0, options = []) => {
   const goingDown = prevFocusIndex < nextIndex;
   const toRow = nextIndex + (goingDown ? offset : -offset);
   const listSize = options.length;
@@ -39,7 +39,7 @@ export const buildCustomizableComponents = (props) => {
   const components = {};
   if (props.virtualizeList) {
     components.MenuList = props.formatGroupLabel
-      ? SelectGroupedMenuListBuilder({
+      ? SelectGroupedListBuilder({
           formatGroup: props.formatGroupLabel,
           groupLabelHeight: props.groupLabelHeight,
           optionLabelHeight: props.optionLabelHeight,
@@ -47,7 +47,7 @@ export const buildCustomizableComponents = (props) => {
           valueGetter: props.getOptionValue,
           listItemClassName: props.listItemClassName,
         })
-      : SelectMenuListBuilder({
+      : SelectListBuilder({
           optionLabelHeight: props.optionLabelHeight,
           defaultValue: props.defaultValue,
           valueGetter: props.getOptionValue,

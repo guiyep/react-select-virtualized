@@ -4,7 +4,7 @@ import { components as ReactSelectComponents } from 'react-select';
 
 export const isGroupHeader = ({ typeGroup }) => !!typeGroup;
 
-export const calculateGroupRowHeight = ({ children, optionLabelHeight, groupLabelHeight }) => ({ index }) => {
+export const getGroupRowHeight = ({ children, optionLabelHeight, groupLabelHeight }) => ({ index }) => {
   const currentProps = children[index].props;
   return isGroupHeader(currentProps) ? groupLabelHeight : optionLabelHeight;
 };

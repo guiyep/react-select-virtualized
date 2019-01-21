@@ -2,7 +2,7 @@ import ReactSelect from 'react-select';
 import PropTypes from 'prop-types';
 import React, { useRef, useEffect, useImperativeHandle, useState, forwardRef, memo } from 'react';
 import './_select.css';
-import { buildCustomizableComponents, buildCustomStyles } from './helpers/select-helpers';
+import { buildCustomizableComponents, buildCustomStyles } from './helpers/select';
 
 function Select(props, ref) {
   const reactSelect = useRef('react-select');

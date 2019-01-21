@@ -1,6 +1,5 @@
-import SelectGroupedListBuilder from '../builders/GroupedListVirtualizedBuilder';
-import SelectListBuilder from '../builders/ListVirtualizedBuilder';
-import InputBuilder from '../builders/InputBuilder';
+import { GroupVirtualizedListBuilder } from '../components/grouped-virtualized-list';
+import { FlatVirtualizedListBuilder } from '../components/flat-virtualized-list';
 
 const offset = 4;
 
@@ -13,8 +12,7 @@ export const getListHeight = ({
   optionLabelHeight = 1,
   groupLabelHeight = 1,
 }) => {
-  const getHeight =
-    totalLength * optionLabelHeight - groupLength * Math.abs(optionLabelHeight - groupLabelHeight);
+  const getHeight = totalLength * optionLabelHeight - groupLength * Math.abs(optionLabelHeight - groupLabelHeight);
   return getHeight > maxHeight ? maxHeight : getHeight;
 };
 
@@ -39,24 +37,24 @@ export const buildCustomizableComponents = (props) => {
   const components = {};
   if (props.virtualizeList) {
     components.MenuList = props.formatGroupLabel
-      ? SelectGroupedListBuilder({
-          formatGroup: props.formatGroupLabel,
+      ? GroupVirtualizedListBuilder({
+          formatGroupLabel: props.formatGroupLabel,
           groupLabelHeight: props.groupLabelHeight,
           optionLabelHeight: props.optionLabelHeight,
           defaultValue: props.defaultValue,
           valueGetter: props.getOptionValue,
           listItemClassName: props.listItemClassName,
         })
-      : SelectListBuilder({
+      : FlatVirtualizedListBuilder({
           optionLabelHeight: props.optionLabelHeight,
           defaultValue: props.defaultValue,
           valueGetter: props.getOptionValue,
           listItemClassName: props.listItemClassName,
         });
   }
-  if (props.disableInputOnSelection) {
-    components.Input = InputBuilder();
-  }
+  // if (props.disableInputOnSelection) {
+  //   components.Input = InputBuilder();
+  // }
   return components;
 };
 

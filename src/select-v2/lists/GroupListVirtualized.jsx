@@ -13,9 +13,7 @@ const GroupListVirtualized = (props) => {
   useEffect(() => {
     // only scroll to index when we have something in the queue of focused and not visible
     if (listComponent && queueScrollToIdx) {
-      listComponent.current.scrollToRow(
-        getNextRowIndex(focusedItemIndex, queueScrollToIdx, props.flatCollection),
-      );
+      listComponent.current.scrollToRow(getNextRowIndex(focusedItemIndex, queueScrollToIdx, props.flatCollection));
       queueScrollToIdx = undefined;
     }
   });
@@ -71,10 +69,9 @@ const GroupListVirtualized = (props) => {
       virtualizeGroupedRowRenderer({
         children: props.flatCollection,
         formatGroup: props.formatGroup,
-        listItemClassName: props.listItemClassName,
         onItemFocus: onItemFocus,
       }),
-    [props.flatCollection, props.formatGroup, props.listItemClassName],
+    [props.flatCollection, props.formatGroup],
   );
 
   return (
@@ -101,7 +98,6 @@ GroupListVirtualized.propTypes = {
   defaultValue: PropTypes.object,
   valueGetter: PropTypes.func,
   formatGroup: PropTypes.func.isRequired,
-  listItemClassName: PropTypes.string,
   flatCollection: PropTypes.array.isRequired,
 };
 

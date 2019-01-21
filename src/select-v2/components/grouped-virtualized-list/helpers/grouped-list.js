@@ -23,7 +23,7 @@ export const flatOptionsChildren = (reactComponent) =>
     ])
     .reduce((accumulator, currentValue) => accumulator.concat(currentValue), []);
 
-export const virtualizeGroupedRowRenderer = ({ children, formatGroup, listItemClassName, onItemFocus }) => ({
+export const virtualizeGroupedRowRenderer = ({ children, formatGroup, onItemFocus }) => ({
   key,
   index,
   style,
@@ -37,7 +37,7 @@ export const virtualizeGroupedRowRenderer = ({ children, formatGroup, listItemCl
   }
 
   return (
-    <div className={listItemClassName} key={key} style={style}>
+    <div className="grouped-virtualized-list" key={key} style={style}>
       {isGroupHeaderValue ? (
         formatGroup({
           label: currentProps.label,

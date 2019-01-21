@@ -67,7 +67,6 @@ Select.propTypes = {
   disabled: PropTypes.bool,
   name: PropTypes.string,
   placeholder: PropTypes.string,
-  listItemClassName: PropTypes.string,
   focus: PropTypes.bool,
   onBlur: PropTypes.func,
   onValueChange: PropTypes.func,

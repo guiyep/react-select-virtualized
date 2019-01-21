@@ -1,9 +1,9 @@
 import { components as ReactSelectComponents } from 'react-select';
 import React from 'react';
-import ListVirtualized from './FlatVirtualizedList';
+import FlatVirtualizedList from './FlatVirtualizedList';
 import { menuListItemHeight } from '../../helpers/select';
 
-const List = ({ optionLabelHeight = menuListItemHeight, defaultValue, valueGetter, listItemClassName }) => (props) => {
+const List = ({ optionLabelHeight = menuListItemHeight, defaultValue, valueGetter }) => (props) => {
   const selectedValue = props.getValue() ? props.getValue()[0] : undefined;
 
   if (props.children && !props.children.length) {
@@ -11,13 +11,12 @@ const List = ({ optionLabelHeight = menuListItemHeight, defaultValue, valueGette
   }
 
   return (
-    <ListVirtualized
+    <FlatVirtualizedList
       {...props}
       optionLabelHeight={optionLabelHeight}
       selectedValue={selectedValue}
       defaultValue={defaultValue}
       valueGetter={valueGetter}
-      listItemClassName={listItemClassName}
     />
   );
 };

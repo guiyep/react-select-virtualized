@@ -43,18 +43,13 @@ export const buildCustomizableComponents = (props) => {
           optionLabelHeight: props.optionLabelHeight,
           defaultValue: props.defaultValue,
           valueGetter: props.getOptionValue,
-          listItemClassName: props.listItemClassName,
         })
       : FlatVirtualizedListBuilder({
           optionLabelHeight: props.optionLabelHeight,
           defaultValue: props.defaultValue,
           valueGetter: props.getOptionValue,
-          listItemClassName: props.listItemClassName,
         });
   }
-  // if (props.disableInputOnSelection) {
-  //   components.Input = InputBuilder();
-  // }
   return components;
 };
 

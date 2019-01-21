@@ -52,7 +52,7 @@ const ListVirtualized = (props) => {
         ...props,
         onItemFocus: onItemFocus,
       }),
-    [props.children, props.listItemClassName],
+    [props.children],
   );
 
   return (
@@ -77,7 +77,6 @@ ListVirtualized.propTypes = {
   selectedValue: PropTypes.object,
   defaultValue: PropTypes.object,
   valueGetter: PropTypes.func,
-  listItemClassName: PropTypes.string,
   options: PropTypes.array.isRequired,
 };
 

@@ -10,7 +10,6 @@ const ListWithGroup = ({
   groupLabelHeight = menuListItemHeight,
   defaultValue,
   valueGetter,
-  listItemClassName,
 }) => (props) => {
   const children = useMemo(() => [...flatOptionsChildren(props.children)], [props.children]);
   const selectedValue = props.getValue() ? props.getValue()[0] : undefined;
@@ -28,7 +27,6 @@ const ListWithGroup = ({
       optionLabelHeight={optionLabelHeight}
       groupLabelHeight={groupLabelHeight}
       valueGetter={valueGetter}
-      listItemClassName={listItemClassName}
       defaultValue={defaultValue}
     />
   );

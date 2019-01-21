@@ -69,10 +69,9 @@ const GroupListVirtualized = (props) => {
       virtualizeGroupedRowRenderer({
         children: props.flatCollection,
         formatGroup: props.formatGroup,
-        listItemClassName: props.listItemClassName,
         onItemFocus: onItemFocus,
       }),
-    [props.flatCollection, props.formatGroup, props.listItemClassName],
+    [props.flatCollection, props.formatGroup],
   );
 
   return (
@@ -99,7 +98,6 @@ GroupListVirtualized.propTypes = {
   defaultValue: PropTypes.object,
   valueGetter: PropTypes.func,
   formatGroup: PropTypes.func.isRequired,
-  listItemClassName: PropTypes.string,
   flatCollection: PropTypes.array.isRequired,
 };
 

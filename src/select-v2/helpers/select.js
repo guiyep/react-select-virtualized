@@ -54,7 +54,7 @@ export const buildCustomizableComponents = (props) => {
 };
 
 export const buildCustomStyles = (props) => {
-  const defaultStyles = {
+  return {
     clearIndicator: (provided) => ({
       ...provided,
       ':hover': {
@@ -63,16 +63,4 @@ export const buildCustomStyles = (props) => {
       },
     }),
   };
-
-  return props.disableInputOnSelection
-    ? {
-        ...defaultStyles,
-        dropdownIndicator: () => ({
-          display: 'none',
-        }),
-        indicatorSeparator: () => ({
-          display: 'none',
-        }),
-      }
-    : defaultStyles;
 };

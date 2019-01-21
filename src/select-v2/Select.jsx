@@ -81,7 +81,6 @@ Select.propTypes = {
   optionLabelHeight: PropTypes.number,
   groupLabelHeight: PropTypes.number,
   virtualizeList: PropTypes.bool,
-  disableInputOnSelection: PropTypes.bool,
 };
 
 Select.defaultProps = {
@@ -89,7 +88,6 @@ Select.defaultProps = {
   focus: false,
   options: [],
   virtualizeList: true,
-  disableInputOnSelection: false,
 };
 
 export default memo(Select);

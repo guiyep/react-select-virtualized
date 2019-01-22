@@ -60,7 +60,7 @@ storiesOf(`Select-v2`, module)
       notes: '',
     },
   )
-  .add('Select disabled', () => <Select options={optionsDefault} disabled />, {
+  .add('Select disabled', () => <Select options={optionsDefault} isDisabled />, {
     notes: '',
   })
   .add(
@@ -81,27 +81,16 @@ storiesOf(`Select-v2`, module)
   )
   .add(
     'Select focus',
-    withState({ focus: false })(({ store }) => (
-      <Fragment>
-        <button
-          onClick={() => {
-            store.set({ focus: true });
-            action('focus select')();
-          }}
-        >
-          Click me for focusing the Select
-        </button>
-        <br />
-        <Select
-          focus={store.state.focus}
-          onFocusOut={() => {
-            store.set({ focus: false });
-            action('onFocusOut happened')();
-          }}
-          options={optionsDefault}
-        />
-      </Fragment>
-    )),
+    () => {
+      const selectRef = React.createRef();
+      return (
+        <Fragment>
+          <button onClick={() => selectRef.current.focus()}>Click me for focusing the Select</button>
+          <br />
+          <Select ref={selectRef} defaultValue={defaultValue} options={optionsDefault} />
+        </Fragment>
+      );
+    },
     {
       notes: '',
     },

@@ -1,6 +1,6 @@
 import ReactSelect from 'react-select';
 import PropTypes from 'prop-types';
-import React, { useRef, useEffect, useImperativeHandle, useState, forwardRef, memo } from 'react';
+import React, { useRef, useImperativeHandle, useState, forwardRef, memo } from 'react';
 import './_select.css';
 import { buildCustomizableComponents, buildCustomStyles } from './helpers/select';
 
@@ -12,38 +12,28 @@ function Select(props, ref) {
   const defaultProps = {
     isMulti: false,
     isClearable: true,
-    isDisabled: props.disabled,
-    className: `select-popup`,
+    isDisabled: false,
+    className: `react-select-virtualized`,
     isSearchable: true,
     blurInputOnSelect: true,
   };
 
   const onChangeHandler = (value, { action }) => {
-    if (props.onValueChange) {
-      props.onValueChange(value, { action });
+    if (props.onChange) {
+      props.onChange(value, { action });
     }
     setSelection(value);
   };
-
-  const onBlur = () => {
-    if (props.focus && props.onFocusOut) {
-      props.onFocusOut();
-    }
-    if (props.onBlur) {
-      props.onBlur();
-    }
-  };
-
-  useEffect(() => {
-    if (props.focus) {
-      reactSelect.current.focus();
-    }
-  });
 
   useImperativeHandle(ref, () => ({
     clear: () => {
       setSelection(null);
     },
+    focus: () => {
+      reactSelect.current.focus();
+    },
+    // TODO do we need this?
+    select: (item) => setSelection(item),
   }));
 
   return (
@@ -51,11 +41,10 @@ function Select(props, ref) {
       ref={reactSelect}
       {...defaultProps}
       {...props}
-      styles={buildCustomStyles(props)}
+      styles={{ ...buildCustomStyles(props), ...props.styles }} // keep react-select styles implementation and pass to any customization done
       value={selection}
       onChange={onChangeHandler}
       options={props.options}
-      onBlur={onBlur}
       components={buildCustomizableComponents(props)}
     />
   );
@@ -64,29 +53,18 @@ function Select(props, ref) {
 Select = forwardRef(Select);
 
 Select.propTypes = {
-  disabled: PropTypes.bool,
-  name: PropTypes.string,
-  placeholder: PropTypes.string,
-  focus: PropTypes.bool,
-  onBlur: PropTypes.func,
-  onValueChange: PropTypes.func,
-  getOptionLabel: PropTypes.func,
-  getOptionValue: PropTypes.func,
+  ...ReactSelect.propTypes,
+  options: PropTypes.array.isRequired,
+  onChange: PropTypes.func,
   formatOptionLabel: PropTypes.func,
   formatGroupLabel: PropTypes.func,
-  noOptionsMessage: PropTypes.func,
-  onFocusOut: PropTypes.func,
-  options: PropTypes.array,
-  defaultValue: PropTypes.object,
   optionLabelHeight: PropTypes.number,
+  defaultValue: PropTypes.object,
   groupLabelHeight: PropTypes.number,
   virtualizeList: PropTypes.bool,
 };
 
 Select.defaultProps = {
-  disabled: false,
-  focus: false,
-  options: [],
   virtualizeList: true,
 };
 

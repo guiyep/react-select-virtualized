@@ -1,7 +1,7 @@
 import { components as ReactSelectComponents } from 'react-select';
 import React from 'react';
 
-export const virtualizeRowRenderer = ({ children, onItemFocus }) => ({
+export const virtualizeRowRenderer = ({ children, onItemFocused }) => ({
   key,
   index,
   style,
@@ -10,7 +10,7 @@ export const virtualizeRowRenderer = ({ children, onItemFocus }) => ({
   const currentProps = children[index].props;
 
   if (currentProps.isFocused) {
-    onItemFocus({ data: currentProps.data, index, isVisible });
+    onItemFocused({ data: currentProps.data, index, isVisible });
   }
 
   return (

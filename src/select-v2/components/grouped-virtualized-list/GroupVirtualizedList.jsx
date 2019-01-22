@@ -18,7 +18,7 @@ const GroupListVirtualized = (props) => {
     }
   });
 
-  const onItemFocus = ({ index, isVisible }) => {
+  const onItemFocused = ({ index, isVisible }) => {
     if (index !== undefined && isVisible) {
       focusedItemIndex = index;
     } else if (index !== undefined && !isVisible && !queueScrollToIdx) {
@@ -69,7 +69,7 @@ const GroupListVirtualized = (props) => {
       virtualizeGroupedRowRenderer({
         children: props.flatCollection,
         formatGroup: props.formatGroup,
-        onItemFocus: onItemFocus,
+        onItemFocused: onItemFocused,
       }),
     [props.flatCollection, props.formatGroup],
   );
@@ -83,14 +83,14 @@ const GroupListVirtualized = (props) => {
       rowCount={props.flatCollection.length || 0}
       rowHeight={rowHeight}
       rowRenderer={rowRenderer}
-      // the style width 100% will override this prop, we need to set something big because it is a required field
-      width={1000}
+      width={props.maxWidth}
     />
   );
 };
 
 GroupListVirtualized.propTypes = {
-  maxHeight: PropTypes.number,
+  maxHeight: PropTypes.number, // this prop is coming from react-select
+  maxWidth: PropTypes.number, // the style width 100% will override this prop, we need to set something big because it is a required field
   children: PropTypes.node.isRequired,
   optionLabelHeight: PropTypes.number,
   groupLabelHeight: PropTypes.number,
@@ -99,6 +99,11 @@ GroupListVirtualized.propTypes = {
   valueGetter: PropTypes.func,
   formatGroup: PropTypes.func.isRequired,
   flatCollection: PropTypes.array.isRequired,
+};
+
+GroupListVirtualized.defaultProps = {
+  valueGetter: (item) => item && item.value,
+  maxWidth: 500,
 };
 
 export default memo(GroupListVirtualized);

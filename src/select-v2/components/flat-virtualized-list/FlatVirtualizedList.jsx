@@ -18,7 +18,7 @@ const ListVirtualized = (props) => {
     }
   });
 
-  const onItemFocus = ({ index, isVisible }) => {
+  const onItemFocused = ({ index, isVisible }) => {
     if (index !== undefined && isVisible) {
       focusedItemIndex = index;
     } else if (index !== undefined && !isVisible && !queueScrollToIdx) {
@@ -50,7 +50,7 @@ const ListVirtualized = (props) => {
     () =>
       virtualizeRowRenderer({
         ...props,
-        onItemFocus: onItemFocus,
+        onItemFocused: onItemFocused,
       }),
     [props.children],
   );
@@ -64,20 +64,25 @@ const ListVirtualized = (props) => {
       rowCount={props.children.length || 0}
       rowHeight={props.optionLabelHeight}
       rowRenderer={rowRenderer}
-      // the style width 100% will override this prop, we need to set something big because it is a required field
-      width={1000}
+      width={props.maxWidth}
     />
   );
 };
 
 ListVirtualized.propTypes = {
-  maxHeight: PropTypes.number,
+  maxHeight: PropTypes.number, // this prop is coming from react-select
+  maxWidth: PropTypes.number, // the style width 100% will override this prop, we need to set something big because it is a required field
   children: PropTypes.node.isRequired,
   optionLabelHeight: PropTypes.number,
   selectedValue: PropTypes.object,
   defaultValue: PropTypes.object,
   valueGetter: PropTypes.func,
   options: PropTypes.array.isRequired,
+};
+
+ListVirtualized.defaultProps = {
+  valueGetter: (item) => item && item.value,
+  maxWidth: 500,
 };
 
 export default memo(ListVirtualized);

@@ -38,16 +38,14 @@ export const buildCustomizableComponents = (props) => {
   if (props.virtualizeList) {
     components.MenuList = props.formatGroupLabel
       ? GroupVirtualizedListBuilder({
-          formatGroupLabel: props.formatGroupLabel,
+          formatGroup: props.formatGroupLabel,
           groupLabelHeight: props.groupLabelHeight,
           optionLabelHeight: props.optionLabelHeight,
           defaultValue: props.defaultValue,
-          valueGetter: props.getOptionValue,
         })
       : FlatVirtualizedListBuilder({
           optionLabelHeight: props.optionLabelHeight,
           defaultValue: props.defaultValue,
-          valueGetter: props.getOptionValue,
         });
   }
   return components;

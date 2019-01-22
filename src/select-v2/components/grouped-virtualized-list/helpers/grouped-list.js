@@ -23,7 +23,7 @@ export const flatOptionsChildren = (reactComponent) =>
     ])
     .reduce((accumulator, currentValue) => accumulator.concat(currentValue), []);
 
-export const virtualizeGroupedRowRenderer = ({ children, formatGroup, onItemFocus }) => ({
+export const virtualizeGroupedRowRenderer = ({ children, formatGroup, onItemFocused }) => ({
   key,
   index,
   style,
@@ -33,7 +33,7 @@ export const virtualizeGroupedRowRenderer = ({ children, formatGroup, onItemFocu
   const isGroupHeaderValue = isGroupHeader(currentProps);
 
   if (currentProps.isFocused && !isGroupHeaderValue) {
-    onItemFocus({ data: currentProps.data, index, isVisible });
+    onItemFocused({ data: currentProps.data, index, isVisible });
   }
 
   return (

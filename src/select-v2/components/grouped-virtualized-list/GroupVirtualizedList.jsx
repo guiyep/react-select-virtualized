@@ -2,7 +2,7 @@ import React, { useEffect, useRef, memo, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { List } from 'react-virtualized';
 import { getListHeight, getScrollIndex, getNextRowIndex } from '../../helpers/select';
-import { getGroupRowHeight, virtualizeGroupedRowRenderer } from './helpers/grouped-list';
+import { getGroupRowHeight, groupVirtualizedListRowRenderer } from './helpers/grouped-list';
 
 const GroupListVirtualized = (props) => {
   let queueScrollToIdx = undefined;
@@ -66,7 +66,7 @@ const GroupListVirtualized = (props) => {
 
   const rowRenderer = useMemo(
     () =>
-      virtualizeGroupedRowRenderer({
+      groupVirtualizedListRowRenderer({
         children: props.flatCollection,
         formatGroupHeader: props.formatGroupHeader,
         onItemFocused: onItemFocused,

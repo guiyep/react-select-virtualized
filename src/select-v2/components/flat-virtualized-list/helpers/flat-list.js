@@ -1,7 +1,7 @@
 import { components as ReactSelectComponents } from 'react-select';
 import React from 'react';
 
-export const virtualizeRowRenderer = ({ children, onItemFocused }) => ({
+export const flatVirtualizedListRowRenderer = ({ children, onItemFocused }) => ({
   key,
   index,
   style,

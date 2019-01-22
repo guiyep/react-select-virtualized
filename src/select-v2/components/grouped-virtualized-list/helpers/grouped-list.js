@@ -23,7 +23,7 @@ export const flatOptionsChildren = (reactComponent) =>
     ])
     .reduce((accumulator, currentValue) => accumulator.concat(currentValue), []);
 
-export const virtualizeGroupedRowRenderer = ({ children, formatGroupHeader, onItemFocused }) => ({
+export const groupVirtualizedListRowRenderer = ({ children, formatGroupHeader, onItemFocused }) => ({
   key,
   index,
   style,

@@ -2,7 +2,7 @@ import { List } from 'react-virtualized';
 import React, { useEffect, useRef, memo, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { getListHeight, getScrollIndex, getNextRowIndex } from '../../helpers/select';
-import { virtualizeRowRenderer } from './helpers/flat-list';
+import { flatVirtualizedListRowRenderer } from './helpers/flat-list';
 
 const ListVirtualized = (props) => {
   let queueScrollToIdx = undefined;
@@ -48,7 +48,7 @@ const ListVirtualized = (props) => {
 
   const rowRenderer = useMemo(
     () =>
-      virtualizeRowRenderer({
+      flatVirtualizedListRowRenderer({
         ...props,
         onItemFocused: onItemFocused,
       }),

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React, { useRef, useImperativeHandle, useState, forwardRef, memo } from 'react';
 import './_select.css';
 import { buildListComponents, getStyles } from './helpers/select';
+import 'react-virtualized/styles.css'
 
 function Select(props, ref) {
   const reactSelect = useRef('react-select');
@@ -59,8 +60,8 @@ Select.propTypes = {
   formatOptionLabel: PropTypes.func,
   formatGroupHeaderLabel: PropTypes.func,
   optionHeight: PropTypes.number,
-  defaultValue: PropTypes.object,
   groupHeaderHeight: PropTypes.number,
+  defaultValue: PropTypes.object,
   virtualizeList: PropTypes.bool,
 };
 

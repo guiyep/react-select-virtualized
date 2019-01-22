@@ -33,7 +33,7 @@ export const getNextRowIndex = (prevFocusIndex = 0, nextIndex = 0, options = [])
   return goingDown ? nextOffsetItem : prevOffsetItem;
 };
 
-export const buildCustomizableComponents = (props) => {
+export const buildListComponents = (props) => {
   const components = {};
   if (props.virtualizeList) {
     components.MenuList = props.formatGroupHeaderLabel
@@ -51,7 +51,7 @@ export const buildCustomizableComponents = (props) => {
   return components;
 };
 
-export const buildCustomStyles = (props) => {
+export const getStyles = (props) => {
   return {
     clearIndicator: (provided) => ({
       ...provided,

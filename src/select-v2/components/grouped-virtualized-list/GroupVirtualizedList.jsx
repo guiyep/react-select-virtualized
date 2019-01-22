@@ -32,15 +32,15 @@ const GroupListVirtualized = (props) => {
         maxHeight: props.maxHeight,
         totalLength: props.flatCollection.length,
         groupLength: props.children.length,
-        optionLabelHeight: props.optionLabelHeight,
-        groupLabelHeight: props.groupLabelHeight,
+        optionHeight: props.optionHeight,
+        groupHeaderHeight: props.groupHeaderHeight,
       }),
     [
       props.maxHeight,
       props.flatCollection.length,
       props.children.length,
-      props.optionLabelHeight,
-      props.groupLabelHeight,
+      props.optionHeight,
+      props.groupHeaderHeight,
     ],
   );
 
@@ -58,20 +58,20 @@ const GroupListVirtualized = (props) => {
     () =>
       getGroupRowHeight({
         children: props.flatCollection,
-        optionLabelHeight: props.optionLabelHeight,
-        groupLabelHeight: props.groupLabelHeight,
+        optionHeight: props.optionHeight,
+        groupHeaderHeight: props.groupHeaderHeight,
       }),
-    [props.flatCollection, props.optionLabelHeight, props.groupLabelHeight],
+    [props.flatCollection, props.optionHeight, props.groupHeaderHeight],
   );
 
   const rowRenderer = useMemo(
     () =>
       virtualizeGroupedRowRenderer({
         children: props.flatCollection,
-        formatGroup: props.formatGroup,
+        formatGroupHeader: props.formatGroupHeader,
         onItemFocused: onItemFocused,
       }),
-    [props.flatCollection, props.formatGroup],
+    [props.flatCollection, props.formatGroupHeader],
   );
 
   return (
@@ -92,12 +92,12 @@ GroupListVirtualized.propTypes = {
   maxHeight: PropTypes.number, // this prop is coming from react-select
   maxWidth: PropTypes.number, // the style width 100% will override this prop, we need to set something big because it is a required field
   children: PropTypes.node.isRequired,
-  optionLabelHeight: PropTypes.number,
-  groupLabelHeight: PropTypes.number,
+  optionHeight: PropTypes.number,
+  groupHeaderHeight: PropTypes.number,
   selectedValue: PropTypes.object,
   defaultValue: PropTypes.object,
   valueGetter: PropTypes.func,
-  formatGroup: PropTypes.func.isRequired,
+  formatGroupHeader: PropTypes.func.isRequired,
   flatCollection: PropTypes.array.isRequired,
 };
 

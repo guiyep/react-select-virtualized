@@ -9,10 +9,10 @@ export const getListHeight = ({
   maxHeight = 0,
   totalLength = 0,
   groupLength = 0,
-  optionLabelHeight = 1,
-  groupLabelHeight = 1,
+  optionHeight = 1,
+  groupHeaderHeight = 1,
 }) => {
-  const getHeight = totalLength * optionLabelHeight - groupLength * Math.abs(optionLabelHeight - groupLabelHeight);
+  const getHeight = totalLength * optionHeight - groupLength * Math.abs(optionHeight - groupHeaderHeight);
   return getHeight > maxHeight ? maxHeight : getHeight;
 };
 
@@ -36,15 +36,15 @@ export const getNextRowIndex = (prevFocusIndex = 0, nextIndex = 0, options = [])
 export const buildCustomizableComponents = (props) => {
   const components = {};
   if (props.virtualizeList) {
-    components.MenuList = props.formatGroupLabel
+    components.MenuList = props.formatGroupHeaderLabel
       ? GroupVirtualizedListBuilder({
-          formatGroup: props.formatGroupLabel,
-          groupLabelHeight: props.groupLabelHeight,
-          optionLabelHeight: props.optionLabelHeight,
+          formatGroupHeader: props.formatGroupHeaderLabel,
+          groupHeaderHeight: props.groupHeaderHeight,
+          optionHeight: props.optionHeight,
           defaultValue: props.defaultValue,
         })
       : FlatVirtualizedListBuilder({
-          optionLabelHeight: props.optionLabelHeight,
+          optionHeight: props.optionHeight,
           defaultValue: props.defaultValue,
         });
   }

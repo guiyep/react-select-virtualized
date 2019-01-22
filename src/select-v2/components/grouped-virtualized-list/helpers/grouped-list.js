@@ -4,9 +4,9 @@ import { components as ReactSelectComponents } from 'react-select';
 
 export const isGroupHeader = ({ typeGroup }) => !!typeGroup;
 
-export const getGroupRowHeight = ({ children, optionLabelHeight, groupLabelHeight }) => ({ index }) => {
+export const getGroupRowHeight = ({ children, optionHeight, groupHeaderHeight }) => ({ index }) => {
   const currentProps = children[index].props;
-  return isGroupHeader(currentProps) ? groupLabelHeight : optionLabelHeight;
+  return isGroupHeader(currentProps) ? groupHeaderHeight : optionHeight;
 };
 
 export const flatOptionsChildren = (reactComponent) =>
@@ -23,7 +23,7 @@ export const flatOptionsChildren = (reactComponent) =>
     ])
     .reduce((accumulator, currentValue) => accumulator.concat(currentValue), []);
 
-export const virtualizeGroupedRowRenderer = ({ children, formatGroup, onItemFocused }) => ({
+export const virtualizeGroupedRowRenderer = ({ children, formatGroupHeader, onItemFocused }) => ({
   key,
   index,
   style,
@@ -39,7 +39,7 @@ export const virtualizeGroupedRowRenderer = ({ children, formatGroup, onItemFocu
   return (
     <div className="grouped-virtualized-list" key={key} style={style}>
       {isGroupHeaderValue ? (
-        formatGroup({
+        formatGroupHeader({
           label: currentProps.label,
           options: currentProps.options,
         })

@@ -144,7 +144,7 @@ storiesOf(`Select-v2`, module)
         </div>
       );
 
-      return <Select options={op} defaultValue={defaultValue} formatGroupLabel={groupFormat} groupLabelHeight={50} />;
+      return <Select options={op} defaultValue={defaultValue} formatGroupHeaderLabel={groupFormat} groupHeaderHeight={50} />;
     },
     {
       notes: '',

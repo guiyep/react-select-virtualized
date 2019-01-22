@@ -3,7 +3,7 @@ import React from 'react';
 import FlatVirtualizedList from './FlatVirtualizedList';
 import { menuListItemHeight } from '../../helpers/select';
 
-const List = ({ optionLabelHeight = menuListItemHeight, defaultValue, valueGetter }) => (props) => {
+const List = ({ optionHeight = menuListItemHeight, defaultValue, valueGetter }) => (props) => {
   const selectedValue = props.getValue() ? props.getValue()[0] : undefined;
 
   if (props.children && !props.children.length) {
@@ -13,7 +13,7 @@ const List = ({ optionLabelHeight = menuListItemHeight, defaultValue, valueGette
   return (
     <FlatVirtualizedList
       {...props}
-      optionLabelHeight={optionLabelHeight}
+      optionHeight={optionHeight}
       selectedValue={selectedValue}
       defaultValue={defaultValue}
       valueGetter={valueGetter}

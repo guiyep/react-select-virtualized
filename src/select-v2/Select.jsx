@@ -57,10 +57,10 @@ Select.propTypes = {
   options: PropTypes.array.isRequired,
   onChange: PropTypes.func,
   formatOptionLabel: PropTypes.func,
-  formatGroupLabel: PropTypes.func,
-  optionLabelHeight: PropTypes.number,
+  formatGroupHeaderLabel: PropTypes.func,
+  optionHeight: PropTypes.number,
   defaultValue: PropTypes.object,
-  groupLabelHeight: PropTypes.number,
+  groupHeaderHeight: PropTypes.number,
   virtualizeList: PropTypes.bool,
 };
 

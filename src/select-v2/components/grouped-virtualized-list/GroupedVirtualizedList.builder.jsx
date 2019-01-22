@@ -5,9 +5,9 @@ import { menuListItemHeight } from '../../helpers/select';
 import { flatOptionsChildren } from './helpers/grouped-list';
 
 const ListWithGroup = ({
-  formatGroup,
-  optionLabelHeight = menuListItemHeight,
-  groupLabelHeight = menuListItemHeight,
+  formatGroupHeader,
+  optionHeight = menuListItemHeight,
+  groupHeaderHeight = menuListItemHeight,
   defaultValue,
   valueGetter,
 }) => (props) => {
@@ -23,9 +23,9 @@ const ListWithGroup = ({
       {...props}
       flatCollection={children}
       selectedValue={selectedValue}
-      formatGroup={formatGroup}
-      optionLabelHeight={optionLabelHeight}
-      groupLabelHeight={groupLabelHeight}
+      formatGroupHeader={formatGroupHeader}
+      optionHeight={optionHeight}
+      groupHeaderHeight={groupHeaderHeight}
       valueGetter={valueGetter}
       defaultValue={defaultValue}
     />

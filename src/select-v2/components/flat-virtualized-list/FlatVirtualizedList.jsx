@@ -31,9 +31,9 @@ const ListVirtualized = (props) => {
       getListHeight({
         maxHeight: props.maxHeight,
         totalLength: props.children.length,
-        optionLabelHeight: props.optionLabelHeight,
+        optionHeight: props.optionHeight,
       }),
-    [props.maxHeight, props.children.length, props.optionLabelHeight],
+    [props.maxHeight, props.children.length, props.optionHeight],
   );
 
   const scrollToIndex = useMemo(
@@ -62,7 +62,7 @@ const ListVirtualized = (props) => {
       height={height}
       scrollToIndex={scrollToIndex}
       rowCount={props.children.length || 0}
-      rowHeight={props.optionLabelHeight}
+      rowHeight={props.optionHeight}
       rowRenderer={rowRenderer}
       width={props.maxWidth}
     />
@@ -73,7 +73,7 @@ ListVirtualized.propTypes = {
   maxHeight: PropTypes.number, // this prop is coming from react-select
   maxWidth: PropTypes.number, // the style width 100% will override this prop, we need to set something big because it is a required field
   children: PropTypes.node.isRequired,
-  optionLabelHeight: PropTypes.number,
+  optionHeight: PropTypes.number,
   selectedValue: PropTypes.object,
   defaultValue: PropTypes.object,
   valueGetter: PropTypes.func,

@@ -1,18 +1,20 @@
 import React, { Fragment } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { withState } from '@dump247/storybook-state';
+import random from 'generate-random-data';
 
 import Select from './Select';
 
-const optionsDefault = [
-  { value: 'chocolate', label: 'Chocolate', extra: 'yes!, it is very good' },
-  { value: 'strawberry', label: 'Strawberry', extra: 'mmmmm maybe' },
-  { value: 'vanilla', label: 'Vanilla', extra: 'little boring' },
-  { value: 'dulcedeleche', label: 'Dulce De Leche', extra: 'yes!, the best!' },
-];
+const optionsDefault = new Array(20).fill(null).map(() => ({
+  value: random.guid(),
+  label: `${random.maleFirstName()} - ${random.email('test.com.au')}`,
+  extra: random.language(),
+}));
 
-const defaultValue = { ...optionsDefault[3] };
+console.log(optionsDefault);
+console.log(random.maleFirstName());
+
+const defaultValue = { ...optionsDefault[random.int(1, 19)] };
 
 const buildOptionsSize = (size) => {
   let count = 0;
@@ -116,9 +118,9 @@ storiesOf(`Select-v2`, module)
     () => {
       const labelFormat = ({ label, extra }, { context }) => {
         // this can be any JSX
-        if (context === 'value') return `${label} - Should I try it? ${extra}`;
+        if (context === 'value') return `${label} - ${extra}`;
         // this can be any JSX
-        return `${label} - Should I try it? ${extra}`;
+        return `${label} - ${extra}`;
       };
 
       return <Select options={buildOptionsSize(3000)} defaultValue={defaultValue} formatOptionLabel={labelFormat} />;
@@ -138,13 +140,22 @@ storiesOf(`Select-v2`, module)
         { label: 'Group 5', options: buildOptionsSize(40) },
       ];
 
+      const groupHeaderHeight = 50;
+
       const groupFormat = ({ label, options }) => (
-        <div style={{ background: 'grey', height: '50px' }}>
+        <div style={{ background: 'grey', height: `${groupHeaderHeight}px` }}>
           {label} - {options.length} items in this group
         </div>
       );
 
-      return <Select options={op} defaultValue={defaultValue} formatGroupHeaderLabel={groupFormat} groupHeaderHeight={50} />;
+      return (
+        <Select
+          options={op}
+          defaultValue={defaultValue}
+          formatGroupHeaderLabel={groupFormat}
+          groupHeaderHeight={groupHeaderHeight}
+        />
+      );
     },
     {
       notes: '',

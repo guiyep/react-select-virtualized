@@ -57,7 +57,6 @@ Select.propTypes = {
   ...ReactSelect.propTypes,
   options: PropTypes.array.isRequired,
   onChange: PropTypes.func,
-  formatOptionLabel: PropTypes.func,
   formatGroupHeaderLabel: PropTypes.func,
   optionHeight: PropTypes.number,
   groupHeaderHeight: PropTypes.number,

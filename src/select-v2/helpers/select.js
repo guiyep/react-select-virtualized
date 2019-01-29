@@ -26,7 +26,7 @@ export const getScrollIndex = ({ children, selected, valueGetter }) => {
 
 export const getNextRowIndex = (prevFocusIndex = 0, nextIndex = 0, options = []) => {
   const goingDown = prevFocusIndex < nextIndex;
-  const toRow = nextIndex + (goingDown ? offset : -offset);
+  const toRow = nextIndex + ((goingDown && offset) || -offset);
   const listSize = options.length;
   const nextOffsetItem = toRow < listSize ? toRow : listSize;
   const prevOffsetItem = toRow > 0 ? toRow : 0;
@@ -51,7 +51,7 @@ export const buildListComponents = (props) => {
   return components;
 };
 
-export const getStyles = (props) => {
+export const getStyles = () => {
   return {
     clearIndicator: (provided) => ({
       ...provided,

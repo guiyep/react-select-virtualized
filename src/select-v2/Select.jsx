@@ -1,9 +1,9 @@
 import ReactSelect from 'react-select';
 import PropTypes from 'prop-types';
 import React, { useRef, useImperativeHandle, useState, forwardRef, memo } from 'react';
-import './_select.css';
+import './styles.css';
 import { buildListComponents, getStyles } from './helpers/select';
-import 'react-virtualized/styles.css'
+import 'react-virtualized/styles.css';
 
 function Select(props, ref) {
   const reactSelect = useRef('react-select');
@@ -42,7 +42,7 @@ function Select(props, ref) {
       ref={reactSelect}
       {...defaultProps}
       {...props}
-      styles={{ ...getStyles(props), ...props.styles }} // keep react-select styles implementation and pass to any customization done
+      styles={{ ...getStyles(), ...props.styles }} // keep react-select styles implementation and pass to any customization done
       value={selection}
       onChange={onChangeHandler}
       options={props.options}

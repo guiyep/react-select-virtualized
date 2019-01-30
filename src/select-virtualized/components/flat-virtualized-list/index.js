@@ -1,4 +1,4 @@
 import FlatVirtualizedList from './FlatVirtualizedList';
-import FlatVirtualizedListBuilder from './FlatVirtualizedList.builder';
+import FlatVirtualizedListFactory from './FlatVirtualizedList.factory';
 
-export { FlatVirtualizedList, FlatVirtualizedListBuilder };
+export { FlatVirtualizedList, FlatVirtualizedListFactory };

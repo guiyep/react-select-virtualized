@@ -11,9 +11,6 @@ const optionsDefault = new Array(20).fill(null).map(() => ({
   extra: random.language(),
 }));
 
-console.log(optionsDefault);
-console.log(random.maleFirstName());
-
 const defaultValue = { ...optionsDefault[random.int(1, 19)] };
 
 const buildOptionsSize = (size) => {

@@ -1,4 +1,4 @@
 import GroupVirtualizedList from './GroupVirtualizedList';
-import GroupVirtualizedListBuilder from './GroupedVirtualizedList.builder';
+import GroupVirtualizedListFactory from './GroupedVirtualizedList.factory';
 
-export { GroupVirtualizedList, GroupVirtualizedListBuilder };
+export { GroupVirtualizedList, GroupVirtualizedListFactory };

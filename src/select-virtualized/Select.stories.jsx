@@ -39,9 +39,25 @@ storiesOf(`React Select Virtualized`, module)
   .add('Basic', () => <Select options={optionsDefault} />, {
     notes: 'This is the basic definition for a select',
   })
+  .add('with default value', () => <Select defaultValue={defaultValue} options={optionsDefault} />, {
+    notes: '',
+  })
   .add(
-    'with default value',
-    () => <Select defaultValue={defaultValue} options={optionsDefault} />,
+    'with 1500 elements',
+    () => {
+      const ops = buildOptionsSize(1500);
+      return <Select options={ops} />;
+    },
+    {
+      notes: '',
+    },
+  )
+  .add(
+    'with 2500 elements',
+    () => {
+      const ops = buildOptionsSize(2500);
+      return <Select options={ops} />;
+    },
     {
       notes: '',
     },
@@ -57,9 +73,29 @@ storiesOf(`React Select Virtualized`, module)
     },
   )
   .add(
+    'with 6000 elements',
+    () => {
+      const ops = buildOptionsSize(6000);
+      return <Select options={ops} />;
+    },
+    {
+      notes: '',
+    },
+  )
+  .add(
     'with 8000 elements',
     () => {
       const ops = buildOptionsSize(8000);
+      return <Select options={ops} />;
+    },
+    {
+      notes: '',
+    },
+  )
+  .add(
+    'with 10500 elements',
+    () => {
+      const ops = buildOptionsSize(10500);
       return <Select options={ops} />;
     },
     {
@@ -114,13 +150,9 @@ storiesOf(`React Select Virtualized`, module)
       notes: '',
     },
   )
-  .add(
-    'empty options',
-    () => <Select noOptionsMessage={() => 'No Items To Display'} options={[]} />,
-    {
-      notes: '',
-    },
-  )
+  .add('empty options', () => <Select noOptionsMessage={() => 'No Items To Display'} options={[]} />, {
+    notes: '',
+  })
   .add(
     'custom label option',
     () => {
@@ -138,7 +170,27 @@ storiesOf(`React Select Virtualized`, module)
     },
   )
   .add(
-    'grouped options',
+    'grouped default',
+    () => {
+      const ops = [
+        { label: `Group ${random.maleFirstName()}`, options: buildOptionsSize(40) },
+        { label: `Group ${random.maleFirstName()}`, options: buildOptionsSize(40) },
+        { label: `Group ${random.maleFirstName()}`, options: buildOptionsSize(40) },
+        { label: `Group ${random.maleFirstName()}`, options: buildOptionsSize(40) },
+        { label: `Group ${random.maleFirstName()}`, options: buildOptionsSize(40) },
+        { label: `Group ${random.maleFirstName()}`, options: buildOptionsSize(40) },
+        { label: `Group ${random.maleFirstName()}`, options: buildOptionsSize(40) },
+        { label: `Group ${random.maleFirstName()}`, options: buildOptionsSize(40) },
+      ];
+
+      return <Select options={ops} defaultValue={defaultValue} grouped />;
+    },
+    {
+      notes: '',
+    },
+  )
+  .add(
+    'grouped custom format',
     () => {
       const ops = [
         { label: `Group ${random.maleFirstName()}`, options: buildOptionsSize(40) },
@@ -155,9 +207,9 @@ storiesOf(`React Select Virtualized`, module)
       const groupStyle = {
         background: 'lightcoral',
         height: '4em',
-        'line-height': '4em',
-        'text-align': 'center',
-        'font-family': 'monospace',
+        'lineHeight': '4em',
+        'textAlign': 'center',
+        'fontFamily': 'monospace',
       };
 
       const groupHeaderHeight = 50;

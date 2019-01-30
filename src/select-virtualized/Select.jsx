@@ -1,8 +1,9 @@
 import ReactSelect from 'react-select';
 import PropTypes from 'prop-types';
-import React, { useRef, useImperativeHandle, useState, forwardRef, memo } from 'react';
+import React, { useRef, useImperativeHandle, useState, forwardRef, useMemo, memo } from 'react';
 import './styles.css';
 import { buildListComponents, getStyles } from './helpers/select';
+import { defaultGroupFormat } from './components/grouped-virtualized-list/helpers/grouped-list';
 import 'react-virtualized/styles.css';
 
 function Select(props, ref) {
@@ -18,6 +19,20 @@ function Select(props, ref) {
     isSearchable: true,
     blurInputOnSelect: true,
   };
+
+  const { groupHeaderHeight, formatGroupHeaderLabel } = useMemo(
+    () => {
+      if (!props.grouped && !props.formatGroupHeaderLabel && !props.groupHeaderHeight)
+        return { formatGroupHeaderLabel: false };
+
+      const groupHeaderHeight = props.groupHeaderHeight || props.optionHeight;
+      return {
+        groupHeaderHeight,
+        formatGroupHeaderLabel: props.formatGroupHeaderLabel || defaultGroupFormat(groupHeaderHeight),
+      };
+    },
+    [props.grouped, props.formatGroupHeaderLabel, props.groupHeaderHeight],
+  );
 
   const onChangeHandler = (value, { action }) => {
     if (props.onChange) {
@@ -46,7 +61,14 @@ function Select(props, ref) {
       value={selection}
       onChange={onChangeHandler}
       options={props.options}
-      components={buildListComponents(props)}
+      components={{
+        ...props.components,
+        ...buildListComponents({
+          ...props,
+          formatGroupHeaderLabel,
+          groupHeaderHeight,
+        }),
+      }} // props.components comes from react-select if present
     />
   );
 }
@@ -57,6 +79,7 @@ Select.propTypes = {
   ...ReactSelect.propTypes,
   options: PropTypes.array.isRequired,
   onChange: PropTypes.func,
+  grouped: PropTypes.bool, // this is only for performance enhancement so we do not need to iterate in the array many times. It is not needed if formatGroupHeaderLabel or groupHeaderHeight are defined
   formatGroupHeaderLabel: PropTypes.func,
   optionHeight: PropTypes.number,
   groupHeaderHeight: PropTypes.number,
@@ -66,6 +89,8 @@ Select.propTypes = {
 
 Select.defaultProps = {
   virtualizeList: true,
+  grouped: false,
+  optionHeight: 31,
 };
 
 export default memo(Select);

@@ -6,3 +6,11 @@
   border: 1px solid lightgray;
   background: white;
 }
+
+.flat-virtualized-item div {
+  cursor: pointer;
+}
+
+.grouped-virtualized-list-item div[role="option"]{
+  cursor: pointer;
+}

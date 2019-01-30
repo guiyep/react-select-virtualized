@@ -37,7 +37,7 @@ export const groupVirtualizedListRowRenderer = ({ children, formatGroupHeader, o
   }
 
   return (
-    <div className="grouped-virtualized-list" key={key} style={style}>
+    <div className="grouped-virtualized-list-item" key={key} style={style}>
       {isGroupHeaderValue ? (
         formatGroupHeader({
           label: currentProps.label,

@@ -1,3 +1,5 @@
-import { Select } from './select-v2';
+import { Select } from './select-virtualized';
 
 export { Select };
+
+export default Select;

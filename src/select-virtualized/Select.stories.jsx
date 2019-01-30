@@ -24,7 +24,7 @@ const buildOptionsSize = (size) => {
         optionsDefault.map(({ value, label, extra }) => {
           count += 1;
           return {
-            value: `${value} ${count || ''}`,
+            value: `${value}-${random.guid()}`,
             label: `${label} ${count || ''}`,
             extra,
           };
@@ -34,18 +34,22 @@ const buildOptionsSize = (size) => {
   );
 };
 
-storiesOf(`Select-v2`, module)
+storiesOf(`React Select Virtualized`, module)
   .addDecorator((story) => <div style={{ width: '500px' }}> {story()} </div>)
-  .add('Basic Select', () => <Select options={optionsDefault} />, {
+  .add('Basic', () => <Select options={optionsDefault} />, {
     notes: 'This is the basic definition for a select',
   })
-  .add('Select with default value', () => <Select defaultValue={defaultValue} options={optionsDefault} />, {
-    notes: '',
-  })
   .add(
-    'Select with 5000 elements',
+    'with default value',
+    () => <Select defaultValue={defaultValue} options={optionsDefault} />,
+    {
+      notes: '',
+    },
+  )
+  .add(
+    'with 4500 elements',
     () => {
-      const ops = buildOptionsSize(5000);
+      const ops = buildOptionsSize(4500);
       return <Select options={ops} />;
     },
     {
@@ -53,20 +57,20 @@ storiesOf(`Select-v2`, module)
     },
   )
   .add(
-    'Select with 10000 elements',
+    'with 8000 elements',
     () => {
-      const ops = buildOptionsSize(10000);
+      const ops = buildOptionsSize(8000);
       return <Select options={ops} />;
     },
     {
       notes: '',
     },
   )
-  .add('Select disabled', () => <Select options={optionsDefault} isDisabled />, {
+  .add('disabled', () => <Select options={optionsDefault} isDisabled />, {
     notes: '',
   })
   .add(
-    'Select clear progra',
+    'clear element',
     () => {
       const selectRef = React.createRef();
       return (
@@ -82,7 +86,7 @@ storiesOf(`Select-v2`, module)
     },
   )
   .add(
-    'Select focus',
+    'focus input',
     () => {
       const selectRef = React.createRef();
       return (
@@ -98,7 +102,7 @@ storiesOf(`Select-v2`, module)
     },
   )
   .add(
-    'Select handlers',
+    'callbacks',
     () => (
       <Select
         options={optionsDefault}
@@ -110,11 +114,15 @@ storiesOf(`Select-v2`, module)
       notes: '',
     },
   )
-  .add('Select without any result', () => <Select noOptionsMessage={() => 'No Items To Display'} options={[]} />, {
-    notes: '',
-  })
   .add(
-    'Select combined item result',
+    'empty options',
+    () => <Select noOptionsMessage={() => 'No Items To Display'} options={[]} />,
+    {
+      notes: '',
+    },
+  )
+  .add(
+    'custom label option',
     () => {
       const labelFormat = ({ label, extra }, { context }) => {
         // this can be any JSX
@@ -130,27 +138,39 @@ storiesOf(`Select-v2`, module)
     },
   )
   .add(
-    'Select grouped result',
+    'grouped options',
     () => {
-      const op = [
-        { label: 'Group 1', options: buildOptionsSize(40) },
-        { label: 'Group 2', options: buildOptionsSize(40) },
-        { label: 'Group 3', options: buildOptionsSize(40) },
-        { label: 'Group 4', options: buildOptionsSize(40) },
-        { label: 'Group 5', options: buildOptionsSize(40) },
+      const ops = [
+        { label: `Group ${random.maleFirstName()}`, options: buildOptionsSize(40) },
+        { label: `Group ${random.maleFirstName()}`, options: buildOptionsSize(40) },
+        { label: `Group ${random.maleFirstName()}`, options: buildOptionsSize(40) },
+        { label: `Group ${random.maleFirstName()}`, options: buildOptionsSize(40) },
+        { label: `Group ${random.maleFirstName()}`, options: buildOptionsSize(40) },
+        { label: `Group ${random.maleFirstName()}`, options: buildOptionsSize(40) },
+        { label: `Group ${random.maleFirstName()}`, options: buildOptionsSize(40) },
+        { label: `Group ${random.maleFirstName()}`, options: buildOptionsSize(40) },
       ];
+
+      // this can be a css also
+      const groupStyle = {
+        background: 'lightcoral',
+        height: '4em',
+        'line-height': '4em',
+        'text-align': 'center',
+        'font-family': 'monospace',
+      };
 
       const groupHeaderHeight = 50;
 
       const groupFormat = ({ label, options }) => (
-        <div style={{ background: 'grey', height: `${groupHeaderHeight}px` }}>
-          {label} - {options.length} items in this group
+        <div style={groupStyle}>
+          {label} --- ({options.length}) items in this group
         </div>
       );
 
       return (
         <Select
-          options={op}
+          options={ops}
           defaultValue={defaultValue}
           formatGroupHeaderLabel={groupFormat}
           groupHeaderHeight={groupHeaderHeight}

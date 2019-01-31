@@ -75,6 +75,8 @@ function Select(props, ref) {
 
 Select = forwardRef(Select);
 
+Select = memo(Select);
+
 Select.propTypes = {
   ...ReactSelect.propTypes,
   options: PropTypes.array.isRequired,
@@ -93,4 +95,6 @@ Select.defaultProps = {
   optionHeight: 31,
 };
 
-export default memo(Select);
+Select.displayName = 'Select';
+
+export default Select;

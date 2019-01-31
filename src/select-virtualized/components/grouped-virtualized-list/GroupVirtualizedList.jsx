@@ -4,7 +4,7 @@ import { List } from 'react-virtualized';
 import { getListHeight, getScrollIndex, getNextRowIndex } from '../../helpers/select';
 import { getGroupRowHeight, groupVirtualizedListRowRenderer } from './helpers/grouped-list';
 
-const GroupListVirtualized = (props) => {
+let GroupListVirtualized = (props) => {
   let queueScrollToIdx = undefined;
   let focusedItemIndex = undefined;
 
@@ -35,13 +35,7 @@ const GroupListVirtualized = (props) => {
         optionHeight: props.optionHeight,
         groupHeaderHeight: props.groupHeaderHeight,
       }),
-    [
-      props.maxHeight,
-      props.flatCollection.length,
-      props.children.length,
-      props.optionHeight,
-      props.groupHeaderHeight,
-    ],
+    [props.maxHeight, props.flatCollection.length, props.children.length, props.optionHeight, props.groupHeaderHeight],
   );
 
   const scrollToIndex = useMemo(
@@ -88,6 +82,8 @@ const GroupListVirtualized = (props) => {
   );
 };
 
+GroupListVirtualized = memo(GroupListVirtualized);
+
 GroupListVirtualized.propTypes = {
   maxHeight: PropTypes.number, // this prop is coming from react-select
   maxWidth: PropTypes.number, // the style width 100% will override this prop, we need to set something big because it is a required field
@@ -106,4 +102,6 @@ GroupListVirtualized.defaultProps = {
   maxWidth: 500,
 };
 
-export default memo(GroupListVirtualized);
+GroupListVirtualized.displayName = 'GroupListVirtualized';
+
+export default GroupListVirtualized;

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { getListHeight, getScrollIndex, getNextRowIndex } from '../../helpers/select';
 import { flatVirtualizedListRowRenderer } from './helpers/flat-list';
 
-const ListVirtualized = (props) => {
+let ListVirtualized = (props) => {
   let queueScrollToIdx = undefined;
   let focusedItemIndex = undefined;
 
@@ -69,6 +69,8 @@ const ListVirtualized = (props) => {
   );
 };
 
+ListVirtualized = memo(ListVirtualized);
+
 ListVirtualized.propTypes = {
   maxHeight: PropTypes.number, // this prop is coming from react-select
   maxWidth: PropTypes.number, // the style width 100% will override this prop, we need to set something big because it is a required field
@@ -85,4 +87,6 @@ ListVirtualized.defaultProps = {
   maxWidth: 500,
 };
 
-export default memo(ListVirtualized);
+ListVirtualized.displayName = 'ListVirtualized';
+
+export default ListVirtualized;

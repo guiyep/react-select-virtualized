@@ -9,20 +9,18 @@ import Select from './Select';
 const optionsDefault = new Array(20).fill(null).map(() => ({
   value: random.guid(),
   label: `${random.maleFirstName()} - ${random.email('test.com.au')}`,
-  extra: random.language(),
 }));
 
 const defaultValue = { ...optionsDefault[random.int(1, 19)] };
 
 const buildOptionsSize = (size) => {
-  return new Array(size / optionsDefault.length).fill(null).reduce(
+  return new Array(Math.round(size / optionsDefault.length)).fill(null).reduce(
     (acc) =>
       acc.concat(
-        optionsDefault.map(({ value, label, extra }) => {
+        optionsDefault.map(({ value, label }) => {
           return {
             value: `${value}-${random.guid()}`,
             label: `${label} speaks ${random.language()}`,
-            extra,
           };
         }),
       ),
@@ -30,6 +28,12 @@ const buildOptionsSize = (size) => {
   );
 };
 
+const op50 = buildOptionsSize(50);
+const op100 = buildOptionsSize(100);
+const op300 = buildOptionsSize(300);
+const op500 = buildOptionsSize(500);
+const op800 = buildOptionsSize(800);
+const op1000 = buildOptionsSize(1000);
 const op1500 = buildOptionsSize(1500);
 const ops2500 = buildOptionsSize(2500);
 const ops4500 = buildOptionsSize(4500);
@@ -45,6 +49,17 @@ const group6 = buildOptionsSize(40);
 const group7 = buildOptionsSize(40);
 const group8 = buildOptionsSize(40);
 
+const opsGroup = [
+  { label: `Group ${random.maleFirstName()}`, options: group1 },
+  { label: `Group ${random.maleFirstName()}`, options: group2 },
+  { label: `Group ${random.maleFirstName()}`, options: group3 },
+  { label: `Group ${random.maleFirstName()}`, options: group4 },
+  { label: `Group ${random.maleFirstName()}`, options: group5 },
+  { label: `Group ${random.maleFirstName()}`, options: group6 },
+  { label: `Group ${random.maleFirstName()}`, options: group7 },
+  { label: `Group ${random.maleFirstName()}`, options: group8 },
+];
+
 storiesOf(`React Select Virtualized`, module)
   .addDecorator((story) => <div style={{ width: '500px' }}> {story()} </div>)
   .addDecorator(withInfo)
@@ -56,6 +71,12 @@ storiesOf(`React Select Virtualized`, module)
   })
   .add('Basic', () => <Select options={optionsDefault} />)
   .add('with default value', () => <Select defaultValue={defaultValue} options={optionsDefault} />)
+  .add('with 50 elements', () => <Select options={op50} />)
+  .add('with 100 elements', () => <Select options={op100} />)
+  .add('with 300 elements', () => <Select options={op300} />)
+  .add('with 500 elements', () => <Select options={op500} />)
+  .add('with 800 elements', () => <Select options={op800} />)
+  .add('with 1000 elements', () => <Select options={op1000} />)
   .add('with 1500 elements', () => <Select options={op1500} />)
   .add('with 2500 elements', () => <Select options={ops2500} />)
   .add('with 4500 elements', () => <Select options={ops4500} />)
@@ -67,9 +88,8 @@ storiesOf(`React Select Virtualized`, module)
     const selectRef = React.createRef();
     return (
       <Fragment>
-        <button style={{ width: '50px' }}>
-          {' '}
-          onClick={() => selectRef.current.clear()}>Click me for clearing the Select default value
+        <button style={{ width: '50px' }} onClick={() => selectRef.current.clear()}>
+          Click me for clearing the Select default value
         </button>
         <br />
         <Select ref={selectRef} defaultValue={defaultValue} options={optionsDefault} />
@@ -80,9 +100,8 @@ storiesOf(`React Select Virtualized`, module)
     const selectRef = React.createRef();
     return (
       <Fragment>
-        <button style={{ width: '50px' }}>
-          {' '}
-          onClick={() => selectRef.current.focus()}>Click me for focusing the Select
+        <button style={{ width: '50px' }} onClick={() => selectRef.current.focus()}>
+          Click me for focusing the Select
         </button>
         <br />
         <Select ref={selectRef} defaultValue={defaultValue} options={optionsDefault} />
@@ -100,39 +119,15 @@ storiesOf(`React Select Virtualized`, module)
     notes: '',
   })
   .add('select with custom labels format', () => {
-    const labelFormat = ({ label, extra }, { context }) => {
-      if (context === 'value') return `${label} - ${extra}`;
-      return `${label} - ${extra}`;
+    const labelFormat = ({ label }, { context }) => {
+      if (context === 'value') return `${label} - ${random.language()}`;
+      return `${label} - ${random.language()}`;
     };
 
     return <Select options={ops2500} defaultValue={defaultValue} formatOptionLabel={labelFormat} />;
   })
-  .add('grouped default', () => {
-    const ops = [
-      { label: `Group ${random.maleFirstName()}`, options: group1 },
-      { label: `Group ${random.maleFirstName()}`, options: group2 },
-      { label: `Group ${random.maleFirstName()}`, options: group3 },
-      { label: `Group ${random.maleFirstName()}`, options: group4 },
-      { label: `Group ${random.maleFirstName()}`, options: group5 },
-      { label: `Group ${random.maleFirstName()}`, options: group6 },
-      { label: `Group ${random.maleFirstName()}`, options: group7 },
-      { label: `Group ${random.maleFirstName()}`, options: group8 },
-    ];
-
-    return <Select options={ops} defaultValue={defaultValue} grouped />;
-  })
+  .add('grouped default', () => <Select options={opsGroup} defaultValue={defaultValue} grouped />)
   .add('grouped custom format', () => {
-    const ops = [
-      { label: `Group ${random.maleFirstName()}`, options: group1 },
-      { label: `Group ${random.maleFirstName()}`, options: group2 },
-      { label: `Group ${random.maleFirstName()}`, options: group3 },
-      { label: `Group ${random.maleFirstName()}`, options: group4 },
-      { label: `Group ${random.maleFirstName()}`, options: group5 },
-      { label: `Group ${random.maleFirstName()}`, options: group6 },
-      { label: `Group ${random.maleFirstName()}`, options: group7 },
-      { label: `Group ${random.maleFirstName()}`, options: group8 },
-    ];
-
     // this can be a css also
     const groupStyle = {
       background: 'lightcoral',
@@ -152,7 +147,7 @@ storiesOf(`React Select Virtualized`, module)
 
     return (
       <Select
-        options={ops}
+        options={opsGroup}
         defaultValue={defaultValue}
         formatGroupHeaderLabel={groupFormat}
         groupHeaderHeight={groupHeaderHeight}

@@ -30,8 +30,8 @@ let GroupListVirtualized = (props) => {
     () =>
       getListHeight({
         maxHeight: props.maxHeight,
-        totalLength: props.flatCollection.length,
-        groupLength: props.children.length,
+        totalSize: props.flatCollection.length,
+        groupSize: props.children.length,
         optionHeight: props.optionHeight,
         groupHeaderHeight: props.groupHeaderHeight,
       }),

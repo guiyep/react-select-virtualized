@@ -7,14 +7,11 @@ export const menuListItemHeight = 40;
 
 export const getListHeight = ({
   maxHeight = 0,
-  totalLength = 0,
-  groupLength = 0,
+  totalSize = 0,
+  groupSize = 0,
   optionHeight = 1,
   groupHeaderHeight = 1,
-}) => {
-  const getHeight = totalLength * optionHeight - groupLength * Math.abs(optionHeight - groupHeaderHeight);
-  return getHeight > maxHeight ? maxHeight : getHeight;
-};
+}) => Math.min(maxHeight, totalSize * optionHeight - groupSize * Math.abs(optionHeight - groupHeaderHeight));
 
 export const getScrollIndex = ({ children, selected, valueGetter }) => {
   if (children && selected && valueGetter)

@@ -62,13 +62,13 @@ const opsGroup = [
 
 storiesOf(`React Select Virtualized`, module)
   .addDecorator((story) => <div style={{ width: '500px' }}> {story()} </div>)
-  .addDecorator(withInfo)
-  .addParameters({
-    info: {
-      source: true,
-      maxPropsIntoLine: 1,
-    },
-  })
+  // .addDecorator(withInfo)
+  // .addParameters({
+  //   info: {
+  //     source: true,
+  //     maxPropsIntoLine: 1,
+  //   },
+  // })
   .add('Basic', () => <Select options={optionsDefault} />)
   .add('with default value', () => <Select defaultValue={defaultValue} options={optionsDefault} />)
   .add('with 50 elements', () => <Select options={op50} />)
@@ -88,7 +88,7 @@ storiesOf(`React Select Virtualized`, module)
     const selectRef = React.createRef();
     return (
       <Fragment>
-        <button style={{ width: '50px' }} onClick={() => selectRef.current.clear()}>
+        <button className="button" style={{ width: '200px' }} onClick={() => selectRef.current.clear()}>
           Click me for clearing the Select default value
         </button>
         <br />
@@ -100,7 +100,7 @@ storiesOf(`React Select Virtualized`, module)
     const selectRef = React.createRef();
     return (
       <Fragment>
-        <button style={{ width: '50px' }} onClick={() => selectRef.current.focus()}>
+        <button className="button" style={{ width: '200px' }} onClick={() => selectRef.current.focus()}>
           Click me for focusing the Select
         </button>
         <br />

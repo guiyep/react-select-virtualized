@@ -30,7 +30,7 @@ let ListVirtualized = (props) => {
     () =>
       getListHeight({
         maxHeight: props.maxHeight,
-        totalLength: props.children.length,
+        totalSize: props.children.length,
         optionHeight: props.optionHeight,
       }),
     [props.maxHeight, props.children.length, props.optionHeight],

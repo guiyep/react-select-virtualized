@@ -1,4 +1,4 @@
-import ReactSelect from 'react-select';
+import { SpeedReactSelect } from './components/speed-react-select';
 import PropTypes from 'prop-types';
 import React, { useRef, useImperativeHandle, useState, forwardRef, useMemo, memo } from 'react';
 import './styles.css';
@@ -53,7 +53,7 @@ function Select(props, ref) {
   }));
 
   return (
-    <ReactSelect
+    <SpeedReactSelect
       ref={reactSelect}
       {...defaultProps}
       {...props}
@@ -78,7 +78,7 @@ Select = forwardRef(Select);
 Select = memo(Select);
 
 Select.propTypes = {
-  ...ReactSelect.propTypes,
+  ...SpeedReactSelect.propTypes,
   options: PropTypes.array.isRequired,
   onChange: PropTypes.func,
   grouped: PropTypes.bool, // this is only for performance enhancement so we do not need to iterate in the array many times. It is not needed if formatGroupHeaderLabel or groupHeaderHeight are defined

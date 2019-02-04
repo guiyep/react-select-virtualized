@@ -2,7 +2,8 @@ import React, { useEffect, useRef, memo, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { List } from 'react-virtualized';
 import { getListHeight, getScrollIndex, getNextRowIndex } from '../../helpers/getters';
-import { getGroupRowHeight, groupVirtualizedListRowRenderer } from './helpers/grouped-list';
+import { groupVirtualizedListRowRenderer } from './helpers/grouped-list';
+import { getGroupRowHeight } from './helpers/getters';
 
 let GroupListVirtualized = (props) => {
   let queueScrollToIdx = undefined;

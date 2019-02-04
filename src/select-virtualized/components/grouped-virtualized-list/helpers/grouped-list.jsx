@@ -1,12 +1,6 @@
 import React from 'react';
 import { components as ReactSelectComponents } from 'react-select';
-
-export const isGroupHeader = ({ typeGroup }) => !!typeGroup;
-
-export const getGroupRowHeight = ({ children, optionHeight, groupHeaderHeight }) => ({ index }) => {
-  const currentProps = children[index].props;
-  return isGroupHeader(currentProps) ? groupHeaderHeight : optionHeight;
-};
+import { isGroupHeader } from './getters';
 
 export const flatOptionsChildren = (reactComponent) =>
   (reactComponent && reactComponent.length ? reactComponent : [])

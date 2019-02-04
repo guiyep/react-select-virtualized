@@ -1,7 +1,7 @@
 import { List } from 'react-virtualized';
 import React, { useEffect, useRef, memo, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { getListHeight, getScrollIndex, getNextRowIndex } from '../../helpers/select';
+import { getListHeight, getScrollIndex, getNextRowIndex } from '../../helpers/getters';
 import { flatVirtualizedListRowRenderer } from './helpers/flat-list';
 
 let ListVirtualized = (props) => {

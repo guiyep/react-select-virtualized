@@ -1,7 +1,7 @@
 import { components as ReactSelectComponents } from 'react-select';
 import React from 'react';
 import FlatVirtualizedList from './FlatVirtualizedList';
-import { menuListItemHeight } from '../../helpers/select';
+import { menuListItemHeight } from '../../helpers/defaults';
 
 const List = ({ optionHeight = menuListItemHeight, defaultValue, valueGetter }) => (props) => {
   const selectedValue = props.getValue() ? props.getValue()[0] : undefined;

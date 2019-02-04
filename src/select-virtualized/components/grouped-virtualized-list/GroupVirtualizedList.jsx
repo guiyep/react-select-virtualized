@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, memo, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { List } from 'react-virtualized';
-import { getListHeight, getScrollIndex, getNextRowIndex } from '../../helpers/select';
+import { getListHeight, getScrollIndex, getNextRowIndex } from '../../helpers/getters';
 import { getGroupRowHeight, groupVirtualizedListRowRenderer } from './helpers/grouped-list';
 
 let GroupListVirtualized = (props) => {

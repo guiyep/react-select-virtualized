@@ -1,4 +1,4 @@
-import React, { forwardRef, memo } from 'react';
+import React, { forwardRef, memo, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import ReactSelect, { Async as ReactAsync } from 'react-select';
 
@@ -23,7 +23,7 @@ let SpeedReactSelect = (props, ref) => {
   };
 
   return (
-    <>
+    <Fragment>
       {props.options.length <= LAG_INDICATOR && <ReactSelect ref={ref} {...props} />}
       {props.options.length > LAG_INDICATOR && (
         <ReactAsync
@@ -35,7 +35,7 @@ let SpeedReactSelect = (props, ref) => {
           defaultOptions={props.options}
         />
       )}
-    </>
+    </Fragment>
   );
 };
 

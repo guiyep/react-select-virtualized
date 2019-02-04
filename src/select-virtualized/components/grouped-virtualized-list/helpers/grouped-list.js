@@ -1,5 +1,4 @@
 import React from 'react';
-import { isArray } from 'lodash';
 import { components as ReactSelectComponents } from 'react-select';
 
 export const isGroupHeader = ({ typeGroup }) => !!typeGroup;
@@ -10,7 +9,7 @@ export const getGroupRowHeight = ({ children, optionHeight, groupHeaderHeight })
 };
 
 export const flatOptionsChildren = (reactComponent) =>
-  (isArray(reactComponent) ? reactComponent : [])
+  (reactComponent && reactComponent.length ? reactComponent : [])
     .map((child) => [
       {
         props: {

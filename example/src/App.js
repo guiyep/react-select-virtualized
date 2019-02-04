@@ -1,13 +1,18 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Select from 'react-select-virtualized';
+import random from 'generate-random-data';
 
-import ExampleComponent from 'react-select-virtualized'
+const optionsDefault = new Array(20).fill(null).map(() => ({
+  value: random.guid(),
+  label: `${random.maleFirstName()} - ${random.email('test.com.au')}`,
+}));
 
 export default class App extends Component {
-  render () {
+  render() {
     return (
       <div>
-        <ExampleComponent text='Modern React component module' />
+        <Select options={optionsDefault} />
       </div>
-    )
+    );
   }
 }

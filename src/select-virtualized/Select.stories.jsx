@@ -62,13 +62,13 @@ const opsGroup = [
 
 storiesOf(`React Select Virtualized`, module)
   .addDecorator((story) => <div style={{ width: '500px' }}> {story()} </div>)
-  // .addDecorator(withInfo)
-  // .addParameters({
-  //   info: {
-  //     source: true,
-  //     maxPropsIntoLine: 1,
-  //   },
-  // })
+  .addDecorator(withInfo)
+  .addParameters({
+    info: {
+      source: true,
+      maxPropsIntoLine: 1,
+    },
+  })
   .add('Basic', () => <Select options={optionsDefault} />)
   .add('with default value', () => <Select defaultValue={defaultValue} options={optionsDefault} />)
   .add('with 50 elements', () => <Select options={op50} />)

@@ -15,12 +15,12 @@ npm install --save react-select-virtualized
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from 'react-select-virtualized'
+import Select from 'react-select-virtualized'
 
 class Example extends Component {
   render () {
     return (
-      <MyComponent />
+      <Select />
     )
   }
 }

@@ -81,6 +81,7 @@ Select.propTypes = {
   ...SpeedReactSelect.propTypes,
   options: PropTypes.array.isRequired,
   onChange: PropTypes.func,
+  onCalculateFilterDebounce: PropTypes.func,
   grouped: PropTypes.bool, // this is only for performance enhancement so we do not need to iterate in the array many times. It is not needed if formatGroupHeaderLabel or groupHeaderHeight are defined
   formatGroupHeaderLabel: PropTypes.func,
   optionHeight: PropTypes.number,
@@ -93,6 +94,7 @@ Select.defaultProps = {
   virtualizeList: true,
   grouped: false,
   optionHeight: 31,
+  onCalculateFilterDebounce: undefined,
 };
 
 Select.displayName = 'Select';

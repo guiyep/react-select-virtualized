@@ -2,7 +2,7 @@ import { List } from 'react-virtualized';
 import React, { useEffect, useRef, memo, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { getListHeight, getScrollIndex, getNextRowIndex } from '../../helpers/getters';
-import { flatVirtualizedListRowRenderer } from './helpers/flat-list';
+import { flatVirtualizedListRowRenderer } from './helpers/flat-list.jsx';
 
 let ListVirtualized = (props) => {
   let queueScrollToIdx = undefined;
@@ -85,6 +85,7 @@ ListVirtualized.propTypes = {
 ListVirtualized.defaultProps = {
   valueGetter: (item) => item && item.value,
   maxWidth: 500,
+  maxHeight: 200,
 };
 
 ListVirtualized.displayName = 'ListVirtualized';

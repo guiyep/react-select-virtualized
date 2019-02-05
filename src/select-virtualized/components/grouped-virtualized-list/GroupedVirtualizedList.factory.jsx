@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { components as ReactSelectComponents } from 'react-select';
 import GroupListVirtualized from './GroupVirtualizedList';
 import { menuListItemHeight } from '../../helpers/defaults';
-import { flatOptionsChildren } from './helpers/grouped-list';
+import { flatOptionsChildren } from './helpers/grouped-list.jsx';
 
 const ListWithGroup = ({
   formatGroupHeader,

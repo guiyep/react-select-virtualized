@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React, { useRef, useImperativeHandle, useState, forwardRef, useMemo, memo } from 'react';
 import './styles.css';
 import { buildListComponents, getStyles } from './helpers/select';
-import { defaultGroupFormat } from './components/grouped-virtualized-list/helpers/grouped-list';
+import { defaultGroupFormat } from './components/grouped-virtualized-list/helpers/grouped-list.jsx';
 import 'react-virtualized/styles.css';
 
 function Select(props, ref) {

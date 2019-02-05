@@ -2,7 +2,7 @@ import React, { useEffect, useRef, memo, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { List } from 'react-virtualized';
 import { getListHeight, getScrollIndex, getNextRowIndex } from '../../helpers/getters';
-import { groupVirtualizedListRowRenderer } from './helpers/grouped-list';
+import { groupVirtualizedListRowRenderer } from './helpers/grouped-list.jsx';
 import { getGroupRowHeight } from './helpers/getters';
 
 let GroupListVirtualized = (props) => {
@@ -100,7 +100,7 @@ GroupListVirtualized.propTypes = {
 
 GroupListVirtualized.defaultProps = {
   valueGetter: (item) => item && item.value,
-  maxWidth: 500,
+  maxWidth: 9999,
 };
 
 GroupListVirtualized.displayName = 'GroupListVirtualized';

@@ -2,7 +2,7 @@ import React from 'react';
 import { components as ReactSelectComponents } from 'react-select';
 import { isGroupHeader } from './getters';
 
-export const flatOptionsChildren = (reactComponent) =>
+export const flattenOptions = (reactComponent) =>
   (reactComponent && reactComponent.length ? reactComponent : [])
     .map((child) => [
       {
@@ -21,12 +21,13 @@ export const groupVirtualizedListRowRenderer = ({ children, formatGroupHeader, o
   index,
   style,
   isVisible,
+  isScrolling,
 }) => {
   const currentProps = children[index].props;
   const isGroupHeaderValue = isGroupHeader(currentProps);
 
   if (currentProps.isFocused && !isGroupHeaderValue) {
-    onItemFocused({ data: currentProps.data, index, isVisible });
+    onItemFocused({ data: currentProps.data, index, isVisible, isScrolling });
   }
 
   return (
@@ -37,7 +38,11 @@ export const groupVirtualizedListRowRenderer = ({ children, formatGroupHeader, o
           options: currentProps.options,
         })
       ) : (
-        <ReactSelectComponents.Option {...currentProps} style={style} />
+        <ReactSelectComponents.Option
+          {...currentProps}
+          style={style}
+          isFocused={!isScrolling && currentProps.isFocused && isVisible}
+        />
       )}
     </div>
   );

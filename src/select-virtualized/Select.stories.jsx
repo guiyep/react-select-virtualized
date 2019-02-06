@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import random from 'generate-random-data';
 import { withInfo } from '@storybook/addon-info';
 
@@ -14,18 +13,10 @@ const optionsDefault = new Array(20).fill(null).map(() => ({
 const defaultValue = { ...optionsDefault[random.int(1, 19)] };
 
 const buildOptionsSize = (size) => {
-  return new Array(Math.round(size / optionsDefault.length)).fill(null).reduce(
-    (acc) =>
-      acc.concat(
-        optionsDefault.map(({ value, label }) => {
-          return {
-            value: `${value}-${random.guid()}`,
-            label: `${label} speaks ${random.language()}`,
-          };
-        }),
-      ),
-    [],
-  );
+  return new Array(Math.round(size)).fill(null).map(() => ({
+    value: random.guid(),
+    label: `${random.maleFirstName()} - ${random.email('test.com.au')} speaks ${random.language()}`,
+  }));
 };
 
 const op50 = buildOptionsSize(50);
@@ -83,6 +74,9 @@ storiesOf(`React Select Virtualized`, module)
   .add('with 6000 elements', () => <Select options={ops6000} />)
   .add('with 8000 elements', () => <Select options={ops8000} />)
   .add('with 10500 elements', () => <Select options={ops10500} />)
+  .add('with 30000 elements (you will need to wait for the creation of the elements)', () => (
+    <Select options={buildOptionsSize(30000)} />
+  ))
   .add('disabled select', () => <Select options={optionsDefault} isDisabled />)
   .add('clear select input', () => {
     const selectRef = React.createRef();
@@ -108,16 +102,7 @@ storiesOf(`React Select Virtualized`, module)
       </Fragment>
     );
   })
-  .add('callbacks action wit logs', () => (
-    <Select
-      options={optionsDefault}
-      onBlur={action('onBlur happened')}
-      onValueChange={action('onValueChange happened')}
-    />
-  ))
-  .add('empty options in the select', () => <Select noOptionsMessage={() => 'No Items...'} options={[]} />, {
-    notes: '',
-  })
+  .add('empty options in the select', () => <Select noOptionsMessage={() => 'No Items...'} options={[]} />)
   .add('select with custom labels format', () => {
     const labelFormat = ({ label }, { context }) => {
       if (context === 'value') return `${label} - ${random.language()}`;

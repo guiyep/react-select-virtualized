@@ -11,6 +11,10 @@
   cursor: pointer;
 }
 
+.flat-virtualized-item-focused div {
+  font-style:italic; 
+}
+
 .grouped-virtualized-list-item div[role="option"]{
   cursor: pointer;
 }

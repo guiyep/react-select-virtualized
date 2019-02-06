@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { components as ReactSelectComponents } from 'react-select';
 import GroupListVirtualized from './GroupVirtualizedList';
 import { menuListItemHeight } from '../../helpers/defaults';
-import { flatOptionsChildren } from './helpers/grouped-list.jsx';
+import { flattenOptions } from './helpers/grouped-list.jsx';
 
 const ListWithGroup = ({
   formatGroupHeader,
@@ -11,7 +11,7 @@ const ListWithGroup = ({
   defaultValue,
   valueGetter,
 }) => (props) => {
-  const children = useMemo(() => [...flatOptionsChildren(props.children)], [props.children]);
+  const children = useMemo(() => [...flattenOptions(props.children)], [props.children]);
   const selectedValue = props.getValue() ? props.getValue()[0] : undefined;
 
   if (props.children && !props.children.length) {

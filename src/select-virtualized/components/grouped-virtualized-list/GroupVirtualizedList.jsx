@@ -19,7 +19,7 @@ let GroupListVirtualized = (props) => {
     }
   });
 
-  const onItemFocused = ({ index, isVisible }) => {
+  const onOptionFocused = ({ index, isVisible }) => {
     if (index !== undefined && isVisible) {
       focusedItemIndex = index;
     } else if (index !== undefined && !isVisible && !queueScrollToIdx) {
@@ -64,7 +64,7 @@ let GroupListVirtualized = (props) => {
       groupVirtualizedListRowRenderer({
         children: props.flatCollection,
         formatGroupHeader: props.formatGroupHeader,
-        onItemFocused: onItemFocused,
+        onOptionFocused: onOptionFocused,
       }),
     [props.flatCollection, props.formatGroupHeader],
   );

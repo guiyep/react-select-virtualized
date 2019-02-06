@@ -1,4 +1,4 @@
-import { SpeedReactSelect } from './components/speed-react-select';
+import { FastReactSelect } from './components/fast-react-select';
 import PropTypes from 'prop-types';
 import React, { useRef, useImperativeHandle, useState, forwardRef, useMemo, memo } from 'react';
 import './styles.css';
@@ -6,7 +6,7 @@ import { buildListComponents, getStyles } from './helpers/select';
 import { defaultGroupFormat } from './components/grouped-virtualized-list/helpers/grouped-list.jsx';
 import 'react-virtualized/styles.css';
 
-function Select(props, ref) {
+let Select = (props, ref) => {
   const reactSelect = useRef('react-select');
 
   const [selection, setSelection] = useState(props.defaultValue);
@@ -53,7 +53,7 @@ function Select(props, ref) {
   }));
 
   return (
-    <SpeedReactSelect
+    <FastReactSelect
       ref={reactSelect}
       {...defaultProps}
       {...props}
@@ -71,14 +71,14 @@ function Select(props, ref) {
       }} // props.components comes from react-select if present
     />
   );
-}
+};
 
 Select = forwardRef(Select);
 
 Select = memo(Select);
 
 Select.propTypes = {
-  ...SpeedReactSelect.propTypes,
+  ...FastReactSelect.propTypes,
   options: PropTypes.array.isRequired,
   onChange: PropTypes.func,
   onCalculateFilterDebounce: PropTypes.func,

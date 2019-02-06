@@ -16,32 +16,32 @@ export const flattenOptions = (reactComponent) =>
     ])
     .reduce((accumulator, currentValue) => accumulator.concat(currentValue), []);
 
-export const groupVirtualizedListRowRenderer = ({ children, formatGroupHeader, onItemFocused }) => ({
+export const groupVirtualizedListRowRenderer = ({ children, formatGroupHeader, onOptionFocused }) => ({
   key,
   index,
   style,
   isVisible,
   isScrolling,
 }) => {
-  const currentProps = children[index].props;
-  const isGroupHeaderValue = isGroupHeader(currentProps);
+  const thisProps = children[index].props;
+  const isGroupHeaderValue = isGroupHeader(thisProps);
 
-  if (currentProps.isFocused && !isGroupHeaderValue) {
-    onItemFocused({ data: currentProps.data, index, isVisible, isScrolling });
+  if (thisProps.isFocused && !isGroupHeaderValue) {
+    onOptionFocused({ data: thisProps.data, index, isVisible, isScrolling });
   }
 
   return (
     <div className="grouped-virtualized-list-item" key={key} style={style}>
       {isGroupHeaderValue ? (
         formatGroupHeader({
-          label: currentProps.label,
-          options: currentProps.options,
+          label: thisProps.label,
+          options: thisProps.options,
         })
       ) : (
         <ReactSelectComponents.Option
-          {...currentProps}
+          {...thisProps}
           style={style}
-          isFocused={!isScrolling && currentProps.isFocused && isVisible}
+          isFocused={!isScrolling && thisProps.isFocused && isVisible}
         />
       )}
     </div>

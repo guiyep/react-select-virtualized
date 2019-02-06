@@ -18,7 +18,7 @@ let ListVirtualized = (props) => {
     }
   });
 
-  const onItemFocused = ({ index, isVisible }) => {
+  const onOptionFocused = ({ index, isVisible }) => {
     if (index !== undefined && isVisible) {
       focusedItemIndex = index;
     } else if (index !== undefined && !isVisible && !queueScrollToIdx) {
@@ -50,7 +50,7 @@ let ListVirtualized = (props) => {
     () =>
       flatVirtualizedListRowRenderer({
         ...props,
-        onItemFocused: onItemFocused,
+        onOptionFocused: onOptionFocused,
       }),
     [props.children],
   );

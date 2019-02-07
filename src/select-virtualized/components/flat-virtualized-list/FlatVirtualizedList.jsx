@@ -1,4 +1,4 @@
-import { List } from 'react-virtualized';
+import { List, InfiniteLoader } from 'react-virtualized';
 import React, { useEffect, useRef, memo, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { getListHeight, getScrollIndex, getNextRowIndex } from '../../helpers/getters';
@@ -46,26 +46,54 @@ let ListVirtualized = (props) => {
     [props.options, props.selectedValue, props.defaultValue],
   );
 
+  const list = [];
+
   const rowRenderer = useMemo(
     () =>
       flatVirtualizedListRowRenderer({
         ...props,
         onOptionFocused: onOptionFocused,
       }),
-    [props.children],
+    [list],
   );
 
+  const isRowLoaded = ({ index }) => {
+    return !!list[index];
+  };
+
+  const loadMoreRows = ({ startIndex, stopIndex }) => {
+    console.log('loading more');
+
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const result = list.concat(props.children.filter((el, index) => index >= startIndex && index < stopIndex));
+        resolve(result);
+      }, 10);
+    });
+  };
+
   return (
-    <List
-      ref={listComponent}
-      style={{ width: '100%' }}
-      height={height}
-      scrollToIndex={scrollToIndex}
+    <InfiniteLoader
+      isRowLoaded={isRowLoaded}
+      threshold={props.threshold}
+      loadMoreRows={loadMoreRows}
       rowCount={props.children.length || 0}
-      rowHeight={props.optionHeight}
-      rowRenderer={rowRenderer}
-      width={props.maxWidth}
-    />
+      minimumBatchSize={props.minimumBatchSize}
+    >
+      {({ onRowsRendered, registerChild }) => (
+        <List
+          ref={registerChild}
+          onRowsRendered={onRowsRendered}
+          style={{ width: '100%' }}
+          height={height}
+          scrollToIndex={scrollToIndex}
+          rowCount={props.children.length}
+          rowHeight={props.optionHeight}
+          rowRenderer={rowRenderer}
+          width={props.maxWidth}
+        />
+      )}
+    </InfiniteLoader>
   );
 };
 
@@ -80,12 +108,14 @@ ListVirtualized.propTypes = {
   defaultValue: PropTypes.object,
   valueGetter: PropTypes.func,
   options: PropTypes.array.isRequired,
+  minimumBatchSize: PropTypes.number,
 };
 
 ListVirtualized.defaultProps = {
   valueGetter: (item) => item && item.value,
   maxWidth: 500,
   maxHeight: 200,
+  minimumBatchSize: 500,
 };
 
 ListVirtualized.displayName = 'ListVirtualized';

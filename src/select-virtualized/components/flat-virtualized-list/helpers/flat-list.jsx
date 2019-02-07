@@ -16,13 +16,14 @@ export const flatVirtualizedListRowRenderer = ({ children, onOptionFocused }) =>
   }
 
   return (
-    <div className="flat-virtualized-item" key={key} style={style}>
-      {
-        <ReactSelectComponents.Option
-          {...thisProps}
-          isFocused={!isScrolling && thisProps.isFocused && isVisible ? 'red' : undefined}
-        />
-      }
+    <div
+      className={classnames('flat-virtualized-item', {
+        'flat-virtualized-item-focused': !isScrolling && thisProps.isFocused && isVisible,
+      })}
+      key={key}
+      style={style}
+    >
+      {<ReactSelectComponents.Option {...thisProps} isFocused={false} />}
     </div>
   );
 };

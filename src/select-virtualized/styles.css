@@ -11,9 +11,9 @@
   cursor: pointer;
 }
 
-/* .flat-virtualized-item-focused div {
-  color: red; 
-} */
+.flat-virtualized-item-focused div {
+  font-weight: bold;
+}
 
 .grouped-virtualized-list-item div[role="option"]{
   cursor: pointer;

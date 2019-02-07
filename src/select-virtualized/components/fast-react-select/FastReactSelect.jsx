@@ -44,13 +44,6 @@ let SpeedReactSelect = (props, ref) => {
     }, debounceTime);
   };
 
-  if (memoOptions.length >= 15000) {
-    console.warn(
-      `for more than 15000 element you will have to limit the minimum input characters to search in the array, since react-select cache everything and he can't handle so much data to validate with. Use the prop minimumInputSearch to at least 2 to have an smooth experience. If you want this message to disappear force the minimumInputSearch to 1(default).
-      `,
-    );
-  }
-
   return (
     <Fragment>
       {memoOptions.length <= LAG_INDICATOR && <ReactSelect ref={ref} {...props} />}

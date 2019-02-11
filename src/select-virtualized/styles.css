@@ -11,7 +11,7 @@
   cursor: pointer;
 }
 
-.flat-virtualized-item-focused div {
+.flat-virtualized-item-focused {
   font-weight: bold;
 }
 

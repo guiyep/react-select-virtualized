@@ -1,6 +1,7 @@
 import React from 'react';
-import { components as ReactSelectComponents } from 'react-select';
-import classnames from 'classnames';
+// import { components as ReactSelectComponents } from 'react-select';
+
+import { FastOption } from '../../fast-option';
 
 export const flatVirtualizedListRowRenderer = ({ children, onOptionFocused }) => ({
   key,
@@ -16,14 +17,8 @@ export const flatVirtualizedListRowRenderer = ({ children, onOptionFocused }) =>
   }
 
   return (
-    <div
-      className={classnames('flat-virtualized-item', {
-        'flat-virtualized-item-focused': !isScrolling && thisProps.isFocused && isVisible,
-      })}
-      key={key}
-      style={style}
-    >
-      {<ReactSelectComponents.Option {...thisProps} isFocused={false} />}
+    <div className="flat-virtualized-item" key={key} style={style}>
+      <FastOption data={thisProps.data} setValue={thisProps.setValue} isVisible={isVisible} isScrolling={isScrolling} />
     </div>
   );
 };

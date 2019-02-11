@@ -41,4 +41,7 @@ storiesOf(`React Select Virtualized/big data`, module)
   .add('with 10500 elements', () => <Select options={ops10500} />)
   .add('with 30000 elements (you will need to wait for the creation of the elements)', () => (
     <Select options={buildOptionsSize(30000)} />
+  ))
+  .add('with 100000 elements (you will need to wait for the creation of the elements)', () => (
+    <Select options={buildOptionsSize(100000)} />
   ));

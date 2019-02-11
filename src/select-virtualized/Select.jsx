@@ -87,11 +87,9 @@ Select.propTypes = {
   optionHeight: PropTypes.number,
   groupHeaderHeight: PropTypes.number,
   defaultValue: PropTypes.object,
-  virtualizeList: PropTypes.bool,
 };
 
 Select.defaultProps = {
-  virtualizeList: true,
   grouped: false,
   optionHeight: 31,
   onCalculateFilterDebounce: undefined,

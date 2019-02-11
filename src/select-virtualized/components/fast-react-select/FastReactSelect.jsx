@@ -7,7 +7,7 @@ const LAG_INDICATOR = 1000;
 
 const loadingMessage = () => <div>...</div>;
 
-let SpeedReactSelect = (props, ref) => {
+let FastReactSelect = (props, ref) => {
   let timer;
 
   const debounceTime = useMemo(() => props.onCalculateFilterDebounce(props.options.length), [props.options.length]);
@@ -23,9 +23,9 @@ let SpeedReactSelect = (props, ref) => {
     [props.options],
   );
 
+  // debounce the filter since it is going to be an expensive operation
   let inputValLowercase;
   const loadOptions = (inputValue, callback) => {
-    // debounce the filter since it is going to be an expensive operation
     if (timer) {
       clearTimeout(timer);
     }
@@ -54,25 +54,25 @@ let SpeedReactSelect = (props, ref) => {
           loadingMessage={props.loadingMessage || loadingMessage}
           cacheOptions
           loadOptions={loadOptions}
-          defaultOptions={props.minimumInputSearch > 1 ? undefined : memoOptions}
+          defaultOptions={props.minimumInputSearch > 1 || props.delayFiltering ? undefined : memoOptions}
         />
       )}
     </Fragment>
   );
 };
 
-SpeedReactSelect = forwardRef(SpeedReactSelect);
-SpeedReactSelect = memo(SpeedReactSelect);
+FastReactSelect = forwardRef(FastReactSelect);
+FastReactSelect = memo(FastReactSelect);
 
-SpeedReactSelect.propTypes = {
+FastReactSelect.propTypes = {
   onCalculateFilterDebounce: PropTypes.func,
   options: PropTypes.array.isRequired,
   minimumInputSearch: PropTypes.number,
 };
 
-SpeedReactSelect.defaultProps = {
+FastReactSelect.defaultProps = {
   onCalculateFilterDebounce: calculateDebounce,
   minimumInputSearch: 1,
 };
 
-export default SpeedReactSelect;
+export default FastReactSelect;

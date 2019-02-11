@@ -62,8 +62,6 @@ let ListVirtualized = (props) => {
   };
 
   const loadMoreRows = ({ startIndex, stopIndex }) => {
-    console.log('loading more');
-
     return new Promise((resolve) => {
       setTimeout(() => {
         const result = list.concat(props.children.filter((el, index) => index >= startIndex && index < stopIndex));

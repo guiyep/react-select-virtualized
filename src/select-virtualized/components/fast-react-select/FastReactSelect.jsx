@@ -32,7 +32,7 @@ let FastReactSelect = (props, ref) => {
     inputValLowercase = inputValue.toLowerCase();
 
     if (props.minimumInputSearch > inputValLowercase.length) {
-      // todo implement
+      callback(undefined);
     }
 
     timer = setTimeout(() => {
@@ -54,7 +54,7 @@ let FastReactSelect = (props, ref) => {
           loadingMessage={props.loadingMessage || loadingMessage}
           cacheOptions
           loadOptions={loadOptions}
-          defaultOptions={props.minimumInputSearch > 1 || props.delayFiltering ? undefined : memoOptions}
+          defaultOptions={props.minimumInputSearch > 1 ? undefined : memoOptions}
         />
       )}
     </Fragment>

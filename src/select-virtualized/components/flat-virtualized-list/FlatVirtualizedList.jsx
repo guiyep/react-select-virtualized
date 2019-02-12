@@ -64,7 +64,7 @@ let ListVirtualized = (props) => {
   const loadMoreRows = ({ startIndex, stopIndex }) => {
     return new Promise((resolve) => {
       setTimeout(() => {
-        const result = list.concat(props.children.filter((el, index) => index >= startIndex && index < stopIndex));
+        const result = list.concat(props.children.slice(startIndex, stopIndex));
         resolve(result);
       }, 10);
     });
@@ -113,7 +113,7 @@ ListVirtualized.defaultProps = {
   valueGetter: (item) => item && item.value,
   maxWidth: 500,
   maxHeight: 200,
-  minimumBatchSize: 500,
+  minimumBatchSize: 1000,
 };
 
 ListVirtualized.displayName = 'ListVirtualized';

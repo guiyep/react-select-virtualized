@@ -1,9 +1,8 @@
 import React from 'react';
-// import { components as ReactSelectComponents } from 'react-select';
 
 import { FastOption } from '../../fast-option';
 
-export const flatVirtualizedListRowRenderer = ({ children, onOptionFocused }) => ({
+export const flatVirtualizedListRowRenderer = ({ children, onOptionFocused, optionHeight }) => ({
   key,
   index,
   style,
@@ -18,7 +17,13 @@ export const flatVirtualizedListRowRenderer = ({ children, onOptionFocused }) =>
 
   return (
     <div className="flat-virtualized-item" key={key} style={style}>
-      <FastOption data={thisProps.data} setValue={thisProps.setValue} isVisible={isVisible} isScrolling={isScrolling} />
+      <FastOption
+        data={thisProps.data}
+        setValue={thisProps.setValue}
+        isVisible={isVisible}
+        isScrolling={isScrolling}
+        optionHeight={optionHeight}
+      />
     </div>
   );
 };

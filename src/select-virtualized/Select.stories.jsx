@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import Select from './Select';
-import { optionsDefault, opsGroup, defaultValue } from '../data';
+import { optionsDefault, opsGroup, defaultValue, op1500 } from '../data';
 
 storiesOf(`React Select Virtualized/props`, module)
   .addDecorator((story) => <div style={{ width: '500px' }}> {story()} </div>)
@@ -15,6 +15,7 @@ storiesOf(`React Select Virtualized/props`, module)
   })
   .add('Basic', () => <Select options={optionsDefault} />)
   .add('with default value', () => <Select defaultValue={defaultValue} options={optionsDefault} />)
+  .add('with minimumInputSearch to 3', () => <Select defaultValue={defaultValue} options={op1500} minimumInputSearch={3} />)
   .add('disabled select', () => <Select options={optionsDefault} isDisabled />)
   .add('clear select input', () => {
     const selectRef = React.createRef();

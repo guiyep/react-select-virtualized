@@ -3,7 +3,7 @@ import React, { memo } from 'react';
 import FlatVirtualizedList from './FlatVirtualizedList';
 import { menuListItemHeight } from '../../helpers/defaults';
 
-const List = ({ optionHeight = menuListItemHeight, defaultValue, valueGetter }) =>
+const List = ({ optionHeight = menuListItemHeight, defaultValue, valueGetter, formatOptionLabel }) =>
   memo((props) => {
     const selectedValue = props.getValue() ? props.getValue()[0] : undefined;
 
@@ -18,6 +18,7 @@ const List = ({ optionHeight = menuListItemHeight, defaultValue, valueGetter }) 
         selectedValue={selectedValue}
         defaultValue={defaultValue}
         valueGetter={valueGetter}
+        formatOptionLabel={formatOptionLabel}
       />
     );
   });

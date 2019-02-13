@@ -2,7 +2,7 @@ import React from 'react';
 
 import { FastOption } from '../../fast-option';
 
-export const flatVirtualizedListRowRenderer = ({ children, onOptionFocused, optionHeight }) => ({
+export const flatVirtualizedListRowRenderer = ({ children, onOptionFocused, optionHeight, formatOptionLabel }) => ({
   key,
   index,
   style,
@@ -11,7 +11,7 @@ export const flatVirtualizedListRowRenderer = ({ children, onOptionFocused, opti
 }) => {
   const thisProps = children[index].props;
 
-  if (thisProps.isFocused) {
+  if (thisProps.isFocused && !isScrolling) {
     onOptionFocused({ data: thisProps.data, index, isVisible, isScrolling });
   }
 
@@ -23,6 +23,8 @@ export const flatVirtualizedListRowRenderer = ({ children, onOptionFocused, opti
         isVisible={isVisible}
         isScrolling={isScrolling}
         optionHeight={optionHeight}
+        isFocused={thisProps.isFocused}
+        formatOptionLabel={formatOptionLabel}
       />
     </div>
   );

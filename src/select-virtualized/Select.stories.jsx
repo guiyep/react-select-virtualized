@@ -2,7 +2,8 @@ import React, { Fragment } from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import Select from './Select';
-import { optionsDefault, opsGroup, defaultValue, op1500 } from '../data';
+import { optionsDefault, opsGroup, defaultValue, op1500, ops2500 } from '../data';
+import random from 'generate-random-data';
 
 storiesOf(`React Select Virtualized/props`, module)
   .addDecorator((story) => <div style={{ width: '500px' }}> {story()} </div>)
@@ -15,7 +16,9 @@ storiesOf(`React Select Virtualized/props`, module)
   })
   .add('Basic', () => <Select options={optionsDefault} />)
   .add('with default value', () => <Select defaultValue={defaultValue} options={optionsDefault} />)
-  .add('with minimumInputSearch to 3', () => <Select defaultValue={defaultValue} options={op1500} minimumInputSearch={3} />)
+  .add('with minimumInputSearch to 3', () => (
+    <Select defaultValue={defaultValue} options={op1500} minimumInputSearch={3} />
+  ))
   .add('disabled select', () => <Select options={optionsDefault} isDisabled />)
   .add('clear select input', () => {
     const selectRef = React.createRef();
@@ -43,9 +46,9 @@ storiesOf(`React Select Virtualized/props`, module)
   })
   .add('empty options in the select', () => <Select noOptionsMessage={() => 'No Items...'} options={[]} />)
   .add('select with custom labels format', () => {
-    const labelFormat = ({ label }, { context }) => {
-      if (context === 'value') return `${label} - ${random.language()}`;
-      return `${label} - ${random.language()}`;
+    const labelFormat = ({ label, lang }, { context }) => {
+      if (context === 'value') return `${label} - ${lang}`;
+      return `${label} - ${lang}`;
     };
 
     return <Select options={ops2500} defaultValue={defaultValue} formatOptionLabel={labelFormat} />;

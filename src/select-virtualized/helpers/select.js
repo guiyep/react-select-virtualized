@@ -14,6 +14,7 @@ export const buildListComponents = (props) => {
     : FlatVirtualizedListFactory({
         optionHeight: props.optionHeight,
         defaultValue: props.defaultValue,
+        formatOptionLabel: props.formatOptionLabel,
       });
 
   return components;

@@ -1,26 +1,27 @@
 import { List, InfiniteLoader } from 'react-virtualized';
-import React, { useEffect, useRef, memo, useMemo } from 'react';
+import React, { useEffect, memo, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { getListHeight, getScrollIndex, getNextRowIndex } from '../../helpers/getters';
 import { flatVirtualizedListRowRenderer } from './helpers/flat-list.jsx';
 
 let ListVirtualized = (props) => {
   let queueScrollToIdx = undefined;
-  let focusedItemIndex = undefined;
+  let listComponent;
 
-  const listComponent = useRef('virtualized-list');
+  const [focusedItemIndex, setFocusedItemIndex] = useState(undefined);
 
   useEffect(() => {
     // only scroll to index when we have something in the queue of focused and not visible
-    if (listComponent && queueScrollToIdx) {
+    if (listComponent && queueScrollToIdx !== undefined && focusedItemIndex !== undefined) {
       listComponent.current.scrollToRow(getNextRowIndex(focusedItemIndex, queueScrollToIdx, props.options));
       queueScrollToIdx = undefined;
     }
   });
 
   const onOptionFocused = ({ index, isVisible }) => {
-    if (index !== undefined && isVisible) {
-      focusedItemIndex = index;
+    console.log(`${index} ${isVisible}`);
+    if (index !== undefined && focusedItemIndex !== index && isVisible) {
+      setFocusedItemIndex(index);
     } else if (index !== undefined && !isVisible && !queueScrollToIdx) {
       queueScrollToIdx = index;
     }
@@ -80,7 +81,13 @@ let ListVirtualized = (props) => {
     >
       {({ onRowsRendered, registerChild }) => (
         <List
-          ref={registerChild}
+          ref={(element) => {
+            registerChild(element);
+            listComponent = {
+              current: element,
+            };
+            return element;
+          }}
           onRowsRendered={onRowsRendered}
           style={{ width: '100%' }}
           height={height}

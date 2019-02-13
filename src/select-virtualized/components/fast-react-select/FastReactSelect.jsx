@@ -16,9 +16,8 @@ let FastReactSelect = (props, ref) => {
   const memoOptions = useMemo(
     () =>
       props.options.map((item) => ({
-        label: item.label,
-        value: item.value,
         lowercaseLabel: item.label.toLowerCase(),
+        ...item,
       })),
     [props.options],
   );
@@ -31,6 +30,7 @@ let FastReactSelect = (props, ref) => {
     }
     inputValLowercase = inputValue.toLowerCase();
 
+    // TODO
     if (props.minimumInputSearch > inputValLowercase.length) {
       callback(undefined);
     }

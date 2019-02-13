@@ -3,6 +3,7 @@ import random from 'generate-random-data';
 export const optionsDefault = new Array(20).fill(null).map(() => ({
   value: random.guid(),
   label: `${random.maleFirstName()} - ${random.email('test.com.au')}`,
+  lang: random.language(),
 }));
 
 export const defaultValue = { ...optionsDefault[random.int(1, 19)] };
@@ -14,6 +15,7 @@ export const buildOptionsSize = (size) => {
   return new Array(Math.round(size)).fill(null).map((item, index) => ({
     value: `${guid}-${index}`,
     label: `${random.maleFirstName()} - ${index}_${email}}`,
+    lang: random.language(),
   }));
 };
 

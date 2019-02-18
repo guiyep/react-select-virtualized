@@ -10,6 +10,12 @@
 npm install --save react-select-virtualized
 ```
 
+## Roadmap
+* move fast options to group
+* ade use of useCallback
+* upgrade alpha version
+* try filtering data on infinite loader
+
 ## Usage
 
 ```jsx

@@ -19,7 +19,6 @@ let ListVirtualized = (props) => {
   });
 
   const onOptionFocused = ({ index, isVisible }) => {
-    console.log(`${index} ${isVisible}`);
     if (index !== undefined && focusedItemIndex !== index && isVisible) {
       setFocusedItemIndex(index);
     } else if (index !== undefined && !isVisible && !queueScrollToIdx) {

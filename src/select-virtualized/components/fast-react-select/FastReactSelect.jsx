@@ -1,4 +1,4 @@
-import React, { forwardRef, memo, Fragment, useMemo } from 'react';
+import React, { forwardRef, memo, Fragment, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import ReactSelect, { Async as ReactAsync } from 'react-select';
 import { calculateDebounce } from './helpers/fast-react-select';
@@ -9,10 +9,22 @@ const loadingMessage = () => <div>...</div>;
 
 let FastReactSelect = (props, ref) => {
   let timer;
+  const minimumInputSearchIsSet = props.minimumInputSearch > 1;
 
   const debounceTime = useMemo(() => props.onCalculateFilterDebounce(props.options.length), [props.options.length]);
+  const [menuIsOpenState, setMenuIsOpen] = (!props.minimumInputSearch && []) || useState({ currentInput: '' });
 
-  // avoid deestructur to best performance
+  const updateSetMenuIsOpen = (inputValue, state) => {
+    if (minimumInputSearchIsSet) {
+      setMenuIsOpen({
+        ...menuIsOpenState,
+        currentInput: inputValue,
+        [inputValue || '']: state,
+      });
+    }
+  };
+
+  // avoid destructuring to best performance
   const memoOptions = useMemo(
     () =>
       props.options.map((item) => ({
@@ -22,39 +34,47 @@ let FastReactSelect = (props, ref) => {
     [props.options],
   );
 
+  const onInputChange = (inputValue) => {
+    if(minimumInputSearchIsSet){
+      const inputValLowercase = (inputValue && inputValue.toLowerCase()) || '';
+      updateSetMenuIsOpen(inputValLowercase, props.minimumInputSearch <= inputValLowercase.length);
+    }
+  };
+
   // debounce the filter since it is going to be an expensive operation
-  let inputValLowercase;
   const loadOptions = (inputValue, callback) => {
     if (timer) {
       clearTimeout(timer);
     }
-    inputValLowercase = inputValue.toLowerCase();
 
-    // TODO
-    if (props.minimumInputSearch > inputValLowercase.length) {
-      callback(undefined);
+    if (!menuIsOpenState[menuIsOpenState.currentInput]) {
+      return callback(undefined);
     }
 
+    const inputValLowercase = inputValue && inputValue.toLowerCase();
     timer = setTimeout(() => {
       if (!inputValue) {
         callback(props.options);
       }
-      // don't destructure here is too expensive
-      return callback(memoOptions.filter((item) => item.lowercaseLabel.includes(inputValLowercase)));
+      // don't destructuring obj here is too expensive // TODO filter only the subset    
+      callback(memoOptions.filter((item) => item.lowercaseLabel.includes(inputValLowercase)));
+      return;
     }, debounceTime);
   };
 
   return (
     <Fragment>
-      {memoOptions.length <= LAG_INDICATOR && <ReactSelect ref={ref} {...props} />}
-      {memoOptions.length > LAG_INDICATOR && (
+      {memoOptions.length <= LAG_INDICATOR && !minimumInputSearchIsSet && <ReactSelect ref={ref} {...props} />}
+      {(memoOptions.length > LAG_INDICATOR || minimumInputSearchIsSet) && (
         <ReactAsync
           ref={ref}
           {...props}
           loadingMessage={props.loadingMessage || loadingMessage}
           cacheOptions
           loadOptions={loadOptions}
-          defaultOptions={props.minimumInputSearch > 1 ? undefined : memoOptions}
+          defaultOptions={props.minimumInputSearch > 1 ? true : memoOptions}
+          menuIsOpen={minimumInputSearchIsSet ? !!menuIsOpenState[menuIsOpenState.currentInput] : undefined}
+          onInputChange={onInputChange}
         />
       )}
     </Fragment>

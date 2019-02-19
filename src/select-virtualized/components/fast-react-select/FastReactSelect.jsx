@@ -2,6 +2,7 @@ import React, { forwardRef, memo, Fragment, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import ReactSelect, { Async as ReactAsync } from 'react-select';
 import { calculateDebounce } from './helpers/fast-react-select';
+import { flattenOptions } from '../grouped-virtualized-list/helpers/grouped-list';
 
 const LAG_INDICATOR = 1000;
 
@@ -10,8 +11,9 @@ const loadingMessage = () => <div>...</div>;
 let FastReactSelect = (props, ref) => {
   let timer;
   const minimumInputSearchIsSet = props.minimumInputSearch > 1;
+  const list = useMemo(() => (props.grouped && [...flattenOptions(props.options)]) || props.options, [props.options]);
 
-  const debounceTime = useMemo(() => props.onCalculateFilterDebounce(props.options.length), [props.options.length]);
+  const debounceTime = useMemo(() => props.onCalculateFilterDebounce(list.length), [list.length]);
   const [menuIsOpenState, setMenuIsOpen] = (!props.minimumInputSearch && []) || useState({ currentInput: '' });
 
   const updateSetMenuIsOpen = (inputValue, state) => {
@@ -27,15 +29,15 @@ let FastReactSelect = (props, ref) => {
   // avoid destructuring to best performance
   const memoOptions = useMemo(
     () =>
-      props.options.map((item) => ({
+      list.map((item) => ({
         lowercaseLabel: item.label.toLowerCase(),
         ...item,
       })),
-    [props.options],
+    [list],
   );
 
   const onInputChange = (inputValue) => {
-    if(minimumInputSearchIsSet){
+    if (minimumInputSearchIsSet) {
       const inputValLowercase = (inputValue && inputValue.toLowerCase()) || '';
       updateSetMenuIsOpen(inputValLowercase, props.minimumInputSearch <= inputValLowercase.length);
     }
@@ -54,9 +56,9 @@ let FastReactSelect = (props, ref) => {
     const inputValLowercase = inputValue && inputValue.toLowerCase();
     timer = setTimeout(() => {
       if (!inputValue) {
-        callback(props.options);
+        callback(list);
       }
-      // don't destructuring obj here is too expensive // TODO filter only the subset    
+      // don't destructuring obj here is too expensive // TODO filter only the subset
       callback(memoOptions.filter((item) => item.lowercaseLabel.includes(inputValLowercase)));
       return;
     }, debounceTime);

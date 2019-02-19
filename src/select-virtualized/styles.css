@@ -7,7 +7,7 @@
   background: white;
 }
 
-.flat-virtualized-item {
+.flat-virtualized-item, .grouped-virtualized-list-item {
   cursor: pointer;
   background-color: transparent;
   user-select: none;
@@ -15,19 +15,19 @@
   display: flex;
 }
 
-.flat-virtualized-item > div{
+.flat-virtualized-item > div, .grouped-virtualized-list-item > div{
   width: 100%;
   height: 100%;
 }
 
-.flat-virtualized-item-option {
+.fast-option {
   padding-left: 1em;
   text-overflow: ellipsis;
   height: 100%;
 }
 
 
-.flat-virtualized-item-focused {
+.fast-option-focused {
   background-color: #DEEBFF;
   user-select: none;
   box-sizing: border-box;

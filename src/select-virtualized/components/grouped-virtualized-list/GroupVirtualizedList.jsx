@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, memo, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { List } from 'react-virtualized';
+import { List, InfiniteLoader } from 'react-virtualized';
 import { getListHeight, getScrollIndex, getNextRowIndex } from '../../helpers/getters';
 import { groupVirtualizedListRowRenderer } from './helpers/grouped-list.jsx';
 import { getGroupRowHeight } from './helpers/getters';
@@ -8,8 +8,7 @@ import { getGroupRowHeight } from './helpers/getters';
 let GroupListVirtualized = (props) => {
   let queueScrollToIdx = undefined;
   let focusedItemIndex = undefined;
-
-  const listComponent = useRef('virtualized-list-grouped');
+  let listComponent;
 
   useEffect(() => {
     // only scroll to index when we have something in the queue of focused and not visible
@@ -59,27 +58,61 @@ let GroupListVirtualized = (props) => {
     [props.flatCollection, props.optionHeight, props.groupHeaderHeight],
   );
 
+  const list = [];
+
   const rowRenderer = useMemo(
     () =>
       groupVirtualizedListRowRenderer({
         children: props.flatCollection,
         formatGroupHeader: props.formatGroupHeader,
         onOptionFocused: onOptionFocused,
+        optionHeight: props.optionHeight,
+        formatOptionLabel: props.formatOptionLabel,
       }),
-    [props.flatCollection, props.formatGroupHeader],
+    [list, props.formatGroupHeader],
   );
 
+  const isRowLoaded = ({ index }) => {
+    return !!list[index];
+  };
+
+  const loadMoreRows = ({ startIndex, stopIndex }) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const result = list.concat(props.flatCollection.slice(startIndex, stopIndex));
+        resolve(result);
+      }, 100);
+    });
+  };
+
   return (
-    <List
-      ref={listComponent}
-      style={{ width: '100%' }}
-      height={height}
-      scrollToIndex={scrollToIndex}
-      rowCount={props.flatCollection.length || 0}
-      rowHeight={rowHeight}
-      rowRenderer={rowRenderer}
-      width={props.maxWidth}
-    />
+    <InfiniteLoader
+      isRowLoaded={isRowLoaded}
+      threshold={props.threshold}
+      loadMoreRows={loadMoreRows}
+      rowCount={props.children.length || 0}
+      minimumBatchSize={props.minimumBatchSize}
+    >
+      {({ onRowsRendered, registerChild }) => (
+        <List
+          ref={(element) => {
+            registerChild(element);
+            listComponent = {
+              current: element,
+            };
+            return element;
+          }}
+          onRowsRendered={onRowsRendered}
+          style={{ width: '100%' }}
+          height={height}
+          scrollToIndex={scrollToIndex}
+          rowCount={props.flatCollection.length || 0}
+          rowHeight={rowHeight}
+          rowRenderer={rowRenderer}
+          width={props.maxWidth}
+        />
+      )}
+    </InfiniteLoader>
   );
 };
 
@@ -95,12 +128,16 @@ GroupListVirtualized.propTypes = {
   defaultValue: PropTypes.object,
   valueGetter: PropTypes.func,
   formatGroupHeader: PropTypes.func.isRequired,
+  formatOptionLabel: PropTypes.func,
   flatCollection: PropTypes.array.isRequired,
+  minimumBatchSize: PropTypes.number,
 };
 
 GroupListVirtualized.defaultProps = {
   valueGetter: (item) => item && item.value,
   maxWidth: 9999,
+  formatOptionLabel: undefined,
+  minimumBatchSize: 1000,
 };
 
 GroupListVirtualized.displayName = 'GroupListVirtualized';

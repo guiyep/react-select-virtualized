@@ -66,7 +66,7 @@ let ListVirtualized = (props) => {
       setTimeout(() => {
         const result = list.concat(props.children.slice(startIndex, stopIndex));
         resolve(result);
-      }, 10);
+      }, 100);
     });
   };
 

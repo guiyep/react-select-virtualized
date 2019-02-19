@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import Select from './Select';
@@ -16,6 +16,7 @@ import {
   ops8000,
   ops10500,
   buildOptionsSize,
+  opsGroup20000,
 } from '../data';
 
 storiesOf(`React Select Virtualized/big data`, module)
@@ -44,4 +45,5 @@ storiesOf(`React Select Virtualized/big data`, module)
   ))
   .add('with 100000 elements (you will need to wait for the creation of the elements)', () => (
     <Select options={buildOptionsSize(100000)} />
-  ));
+  ))
+  .add('with 20000 grouped elements', () => <Select options={opsGroup20000} grouped />);

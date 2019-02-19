@@ -1,6 +1,6 @@
 import React from 'react';
-import { components as ReactSelectComponents } from 'react-select';
 import { isGroupHeader } from './getters';
+import { FastOption } from '../../fast-option';
 
 export const flattenOptions = (reactComponent) =>
   (reactComponent && reactComponent.length ? reactComponent : [])
@@ -16,13 +16,13 @@ export const flattenOptions = (reactComponent) =>
     ])
     .reduce((accumulator, currentValue) => accumulator.concat(currentValue), []);
 
-export const groupVirtualizedListRowRenderer = ({ children, formatGroupHeader, onOptionFocused }) => ({
-  key,
-  index,
-  style,
-  isVisible,
-  isScrolling,
-}) => {
+export const groupVirtualizedListRowRenderer = ({
+  children,
+  formatGroupHeader,
+  formatOptionLabel,
+  optionHeight,
+  onOptionFocused,
+}) => ({ key, index, style, isVisible, isScrolling }) => {
   const thisProps = children[index].props;
   const isGroupHeaderValue = isGroupHeader(thisProps);
 
@@ -38,10 +38,14 @@ export const groupVirtualizedListRowRenderer = ({ children, formatGroupHeader, o
           options: thisProps.options,
         })
       ) : (
-        <ReactSelectComponents.Option
-          {...thisProps}
-          style={style}
-          isFocused={!isScrolling && thisProps.isFocused && isVisible}
+        <FastOption
+          data={thisProps.data}
+          setValue={thisProps.setValue}
+          isVisible={isVisible}
+          isScrolling={isScrolling}
+          optionHeight={optionHeight}
+          isFocused={thisProps.isFocused}
+          formatOptionLabel={formatOptionLabel}
         />
       )}
     </div>

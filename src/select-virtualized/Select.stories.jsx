@@ -15,9 +15,7 @@ storiesOf(`React Select Virtualized/props`, module)
   })
   .add('Basic', () => <Select options={optionsDefault} />)
   .add('with default value', () => <Select defaultValue={defaultValue} options={optionsDefault} />)
-  .add('with minimum input to 3', () => (
-    <Select options={op1500} minimumInputSearch={3} />
-  ))
+  .add('with minimum input to 3', () => <Select options={op1500} minimumInputSearch={3} />)
   .add('disabled select', () => <Select options={optionsDefault} isDisabled />)
   .add('clear select input', () => {
     const selectRef = React.createRef();
@@ -50,7 +48,7 @@ storiesOf(`React Select Virtualized/props`, module)
       return `${label} - ${lang}`;
     };
 
-    return <Select options={ops2500} defaultValue={defaultValue} formatOptionLabel={labelFormat} />;
+    return <Select options={ops2500} defaultValue={defaultValue} formatOptionLabel={labelFormat} grouped />;
   })
   .add('grouped default', () => <Select options={opsGroup} defaultValue={defaultValue} grouped />)
   .add('grouped custom format', () => {
@@ -77,6 +75,7 @@ storiesOf(`React Select Virtualized/props`, module)
         defaultValue={defaultValue}
         formatGroupHeaderLabel={groupFormat}
         groupHeaderHeight={groupHeaderHeight}
+        grouped
       />
     );
   });

@@ -8,3 +8,14 @@ export const calculateDebounce = (size) => {
   }
   return size / 100;
 };
+
+export const filterByLowercaseLabel = (list, value) => list.filter((item) => item.lowercaseLabel.includes(value));
+
+export const defaultFormatOptionLabel = (item) => item.label;
+
+export const mapLowercaseLabel = (list, formatOptionLabel = defaultFormatOptionLabel, iterator = () => ({})) =>
+  list.map((item) => ({
+    lowercaseLabel: formatOptionLabel(item).toLowerCase(),
+    ...item,
+    ...iterator(item),
+  }));

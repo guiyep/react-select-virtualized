@@ -52,6 +52,9 @@ export const groupVirtualizedListRowRenderer = ({
   );
 };
 
+// 1 is for the group item
+export const calculateTotalListSize = (options) => options.reduce((acc, item) => acc + 1 + item.options.length, 0);
+
 export const defaultGroupFormat = (height) => {
   // this can be a css also
   const groupStyle = {

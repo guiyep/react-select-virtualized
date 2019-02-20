@@ -77,6 +77,7 @@ Select = forwardRef(Select);
 
 Select = memo(Select);
 
+// TODO add prop type to the options
 Select.propTypes = {
   ...FastReactSelect.propTypes,
   options: PropTypes.array.isRequired,

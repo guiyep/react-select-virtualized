@@ -48,7 +48,7 @@ storiesOf(`React Select Virtualized/props`, module)
       return `${label} - ${lang}`;
     };
 
-    return <Select options={ops2500} defaultValue={defaultValue} formatOptionLabel={labelFormat} grouped />;
+    return <Select options={ops2500} defaultValue={defaultValue} formatOptionLabel={labelFormat} />;
   })
   .add('grouped default', () => <Select options={opsGroup} defaultValue={defaultValue} grouped />)
   .add('grouped custom format', () => {

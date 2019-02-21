@@ -14,11 +14,11 @@ npm install --save react-select-virtualized
 ## Roadmap
 
 - move fast options to group
-- add use of useCallback everywhere
 - upgrade alpha version
 - try filtering data on infinite loader
 - add multi value support
 - add testing so we do not only relay on storybook
+- implement all the TODOs
 
 ## Usage
 

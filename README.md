@@ -18,7 +18,8 @@ npm install --save react-select-virtualized
 - try filtering data on infinite loader
 - add multi value support
 - add testing so we do not only relay on storybook
-- implement all the TODOs
+- review all the TODOs
+- remove react-hover-observer and do it ourselves so we do not have one more peer dep. Leave this till the end.
 
 ## Usage
 

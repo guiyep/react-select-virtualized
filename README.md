@@ -1,6 +1,6 @@
 # react-select-virtualized
 
-**** UNSTABLE VERSION - NOT YET FINISHED **** SOON TO BBE RELEASE ****
+**** UNSTABLE VERSION - NOT YET FINISHED **** SOON TO BE RELEASED ****
 > react-select v2 + react-virtualized + react hooks!
 
 [![NPM](https://img.shields.io/npm/v/react-select-virtualized.svg)](https://www.npmjs.com/package/react-select-virtualized) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)

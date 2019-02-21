@@ -17,6 +17,7 @@ npm install --save react-select-virtualized
 - add use of useCallback everywhere
 - upgrade alpha version
 - try filtering data on infinite loader
+- add multi value support
 - add testing so we do not only relay on storybook
 
 ## Usage

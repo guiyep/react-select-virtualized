@@ -1,5 +1,5 @@
 import { List, InfiniteLoader } from 'react-virtualized';
-import React, { useEffect, memo, useMemo, useState } from 'react';
+import React, { useEffect, memo, useMemo, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { getListHeight, getScrollIndex, getNextRowIndex } from '../../helpers/getters';
 import { flatVirtualizedListRowRenderer } from './helpers/flat-list.jsx';
@@ -18,13 +18,13 @@ let ListVirtualized = (props) => {
     }
   });
 
-  const onOptionFocused = ({ index, isVisible }) => {
+  const onOptionFocused = useCallback(({ index, isVisible }) => {
     if (index !== undefined && focusedItemIndex !== index && isVisible) {
       setFocusedItemIndex(index);
     } else if (index !== undefined && !isVisible && !queueScrollToIdx) {
       queueScrollToIdx = index;
     }
-  };
+  });
 
   const height = useMemo(
     () =>
@@ -57,18 +57,18 @@ let ListVirtualized = (props) => {
     [list],
   );
 
-  const isRowLoaded = ({ index }) => {
+  const isRowLoaded = useCallback(({ index }) => {
     return !!list[index];
-  };
+  });
 
-  const loadMoreRows = ({ startIndex, stopIndex }) => {
+  const loadMoreRows = useCallback(({ startIndex, stopIndex }) => {
     return new Promise((resolve) => {
       setTimeout(() => {
         const result = list.concat(props.children.slice(startIndex, stopIndex));
         resolve(result);
       }, 100);
     });
-  };
+  });
 
   return (
     <InfiniteLoader

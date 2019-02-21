@@ -21,7 +21,6 @@
     "storybook": "start-storybook -p 9009",
     "build-storybook": "build-storybook"
   },
-  "peerDependencies": {},
   "devDependencies": {
     "@storybook/addon-actions": "^4.1.11",
     "@storybook/addon-info": "^4.1.11",
@@ -62,7 +61,7 @@
   "files": [
     "dist"
   ],
-  "dependencies": {
+  "peerDependencies": {
     "prop-types": "^15.5.4",
     "react": "^16.8.0-alpha.1",
     "react-dom": "^16.8.0-alpha.1",

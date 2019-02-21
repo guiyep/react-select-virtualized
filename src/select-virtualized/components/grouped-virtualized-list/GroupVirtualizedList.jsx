@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, memo, useMemo } from 'react';
+import React, { useEffect, useCallback, memo, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { List, InfiniteLoader } from 'react-virtualized';
 import { getListHeight, getScrollIndex, getNextRowIndex } from '../../helpers/getters';
@@ -18,13 +18,13 @@ let GroupListVirtualized = (props) => {
     }
   });
 
-  const onOptionFocused = ({ index, isVisible }) => {
+  const onOptionFocused = useCallback(({ index, isVisible }) => {
     if (index !== undefined && isVisible) {
       focusedItemIndex = index;
     } else if (index !== undefined && !isVisible && !queueScrollToIdx) {
       queueScrollToIdx = index;
     }
-  };
+  });
 
   const height = useMemo(
     () =>
@@ -72,18 +72,18 @@ let GroupListVirtualized = (props) => {
     [list, props.formatGroupHeader],
   );
 
-  const isRowLoaded = ({ index }) => {
+  const isRowLoaded = useCallback(({ index }) => {
     return !!list[index];
-  };
+  });
 
-  const loadMoreRows = ({ startIndex, stopIndex }) => {
+  const loadMoreRows = useCallback(({ startIndex, stopIndex }) => {
     return new Promise((resolve) => {
       setTimeout(() => {
         const result = list.concat(props.flatCollection.slice(startIndex, stopIndex));
         resolve(result);
       }, 100);
     });
-  };
+  });
 
   return (
     <InfiniteLoader

@@ -53,6 +53,7 @@ let FastReactSelect = (props, ref) => {
 
   // debounce the filter since it is going to be an expensive operation
   const loadOptions = useCallback((inputValue, callback) => {
+    console.log('calling');
     if (timer) {
       clearTimeout(timer);
     }

@@ -1,6 +1,6 @@
 import { FastReactSelect } from './components/fast-react-select';
 import PropTypes from 'prop-types';
-import React, { useRef, useImperativeHandle, useState, forwardRef, useMemo, memo } from 'react';
+import React, { useRef, useImperativeHandle, useState, forwardRef, useMemo, memo, useCallback } from 'react';
 import './styles.css';
 import { buildListComponents, getStyles } from './helpers/select';
 import { defaultGroupFormat } from './components/grouped-virtualized-list/helpers/grouped-list.jsx';
@@ -34,12 +34,12 @@ let Select = (props, ref) => {
     [props.grouped, props.formatGroupHeaderLabel, props.groupHeaderHeight],
   );
 
-  const onChangeHandler = (value, { action }) => {
+  const onChangeHandler = useCallback((value, { action }) => {
     if (props.onChange) {
       props.onChange(value, { action });
     }
     setSelection(value);
-  };
+  });
 
   useImperativeHandle(ref, () => ({
     clear: () => {

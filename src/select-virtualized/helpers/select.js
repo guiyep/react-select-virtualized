@@ -1,10 +1,9 @@
 import { GroupVirtualizedListFactory } from '../components/grouped-virtualized-list';
 import { FlatVirtualizedListFactory } from '../components/flat-virtualized-list';
-// import { FastOption } from '../components/fast-option';
 
 export const buildListComponents = (props) => {
   const components = {};
-  components.MenuList = props.formatGroupHeaderLabel
+  components.MenuList = props.grouped
     ? GroupVirtualizedListFactory({
         formatGroupHeader: props.formatGroupHeaderLabel,
         groupHeaderHeight: props.groupHeaderHeight,

@@ -1,6 +1,6 @@
 {
   "name": "react-select-virtualized",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "react-select v2 + react-virtualized + react hooks",
   "author": "guiyep",
   "license": "MIT",
@@ -19,7 +19,7 @@
     "start": "rollup -c -w",
     "deploy": "gh-pages -d example/build",
     "storybook": "start-storybook -p 9009",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook -c .storybook"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^4.1.11",

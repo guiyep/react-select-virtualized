@@ -5,7 +5,8 @@
 
 [![NPM](https://img.shields.io/npm/v/react-select-virtualized.svg)](https://www.npmjs.com/package/react-select-virtualized) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-This project came up after hours of trying to find an autocomplete component that supports large sets of data to be displayed and search. react-select is the most used library out there and very customizable but poorly performant. I used the airbnb library react-virtualized for the virtual data loading of element and plugged it to the react-select menu list. I know that react-virtualized-select does the same, but the library is not maintained anymore and it is using the old 1.x version of react select. Also it has not full support of the grouping functionality and mny other new select props. So I decided to create a new component and share it to the community.
+This project came up after hours of trying to find an autocomplete component that supports large sets of data to be displayed and searched for while maintain performance. The only libraries out there that allow this functionality are either not maintained anymore, use outdated libraries or are poorly performant.
+I created a component that uses the Airbnb library called `react-virtualized` for the virtual data loading of elements and plugged it to the `react-select’ (the most used autocomplete library for react) menu list.
 
 ## Install
 

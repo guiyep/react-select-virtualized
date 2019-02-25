@@ -32,6 +32,10 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 - add testing so we do not only relay on storybook
 - remove react-hover-observer and do it ourselves so we do not have one more peer dep. Leave this till the end.
 
+## React-select Issues
+
+- cacheOptions do not work with async select and grouped options.
+
 ## Usage
 
 ```jsx

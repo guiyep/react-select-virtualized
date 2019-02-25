@@ -93,7 +93,8 @@ let FastReactSelect = (props, ref) => {
           ref={ref}
           {...props}
           loadingMessage={props.loadingMessage || loadingMessage}
-          cacheOptions
+          // this is a limitation on react-select and async, it does not work when caching options
+          cacheOptions={!props.grouped}
           loadOptions={loadOptions}
           defaultOptions={props.minimumInputSearch > 1 ? true : memoOptions}
           menuIsOpen={minimumInputSearchIsSet ? !!menuIsOpenState[menuIsOpenState.currentInput] : undefined}

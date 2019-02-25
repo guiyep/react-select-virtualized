@@ -20,7 +20,7 @@ import {
 } from '../data';
 
 storiesOf(`React Select Virtualized/big data`, module)
-  .addDecorator((story) => <div style={{ width: '500px' }}> {story()} </div>)
+  .addDecorator((story) => <div style={{ width: '30em' }}> {story()} </div>)
   .addDecorator(withInfo)
   .addParameters({
     info: {

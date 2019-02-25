@@ -1,13 +1,9 @@
 // this is very basic analize a bit more
-// TOTO calculate computation time O(n) to know exactly the debounce we need
 export const calculateDebounce = (size) => {
-  if (size < 4000) {
-    return 100;
+  if (size <= 30000) {
+    return (size + 100) * 0.001; // approx 0.001 ms per action, calculate 100 extra actions. this is a constant value. pefromance degradation starts after 30000 elements
   }
-  if (size < 8000) {
-    return 200;
-  }
-  return size / 50;
+  return 300;
 };
 
 export const filterByLowercaseLabel = (list, value) => list.filter((item) => item.lowercaseLabel.includes(value));

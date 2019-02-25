@@ -4,7 +4,7 @@ import GroupListVirtualized from './GroupVirtualizedList';
 import { menuListItemHeight } from '../../helpers/defaults';
 import { flattenOptions } from './helpers/grouped-list.jsx';
 
-const ListWithGroup = ({
+const GroupedVirtualizedListFactory = ({
   formatGroupHeader,
   optionHeight = menuListItemHeight,
   groupHeaderHeight = menuListItemHeight,
@@ -33,4 +33,4 @@ const ListWithGroup = ({
     );
   });
 
-export default ListWithGroup;
+export default GroupedVirtualizedListFactory;

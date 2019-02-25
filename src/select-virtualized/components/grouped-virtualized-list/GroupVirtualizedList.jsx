@@ -5,7 +5,7 @@ import { getListHeight, getScrollIndex, getNextRowIndex } from '../../helpers/ge
 import { groupVirtualizedListRowRenderer } from './helpers/grouped-list.jsx';
 import { getGroupRowHeight } from './helpers/getters';
 
-let GroupListVirtualized = (props) => {
+let GroupVirtualizedList = (props) => {
   let queueScrollToIdx = undefined;
   let focusedItemIndex = undefined;
   let listComponent;
@@ -116,9 +116,9 @@ let GroupListVirtualized = (props) => {
   );
 };
 
-GroupListVirtualized = memo(GroupListVirtualized);
+GroupVirtualizedList = memo(GroupVirtualizedList);
 
-GroupListVirtualized.propTypes = {
+GroupVirtualizedList.propTypes = {
   maxHeight: PropTypes.number, // this prop is coming from react-select
   maxWidth: PropTypes.number, // the style width 100% will override this prop, we need to set something big because it is a required field
   children: PropTypes.node.isRequired,
@@ -133,13 +133,13 @@ GroupListVirtualized.propTypes = {
   minimumBatchSize: PropTypes.number,
 };
 
-GroupListVirtualized.defaultProps = {
+GroupVirtualizedList.defaultProps = {
   valueGetter: (item) => item && item.value,
   maxWidth: 9999,
   formatOptionLabel: undefined,
   minimumBatchSize: 1000,
 };
 
-GroupListVirtualized.displayName = 'GroupListVirtualized';
+GroupVirtualizedList.displayName = 'GroupVirtualizedList';
 
-export default GroupListVirtualized;
+export default GroupVirtualizedList;

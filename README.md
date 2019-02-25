@@ -1,6 +1,7 @@
 # react-select-virtualized
 
-**** UNSTABLE VERSION - NOT YET FINISHED **** SOON TO BE RELEASED ****
+\***\* UNSTABLE VERSION - NOT YET FINISHED \*\*** SOON TO BE RELEASED \*\*\*\*
+
 > react-select v2 + react-virtualized + react hooks!
 
 [![NPM](https://img.shields.io/npm/v/react-select-virtualized.svg)](https://www.npmjs.com/package/react-select-virtualized) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
@@ -22,19 +23,19 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 
 - useCallback every where. DONE
 - move fast options to group. DONE
-- fix minimum input search on grouped component.
+- fix minimum input search on grouped component. DONE
 - upgrade alpha version.
-- review all the TODOs.
-- review support to all the react-select props. Should all work but multival.
-<----- FIRST RELEASE ---->
-- try filtering data on infinite loader
+- review all the TODOs. DONE
+- review support to all the react-select props. Should all work but multi-val.
+- filtering data on infinite loader, performance degradation start after 30000 elements we need to filter only first batch size so we don't see any
+  <----- FIRST RELEASE ---->
 - add multi value support
 - add testing so we do not only relay on storybook
 - remove react-hover-observer and do it ourselves so we do not have one more peer dep. Leave this till the end.
 
 ## React-select Issues
 
-- cacheOptions do not work with async select and grouped options.
+- cacheOptions do not work with async select and grouped options. we will need to relay on filtering on infinite loader.
 
 ## Usage
 

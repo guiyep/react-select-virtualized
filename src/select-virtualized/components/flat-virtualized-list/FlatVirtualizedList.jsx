@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { getListHeight, getScrollIndex, getNextRowIndex } from '../../helpers/getters';
 import { flatVirtualizedListRowRenderer } from './helpers/flat-list.jsx';
 
-let ListVirtualized = (props) => {
+let FlatListVirtualized = (props) => {
   let queueScrollToIdx = undefined;
   let listComponent;
 
@@ -101,9 +101,9 @@ let ListVirtualized = (props) => {
   );
 };
 
-ListVirtualized = memo(ListVirtualized);
+FlatListVirtualized = memo(FlatListVirtualized);
 
-ListVirtualized.propTypes = {
+FlatListVirtualized.propTypes = {
   maxHeight: PropTypes.number, // this prop is coming from react-select
   maxWidth: PropTypes.number, // the style width 100% will override this prop, we need to set something big because it is a required field
   children: PropTypes.node.isRequired,
@@ -115,13 +115,13 @@ ListVirtualized.propTypes = {
   minimumBatchSize: PropTypes.number,
 };
 
-ListVirtualized.defaultProps = {
+FlatListVirtualized.defaultProps = {
   valueGetter: (item) => item && item.value,
   maxWidth: 500,
   maxHeight: 200,
   minimumBatchSize: 1000,
 };
 
-ListVirtualized.displayName = 'ListVirtualized';
+FlatListVirtualized.displayName = 'FlatListVirtualized';
 
-export default ListVirtualized;
+export default FlatListVirtualized;

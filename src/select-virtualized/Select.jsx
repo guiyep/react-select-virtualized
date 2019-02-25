@@ -5,6 +5,7 @@ import './styles.css';
 import { buildListComponents, getStyles } from './helpers/select';
 import { defaultGroupFormat } from './components/grouped-virtualized-list/helpers/grouped-list.jsx';
 import 'react-virtualized/styles.css';
+import { optionsPropTypes } from './helpers/prop-types';
 
 let Select = (props, ref) => {
   const reactSelect = useRef('react-select');
@@ -48,7 +49,6 @@ let Select = (props, ref) => {
     focus: () => {
       reactSelect.current.focus();
     },
-    // TODO do we need this?
     select: (item) => setSelection(item),
   }));
 
@@ -77,10 +77,9 @@ Select = forwardRef(Select);
 
 Select = memo(Select);
 
-// TODO add prop type to the options
 Select.propTypes = {
   ...FastReactSelect.propTypes,
-  options: PropTypes.array.isRequired,
+  options: optionsPropTypes.isRequired,
   onChange: PropTypes.func,
   onCalculateFilterDebounce: PropTypes.func,
   grouped: PropTypes.bool, // this is only for performance enhancement so we do not need to iterate in the array many times. It is not needed if formatGroupHeaderLabel or groupHeaderHeight are defined

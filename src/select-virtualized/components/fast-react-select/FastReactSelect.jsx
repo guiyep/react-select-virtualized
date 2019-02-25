@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ReactSelect, { Async as ReactAsync } from 'react-select';
 import { calculateDebounce, filterByLowercaseLabel, mapLowercaseLabel } from './helpers/fast-react-select';
 import { calculateTotalListSize } from '../grouped-virtualized-list/helpers/grouped-list';
+import { optionsPropTypes } from '../../helpers/prop-types';
 
 const LAG_INDICATOR = 1000;
 
@@ -52,6 +53,8 @@ let FastReactSelect = (props, ref) => {
   });
 
   // debounce the filter since it is going to be an expensive operation
+  // filter only the subset on the infinite loader. Does not worth to touch this code anymore
+  // all this is going to be fixed once we filter on the infinite loader.
   const loadOptions = useCallback((inputValue, callback) => {
     console.log('calling');
     if (timer) {
@@ -68,7 +71,7 @@ let FastReactSelect = (props, ref) => {
         callback(memoOptions);
       }
       if (props.grouped) {
-        // don't destructuring obj here is too expensive // TODO filter only the subset
+        // don't destructuring obj here is too expensive
         callback(
           memoOptions.reduce((acc, item) => {
             acc.push({
@@ -79,7 +82,7 @@ let FastReactSelect = (props, ref) => {
           }, []),
         );
       }
-      // don't destructuring obj here is too expensive // TODO filter only the subset
+      // don't destructuring obj here is too expensive
       callback(filterByLowercaseLabel(memoOptions, inputValLowercase));
       return;
     }, debounceTime);
@@ -94,6 +97,8 @@ let FastReactSelect = (props, ref) => {
           {...props}
           loadingMessage={props.loadingMessage || loadingMessage}
           // this is a limitation on react-select and async, it does not work when caching options
+          // we will have to disable it, all the lag problems are going to be fixed when we work on the
+          // filter on loading items.
           cacheOptions={!props.grouped}
           loadOptions={loadOptions}
           defaultOptions={props.minimumInputSearch > 1 ? true : memoOptions}
@@ -110,7 +115,7 @@ FastReactSelect = memo(FastReactSelect);
 
 FastReactSelect.propTypes = {
   onCalculateFilterDebounce: PropTypes.func,
-  options: PropTypes.array.isRequired,
+  options: optionsPropTypes.isRequired,
   minimumInputSearch: PropTypes.number,
 };
 

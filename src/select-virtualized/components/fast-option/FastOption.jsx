@@ -1,29 +1,7 @@
-import React, { memo, Fragment, useMemo } from 'react';
+import React, { memo, Fragment } from 'react';
 import ReactHoverObserver from 'react-hover-observer';
-import classnames from 'classnames';
 import PropTypes from 'prop-types';
-
-const configFastLabelOption = {
-  context: 'menu',
-};
-
-const FastLabel = memo(({ data, setValue, isHovering, isFocused, style, formatOptionLabel }) => {
-  const onClickHandler = () => setValue(data);
-
-  const label = useMemo(() => (formatOptionLabel ? formatOptionLabel(data, configFastLabelOption) : data.label), [
-    data,
-  ]);
-
-  return (
-    <div
-      className={classnames({ 'fast-option-focused': isHovering || isFocused }, 'fast-option')}
-      style={style}
-      onClick={onClickHandler}
-    >
-      {label}
-    </div>
-  );
-});
+import { FastLabel } from '../fast-label';
 
 const FastOption = memo(({ data, isScrolling, isVisible, setValue, optionHeight, isFocused, formatOptionLabel }) => (
   <Fragment>

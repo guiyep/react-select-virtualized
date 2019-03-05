@@ -29,7 +29,6 @@ NOTE: "react-hover-observer" is temporary until I implement it myself.
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-hover-observer": "^2.1.1",
-    "react-scripts": "^2.1.3",
     "react-select": "2.2.0",
     "react-virtualized": "^9.21.0",
     "classnames": "^2.2.6"

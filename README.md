@@ -9,10 +9,31 @@
 This project came up after hours of trying to find an autocomplete component that supports large sets of data to be displayed and searched for while maintain performance. The only libraries out there that allow this functionality are either not maintained anymore, use outdated libraries or are poorly performant.
 I created a component that uses the Airbnb library called `react-virtualized` for the virtual data loading of elements and plugged it to the `react-select’ (the most used autocomplete library for react) menu list.
 
+only takes 16kb
+
 ## Install
 
 ```bash
 npm install --save react-select-virtualized
+```
+
+### Peer Dependencies
+
+remember to install them also if they are not already in your project.
+
+NOTE: "react-hover-observer" is temporary until I implement it myself. 
+
+```bash
+{
+    "prop-types": "^15.5.4",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "react-hover-observer": "^2.1.1",
+    "react-scripts": "^2.1.3",
+    "react-select": "2.2.0",
+    "react-virtualized": "^9.21.0",
+    "classnames": "^2.2.6"
+  }
 ```
 
 ## Storybook
@@ -24,7 +45,7 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 - useCallback every where. DONE
 - move fast options to group. DONE
 - fix minimum input search on grouped component. DONE
-- upgrade alpha version.
+- upgrade alpha version. DONE
 - review all the TODOs. DONE
 - review support to all the react-select props. Should all work but multi-val.
 - filtering data on infinite loader, performance degradation start after 30000 elements we need to filter only first batch size so we don't see any
@@ -38,6 +59,8 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 - cacheOptions do not work with async select and grouped options. we will need to relay on filtering on infinite loader.
 
 ## Usage
+
+check storybook for more examples
 
 ```jsx
 import React, { Component } from 'react';

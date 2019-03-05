@@ -1,9 +1,9 @@
 {
-  "presets": [
-    ["env", {
-      "modules": false
-    }],
-    "stage-0",
-    "react"
-  ]
+  "presets": ["stage-0", "react"],
+  "env": {
+    "modules": false,
+    "production": {
+      "presets": ["minify"]
+    }
+  }
 }

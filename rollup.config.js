@@ -39,7 +39,11 @@ export default {
       exclude: 'node_modules/**',
       plugins: ['external-helpers'],
     }),
-    isProd && minify(),
+    isProd &&
+      minify({
+        comments: false,
+        sourceMap: false,
+      }),
     resolve({
       extensions: ['.mjs', '.js', '.jsx', '.json'],
     }),

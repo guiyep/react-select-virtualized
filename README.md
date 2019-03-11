@@ -21,7 +21,7 @@ npm install --save react-select-virtualized
 
 remember to install them also if they are not already in your project.
 
-NOTE: "react-hover-observer" is temporary until I implement it myself. 
+NOTE: "react-hover-observer" is temporary until I implement it myself.
 
 ```bash
 {
@@ -57,20 +57,64 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 
 - cacheOptions do not work with async select and grouped options. we will need to relay on filtering on infinite loader.
 
-## Usage
+## Usage without group
 
 check storybook for more examples
+
+```jsx
+const options = [
+  {
+    value: 1,
+    label: `guiyep`,
+  },
+  ...
+];
+```
 
 ```jsx
 import React, { Component } from 'react';
 
 import Select from 'react-select-virtualized';
 
-class Example extends Component {
+const Example extends Component {
   render() {
-    return <Select />;
+    return <Select options={options}/>;
   }
 }
+
+const Example2 = () => <Select options={options}/>
+```
+
+## Usage with group
+
+```jsx
+const options = [
+  {
+    value: 1,
+    label: `guiyep`,
+  },
+  ...
+];
+
+
+const opsGroup = [
+  { label: `Group Name Header`, options },
+  ...
+]
+```
+
+```jsx
+import React, { Component } from 'react';
+
+import Select from 'react-select-virtualized';
+
+const Example extends Component {
+  render() {
+    return <Select options={options} grouped/>;
+  }
+}
+
+const Example2 = () => <Select options={options} grouped/>
 ```
 
 ## License

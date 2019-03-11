@@ -57,6 +57,10 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 
 - cacheOptions do not work with async select and grouped options. we will need to relay on filtering on infinite loader.
 
+## Documentation
+
+SOON
+
 ## Usage without group
 
 check storybook for more examples
@@ -86,6 +90,8 @@ const Example2 = () => <Select options={options}/>
 ```
 
 ## Usage with group
+
+check storybook for more examples
 
 ```jsx
 const options = [

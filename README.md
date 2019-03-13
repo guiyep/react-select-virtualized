@@ -50,7 +50,7 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 - fix minimum input search on grouped component. DONE
 - upgrade alpha version. DONE
 - review all the TODOs. DONE
-- improve filtering function in fasr-react-select
+- improve filtering function in `fast-react-select`
 - review support to all the react-select props. Should all work but multi-val.
 
   <----- FIRST RELEASE ---->
@@ -96,6 +96,8 @@ const Example extends Component {
 }
 
 const Example2 = () => <Select options={options}/>
+
+const Example3 = () => <Select options={options} {..ANY_REACT_SELECT_V2_PROP}/>
 ```
 
 ## Usage with group
@@ -130,6 +132,8 @@ const Example extends Component {
 }
 
 const Example2 = () => <Select options={options} grouped/>
+
+const Example3 = () => <Select options={options} {..ANY_REACT_SELECT_V2_PROP} grouped/>
 ```
 
 ## License

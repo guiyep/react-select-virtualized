@@ -53,10 +53,7 @@ let FastReactSelect = (props, ref) => {
   });
 
   // debounce the filter since it is going to be an expensive operation
-  // filter only the subset on the infinite loader. Does not worth to touch this code anymore
-  // all this is going to be fixed once we filter on the infinite loader.
   const loadOptions = useCallback((inputValue, callback) => {
-    console.log('calling');
     if (timer) {
       clearTimeout(timer);
     }
@@ -97,8 +94,6 @@ let FastReactSelect = (props, ref) => {
           {...props}
           loadingMessage={props.loadingMessage || loadingMessage}
           // this is a limitation on react-select and async, it does not work when caching options
-          // we will have to disable it, all the lag problems are going to be fixed when we work on the
-          // filter on loading items.
           cacheOptions={!props.grouped}
           loadOptions={loadOptions}
           defaultOptions={props.minimumInputSearch > 1 ? true : memoOptions}

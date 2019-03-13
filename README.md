@@ -47,8 +47,12 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 - upgrade alpha version. DONE
 - review all the TODOs. DONE
 - review support to all the react-select props. Should all work but multi-val.
-- filtering data on infinite loader, performance degradation start after 30000 elements we need to filter only first batch size so we don't see any
+
   <----- FIRST RELEASE ---->
+I have decided to work in the filter on the infinite loader after the release. I tried but the results where not the expected one i wanted.
+  <-------------------------->
+
+- filtering data on infinite loader, performance degradation start after 30000 elements we need to filter only first batch size so we don't see any
 - add multi value support
 - add testing so we do not only relay on storybook
 - remove react-hover-observer and do it ourselves so we do not have one more peer dep. Leave this till the end.

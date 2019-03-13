@@ -7,9 +7,13 @@
 [![NPM](https://img.shields.io/npm/v/react-select-virtualized.svg)](https://www.npmjs.com/package/react-select-virtualized) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 This project came up after hours of trying to find an autocomplete component that supports large sets of data to be displayed and searched for while maintain performance. The only libraries out there that allow this functionality are either not maintained anymore, use outdated libraries or are poorly performant.
-I created a component that uses the Airbnb library called `react-virtualized` for the virtual data loading of elements and plugged it to the `react-select’ (the most used autocomplete library for react) menu list.
+I created a component that uses the Airbnb library called `react-virtualized` for the virtual data loading of elements and plugged it to the `react-select` (the most used autocomplete library for react) menu list.
 
 only takes 15kb!
+
+## Note
+
+The select component will be the same from `react-select v2` so you will be able to use it with any select you already have.
 
 ## Install
 
@@ -46,6 +50,7 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 - fix minimum input search on grouped component. DONE
 - upgrade alpha version. DONE
 - review all the TODOs. DONE
+- improve filtering function in fasr-react-select
 - review support to all the react-select props. Should all work but multi-val.
 
   <----- FIRST RELEASE ---->

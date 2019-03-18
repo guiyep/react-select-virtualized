@@ -25,14 +25,13 @@ npm install --save react-select-virtualized
 
 remember to install them also if they are not already in your project.
 
-NOTE: "react-hover-observer" is temporary until I implement it myself.
+NOTE: "react-hover-observer" is temporary until I implement it myself will be a dependency (not a peer dep) until then.
 
 ```bash
 {
     "prop-types": "^15.5.4",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
-    "react-hover-observer": "^2.1.1",
     "react-select": "2.2.0",
     "react-virtualized": "^9.21.0",
     "classnames": "^2.2.6"

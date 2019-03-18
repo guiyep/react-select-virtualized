@@ -46,16 +46,16 @@ let FlatListVirtualized = (props) => {
     [props.options, props.selectedValue, props.defaultValue],
   );
 
-  const list = [];
-
   const rowRenderer = useMemo(
     () =>
       flatVirtualizedListRowRenderer({
         ...props,
         onOptionFocused: onOptionFocused,
       }),
-    [list],
+    [props.children],
   );
+
+  const list = [];
 
   const isRowLoaded = useCallback(({ index }) => {
     return !!list[index];

@@ -9,6 +9,8 @@ export const flatVirtualizedListRowRenderer = ({ children, onOptionFocused, opti
   isVisible,
   isScrolling,
 }) => {
+  // reality is that we do not need to pass the list here. we can work straight with the children.
+  // since the actual behavior will be handled by the renderer
   const thisProps = children[index].props;
 
   if (thisProps.isFocused && !isScrolling) {

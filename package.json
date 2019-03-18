@@ -1,6 +1,6 @@
 {
   "name": "react-select-virtualized",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "react-select v2 + react-virtualized + react hooks",
   "author": "guiyep",
   "license": "MIT",
@@ -90,5 +90,6 @@
     "classnames": "^2.2.6",
     "react-select": "2.2.0"
   },
-  "dependencies": {}
+  "dependencies": {
+  }
 }

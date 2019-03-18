@@ -50,12 +50,15 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 - fix minimum input search on grouped component. DONE
 - upgrade alpha version. DONE
 - review all the TODOs. DONE
-- improve filtering function in `fast-react-select`
+- improve filtering function in `fast-react-select`. DONE
+  - improved performance by 50%
 - review support to all the react-select props. Should all work but multi-val.
 
-  <----- FIRST RELEASE ---->
+<----- FIRST RELEASE ---->
+
 I have decided to work in the filter on the infinite loader after the release. I tried but the results where not the expected one i wanted.
-  <-------------------------->
+
+<-------------------------->
 
 - filtering data on infinite loader, performance degradation start after 30000 elements we need to filter only first batch size so we don't see any
 - add multi value support

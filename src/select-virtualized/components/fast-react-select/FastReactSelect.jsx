@@ -1,7 +1,7 @@
 import React, { forwardRef, memo, Fragment, useMemo, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import ReactSelect, { Async as ReactAsync } from 'react-select';
-import { calculateDebounce, filterByLowercaseLabel, mapLowercaseLabel } from './helpers/fast-react-select';
+import { calculateDebounce, mapLowercaseLabel, getFilteredItems } from './helpers/fast-react-select';
 import { calculateTotalListSize } from '../grouped-virtualized-list/helpers/grouped-list';
 import { optionsPropTypes } from '../../helpers/prop-types';
 
@@ -10,7 +10,6 @@ const LAG_INDICATOR = 1000;
 const loadingMessage = () => <div>...</div>;
 
 let FastReactSelect = (props, ref) => {
-  let timer;
   const minimumInputSearchIsSet = props.minimumInputSearch > 1;
 
   const listSize = useMemo(() => (props.grouped && calculateTotalListSize(props.options)) || props.options.length, [
@@ -54,34 +53,11 @@ let FastReactSelect = (props, ref) => {
 
   // debounce the filter since it is going to be an expensive operation
   const loadOptions = useCallback((inputValue, callback) => {
-    if (timer) {
-      clearTimeout(timer);
-    }
-
     if (minimumInputSearchIsSet && !menuIsOpenState[menuIsOpenState.currentInput]) {
       return callback(undefined);
     }
-
-    const inputValLowercase = inputValue && inputValue.toLowerCase();
-    timer = setTimeout(() => {
-      if (!inputValue) {
-        callback(memoOptions);
-      }
-      if (props.grouped) {
-        // don't destructuring obj here is too expensive
-        callback(
-          memoOptions.reduce((acc, item) => {
-            acc.push({
-              ...item,
-              options: filterByLowercaseLabel(item.options, inputValLowercase),
-            });
-            return acc;
-          }, []),
-        );
-      }
-      // don't destructuring obj here is too expensive
-      callback(filterByLowercaseLabel(memoOptions, inputValLowercase));
-      return;
+    return setTimeout(() => {
+      callback(getFilteredItems({ inputValue, memoOptions, grouped: props.grouped }));
     }, debounceTime);
   });
 

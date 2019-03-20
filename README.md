@@ -9,7 +9,7 @@
 This project came up after hours of trying to find an autocomplete component that supports large sets of data to be displayed and searched for while maintain performance. The only libraries out there that allow this functionality are either not maintained anymore, use outdated libraries or are poorly performant.
 I created a component that uses the Airbnb library called `react-virtualized` for the virtual data loading of elements and plugged it to the `react-select` (the most used autocomplete library for react) menu list.
 
-only takes 15kb!
+only takes 15kb or 4Kb Gzipped!!!!!
 
 ## Note
 
@@ -51,6 +51,7 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 - review all the TODOs. DONE
 - improve filtering function in `fast-react-select`. DONE
   - improved performance by 50%
+- add gzip. DONE
 - review support to all the react-select props. Should all work but multi-val.
 
 <----- FIRST RELEASE ---->

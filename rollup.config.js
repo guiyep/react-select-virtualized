@@ -7,6 +7,7 @@ import url from 'rollup-plugin-url';
 import svgr from '@svgr/rollup';
 import replace from 'rollup-plugin-replace';
 import minify from 'rollup-plugin-babel-minify';
+import gzipPlugin from 'rollup-plugin-gzip';
 
 import pkg from './package.json';
 
@@ -51,5 +52,6 @@ export default {
     replace({
       ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
     }),
+    gzipPlugin(),
   ],
 };

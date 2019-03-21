@@ -46,7 +46,7 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 
 ## Roadmap
 
-- [x] useCallback every where.
+- [x] useCallback everywhere.
 - [x]  move fast options to group.
 - [x] fix minimum input search on grouped component.
 - [x]  upgrade alpha version.
@@ -59,6 +59,7 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 ```bash
 I have decided to work in the filter on the infinite loader after the release. I tried but the results where not the expected one i wanted.
 ```
+\*\* ----> First Release <---- \*\* 
 
 - [ ] filtering data on infinite loader, performance degradation start after 30000 elements we need to filter only first batch size so we don't see any
 - [ ] add multi value support
@@ -68,6 +69,7 @@ I have decided to work in the filter on the infinite loader after the release. I
 ## Documentation
 
 ...
+
 
 ## Usage without group
 

@@ -14,7 +14,7 @@ const email = random.email('test.com.au');
 export const buildOptionsSize = (size) => {
   return new Array(Math.round(size)).fill(null).map((item, index) => ({
     value: `${guid}-${index}`,
-    label: `${random.maleFirstName()} - ${index}_${email}}`,
+    label: `${random.maleFirstName()} - ${index} - ${email}`,
     lang: random.language(),
   }));
 };

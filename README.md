@@ -11,6 +11,8 @@ I created a component that uses the Airbnb library called `react-virtualized` fo
 
 only takes 15kb or 4Kb Gzipped!!!!!
 
+![Alt Text](https://imagizer.imageshack.com/img922/7402/CSd9cM.gif)
+
 ## Note
 
 The select component will be the same from `react-select v2` so you will be able to use it with any select you already have.
@@ -18,7 +20,7 @@ The select component will be the same from `react-select v2` so you will be able
 ## Install
 
 ```bash
-npm install --save react-select-virtualized
+npm install --save react-select-virtualized --save
 ```
 
 ### Peer Dependencies
@@ -44,34 +46,28 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 
 ## Roadmap
 
-- useCallback every where. DONE
-- move fast options to group. DONE
-- fix minimum input search on grouped component. DONE
-- upgrade alpha version. DONE
-- review all the TODOs. DONE
-- improve filtering function in `fast-react-select`. DONE
-  - improved performance by 50%
-- add gzip. DONE
-- review support to all the react-select props. Should all work but multi-val.
+- [x] useCallback every where.
+- [x]  move fast options to group.
+- [x] fix minimum input search on grouped component.
+- [x]  upgrade alpha version.
+- [x]  review all the TODOs.
+- [x] improve filtering function in `fast-react-select`. 
+  - [x]  improved performance by 50%
+- [x]  add gzip.
+- [ ]  review support to all the react-select props. Should all work but multi-val.
 
-<----- FIRST RELEASE ---->
-
+```bash
 I have decided to work in the filter on the infinite loader after the release. I tried but the results where not the expected one i wanted.
+```
 
-<-------------------------->
-
-- filtering data on infinite loader, performance degradation start after 30000 elements we need to filter only first batch size so we don't see any
-- add multi value support
-- add testing so we do not only relay on storybook
-- remove react-hover-observer and do it ourselves so we do not have one more peer dep. Leave this till the end.
-
-## React-select Issues
-
-- cacheOptions do not work with async select and grouped options. we will need to relay on filtering on infinite loader.
+- [ ] filtering data on infinite loader, performance degradation start after 30000 elements we need to filter only first batch size so we don't see any
+- [ ] add multi value support
+- [ ] add testing so we do not only relay on storybook
+- [ ] remove react-hover-observer.
 
 ## Documentation
 
-SOON
+...
 
 ## Usage without group
 
@@ -138,6 +134,10 @@ const Example2 = () => <Select options={options} grouped/>
 
 const Example3 = () => <Select options={options} {..ANY_REACT_SELECT_V2_PROP} grouped/>
 ```
+
+## React-select Issues
+
+- cacheOptions do not work with async select and grouped options. we will need to relay on filtering on infinite loader.
 
 ## License
 

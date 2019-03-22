@@ -1,6 +1,6 @@
 # react-select-virtualized
 
-\***\* UNSTABLE VERSION - NOT YET FINISHED \*\*** SOON TO BE RELEASED \*\*\*\*
+\* UNSTABLE VERSION - NOT YET FINISHED - SOON TO BE RELEASED \*
 
 > react-select v2 + react-virtualized + react hooks!
 
@@ -47,19 +47,20 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 ## Roadmap
 
 - [x] useCallback everywhere.
-- [x]  move fast options to group.
+- [x] move fast options to group.
 - [x] fix minimum input search on grouped component.
-- [x]  upgrade alpha version.
-- [x]  review all the TODOs.
-- [x] improve filtering function in `fast-react-select`. 
-  - [x]  improved performance by 50%
-- [x]  add gzip.
-- [ ]  review support to all the react-select props. Should all work but multi-val.
+- [x] upgrade alpha version.
+- [x] review all the TODOs.
+- [x] improve filtering function in `fast-react-select`.
+  - [x] improved performance by 50%
+- [x] add gzip.
+- [ ] - IN PROCESS -review support to all the react-select props. Should all work but multi-val. (Update Doc)
 
 ```bash
 I have decided to work in the filter on the infinite loader after the release. I tried but the results where not the expected one i wanted.
 ```
-\*\* ----> First Release <---- \*\* 
+
+\* ----> First Release <---- \*
 
 - [ ] filtering data on infinite loader, performance degradation start after 30000 elements we need to filter only first batch size so we don't see any
 - [ ] add multi value support
@@ -68,7 +69,24 @@ I have decided to work in the filter on the infinite loader after the release. I
 
 ## Documentation
 
-...
+\* Select Component - this are special to this library non is required\*
+| Props | Type | Default | Description |
+| ------------- | ------------- | ------------- | ----------------------- |
+| grouped | boolean | false | specify if options are grouped |
+| formatGroupHeaderLabel | function({ label, options}) => component | | will render a custom component in the grouped select label and header `(only for grouped)`|
+| formatOptionLabel `(coming from react-select)`| function({ label, lang }, { context }) => component | | will render a custom component in the label `(not for grouped)` |
+| optionHeight | number | 31 | height of each option|
+| groupHeaderHeight | number | | header row height in the popover list |
+| maxHeight `(coming from react-select)`| number | auto | header row height in the popover list |
+| maxWidth `(coming from react-select)`| number | 500 | header row height in the popover list |
+
+## What we do support and don't from react-select
+
+- [x] We support all the UI related props for the input. Extension also.
+      `List: (...To be completed)`
+
+- [x] We do not support any related prop to the popup list. We extend it. \*Sorry no extension of any component inside the list.\*
+      `List Props Supported: (...To be completed)`
 
 ## Usage without group
 
@@ -100,7 +118,7 @@ const Example2 = () => <Select options={options}/>
 const Example3 = () => <Select options={options} {..ANY_REACT_SELECT_V2_PROP}/>
 ```
 
-## Usage with group
+## Usage with group - tooooo easy!!!
 
 check storybook for more examples
 

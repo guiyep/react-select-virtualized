@@ -73,7 +73,7 @@ I have decided to work in the filter on the infinite loader after the release. I
 | -------------------------------------------- | --------------------------------------------------- | ------- | ----------------------------------------------------------------------------- |
 | grouped                                      | boolean                                             | false   | specify if options are grouped                                                |
 | formatGroupHeaderLabel                       | function({ label, options}) => component            |         | will render a custom component in the popup grouped header (only for grouped) |
-| formatOptionLabel (coming from react-select) | function({ label, lang }, { context }) => component |         | will render a custom component in the label                                   |
+| formatOptionLabel (coming from react-select) | function(option, { context }) => component |         | will render a custom component in the label                                   |
 | optionHeight                                 | number                                              | 31      | height of each option                                                         |
 | groupHeaderHeight                            | number                                              |         | header row height in the popover list                                         |
 | maxHeight (coming from react-select)         | number                                              | auto    | max height popover list                                                       |

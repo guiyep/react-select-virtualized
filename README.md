@@ -67,18 +67,17 @@ I have decided to work in the filter on the infinite loader after the release. I
 - [ ] add testing so we do not only relay on storybook
 - [ ] remove react-hover-observer.
 
-## Documentation
+## Documentation - Select Component - this are special to this library none is required
 
-\* Select Component - this are special to this library non is required\*
-| Props | Type | Default | Description |
-| ------------- | ------------- | ------------- | ----------------------- |
-| grouped | boolean | false | specify if options are grouped |
-| formatGroupHeaderLabel | function({ label, options}) => component | | will render a custom component in the grouped select label and header `(only for grouped)`|
-| formatOptionLabel `(coming from react-select)`| function({ label, lang }, { context }) => component | | will render a custom component in the label `(not for grouped)` |
-| optionHeight | number | 31 | height of each option|
-| groupHeaderHeight | number | | header row height in the popover list |
-| maxHeight `(coming from react-select)`| number | auto | header row height in the popover list |
-| maxWidth `(coming from react-select)`| number | 500 | header row height in the popover list |
+| Props                                        | Type                                                | Default | Description                                                                              |
+| -------------------------------------------- | --------------------------------------------------- | ------- | ---------------------------------------------------------------------------------------- |
+| grouped                                      | boolean                                             | false   | specify if options are grouped                                                           |
+| formatGroupHeaderLabel                       | function({ label, options}) => component            |         | will render a custom component in the grouped select label and header (only for grouped) |
+| formatOptionLabel (coming from react-select) | function({ label, lang }, { context }) => component |         | will render a custom component in the label (not for grouped)                            |
+| optionHeight                                 | number                                              | 31      | height of each option                                                                    |
+| groupHeaderHeight                            | number                                              |         | header row height in the popover list                                                    |
+| maxHeight (coming from react-select)         | number                                              | auto    | header row height in the popover list                                                    |
+| maxWidth (coming from react-select)          | number                                              | 500     | header row height in the popover list                                                    |
 
 ## What we do support and don't from react-select
 

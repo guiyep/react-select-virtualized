@@ -20,7 +20,7 @@ The select component will be the same from `react-select v2` so you will be able
 ## Install
 
 ```bash
-npm install --save react-select-virtualized --save
+npm install --save react-select-virtualized
 ```
 
 ### Peer Dependencies
@@ -69,7 +69,6 @@ I have decided to work in the filter on the infinite loader after the release. I
 ## Documentation
 
 ...
-
 
 ## Usage without group
 

@@ -1,6 +1,6 @@
 # react-select-virtualized
 
-\* IT IS OUT!!!! \*
+\* IT IS OUT!!!!  \*
 
 > react-select v2 + react-virtualized + react hooks!
 

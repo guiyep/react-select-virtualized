@@ -1,5 +1,7 @@
 # react-select-virtualized
 
+![Alt text](./logo.svg?raw=true "react-select-virtualized")
+
 \* IT IS OUT!!!!  \*
 
 > react-select v2 + react-virtualized + react hooks!

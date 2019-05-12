@@ -58,13 +58,11 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 - [x] add gzip.
 - [X] -review support to all the react-select props. Should all work but multi-val.
 
-```bash
-I have decided to work in the filter on the infinite loader after the release. I tried but the results where not the expected one i wanted.
-```
-
-\* ----> First Release <---- \*
+-- v 1.0.0 --
 
 - [ ] filtering data on infinite loader, performance degradation start after 30000 elements we need to filter only first batch size so we don't see any
+- [ ] add support to AsyncSelect
+- [ ] add support to creatales props 
 - [ ] add multi value support
 - [ ] add testing so we do not only relay on storybook
 - [ ] remove react-hover-observer.

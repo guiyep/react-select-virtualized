@@ -15,7 +15,7 @@ let FastReactSelect = (props, ref) => {
   const listSize = useMemo(() => (props.grouped && calculateTotalListSize(props.options)) || props.options.length, [
     props.options.length,
   ]);
-  const debounceTime = useMemo(() => props.onCalculateFilterDebounce(listSize), [listSize]);
+  const debounceTime = useMemo(() => calculateDebounce(listSize), [listSize]);
   const [menuIsOpenState, setMenuIsOpen] = (!minimumInputSearchIsSet && []) || useState({ currentInput: '' });
 
   const updateSetMenuIsOpen = useCallback((inputValue, state) => {
@@ -57,20 +57,34 @@ let FastReactSelect = (props, ref) => {
       return callback(undefined);
     }
     return setTimeout(() => {
+      // if we have asnyc options the loader will be the container async component
+      if (!!props.asyncLoadOptions) {
+        props.asyncLoadOptions(inputValue).then((newList) => {
+          callback(
+            getFilteredItems({
+              inputValue,
+              memoOptions: newList,
+              grouped: props.grouped,
+            }),
+          );
+        });
+      }
       callback(getFilteredItems({ inputValue, memoOptions, grouped: props.grouped }));
     }, debounceTime);
   });
 
   return (
     <Fragment>
-      {listSize <= LAG_INDICATOR && !minimumInputSearchIsSet && <ReactSelect ref={ref} {...props} />}
-      {(listSize > LAG_INDICATOR || minimumInputSearchIsSet) && (
+      {listSize <= LAG_INDICATOR && !minimumInputSearchIsSet && !props.asyncLoadOptions && (
+        <ReactSelect ref={ref} {...props} />
+      )}
+      {(listSize > LAG_INDICATOR || minimumInputSearchIsSet || !!props.asyncLoadOptions) && (
         <ReactAsync
           ref={ref}
           {...props}
-          loadingMessage={props.loadingMessage || loadingMessage}
+          loadingMessage={loadingMessage}
           // this is a limitation on react-select and async, it does not work when caching options
-          cacheOptions={!props.grouped}
+          // cacheOptions={!props.grouped}
           loadOptions={loadOptions}
           defaultOptions={props.minimumInputSearch > 1 ? true : memoOptions}
           menuIsOpen={minimumInputSearchIsSet ? !!menuIsOpenState[menuIsOpenState.currentInput] : undefined}
@@ -85,14 +99,12 @@ FastReactSelect = forwardRef(FastReactSelect);
 FastReactSelect = memo(FastReactSelect);
 
 FastReactSelect.propTypes = {
-  onCalculateFilterDebounce: PropTypes.func,
   options: optionsPropTypes.isRequired,
   minimumInputSearch: PropTypes.number,
   asyncLoadOptions: PropTypes.func,
 };
 
 FastReactSelect.defaultProps = {
-  onCalculateFilterDebounce: calculateDebounce,
   minimumInputSearch: 1,
   asyncLoadOptions: undefined,
 };

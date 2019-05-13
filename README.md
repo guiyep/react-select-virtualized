@@ -56,15 +56,14 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 - [x] improve filtering function in `fast-react-select`.
   - [x] improved performance by 50%
 - [x] add gzip.
-- [X] -review support to all the react-select props. Should all work but multi-val.
+- [X] review support to all the react-select props. Should all work but multi-val.
 
 -- v 1.0.0 --
 
-- [ ] filtering data on infinite loader, performance degradation start after 30000 elements we need to filter only first batch size so we don't see any
-- [ ] add support to AsyncSelect
-- [ ] add support to creatales props 
-- [ ] add multi value support
-- [ ] add testing so we do not only relay on storybook
+- [ ] add support to AsyncSelect.
+- [ ] add multi value support.
+- [ ] add support to create element props.
+- [ ] add testing so we do not only relay on storybook.
 - [ ] remove react-hover-observer.
 
 ## Documentation - Select Component - this are special to this library none is required

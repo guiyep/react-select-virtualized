@@ -88,11 +88,13 @@ FastReactSelect.propTypes = {
   onCalculateFilterDebounce: PropTypes.func,
   options: optionsPropTypes.isRequired,
   minimumInputSearch: PropTypes.number,
+  asyncLoadOptions: PropTypes.func,
 };
 
 FastReactSelect.defaultProps = {
   onCalculateFilterDebounce: calculateDebounce,
   minimumInputSearch: 1,
+  asyncLoadOptions: undefined,
 };
 
 export default FastReactSelect;

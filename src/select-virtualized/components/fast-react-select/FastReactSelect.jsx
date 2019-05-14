@@ -49,6 +49,7 @@ let FastReactSelect = (props, ref) => {
       const inputValLowercase = (inputValue && inputValue.toLowerCase()) || '';
       updateSetMenuIsOpen(inputValLowercase, props.minimumInputSearch <= inputValLowercase.length);
     }
+    props.asyncInputChange(inputValue);
   });
 
   // debounce the filter since it is going to be an expensive operation
@@ -56,19 +57,13 @@ let FastReactSelect = (props, ref) => {
     if (minimumInputSearchIsSet && !menuIsOpenState[menuIsOpenState.currentInput]) {
       return callback(undefined);
     }
+    if (!!props.asyncLoadOptions) {
+      return props.asyncLoadOptions(inputValue).then((newList) => {
+        callback(newList);
+      });
+    }
     return setTimeout(() => {
       // if we have asnyc options the loader will be the container async component
-      if (!!props.asyncLoadOptions) {
-        props.asyncLoadOptions(inputValue).then((newList) => {
-          callback(
-            getFilteredItems({
-              inputValue,
-              memoOptions: newList,
-              grouped: props.grouped,
-            }),
-          );
-        });
-      }
       callback(getFilteredItems({ inputValue, memoOptions, grouped: props.grouped }));
     }, debounceTime);
   });
@@ -84,9 +79,9 @@ let FastReactSelect = (props, ref) => {
           {...props}
           loadingMessage={loadingMessage}
           // this is a limitation on react-select and async, it does not work when caching options
-          // cacheOptions={!props.grouped}
+          cacheOptions={!props.grouped}
           loadOptions={loadOptions}
-          defaultOptions={props.minimumInputSearch > 1 ? true : memoOptions}
+          defaultOptions={props.minimumInputSearch || memoOptions.length === 0 > 1 ? true : memoOptions}
           menuIsOpen={minimumInputSearchIsSet ? !!menuIsOpenState[menuIsOpenState.currentInput] : undefined}
           onInputChange={onInputChange}
         />
@@ -102,11 +97,13 @@ FastReactSelect.propTypes = {
   options: optionsPropTypes.isRequired,
   minimumInputSearch: PropTypes.number,
   asyncLoadOptions: PropTypes.func,
+  asyncInputChange: PropTypes.func,
 };
 
 FastReactSelect.defaultProps = {
   minimumInputSearch: 1,
   asyncLoadOptions: undefined,
+  asyncInputChange: () => {},
 };
 
 export default FastReactSelect;

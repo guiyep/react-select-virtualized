@@ -13,7 +13,11 @@ storiesOf(`React Select Virtualized/Async`, module)
       maxPropsIntoLine: 1,
     },
   })
-  .add('Basic Async', () => {
-    const loadOptions = (input, callback) => callback(buildOptionsSize(200));
+  .add('Async with default', () => {
+    const loadOptions = (input, callback) => setTimeout(() => callback(buildOptionsSize(2000)), 200);
     return <Async defaultOptions={optionsDefault} loadOptions={loadOptions} />;
+  })
+  .add('Async without default', () => {
+    const loadOptions = (input, callback) => setTimeout(() => callback(buildOptionsSize(2000)), 200);
+    return <Async loadOptions={loadOptions} />;
   });

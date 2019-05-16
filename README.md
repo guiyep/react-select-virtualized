@@ -158,6 +158,8 @@ const Example3 = () => <Select options={options} {..ANY_REACT_SELECT_V2_PROP} gr
 
 ## Usage Async Loading!!!! (no group yet)
 
+check storybook for more examples
+
 ```jsx
 
 import React, { Component } from 'react';

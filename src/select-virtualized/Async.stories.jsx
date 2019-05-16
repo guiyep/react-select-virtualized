@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
-import Async from './Async';
+import { Async } from './index';
 import { optionsDefault, buildOptionsSize } from '../data';
 
 storiesOf(`React Select Virtualized/Async`, module)

@@ -60,7 +60,11 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 
 -- v 1.0.0 --
 
-- [ ] add support to AsyncSelect.
+- [X] add support to AsyncSelect.
+
+-- v 1.1.0 --
+
+- [ ] add support to AsyncSelect with group.
 - [ ] add multi value support.
 - [ ] add support to create element props.
 - [ ] add testing so we do not only relay on storybook.

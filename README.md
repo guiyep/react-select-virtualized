@@ -160,7 +160,7 @@ const Example3 = () => <Select options={options} {..ANY_REACT_SELECT_V2_PROP} gr
 
 ```jsx
 
-  import React, { Component } from 'react';
+import React, { Component } from 'react';
 
 import { Async } from 'react-select-virtualized';
 
@@ -172,9 +172,9 @@ const Example extends Component {
   }
 }
 
-const Example2 = () => <Async options={options} loadOptions={loadOptions}/>
+const Example2 = () => <Async loadOptions={loadOptions}/>
 
-const Example3 = () => <Async options={options} {..ANY_REACT_ASYNC_SELECT_V2_PROP} loadOptions={loadOptions}/>
+const Example3 = () => <Async defaultOptions={options} {..ANY_REACT_ASYNC_SELECT_V2_PROP} loadOptions={loadOptions}/>
 ```
 
 ## React-select Issues

@@ -61,3 +61,14 @@ export const opsGroup20000 = [
   { label: `Group ${random.maleFirstName()}`, options: ops2500 },
   { label: `Group ${random.maleFirstName()}`, options: ops2500 },
 ];
+
+export const opsGroupF = () => [
+  { label: `Group ${random.maleFirstName()}`, options: group1 },
+  { label: `Group ${random.maleFirstName()}`, options: group2 },
+  { label: `Group ${random.maleFirstName()}`, options: group3 },
+  { label: `Group ${random.maleFirstName()}`, options: group4 },
+  { label: `Group ${random.maleFirstName()}`, options: group5 },
+  { label: `Group ${random.maleFirstName()}`, options: group6 },
+  { label: `Group ${random.maleFirstName()}`, options: group7 },
+  { label: `Group ${random.maleFirstName()}`, options: group8 },
+];

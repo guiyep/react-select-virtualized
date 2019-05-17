@@ -1,5 +1,6 @@
 import Select from './Select';
+import Async from './Async';
 
-export { Select };
+export { Select, Async };
 
 export default Select;

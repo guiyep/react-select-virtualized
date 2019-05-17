@@ -64,7 +64,10 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 
 -- v 1.1.0 --
 
-- [ ] add support to AsyncSelect with group.
+- [X] add support to AsyncSelect with group.
+
+-- v 1.2.0 --
+
 - [ ] add multi value support.
 - [ ] add support to create element props.
 - [ ] add testing so we do not only relay on storybook.
@@ -156,9 +159,11 @@ const Example2 = () => <Select options={options} grouped/>
 const Example3 = () => <Select options={options} {..ANY_REACT_SELECT_V2_PROP} grouped/>
 ```
 
-## Usage Async Loading!!!! (no group yet)
+## Usage Async Loading!!!! also with group :)
 
 check storybook for more examples
+
+CLARIFICATION: filtering happens in the server.
 
 ```jsx
 
@@ -177,6 +182,8 @@ const Example extends Component {
 const Example2 = () => <Async loadOptions={loadOptions}/>
 
 const Example3 = () => <Async defaultOptions={options} {..ANY_REACT_ASYNC_SELECT_V2_PROP} loadOptions={loadOptions}/>
+
+const Example4 = () => <Async defaultOptions={opsGroup} {..ANY_REACT_ASYNC_SELECT_V2_PROP} loadOptions={loadOptions} grouped/>
 ```
 
 ## React-select Issues

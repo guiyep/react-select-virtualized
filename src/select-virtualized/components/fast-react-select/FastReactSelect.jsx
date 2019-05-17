@@ -10,7 +10,7 @@ const LAG_INDICATOR = 1000;
 const loadingMessage = () => <div>...</div>;
 
 let FastReactSelect = (props, ref) => {
-  const minimumInputSearchIsSet = props.minimumInputSearch > 1;
+  const minimumInputSearchIsSet = props.minimumInputSearch >= 1;
 
   const listSize = useMemo(() => (props.grouped && calculateTotalListSize(props.options)) || props.options.length, [
     props.options.length,
@@ -81,7 +81,7 @@ let FastReactSelect = (props, ref) => {
           // this is a limitation on react-select and async, it does not work when caching options
           cacheOptions={!props.grouped}
           loadOptions={loadOptions}
-          defaultOptions={props.minimumInputSearch > 1 || memoOptions.length === 0 ? true : memoOptions}
+          defaultOptions={props.minimumInputSearch >= 1 || memoOptions.length === 0 ? true : memoOptions}
           menuIsOpen={minimumInputSearchIsSet ? !!menuIsOpenState[menuIsOpenState.currentInput] : undefined}
           onInputChange={onInputChange}
         />
@@ -101,7 +101,7 @@ FastReactSelect.propTypes = {
 };
 
 FastReactSelect.defaultProps = {
-  minimumInputSearch: 1,
+  minimumInputSearch: 0,
   asyncLoadOptions: undefined,
   asyncInputChange: () => {},
 };

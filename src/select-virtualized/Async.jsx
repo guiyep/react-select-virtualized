@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Select from './Select';
 import { optionsPropTypes } from './helpers/prop-types';
 
-const Async = memo(({ defaultOptions, loadOptions, cacheOptions, onInputChange, ...props }) => {
+const Async = memo(({ defaultOptions, loadOptions, cacheOptions, onInputChange, minimumInputSearch, ...props }) => {
   const options = useMemo(() => defaultOptions || [], [defaultOptions]);
 
   const asyncLoadOptions = useCallback((inputValue) => {
@@ -14,7 +14,15 @@ const Async = memo(({ defaultOptions, loadOptions, cacheOptions, onInputChange, 
     });
   });
 
-  return <Select {...props} options={options} asyncInputChange={onInputChange} asyncLoadOptions={asyncLoadOptions} />;
+  return (
+    <Select
+      {...props}
+      options={options}
+      minimumInputSearch={minimumInputSearch || (!defaultOptions && 1) || 0}
+      asyncInputChange={onInputChange}
+      asyncLoadOptions={asyncLoadOptions}
+    />
+  );
 });
 
 Async.displayName = 'Async';
@@ -24,12 +32,14 @@ Async.propTypes = {
   loadOptions: PropTypes.func.isRequired,
   onInputChange: PropTypes.func,
   cacheOptions: PropTypes.bool,
+  minimumInputSearch: PropTypes.number,
 };
 
 Async.defaultProps = {
-  defaultOptions: [],
+  defaultOptions: undefined,
   onInputChange: undefined,
   cacheOptions: true,
+  minimumInputSearch: undefined,
 };
 
 export default Async;

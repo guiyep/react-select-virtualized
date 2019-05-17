@@ -1,8 +1,8 @@
 # react-select-virtualized
 
-![Alt text](./logo.png?raw=true "react-select-virtualized")
+![Alt text](./logo.png?raw=true 'react-select-virtualized')
 
-\* IT IS OUT!!!!  \*
+\* IT IS OUT!!!! \*
 
 > react-select v2 + react-virtualized + react hooks!
 
@@ -56,11 +56,15 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 - [x] improve filtering function in `fast-react-select`.
   - [x] improved performance by 50%
 - [x] add gzip.
-- [X] review support to all the react-select props. Should all work but multi-val.
+- [x] review support to all the react-select props. Should all work but multi-val.
 
 -- v 1.0.0 --
 
-- [ ] add support to AsyncSelect.
+- [x] add support to AsyncSelect.
+
+-- v 1.1.0 --
+
+- [ ] add support to AsyncSelect with group.
 - [ ] add multi value support.
 - [ ] add support to create element props.
 - [ ] add testing so we do not only relay on storybook.
@@ -68,15 +72,15 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 
 ## Documentation - Select Component - this are special to this library none is required
 
-| Props                                        | Type                                                | Default | Description                                                                   |
-| -------------------------------------------- | --------------------------------------------------- | ------- | ----------------------------------------------------------------------------- |
-| grouped                                      | boolean                                             | false   | specify if options are grouped                                                |
-| formatGroupHeaderLabel                       | function({ label, options}) => component            |         | will render a custom component in the popup grouped header (only for grouped) |
+| Props                                        | Type                                       | Default | Description                                                                   |
+| -------------------------------------------- | ------------------------------------------ | ------- | ----------------------------------------------------------------------------- |
+| grouped                                      | boolean                                    | false   | specify if options are grouped                                                |
+| formatGroupHeaderLabel                       | function({ label, options}) => component   |         | will render a custom component in the popup grouped header (only for grouped) |
 | formatOptionLabel (coming from react-select) | function(option, { context }) => component |         | will render a custom component in the label                                   |
-| optionHeight                                 | number                                              | 31      | height of each option                                                         |
-| groupHeaderHeight                            | number                                              |         | header row height in the popover list                                         |
-| maxHeight (coming from react-select)         | number                                              | auto    | max height popover list                                                       |
-| maxWidth (coming from react-select)          | number                                              | 500     | max width in the popover list                                                 |
+| optionHeight                                 | number                                     | 31      | height of each option                                                         |
+| groupHeaderHeight                            | number                                     |         | header row height in the popover list                                         |
+| maxHeight (coming from react-select)         | number                                     | auto    | max height popover list                                                       |
+| maxWidth (coming from react-select)          | number                                     | 500     | max width in the popover list                                                 |
 
 ## What we do support and don't from react-select
 
@@ -150,6 +154,29 @@ const Example extends Component {
 const Example2 = () => <Select options={options} grouped/>
 
 const Example3 = () => <Select options={options} {..ANY_REACT_SELECT_V2_PROP} grouped/>
+```
+
+## Usage Async Loading!!!! (no group yet)
+
+check storybook for more examples
+
+```jsx
+
+import React, { Component } from 'react';
+
+import { Async } from 'react-select-virtualized';
+
+const loadOptions = (input, callback) => {...};
+
+const Example extends Component {
+  render() {
+    return <Async defaultOptions={options} loadOptions={loadOptions}/>;
+  }
+}
+
+const Example2 = () => <Async loadOptions={loadOptions}/>
+
+const Example3 = () => <Async defaultOptions={options} {..ANY_REACT_ASYNC_SELECT_V2_PROP} loadOptions={loadOptions}/>
 ```
 
 ## React-select Issues

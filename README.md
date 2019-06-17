@@ -68,6 +68,10 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 
 -- v 1.2.0 --
 
+- [X] upgrading packages and hooks.
+
+-- v 1.3.0 --
+
 - [ ] add multi value support.
 - [ ] add support to create element props.
 - [ ] add testing so we do not only relay on storybook.

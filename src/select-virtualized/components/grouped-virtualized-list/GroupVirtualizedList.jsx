@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, memo, useMemo } from 'react';
+import React, { useEffect, useCallback, memo, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { List, InfiniteLoader } from 'react-virtualized';
 import { getListHeight, getScrollIndex, getNextRowIndex } from '../../helpers/getters';
@@ -6,56 +6,72 @@ import { groupVirtualizedListRowRenderer } from './helpers/grouped-list.jsx';
 import { getGroupRowHeight } from './helpers/getters';
 
 let GroupVirtualizedList = (props) => {
-  let queueScrollToIdx = undefined;
-  let focusedItemIndex = undefined;
+  const [focusedItemIndex, setFocusedItemIndex] = useState(undefined);
+  const [queueScrollToIdx, setQueueScrollToIdx] = useState(undefined);
   let listComponent;
+
+  const {
+    maxHeight,
+    formatGroupHeader,
+    formatOptionLabel,
+    flatCollection,
+    optionHeight,
+    children,
+    selectedValue,
+    defaultValue,
+    groupHeaderHeight,
+    valueGetter,
+  } = props;
 
   useEffect(() => {
     // only scroll to index when we have something in the queue of focused and not visible
     if (listComponent && queueScrollToIdx) {
-      listComponent.current.scrollToRow(getNextRowIndex(focusedItemIndex, queueScrollToIdx, props.flatCollection));
-      queueScrollToIdx = undefined;
+      listComponent.current.scrollToRow(getNextRowIndex(focusedItemIndex, queueScrollToIdx, flatCollection));
+      setQueueScrollToIdx(undefined);
     }
-  });
+  }, [listComponent, queueScrollToIdx, focusedItemIndex, flatCollection]);
 
-  const onOptionFocused = useCallback(({ index, isVisible }) => {
-    if (index !== undefined && isVisible) {
-      focusedItemIndex = index;
-    } else if (index !== undefined && !isVisible && !queueScrollToIdx) {
-      queueScrollToIdx = index;
-    }
-  });
+  const onOptionFocused = useCallback(
+    ({ index, isVisible }) => {
+      if (index !== undefined && isVisible) {
+        setFocusedItemIndex(index);
+      } else if (index !== undefined && !isVisible && !queueScrollToIdx) {
+        setQueueScrollToIdx(index);
+      }
+    },
+    [queueScrollToIdx],
+  );
 
   const height = useMemo(
     () =>
       getListHeight({
-        maxHeight: props.maxHeight,
-        totalSize: props.flatCollection.length,
-        groupSize: props.children.length,
-        optionHeight: props.optionHeight,
-        groupHeaderHeight: props.groupHeaderHeight,
+        maxHeight,
+        totalSize: flatCollection.length,
+        groupSize: children.length,
+        optionHeight,
+        groupHeaderHeight,
       }),
-    [props.maxHeight, props.flatCollection.length, props.children.length, props.optionHeight, props.groupHeaderHeight],
+    [maxHeight, flatCollection.length, children.length, optionHeight, groupHeaderHeight],
   );
 
   const scrollToIndex = useMemo(
     () =>
       getScrollIndex({
-        children: props.flatCollection,
-        selected: props.selectedValue || props.defaultValue,
-        valueGetter: props.valueGetter,
+        children: flatCollection,
+        selected: selectedValue || defaultValue,
+        valueGetter,
       }),
-    [props.flatCollection, props.selectedValue, props.defaultValue],
+    [flatCollection, selectedValue, defaultValue, valueGetter],
   );
 
   const rowHeight = useMemo(
     () =>
       getGroupRowHeight({
-        children: props.flatCollection,
-        optionHeight: props.optionHeight,
-        groupHeaderHeight: props.groupHeaderHeight,
+        children: flatCollection,
+        optionHeight,
+        groupHeaderHeight,
       }),
-    [props.flatCollection, props.optionHeight, props.groupHeaderHeight],
+    [flatCollection, optionHeight, groupHeaderHeight],
   );
 
   const list = [];
@@ -63,27 +79,33 @@ let GroupVirtualizedList = (props) => {
   const rowRenderer = useMemo(
     () =>
       groupVirtualizedListRowRenderer({
-        children: props.flatCollection,
-        formatGroupHeader: props.formatGroupHeader,
-        onOptionFocused: onOptionFocused,
-        optionHeight: props.optionHeight,
-        formatOptionLabel: props.formatOptionLabel,
+        children: flatCollection,
+        formatGroupHeader,
+        onOptionFocused,
+        optionHeight,
+        formatOptionLabel,
       }),
-    [list, props.formatGroupHeader],
+    [flatCollection, formatGroupHeader, onOptionFocused, optionHeight, formatOptionLabel],
   );
 
-  const isRowLoaded = useCallback(({ index }) => {
-    return !!list[index];
-  });
+  const isRowLoaded = useCallback(
+    ({ index }) => {
+      return !!list[index];
+    },
+    [list],
+  );
 
-  const loadMoreRows = useCallback(({ startIndex, stopIndex }) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const result = list.concat(props.flatCollection.slice(startIndex, stopIndex));
-        resolve(result);
-      }, 100);
-    });
-  });
+  const loadMoreRows = useCallback(
+    ({ startIndex, stopIndex }) => {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          const result = list.concat(flatCollection.slice(startIndex, stopIndex));
+          resolve(result);
+        }, 100);
+      });
+    },
+    [flatCollection, list],
+  );
 
   return (
     <InfiniteLoader

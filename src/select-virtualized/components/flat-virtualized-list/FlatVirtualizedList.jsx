@@ -5,70 +5,92 @@ import { getListHeight, getScrollIndex, getNextRowIndex } from '../../helpers/ge
 import { flatVirtualizedListRowRenderer } from './helpers/flat-list.jsx';
 
 let FlatListVirtualized = (props) => {
-  let queueScrollToIdx = undefined;
   let listComponent;
 
   const [focusedItemIndex, setFocusedItemIndex] = useState(undefined);
+  const [queueScrollToIdx, setQueueScrollToIdx] = useState(undefined);
+
+  const {
+    maxHeight,
+    children,
+    optionHeight,
+    options,
+    selectedValue,
+    defaultValue,
+    valueGetter,
+    formatOptionLabel,
+  } = props;
 
   useEffect(() => {
     // only scroll to index when we have something in the queue of focused and not visible
     if (listComponent && queueScrollToIdx !== undefined && focusedItemIndex !== undefined) {
-      listComponent.current.scrollToRow(getNextRowIndex(focusedItemIndex, queueScrollToIdx, props.options));
-      queueScrollToIdx = undefined;
+      listComponent.current.scrollToRow(getNextRowIndex(focusedItemIndex, queueScrollToIdx, options));
+      setQueueScrollToIdx(undefined);
     }
-  });
+  }, [listComponent, queueScrollToIdx, focusedItemIndex, options]);
 
-  const onOptionFocused = useCallback(({ index, isVisible }) => {
-    if (index !== undefined && focusedItemIndex !== index && isVisible) {
-      setFocusedItemIndex(index);
-    } else if (index !== undefined && !isVisible && !queueScrollToIdx) {
-      queueScrollToIdx = index;
-    }
-  });
+  const onOptionFocused = useCallback(
+    ({ index, isVisible }) => {
+      if (index !== undefined && focusedItemIndex !== index && isVisible) {
+        setFocusedItemIndex(index);
+      } else if (index !== undefined && !isVisible && !queueScrollToIdx) {
+        setQueueScrollToIdx(index);
+      }
+    },
+    [setFocusedItemIndex, focusedItemIndex, setQueueScrollToIdx, queueScrollToIdx],
+  );
 
   const height = useMemo(
     () =>
       getListHeight({
-        maxHeight: props.maxHeight,
-        totalSize: props.children.length,
-        optionHeight: props.optionHeight,
+        maxHeight,
+        totalSize: children.length,
+        optionHeight,
       }),
-    [props.maxHeight, props.children.length, props.optionHeight],
+    [maxHeight, children.length, optionHeight],
   );
 
   const scrollToIndex = useMemo(
     () =>
       getScrollIndex({
-        children: props.options,
-        selected: props.selectedValue || props.defaultValue,
-        valueGetter: props.valueGetter,
+        children: options,
+        selected: selectedValue || defaultValue,
+        valueGetter,
       }),
-    [props.options, props.selectedValue, props.defaultValue],
+    [options, selectedValue, defaultValue, valueGetter],
   );
 
   const rowRenderer = useMemo(
     () =>
       flatVirtualizedListRowRenderer({
-        ...props,
-        onOptionFocused: onOptionFocused,
+        children,
+        onOptionFocused,
+        optionHeight,
+        formatOptionLabel,
       }),
-    [props.children],
+    [children, onOptionFocused, optionHeight, formatOptionLabel],
   );
 
   const list = [];
 
-  const isRowLoaded = useCallback(({ index }) => {
-    return !!list[index];
-  });
+  const isRowLoaded = useCallback(
+    ({ index }) => {
+      return !!list[index];
+    },
+    [list],
+  );
 
-  const loadMoreRows = useCallback(({ startIndex, stopIndex }) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const result = list.concat(props.children.slice(startIndex, stopIndex));
-        resolve(result);
-      }, 100);
-    });
-  });
+  const loadMoreRows = useCallback(
+    ({ startIndex, stopIndex }) => {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          const result = list.concat(children.slice(startIndex, stopIndex));
+          resolve(result);
+        }, 100);
+      });
+    },
+    [list, children],
+  );
 
   return (
     <InfiniteLoader

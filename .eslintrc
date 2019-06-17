@@ -6,7 +6,7 @@
       "jsx": true
     }
   },
-  "plugins": ["prettier", "react"],
+  "plugins": ["prettier", "react", "react-hooks"],
   "rules": {
     "prettier/prettier": [
       "error",
@@ -36,6 +36,8 @@
     "react/prop-types": [2, { "skipUndeclared": true }],
     "jsx-a11y/click-events-have-key-events": "off",
     "no-use-before-define": "off",
-    "prefer-destructuring": "off"
+    "prefer-destructuring": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "error"
   }
 }

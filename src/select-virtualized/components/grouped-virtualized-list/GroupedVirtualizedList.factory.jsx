@@ -1,4 +1,4 @@
-import React, { useMemo, memo } from 'react';
+import React, { memo } from 'react';
 import { components as ReactSelectComponents } from 'react-select';
 import GroupListVirtualized from './GroupVirtualizedList';
 import { menuListItemHeight } from '../../helpers/defaults';
@@ -12,7 +12,7 @@ const GroupedVirtualizedListFactory = ({
   valueGetter,
 }) =>
   memo((props) => {
-    const children = useMemo(() => [...flattenOptions(props.children)], [props.children]);
+    const children = [...flattenOptions(props.children)];
     const selectedValue = props.getValue() ? props.getValue()[0] : undefined;
 
     if (props.children && !props.children.length) {

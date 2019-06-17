@@ -12,61 +12,70 @@ const loadingMessage = () => <div>...</div>;
 let FastReactSelect = (props, ref) => {
   const minimumInputSearchIsSet = props.minimumInputSearch >= 1;
 
-  const listSize = useMemo(() => (props.grouped && calculateTotalListSize(props.options)) || props.options.length, [
-    props.options.length,
+  const { asyncLoadOptions, asyncInputChange, minimumInputSearch, options, formatOptionLabel, grouped } = props;
+
+  const listSize = useMemo(() => (grouped && calculateTotalListSize(options)) || options.length, [
+    options,
+    grouped,
   ]);
   const debounceTime = useMemo(() => calculateDebounce(listSize), [listSize]);
-  const [menuIsOpenState, setMenuIsOpen] = (!minimumInputSearchIsSet && []) || useState({ currentInput: '' });
+  const [menuIsOpenState, setMenuIsOpen] = useState({ currentInput: '' });
 
-  const updateSetMenuIsOpen = useCallback((inputValue, state) => {
-    if (minimumInputSearchIsSet) {
-      setMenuIsOpen({
-        ...menuIsOpenState,
-        currentInput: inputValue,
-        [inputValue || '']: state,
-      });
-    }
-  });
+  const updateSetMenuIsOpen = useCallback(
+    (inputValue, state) => {
+      if (minimumInputSearchIsSet) {
+        setMenuIsOpen({
+          ...menuIsOpenState,
+          currentInput: inputValue,
+          [inputValue || '']: state,
+        });
+      }
+    },
+    [minimumInputSearchIsSet, setMenuIsOpen, menuIsOpenState],
+  );
 
   // avoid destructuring to best performance
   // TODO improve this
-  const memoOptions = useMemo(
-    () => {
-      return mapLowercaseLabel(props.options, props.formatOptionLabel, (itemOption) => {
-        if (itemOption.options && props.grouped) {
-          return {
-            options: mapLowercaseLabel(itemOption.options, props.formatOptionLabel),
-          };
-        }
-        return {};
-      });
+  const memoOptions = useMemo(() => {
+    return mapLowercaseLabel(options, formatOptionLabel, (itemOption) => {
+      if (itemOption.options && grouped) {
+        return {
+          options: mapLowercaseLabel(itemOption.options, formatOptionLabel),
+        };
+      }
+      return {};
+    });
+  }, [options, formatOptionLabel, grouped]);
+
+  const onInputChange = useCallback(
+    (inputValue) => {
+      if (minimumInputSearchIsSet) {
+        const inputValLowercase = (inputValue && inputValue.toLowerCase()) || '';
+        updateSetMenuIsOpen(inputValLowercase, minimumInputSearch <= inputValLowercase.length);
+      }
+      asyncInputChange(inputValue);
     },
-    [props.options],
+    [asyncInputChange, updateSetMenuIsOpen, minimumInputSearchIsSet, minimumInputSearch],
   );
 
-  const onInputChange = useCallback((inputValue) => {
-    if (minimumInputSearchIsSet) {
-      const inputValLowercase = (inputValue && inputValue.toLowerCase()) || '';
-      updateSetMenuIsOpen(inputValLowercase, props.minimumInputSearch <= inputValLowercase.length);
-    }
-    props.asyncInputChange(inputValue);
-  });
-
   // debounce the filter since it is going to be an expensive operation
-  const loadOptions = useCallback((inputValue, callback) => {
-    if (minimumInputSearchIsSet && !menuIsOpenState[menuIsOpenState.currentInput]) {
-      return callback(undefined);
-    }
-    if (!!props.asyncLoadOptions) {
-      return props.asyncLoadOptions(inputValue).then((newList) => {
-        callback(newList);
-      });
-    }
-    return setTimeout(() => {
-      // if we have asnyc options the loader will be the container async component
-      callback(getFilteredItems({ inputValue, memoOptions, grouped: props.grouped }));
-    }, debounceTime);
-  });
+  const loadOptions = useCallback(
+    (inputValue, callback) => {
+      if (minimumInputSearchIsSet && !menuIsOpenState[menuIsOpenState.currentInput]) {
+        return callback(undefined);
+      }
+      if (!!asyncLoadOptions) {
+        return asyncLoadOptions(inputValue).then((newList) => {
+          callback(newList);
+        });
+      }
+      return setTimeout(() => {
+        // if we have asnyc options the loader will be the container async component
+        callback(getFilteredItems({ inputValue, memoOptions, grouped }));
+      }, debounceTime);
+    },
+    [minimumInputSearchIsSet, menuIsOpenState, asyncLoadOptions, debounceTime, grouped, memoOptions],
+  );
 
   return (
     <Fragment>

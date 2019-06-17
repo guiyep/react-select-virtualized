@@ -11,6 +11,7 @@ const FastLabel = memo(({ data, setValue, isHovering, isFocused, style, formatOp
 
   const label = useMemo(() => (formatOptionLabel ? formatOptionLabel(data, configFastLabelOption) : data.label), [
     data,
+    formatOptionLabel,
   ]);
 
   return (

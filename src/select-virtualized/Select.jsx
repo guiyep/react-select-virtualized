@@ -10,7 +10,9 @@ import { optionsPropTypes } from './helpers/prop-types';
 let Select = (props, ref) => {
   const reactSelect = useRef('react-select');
 
-  const [selection, setSelection] = useState(props.defaultValue);
+  const { grouped, formatGroupHeaderLabel, groupHeaderHeight, onChange, defaultValue, optionHeight } = props;
+
+  const [selection, setSelection] = useState(defaultValue);
 
   const defaultProps = {
     isMulti: false,
@@ -21,26 +23,25 @@ let Select = (props, ref) => {
     blurInputOnSelect: true,
   };
 
-  const { groupHeaderHeight, formatGroupHeaderLabel } = useMemo(
-    () => {
-      if (!props.grouped && !props.formatGroupHeaderLabel && !props.groupHeaderHeight)
-        return { formatGroupHeaderLabel: false };
+  const memoGroupHeaderOptions = useMemo(() => {
+    if (!grouped && !formatGroupHeaderLabel && !groupHeaderHeight) return { formatGroupHeaderLabel: false };
 
-      const groupHeaderHeight = props.groupHeaderHeight || props.optionHeight;
-      return {
-        groupHeaderHeight,
-        formatGroupHeaderLabel: props.formatGroupHeaderLabel || defaultGroupFormat(groupHeaderHeight),
-      };
+    const groupHeaderHeightValue = groupHeaderHeight || optionHeight;
+    return {
+      groupHeaderHeight: groupHeaderHeightValue,
+      formatGroupHeaderLabel: formatGroupHeaderLabel || defaultGroupFormat(groupHeaderHeightValue),
+    };
+  }, [grouped, formatGroupHeaderLabel, groupHeaderHeight, optionHeight]);
+
+  const onChangeHandler = useCallback(
+    (value, { action }) => {
+      if (onChange) {
+        onChange(value, { action });
+      }
+      setSelection(value);
     },
-    [props.grouped, props.formatGroupHeaderLabel, props.groupHeaderHeight],
+    [onChange, setSelection],
   );
-
-  const onChangeHandler = useCallback((value, { action }) => {
-    if (props.onChange) {
-      props.onChange(value, { action });
-    }
-    setSelection(value);
-  });
 
   useImperativeHandle(ref, () => ({
     clear: () => {
@@ -65,8 +66,7 @@ let Select = (props, ref) => {
         ...props.components,
         ...buildListComponents({
           ...props,
-          formatGroupHeaderLabel,
-          groupHeaderHeight,
+          ...memoGroupHeaderOptions,
         }),
       }} // props.components comes from react-select if present
     />

@@ -90,7 +90,7 @@
     "react-hover-observer": "^2.1.1",
     "react-virtualized": "^9.21.1",
     "classnames": "^2.2.6",
-    "react-select": "2.2.0"
+    "react-select": "^2.4.4"
   },
   "dependencies": {
     "react-hover-observer": "^2.1.1"

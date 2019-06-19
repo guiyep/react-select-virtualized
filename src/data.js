@@ -1,5 +1,11 @@
 import random from 'generate-random-data';
 
+export const optionsDefaultStatic = new Array(20)
+  .fill(null)
+  .map((item, index) => ({ value: index, label: `label ${index}` }));
+
+export const defaultValueStatic = optionsDefaultStatic[0];
+
 export const optionsDefault = new Array(20).fill(null).map(() => ({
   value: random.guid(),
   label: `${random.maleFirstName()} - ${random.email('test.com.au')}`,

@@ -33,12 +33,12 @@ NOTE: "react-hover-observer" is temporary until I implement it myself will be a 
 
 ```bash
 {
-    "prop-types": "^15.5.4",
-    "react": "^16.8.3",
-    "react-dom": "^16.8.3",
-    "react-select": "2.2.0",
-    "react-virtualized": "^9.21.0",
-    "classnames": "^2.2.6"
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-virtualized": "^9.21.1",
+    "classnames": "^2.2.6",
+    "react-select": "^2.4.4"
   }
 ```
 
@@ -72,9 +72,9 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 
 -- v 1.3.0 --
 
+- [ ] add testing so we do not only relay on storybook.
 - [ ] add multi value support.
 - [ ] add support to create element props.
-- [ ] add testing so we do not only relay on storybook.
 - [ ] remove react-hover-observer.
 
 ## Documentation - Select Component - this are special to this library none is required

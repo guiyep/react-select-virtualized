@@ -10,7 +10,7 @@ import { optionsPropTypes } from './helpers/prop-types';
 let Select = (props, ref) => {
   const reactSelect = useRef('react-select');
 
-  const { grouped, formatGroupHeaderLabel, groupHeaderHeight, onChange, defaultValue, optionHeight } = props;
+  const { grouped, formatGroupHeaderLabel, groupHeaderHeight, onChange, defaultValue, optionHeight, creatable } = props;
 
   const [selection, setSelection] = useState(defaultValue);
 
@@ -55,6 +55,7 @@ let Select = (props, ref) => {
 
   return (
     <FastReactSelect
+      creatable={creatable}
       ref={reactSelect}
       {...defaultProps}
       {...props}
@@ -86,11 +87,13 @@ Select.propTypes = {
   optionHeight: PropTypes.number,
   groupHeaderHeight: PropTypes.number,
   defaultValue: PropTypes.object,
+  creatable: PropTypes.bool,
 };
 
 Select.defaultProps = {
   grouped: false,
   optionHeight: 31,
+  creatable: false,
 };
 
 Select.displayName = 'Select';

@@ -1,6 +1,7 @@
 import React, { forwardRef, memo, Fragment, useMemo, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import ReactSelect, { Async as ReactAsync } from 'react-select';
+import ReactSelectCreatableSelect from 'react-select/creatable';
 import { calculateDebounce, mapLowercaseLabel, getFilteredItems } from './helpers/fast-react-select';
 import { calculateTotalListSize } from '../grouped-virtualized-list/helpers/grouped-list';
 import { optionsPropTypes } from '../../helpers/prop-types';
@@ -9,15 +10,13 @@ const LAG_INDICATOR = 1000;
 
 const loadingMessage = () => <div>...</div>;
 
-let FastReactSelect = (props, ref) => {
+let FastReactSelect = (
+  { asyncLoadOptions, asyncInputChange, minimumInputSearch, options, formatOptionLabel, grouped, creatable, ...props },
+  ref,
+) => {
   const minimumInputSearchIsSet = props.minimumInputSearch >= 1;
 
-  const { asyncLoadOptions, asyncInputChange, minimumInputSearch, options, formatOptionLabel, grouped } = props;
-
-  const listSize = useMemo(() => (grouped && calculateTotalListSize(options)) || options.length, [
-    options,
-    grouped,
-  ]);
+  const listSize = useMemo(() => (grouped && calculateTotalListSize(options)) || options.length, [options, grouped]);
   const debounceTime = useMemo(() => calculateDebounce(listSize), [listSize]);
   const [menuIsOpenState, setMenuIsOpen] = useState({ currentInput: '' });
 
@@ -79,10 +78,11 @@ let FastReactSelect = (props, ref) => {
 
   return (
     <Fragment>
-      {listSize <= LAG_INDICATOR && !minimumInputSearchIsSet && !props.asyncLoadOptions && (
+      {creatable && <ReactSelectCreatableSelect ref={ref} {...props}></ReactSelectCreatableSelect>}
+      {listSize <= LAG_INDICATOR && !minimumInputSearchIsSet && !asyncLoadOptions && (
         <ReactSelect ref={ref} {...props} />
       )}
-      {(listSize > LAG_INDICATOR || minimumInputSearchIsSet || !!props.asyncLoadOptions) && (
+      {(listSize > LAG_INDICATOR || minimumInputSearchIsSet || !!asyncLoadOptions) && (
         <ReactAsync
           ref={ref}
           {...props}
@@ -107,12 +107,14 @@ FastReactSelect.propTypes = {
   minimumInputSearch: PropTypes.number,
   asyncLoadOptions: PropTypes.func,
   asyncInputChange: PropTypes.func,
+  creatable: PropTypes.bool,
 };
 
 FastReactSelect.defaultProps = {
   minimumInputSearch: 0,
   asyncLoadOptions: undefined,
   asyncInputChange: () => {},
+  creatable: false,
 };
 
 export default FastReactSelect;

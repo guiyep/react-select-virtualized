@@ -64,15 +64,20 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 
 -- v 1.1.0 --
 
-- [X] add support to AsyncSelect with group.
+- [x] add support to AsyncSelect with group.
 
 -- v 1.2.0 --
 
-- [X] upgrading packages and hooks.
+- [x] upgrading packages and hooks.
 
 -- v 1.3.0 --
 
-- [ ] add support to create element props.
+- [ ] add support to create element.
+- [ ] add support to create element async.
+- [ ] re-structure project.
+
+-- v 1.4.0 --
+
 - [ ] add testing so we do not only relay on storybook.
 - [ ] add multi value support.
 - [ ] remove react-hover-observer.

@@ -2,7 +2,17 @@
   "presets": ["@babel/preset-env", "@babel/preset-react"],
   "env": {
     "production": {
-      "presets": ["minify"]
+      "presets": ["minify"],
+      "plugins": [
+        [
+          "transform-react-remove-prop-types",
+          {
+            "mode": "remove",
+            "removeImport": true,
+            "ignoreFilenames": ["node_modules"]
+          }
+        ]
+      ]
     }
   }
 }

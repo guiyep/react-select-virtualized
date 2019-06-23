@@ -2,16 +2,12 @@
 
 ![Alt text](./logo.png?raw=true 'react-select-virtualized')
 
-\* IT IS OUT!!!! \*
-
 > react-select v2 + react-virtualized + react hooks!
 
 [![NPM](https://img.shields.io/npm/v/react-select-virtualized.svg)](https://www.npmjs.com/package/react-select-virtualized) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 This project came up after hours of trying to find an autocomplete component that supports large sets of data to be displayed and searched for while maintain performance. The only libraries out there that allow this functionality are either not maintained anymore, use outdated libraries or are poorly performant.
 I created a component that uses the Airbnb library called `react-virtualized` for the virtual data loading of elements and plugged it to the `react-select` (the most used autocomplete library for react) menu list.
-
-only takes 16kb or 5Kb Gzipped!!!!!
 
 ![Alt Text](https://imagizer.imageshack.com/img922/7402/CSd9cM.gif)
 
@@ -33,7 +29,6 @@ NOTE: "react-hover-observer" is temporary until I implement it myself will be a 
 
 ```bash
 {
-    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-virtualized": "^9.21.1",

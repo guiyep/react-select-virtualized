@@ -68,9 +68,21 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 -- v 1.3.0 --
 
 - [ ] add support to create element props.
+
+-- v 1.4.0 --
+
 - [ ] add testing so we do not only relay on storybook.
-- [ ] add multi value support.
+
+-- v 1.5.0 --
+
+- [ ] improve packaging.
 - [ ] remove react-hover-observer.
+- [ ] remove classnames.
+
+-- v 2.0.0 --
+
+- [ ] add multi value support.
+
 
 ## Documentation - Select Component - this are special to this library none is required
 

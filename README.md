@@ -2,16 +2,12 @@
 
 ![Alt text](./logo.png?raw=true 'react-select-virtualized')
 
-\* IT IS OUT!!!! \*
-
 > react-select v2 + react-virtualized + react hooks!
 
 [![NPM](https://img.shields.io/npm/v/react-select-virtualized.svg)](https://www.npmjs.com/package/react-select-virtualized) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 This project came up after hours of trying to find an autocomplete component that supports large sets of data to be displayed and searched for while maintain performance. The only libraries out there that allow this functionality are either not maintained anymore, use outdated libraries or are poorly performant.
 I created a component that uses the Airbnb library called `react-virtualized` for the virtual data loading of elements and plugged it to the `react-select` (the most used autocomplete library for react) menu list.
-
-only takes 16kb or 5Kb Gzipped!!!!!
 
 ![Alt Text](https://imagizer.imageshack.com/img922/7402/CSd9cM.gif)
 
@@ -33,7 +29,6 @@ NOTE: "react-hover-observer" is temporary until I implement it myself will be a 
 
 ```bash
 {
-    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-virtualized": "^9.21.1",
@@ -72,15 +67,22 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 
 -- v 1.3.0 --
 
-- [ ] add support to create element.
-- [ ] add support to create element async.
-- [ ] re-structure project.
+- [ ] add support to create element props.
 
 -- v 1.4.0 --
 
 - [ ] add testing so we do not only relay on storybook.
-- [ ] add multi value support.
+
+-- v 1.5.0 --
+
+- [ ] improve packaging.
 - [ ] remove react-hover-observer.
+- [ ] remove classnames.
+
+-- v 2.0.0 --
+
+- [ ] add multi value support.
+
 
 ## Documentation - Select Component - this are special to this library none is required
 

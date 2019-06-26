@@ -35,6 +35,7 @@
     "@babel/plugin-external-helpers": "^7.2.0",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
+    "@dump247/storybook-state": "^1.6.1",
     "@storybook/addon-actions": "^5.1.8",
     "@storybook/addon-info": "^5.1.8",
     "@storybook/addon-links": "^5.1.8",

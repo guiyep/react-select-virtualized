@@ -1,17 +1,19 @@
-import React, { memo, useMemo, useCallback } from 'react';
+import React, { memo } from 'react';
 import Select from './Select';
 import PropTypes from 'prop-types';
 
 const CreatableSelect = memo(({ onChange, ...props }) => {
-  const handleChange = useCallback(() => {}, [onChange]);
-
-  return <Select {...props} onChange={handleChange} creatable />;
+  return <Select {...props} onChange={onChange} creatable />;
 });
 
 CreatableSelect.displayName = 'CreatableSelect';
 
-CreatableSelect.propTypes = {};
+CreatableSelect.propTypes = {
+  onChange: PropTypes.func,
+};
 
-CreatableSelect.propTypes = {};
+CreatableSelect.defaultProps = {
+  onChange: () => {},
+};
 
 export default CreatableSelect;

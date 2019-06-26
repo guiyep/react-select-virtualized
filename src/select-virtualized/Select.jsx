@@ -1,6 +1,6 @@
 import { FastReactSelect } from './components/fast-react-select';
 import PropTypes from 'prop-types';
-import React, { useRef, useImperativeHandle, useState, forwardRef, useMemo, memo, useCallback } from 'react';
+import React, { useRef, useImperativeHandle, useState, forwardRef, useMemo, memo, useCallback, useEffect } from 'react';
 import './styles.css';
 import { buildListComponents, getStyles } from './helpers/select';
 import { defaultGroupFormat } from './components/grouped-virtualized-list/helpers/grouped-list.jsx';
@@ -10,9 +10,18 @@ import { optionsPropTypes } from './helpers/prop-types';
 let Select = (props, ref) => {
   const reactSelect = useRef('react-select');
 
-  const { grouped, formatGroupHeaderLabel, groupHeaderHeight, onChange, defaultValue, optionHeight, creatable } = props;
+  const {
+    grouped,
+    formatGroupHeaderLabel,
+    value,
+    groupHeaderHeight,
+    onChange,
+    defaultValue,
+    optionHeight,
+    creatable,
+  } = props;
 
-  const [selection, setSelection] = useState(defaultValue);
+  const [selection, setSelection] = useState(defaultValue || value);
 
   const defaultProps = {
     isMulti: false,
@@ -22,6 +31,9 @@ let Select = (props, ref) => {
     isSearchable: true,
     blurInputOnSelect: true,
   };
+
+  // this is only so it is react-select like compatible I prefer to be more strict with defaultValue.
+  useEffect(() => setSelection(value), [value]);
 
   const memoGroupHeaderOptions = useMemo(() => {
     if (!grouped && !formatGroupHeaderLabel && !groupHeaderHeight) return { formatGroupHeaderLabel: false };
@@ -35,9 +47,7 @@ let Select = (props, ref) => {
 
   const onChangeHandler = useCallback(
     (value, { action }) => {
-      if (onChange) {
-        onChange(value, { action });
-      }
+      onChange(value, { action });
       setSelection(value);
     },
     [onChange, setSelection],
@@ -94,6 +104,7 @@ Select.defaultProps = {
   grouped: false,
   optionHeight: 31,
   creatable: false,
+  onChange: () => {},
 };
 
 Select.displayName = 'Select';

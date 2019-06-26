@@ -1,7 +1,7 @@
 import React, { forwardRef, memo, Fragment, useMemo, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import ReactSelect, { Async as ReactAsync } from 'react-select';
-import ReactSelectCreatableSelect from 'react-select/creatable';
+import ReactSelect, { Async as ReactAsync, Creatable as ReactSelectCreatableSelect } from 'react-select';
+// import  from 'react-select/creatable';
 import { calculateDebounce, mapLowercaseLabel, getFilteredItems } from './helpers/fast-react-select';
 import { calculateTotalListSize } from '../grouped-virtualized-list/helpers/grouped-list';
 import { optionsPropTypes } from '../../helpers/prop-types';
@@ -78,11 +78,13 @@ let FastReactSelect = (
 
   return (
     <Fragment>
-      {creatable && <ReactSelectCreatableSelect ref={ref} {...props}></ReactSelectCreatableSelect>}
-      {listSize <= LAG_INDICATOR && !minimumInputSearchIsSet && !asyncLoadOptions && (
-        <ReactSelect ref={ref} {...props} />
+      {creatable && (
+        <ReactSelectCreatableSelect ref={ref} {...props} options={memoOptions}></ReactSelectCreatableSelect>
       )}
-      {(listSize > LAG_INDICATOR || minimumInputSearchIsSet || !!asyncLoadOptions) && (
+      {!creatable && listSize <= LAG_INDICATOR && !minimumInputSearchIsSet && !asyncLoadOptions && (
+        <ReactSelect ref={ref} {...props} options={memoOptions} />
+      )}
+      {((!creatable && listSize > LAG_INDICATOR) || minimumInputSearchIsSet || !!asyncLoadOptions) && (
         <ReactAsync
           ref={ref}
           {...props}

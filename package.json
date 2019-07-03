@@ -46,7 +46,6 @@
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "babel-preset-minify": "^0.5.0",
     "caniuse-lite": "1.0.30000974",
-    "classnames": "^2.2.6",
     "cross-env": "^5.1.4",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
@@ -94,13 +93,10 @@
   },
   "peerDependencies": {
     "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-hover-observer": "^2.1.1",
     "react-virtualized": "^9.21.1",
-    "classnames": "^2.2.6",
     "react-select": "^2.4.4"
   },
   "dependencies": {
-    "react-hover-observer": "^2.1.1"
+    "react-hover-observer": "2.1.1"
   }
 }

@@ -1,6 +1,5 @@
 import React, { memo, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 
 const configFastLabelOption = {
   context: 'menu',
@@ -16,7 +15,7 @@ const FastLabel = memo(({ data, setValue, isHovering, isFocused, style, formatOp
 
   return (
     <div
-      className={classnames({ 'fast-option-focused': isHovering || isFocused }, 'fast-option')}
+      className={`${isHovering || isFocused ? 'fast-option-focused' : ''} fast-option`}
       style={style}
       onClick={onClickHandler}
     >

@@ -6,7 +6,7 @@ import { optionsDefault, opsGroup, defaultValue, op1500, ops2500 } from '../data
 
 storiesOf(`React Select Virtualized/props`, module)
   .addDecorator((story) => <div style={{ width: '30em' }}> {story()} </div>)
-  .addDecorator(withInfo)
+  // .addDecorator(withInfo)
   .addParameters({
     info: {
       source: true,

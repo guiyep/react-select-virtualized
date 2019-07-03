@@ -16,7 +16,11 @@ const FastLabel = memo(({ data, setValue, isHovering, isFocused, style, formatOp
 
   return (
     <div
-      className={classnames({ 'fast-option-focused': isHovering || isFocused }, 'fast-option')}
+      className={classnames(
+        { 'fast-option-focused': isHovering || isFocused },
+        'fast-option',
+        data.__isNew__ ? 'fast-option-create' : undefined,
+      )}
       style={style}
       onClick={onClickHandler}
     >

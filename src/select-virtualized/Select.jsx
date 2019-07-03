@@ -47,8 +47,10 @@ let Select = (props, ref) => {
 
   const onChangeHandler = useCallback(
     (value, { action }) => {
-      onChange(value, { action });
-      setSelection(value);
+      if (!value || (value && !value.__isNew__)) {
+        onChange(value, { action });
+        setSelection(value);
+      }
     },
     [onChange, setSelection],
   );

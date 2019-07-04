@@ -18,9 +18,6 @@ The select component will be the same from `react-select v2/3` so you will be ab
 ## IMPORTANT
 
 React Select introduced some braking changes in v3, so we will have to bump our version to 2.0.0 to don't stop anyone for using this library. If you use the react-select v2 your last usable version is 1.3.4.
---------------------------------------------------------------------------------------------------------------------------------
-|LAST VERSION FOR react-select v2 IS react-select-virtualized v1.3.4. FROM react-select-virtualized 2.0.0 uses react-select v3.|
---------------------------------------------------------------------------------------------------------------------------------
 
 ## Install
 

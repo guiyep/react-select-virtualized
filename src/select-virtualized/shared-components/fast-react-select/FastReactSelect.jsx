@@ -1,10 +1,11 @@
 import React, { forwardRef, memo, Fragment, useMemo, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import ReactSelect, { Async as ReactAsync, Creatable as ReactSelectCreatableSelect } from 'react-select';
-// import  from 'react-select/creatable';
+import ReactSelect from 'react-select';
+import ReactAsync from 'react-select/async'
+import ReactSelectCreatableSelect from 'react-select/creatable'
 import { calculateDebounce, mapLowercaseLabel, getFilteredItems } from './helpers/fast-react-select';
 import { calculateTotalListSize } from '../grouped-virtualized-list/helpers/grouped-list';
-import { optionsPropTypes } from '../../helpers/prop-types';
+import { optionsPropTypes } from '../../shared-helpers/prop-types';
 
 const LAG_INDICATOR = 1000;
 

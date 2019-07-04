@@ -1,11 +1,11 @@
-import { FastReactSelect } from './components/fast-react-select';
+import { FastReactSelect } from '../../shared-components/fast-react-select';
 import PropTypes from 'prop-types';
 import React, { useRef, useImperativeHandle, useState, forwardRef, useMemo, memo, useCallback, useEffect } from 'react';
 import './styles.css';
-import { buildListComponents, getStyles } from './helpers/select';
-import { defaultGroupFormat } from './components/grouped-virtualized-list/helpers/grouped-list.jsx';
+import { buildListComponents, getStyles } from '../../shared-helpers/select';
+import { defaultGroupFormat } from '../../shared-components/grouped-virtualized-list/helpers/grouped-list.jsx';
 import 'react-virtualized/styles.css';
-import { optionsPropTypes } from './helpers/prop-types';
+import { optionsPropTypes } from '../../shared-helpers/prop-types';
 
 let Select = (props, ref) => {
   const reactSelect = useRef('react-select');

@@ -1,5 +1,5 @@
-import { GroupVirtualizedListFactory } from '../components/grouped-virtualized-list';
-import { FlatVirtualizedListFactory } from '../components/flat-virtualized-list';
+import { GroupVirtualizedListFactory } from '../shared-components/grouped-virtualized-list';
+import { FlatVirtualizedListFactory } from '../shared-components/flat-virtualized-list';
 
 export const buildListComponents = (props) => {
   const components = {};

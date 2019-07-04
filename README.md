@@ -2,7 +2,7 @@
 
 ![Alt text](./logo.png?raw=true 'react-select-virtualized')
 
-> react-select v2 + react-virtualized + react hooks!
+> react-select v2/3 + react-virtualized + react hooks!
 
 [![NPM](https://img.shields.io/npm/v/react-select-virtualized.svg)](https://www.npmjs.com/package/react-select-virtualized) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -13,7 +13,11 @@ I created a component that uses the Airbnb library called `react-virtualized` fo
 
 ## Note
 
-The select component will be the same from `react-select v2` so you will be able to use it with any select you already have.
+The select component will be the same from `react-select v2/3` so you will be able to use it with any select you already have.
+
+## IMPORTANT
+
+React Select introduced some braking changes in v3, so we will have to bump our version to 2.0.0 to don't stop anyone for using this library. If you use the react-select v2 your last usable version is 1.3.4.
 
 ## Install
 
@@ -27,13 +31,12 @@ remember to install them also if they are not already in your project.
 
 NOTE: "react-hover-observer" is temporary until I implement it myself will be a dependency (not a peer dep) until then.
 
-```bash
+```bash (v1.3.4)
 {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-virtualized": "^9.21.1",
-    "classnames": "^2.2.6",
-    "react-select": "^2.4.4"
+    "react-select": "^3.0.4"
   }
 ```
 
@@ -65,21 +68,26 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 
 - [x] upgrading packages and hooks.
 
--- v 1.3.0 --
+-- v 2.0.0 --
+- [X] adding react-select v3.
+- [X] fixing addon-info.
+- [X] remove classnames.
+
+-- v 2.1.0 --
 
 - [ ] add support to create element props.
 
--- v 1.4.0 --
+-- v 2.2.0 --
 
 - [ ] add testing so we do not only relay on storybook.
 
--- v 1.5.0 --
+-- v 2.3.0 --
 
 - [ ] improve packaging.
 - [ ] remove react-hover-observer.
-- [ ] remove classnames.
 
--- v 2.0.0 --
+
+-- v 2.4.0 --
 
 - [ ] add multi value support.
 

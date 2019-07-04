@@ -1,7 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
-import Select from './Select';
+// this is a workaround for storybook, storybook and addon-info does not work with react.memo. I will create a wrapper to fix this.
+// here you will import the component per the documentation `import Select from 'path-to-select'`
+import Select from './_SelectTablePropsStoryFix';
 import {
   op50,
   op100,
@@ -17,7 +19,7 @@ import {
   ops10500,
   buildOptionsSize,
   opsGroup20000,
-} from '../data';
+} from '../../../data';
 
 storiesOf(`React Select Virtualized/big data`, module)
   .addDecorator((story) => <div style={{ width: '30em' }}> {story()} </div>)

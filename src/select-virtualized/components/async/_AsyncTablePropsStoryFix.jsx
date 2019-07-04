@@ -24,8 +24,6 @@ Async.defaultProps = {
   grouped: false,
   optionHeight: 31,
   minimumInputSearch: 0,
-  defaultOptions: undefined,
-  onInputChange: undefined,
   cacheOptions: true,
 };
 

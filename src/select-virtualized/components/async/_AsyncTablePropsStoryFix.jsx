@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { optionsPropTypes } from './helpers/prop-types';
+import { optionsPropTypes } from '../../shared-helpers/prop-types';
 import AsyncComponent from './Async';
 
 const Async = (props) => <AsyncComponent {...props}></AsyncComponent>;

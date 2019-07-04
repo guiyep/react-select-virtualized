@@ -1,77 +1,92 @@
-import { List, InfiniteLoader } from 'react-virtualized';
-import React, { useEffect, memo, useMemo, useState, useCallback } from 'react';
+import React, { useEffect, useCallback, memo, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
-import { getListHeight, getScrollIndex, getNextRowIndex } from '../../helpers/getters';
-import { flatVirtualizedListRowRenderer } from './helpers/flat-list.jsx';
+import { List, InfiniteLoader } from 'react-virtualized';
+import { getListHeight, getScrollIndex, getNextRowIndex } from '../../shared-helpers/getters';
+import { groupVirtualizedListRowRenderer } from './helpers/grouped-list.jsx';
+import { getGroupRowHeight } from './helpers/getters';
 
-let FlatListVirtualized = (props) => {
-  let listComponent;
-
+let GroupVirtualizedList = (props) => {
   const [focusedItemIndex, setFocusedItemIndex] = useState(undefined);
   const [queueScrollToIdx, setQueueScrollToIdx] = useState(undefined);
+  let listComponent;
 
   const {
     maxHeight,
-    children,
+    formatGroupHeader,
+    formatOptionLabel,
+    flatCollection,
     optionHeight,
-    options,
+    children,
     selectedValue,
     defaultValue,
+    groupHeaderHeight,
     valueGetter,
-    formatOptionLabel,
   } = props;
 
   useEffect(() => {
     // only scroll to index when we have something in the queue of focused and not visible
-    if (listComponent && queueScrollToIdx !== undefined && focusedItemIndex !== undefined) {
-      listComponent.current.scrollToRow(getNextRowIndex(focusedItemIndex, queueScrollToIdx, options));
+    if (listComponent && queueScrollToIdx) {
+      listComponent.current.scrollToRow(getNextRowIndex(focusedItemIndex, queueScrollToIdx, flatCollection));
       setQueueScrollToIdx(undefined);
     }
-  }, [listComponent, queueScrollToIdx, focusedItemIndex, options]);
+  }, [listComponent, queueScrollToIdx, focusedItemIndex, flatCollection]);
 
   const onOptionFocused = useCallback(
     ({ index, isVisible }) => {
-      if (index !== undefined && focusedItemIndex !== index && isVisible) {
+      if (index !== undefined && isVisible) {
         setFocusedItemIndex(index);
       } else if (index !== undefined && !isVisible && !queueScrollToIdx) {
         setQueueScrollToIdx(index);
       }
     },
-    [setFocusedItemIndex, focusedItemIndex, setQueueScrollToIdx, queueScrollToIdx],
+    [queueScrollToIdx],
   );
 
   const height = useMemo(
     () =>
       getListHeight({
         maxHeight,
-        totalSize: children.length,
+        totalSize: flatCollection.length,
+        groupSize: children.length,
         optionHeight,
+        groupHeaderHeight,
       }),
-    [maxHeight, children.length, optionHeight],
+    [maxHeight, flatCollection.length, children.length, optionHeight, groupHeaderHeight],
   );
 
   const scrollToIndex = useMemo(
     () =>
       getScrollIndex({
-        children: options,
+        children: flatCollection,
         selected: selectedValue || defaultValue,
         valueGetter,
       }),
-    [options, selectedValue, defaultValue, valueGetter],
+    [flatCollection, selectedValue, defaultValue, valueGetter],
   );
+
+  const rowHeight = useMemo(
+    () =>
+      getGroupRowHeight({
+        children: flatCollection,
+        optionHeight,
+        groupHeaderHeight,
+      }),
+    [flatCollection, optionHeight, groupHeaderHeight],
+  );
+
+  const list = [];
 
   const rowRenderer = useMemo(
     () =>
-      flatVirtualizedListRowRenderer({
-        children,
+      groupVirtualizedListRowRenderer({
+        children: flatCollection,
+        formatGroupHeader,
         onOptionFocused,
         optionHeight,
         formatOptionLabel,
       }),
-    [children, onOptionFocused, optionHeight, formatOptionLabel],
+    [flatCollection, formatGroupHeader, onOptionFocused, optionHeight, formatOptionLabel],
   );
-
-  const list = [];
 
   const isRowLoaded = useCallback(
     ({ index }) => {
@@ -84,12 +99,12 @@ let FlatListVirtualized = (props) => {
     ({ startIndex, stopIndex }) => {
       return new Promise((resolve) => {
         setTimeout(() => {
-          const result = list.concat(children.slice(startIndex, stopIndex));
+          const result = list.concat(flatCollection.slice(startIndex, stopIndex));
           resolve(result);
         }, 100);
       });
     },
-    [list, children],
+    [flatCollection, list],
   );
 
   return (
@@ -113,8 +128,8 @@ let FlatListVirtualized = (props) => {
           style={{ width: '100%' }}
           height={height}
           scrollToIndex={scrollToIndex}
-          rowCount={props.children.length}
-          rowHeight={props.optionHeight}
+          rowCount={props.flatCollection.length || 0}
+          rowHeight={rowHeight}
           rowRenderer={rowRenderer}
           width={props.maxWidth}
         />
@@ -123,27 +138,30 @@ let FlatListVirtualized = (props) => {
   );
 };
 
-FlatListVirtualized = memo(FlatListVirtualized);
+GroupVirtualizedList = memo(GroupVirtualizedList);
 
-FlatListVirtualized.propTypes = {
+GroupVirtualizedList.propTypes = {
   maxHeight: PropTypes.number, // this prop is coming from react-select
   maxWidth: PropTypes.number, // the style width 100% will override this prop, we need to set something big because it is a required field
   children: PropTypes.node.isRequired,
   optionHeight: PropTypes.number,
+  groupHeaderHeight: PropTypes.number,
   selectedValue: PropTypes.object,
   defaultValue: PropTypes.object,
   valueGetter: PropTypes.func,
-  options: PropTypes.array.isRequired,
+  formatGroupHeader: PropTypes.func.isRequired,
+  formatOptionLabel: PropTypes.func,
+  flatCollection: PropTypes.array.isRequired,
   minimumBatchSize: PropTypes.number,
 };
 
-FlatListVirtualized.defaultProps = {
+GroupVirtualizedList.defaultProps = {
   valueGetter: (item) => item && item.value,
-  maxWidth: 500,
-  maxHeight: 200,
+  maxWidth: 9999,
+  formatOptionLabel: undefined,
   minimumBatchSize: 1000,
 };
 
-FlatListVirtualized.displayName = 'FlatListVirtualized';
+GroupVirtualizedList.displayName = 'GroupVirtualizedList';
 
-export default FlatListVirtualized;
+export default GroupVirtualizedList;

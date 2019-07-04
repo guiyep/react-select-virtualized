@@ -4,7 +4,7 @@ import { withInfo } from '@storybook/addon-info';
 // this is a workaround for storybook, storybook and addon-info does not work with react.memo. I will create a wrapper to fix this.
 // here you will import the component per the documentation `import Select from 'path-to-select'`
 import Select from './_SelectTablePropsStoryFix';
-import { optionsDefault, opsGroup, defaultValue, op1500, ops2500 } from '../data';
+import { optionsDefault, opsGroup, defaultValue, op1500, ops2500 } from '../../../data';
 
 
 

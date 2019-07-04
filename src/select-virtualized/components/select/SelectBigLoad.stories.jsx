@@ -19,7 +19,7 @@ import {
   ops10500,
   buildOptionsSize,
   opsGroup20000,
-} from '../data';
+} from '../../../data';
 
 storiesOf(`React Select Virtualized/big data`, module)
   .addDecorator((story) => <div style={{ width: '30em' }}> {story()} </div>)

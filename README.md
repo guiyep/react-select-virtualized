@@ -31,13 +31,12 @@ remember to install them also if they are not already in your project.
 
 NOTE: "react-hover-observer" is temporary until I implement it myself will be a dependency (not a peer dep) until then.
 
-```bash
+```bash (v1.3.4)
 {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-virtualized": "^9.21.1",
-    "classnames": "^2.2.6",
-    "react-select": "^2.4.4"
+    "react-select": "^3.0.4"
   }
 ```
 

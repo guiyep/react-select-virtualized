@@ -1,5 +1,5 @@
-import Select from './component/select/SelectSelect';
-import Async from './component/async/Async';
+import Select from './components/select/Select';
+import Async from './components/async/Async';
 
 export { Select, Async };
 

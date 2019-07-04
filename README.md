@@ -72,21 +72,26 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 
 - [X] upgrading packages and hooks.
 
--- v 1.3.0 --
+-- v 2.0.0 --
+- [X] adding react-select v3.
+- [X] fixing addon-info.
+- [X] remove classnames.
+
+-- v 2.1.0 --
 
 - [ ] add support to create element props.
 
--- v 1.4.0 --
+-- v 2.2.0 --
 
 - [ ] add testing so we do not only relay on storybook.
 
--- v 1.5.0 --
+-- v 2.3.0 --
 
 - [ ] improve packaging.
 - [ ] remove react-hover-observer.
-- [ ] remove classnames.
 
--- v 2.0.0 --
+
+-- v 2.4.0 --
 
 - [ ] add multi value support.
 

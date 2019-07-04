@@ -2,7 +2,7 @@
 
 ![Alt text](./logo.png?raw=true 'react-select-virtualized')
 
-> react-select v2/3 + react-virtualized + react hooks!
+> react-select v3 + react-virtualized + react hooks!
 
 [![NPM](https://img.shields.io/npm/v/react-select-virtualized.svg)](https://www.npmjs.com/package/react-select-virtualized) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -13,7 +13,7 @@ I created a component that uses the Airbnb library called `react-virtualized` fo
 
 ## Note
 
-The select component will be the same from `react-select v2/3` so you will be able to use it with any select you already have.
+The select component will be the same from `react-select v3` so you will be able to use it with any select you already have.
 
 ## IMPORTANT
 

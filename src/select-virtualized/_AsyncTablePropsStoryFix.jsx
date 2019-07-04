@@ -8,7 +8,6 @@ const Async = (props) => <AsyncComponent {...props}></AsyncComponent>;
 
 Async.propTypes = {
   minimumInputSearch: PropTypes.number,
-  options: optionsPropTypes.isRequired,
   onChange: PropTypes.func,
   grouped: PropTypes.bool, // this is only for performance enhancement so we do not need to iterate in the array many times. It is not needed if formatGroupHeaderLabel or groupHeaderHeight are defined
   formatGroupHeaderLabel: PropTypes.func,

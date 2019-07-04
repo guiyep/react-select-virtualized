@@ -1,6 +1,7 @@
 import React, { forwardRef, memo, Fragment, useMemo, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import ReactSelect, { Async as ReactAsync } from 'react-select';
+import ReactSelect from 'react-select';
+import ReactAsync from 'react-select/async'
 import { calculateDebounce, mapLowercaseLabel, getFilteredItems } from './helpers/fast-react-select';
 import { calculateTotalListSize } from '../grouped-virtualized-list/helpers/grouped-list';
 import { optionsPropTypes } from '../../helpers/prop-types';

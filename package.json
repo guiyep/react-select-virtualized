@@ -68,7 +68,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "^3.0.1",
-    "react-select": "^2.4.4",
+    "react-select": "^3.0.3",
     "react-test-renderer": "^16.8.6",
     "react-testing-library": "^8.0.1",
     "react-virtualized": "^9.21.1",
@@ -95,7 +95,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-virtualized": "^9.21.1",
-    "react-select": "^2.4.4"
+    "react-select": "^3.0.3"
   },
   "dependencies": {
     "react-hover-observer": "2.1.1"

@@ -2,7 +2,7 @@
 
 ![Alt text](./logo.png?raw=true 'react-select-virtualized')
 
-> react-select v2 + react-virtualized + react hooks!
+> react-select v2/3 + react-virtualized + react hooks!
 
 [![NPM](https://img.shields.io/npm/v/react-select-virtualized.svg)](https://www.npmjs.com/package/react-select-virtualized) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 

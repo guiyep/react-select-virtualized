@@ -26,7 +26,7 @@ export const groupVirtualizedListRowRenderer = ({
   const thisProps = children[index].props;
   const isGroupHeaderValue = isGroupHeader(thisProps);
 
-  if (thisProps.isFocused && !isGroupHeaderValue) {
+  if (thisProps.isSelected && !isGroupHeaderValue) {
     onOptionFocused({ data: thisProps.data, index, isVisible, isScrolling });
   }
 
@@ -44,7 +44,7 @@ export const groupVirtualizedListRowRenderer = ({
           isVisible={isVisible}
           isScrolling={isScrolling}
           optionHeight={optionHeight}
-          isFocused={thisProps.isFocused}
+          isFocused={thisProps.isSelected}
           formatOptionLabel={formatOptionLabel}
         />
       )}

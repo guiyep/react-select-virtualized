@@ -13,7 +13,7 @@ export const flatVirtualizedListRowRenderer = ({ children, onOptionFocused, opti
   // since the actual behavior will be handled by the renderer
   const thisProps = children[index].props;
 
-  if (thisProps.isFocused && !isScrolling) {
+  if (thisProps.isSelected && !isScrolling) {
     onOptionFocused({ data: thisProps.data, index, isVisible, isScrolling });
   }
 
@@ -25,7 +25,7 @@ export const flatVirtualizedListRowRenderer = ({ children, onOptionFocused, opti
         isVisible={isVisible}
         isScrolling={isScrolling}
         optionHeight={optionHeight}
-        isFocused={thisProps.isFocused}
+        isFocused={thisProps.isSelected}
         formatOptionLabel={formatOptionLabel}
       />
     </div>

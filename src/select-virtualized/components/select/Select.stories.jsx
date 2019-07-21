@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 // this is a workaround for storybook, storybook and addon-info does not work with react.memo. I will create a wrapper to fix this.
@@ -21,30 +21,6 @@ storiesOf(`React Select Virtualized/props`, module)
   .add('with default value', () => <Select defaultValue={defaultValue} options={optionsDefault} />)
   .add('with minimum input to 3', () => <Select options={op1500} minimumInputSearch={3} />)
   .add('disabled select', () => <Select options={optionsDefault} isDisabled />)
-  .add('clear select input', () => {
-    const selectRef = React.createRef();
-    return (
-      <Fragment>
-        <button className="button" style={{ width: '200px' }} onClick={() => selectRef.current.clear()}>
-          Click me for clearing the Select default value
-        </button>
-        <br />
-        <Select ref={selectRef} defaultValue={defaultValue} options={optionsDefault} />
-      </Fragment>
-    );
-  })
-  .add('focus select input', () => {
-    const selectRef = React.createRef();
-    return (
-      <Fragment>
-        <button className="button" style={{ width: '200px' }} onClick={() => selectRef.current.focus()}>
-          Click me for focusing the Select
-        </button>
-        <br />
-        <Select ref={selectRef} defaultValue={defaultValue} options={optionsDefault} />
-      </Fragment>
-    );
-  })
   .add('empty options in the select', () => <Select noOptionsMessage={() => 'No Items...'} options={[]} />)
   .add('select with custom labels format', () => {
     const labelFormat = ({ label, lang }, { context }) => {

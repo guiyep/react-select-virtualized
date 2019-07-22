@@ -22,7 +22,7 @@ const FastOption = memo(
           {({ isHovering }) => (
             <FastLabel
               data={data}
-              isFocused={isFocused}
+              // isFocused={isFocused}
               setValue={setValue}
               isHovering={isHovering}
               isSelected={isSelected}
@@ -42,7 +42,7 @@ FastOption.propTypes = {
   isVisible: PropTypes.bool.isRequired,
   setValue: PropTypes.func.isRequired,
   optionHeight: PropTypes.number.isRequired,
-  isFocused: PropTypes.bool.isRequired,
+  // isFocused: PropTypes.bool.isRequired,
 };
 
 export default FastOption;

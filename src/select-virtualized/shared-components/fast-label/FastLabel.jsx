@@ -28,7 +28,7 @@ FastLabel.propTypes = {
   data: PropTypes.object.isRequired,
   setValue: PropTypes.func,
   isHovering: PropTypes.bool.isRequired,
-  isFocused: PropTypes.bool.isRequired,
+  // isFocused: PropTypes.bool.isRequired,
   isSelected: PropTypes.bool.isRequired,
   style: PropTypes.object,
   formatOptionLabel: PropTypes.func,

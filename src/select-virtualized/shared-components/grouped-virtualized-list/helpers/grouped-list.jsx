@@ -26,9 +26,10 @@ export const groupVirtualizedListRowRenderer = ({
   const thisProps = children[index].props;
   const isGroupHeaderValue = isGroupHeader(thisProps);
 
-  if (thisProps.isSelected && !isGroupHeaderValue) {
-    onOptionFocused({ data: thisProps.data, index, isVisible, isScrolling });
-  }
+  // wait for https://github.com/JedWatson/react-select/issues/3656
+  // if (thisProps.isSelected && !isGroupHeaderValue) {
+  //   onOptionFocused({ data: thisProps.data, index, isVisible, isScrolling });
+  // }
 
   return (
     <div className="grouped-virtualized-list-item" key={key} style={style}>
@@ -44,7 +45,9 @@ export const groupVirtualizedListRowRenderer = ({
           isVisible={isVisible}
           isScrolling={isScrolling}
           optionHeight={optionHeight}
-          isFocused={thisProps.isSelected}
+          // wait for https://github.com/JedWatson/react-select/issues/3656
+          // isFocused={thisProps.isSelected}
+          isSelected={thisProps.isSelected}
           formatOptionLabel={formatOptionLabel}
         />
       )}

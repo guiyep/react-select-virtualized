@@ -205,10 +205,6 @@ const Example3 = () => <Async defaultOptions={options} {..ANY_REACT_ASYNC_SELECT
 const Example4 = () => <Async defaultOptions={opsGroup} {..ANY_REACT_ASYNC_SELECT_V2_PROP} loadOptions={loadOptions} grouped/>
 ```
 
-## React-select Issues
-
-- cacheOptions do not work with async select and grouped options. we will need to relay on filtering on infinite loader.
-
 ## License
 
 MIT © [guiyep](https://github.com/guiyep)

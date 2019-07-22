@@ -7,7 +7,8 @@
   background: white;
 }
 
-.flat-virtualized-item, .grouped-virtualized-list-item {
+.flat-virtualized-item,
+.grouped-virtualized-list-item {
   cursor: pointer;
   background-color: transparent;
   user-select: none;
@@ -15,7 +16,8 @@
   display: flex;
 }
 
-.flat-virtualized-item > div, .grouped-virtualized-list-item > div{
+.flat-virtualized-item > div,
+.grouped-virtualized-list-item > div {
   width: 100%;
   height: 100%;
 }
@@ -26,13 +28,18 @@
   height: 100%;
 }
 
-
 .fast-option-focused {
-  background-color: #DEEBFF;
+  background-color: #deebff;
   user-select: none;
   box-sizing: border-box;
 }
 
-.grouped-virtualized-list-item div[role="option"]{
+.fast-option-selected {
+  background-color: rgb(38, 132, 255);
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.grouped-virtualized-list-item div[role='option'] {
   cursor: pointer;
 }

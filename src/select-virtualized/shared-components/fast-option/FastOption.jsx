@@ -22,6 +22,7 @@ const FastOption = memo(
           {({ isHovering }) => (
             <FastLabel
               data={data}
+              // wait for https://github.com/JedWatson/react-select/issues/3656
               // isFocused={isFocused}
               setValue={setValue}
               isHovering={isHovering}

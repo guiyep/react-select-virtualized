@@ -8,6 +8,7 @@ import svgr from '@svgr/rollup';
 import replace from 'rollup-plugin-replace';
 import minify from 'rollup-plugin-babel-minify';
 import gzipPlugin from 'rollup-plugin-gzip';
+import cleaner from 'rollup-plugin-cleaner';
 
 import pkg from './package.json';
 
@@ -32,7 +33,7 @@ export default {
   plugins: [
     external(),
     postcss({
-      modules: true,
+      minimize: isProd,
     }),
     url(),
     svgr(),
@@ -53,5 +54,9 @@ export default {
       ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
     }),
     gzipPlugin(),
+    isProd &&
+      cleaner({
+        targets: ['./dist/'],
+      }),
   ],
 };

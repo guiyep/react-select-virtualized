@@ -40,6 +40,10 @@ NOTE: "react-hover-observer" is temporary until I implement it myself will be a 
   }
 ```
 
+## Try It!!!
+
+https://codesandbox.io/s/vigilant-mclean-wpbk7
+
 ## Storybook
 
 Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/

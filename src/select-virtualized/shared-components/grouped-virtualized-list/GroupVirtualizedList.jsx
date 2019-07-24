@@ -161,7 +161,7 @@ GroupVirtualizedList.propTypes = {
 
 GroupVirtualizedList.defaultProps = {
   valueGetter: (item) => item && item.value,
-  maxWidth: 9999,
+  maxWidth: 1024,
   formatOptionLabel: undefined,
   minimumBatchSize: 1000,
 };

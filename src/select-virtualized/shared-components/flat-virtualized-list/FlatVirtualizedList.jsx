@@ -143,7 +143,7 @@ FlatListVirtualized.propTypes = {
 
 FlatListVirtualized.defaultProps = {
   valueGetter: (item) => item && item.value,
-  maxWidth: 500,
+  maxWidth: 1024,
   maxHeight: 200,
   minimumBatchSize: 1000,
 };

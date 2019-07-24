@@ -62,16 +62,17 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 
 -- v 1.1.0 --
 
-- [X] add support to AsyncSelect with group.
+- [x] add support to AsyncSelect with group.
 
 -- v 1.2.0 --
 
-- [X] upgrading packages and hooks.
+- [x] upgrading packages and hooks.
 
 -- v 2.0.0 --
-- [X] adding react-select v3.
-- [X] fixing addon-info.
-- [X] remove classnames.
+
+- [x] adding react-select v3.
+- [x] fixing addon-info.
+- [x] remove classnames.
 
 -- v 2.1.0 --
 
@@ -86,11 +87,9 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 - [ ] improve packaging.
 - [ ] remove react-hover-observer.
 
-
 -- v 2.4.0 --
 
 - [ ] add multi value support.
-
 
 ## Documentation - Select Component - this are special to this library none is required
 
@@ -102,7 +101,7 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 | optionHeight                                 | number                                     | 31      | height of each option                                                         |
 | groupHeaderHeight                            | number                                     |         | header row height in the popover list                                         |
 | maxHeight (coming from react-select)         | number                                     | auto    | max height popover list                                                       |
-| maxWidth (coming from react-select)          | number                                     | 500     | max width in the popover list                                                 |
+| maxWidth (coming from react-select)          | number                                     | 1024    | max width in the popover list, it is set to 1024 for performance reasons.     |  |
 
 ## What we do support and don't from react-select
 

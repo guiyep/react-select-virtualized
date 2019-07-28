@@ -6,9 +6,9 @@ import resolve from 'rollup-plugin-node-resolve';
 import url from 'rollup-plugin-url';
 import svgr from '@svgr/rollup';
 import replace from 'rollup-plugin-replace';
-import minify from 'rollup-plugin-babel-minify';
 import gzipPlugin from 'rollup-plugin-gzip';
 import cleaner from 'rollup-plugin-cleaner';
+import { terser } from 'rollup-plugin-terser';
 
 import pkg from './package.json';
 
@@ -39,13 +39,8 @@ export default {
     svgr(),
     babel({
       exclude: 'node_modules/**',
-      plugins: ['@babel/external-helpers'],
+      runtimeHelpers: true,
     }),
-    isProd &&
-      minify({
-        comments: false,
-        sourceMap: false,
-      }),
     resolve({
       extensions: ['.mjs', '.js', '.jsx', '.json'],
     }),
@@ -57,6 +52,10 @@ export default {
     isProd &&
       cleaner({
         targets: ['./dist/'],
+      }),
+    isProd &&
+      terser({
+        sourcemap: false,
       }),
   ],
 };

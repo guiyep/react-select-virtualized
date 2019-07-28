@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback, memo, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
-import { List, InfiniteLoader } from 'react-virtualized';
+import { List, InfiniteLoader, AutoSizer } from 'react-virtualized';
 import { getListHeight, getScrollIndex, getNextRowIndex } from '../../shared-helpers/getters';
 import { groupVirtualizedListRowRenderer } from './helpers/grouped-list.jsx';
 import { getGroupRowHeight } from './helpers/getters';
@@ -112,33 +112,36 @@ let GroupVirtualizedList = (props) => {
   );
 
   return (
-    <InfiniteLoader
-      isRowLoaded={isRowLoaded}
-      threshold={props.threshold}
-      loadMoreRows={loadMoreRows}
-      rowCount={props.children.length || 0}
-      minimumBatchSize={props.minimumBatchSize}
-    >
-      {({ onRowsRendered, registerChild }) => (
-        <List
-          ref={(element) => {
-            registerChild(element);
-            listComponent = {
-              current: element,
-            };
-            return element;
-          }}
-          onRowsRendered={onRowsRendered}
-          style={{ width: '100%' }}
-          height={height}
-          scrollToIndex={scrollToIndex}
-          rowCount={props.flatCollection.length || 0}
-          rowHeight={rowHeight}
-          rowRenderer={rowRenderer}
-          width={props.maxWidth}
-        />
+    <AutoSizer disableHeight>
+      {({ width }) => (
+        <InfiniteLoader
+          isRowLoaded={isRowLoaded}
+          threshold={props.threshold}
+          loadMoreRows={loadMoreRows}
+          rowCount={props.children.length || 0}
+          minimumBatchSize={props.minimumBatchSize}
+        >
+          {({ onRowsRendered, registerChild }) => (
+            <List
+              ref={(element) => {
+                registerChild(element);
+                listComponent = {
+                  current: element,
+                };
+                return element;
+              }}
+              onRowsRendered={onRowsRendered}
+              height={height}
+              scrollToIndex={scrollToIndex}
+              rowCount={props.flatCollection.length || 0}
+              rowHeight={rowHeight}
+              rowRenderer={rowRenderer}
+              width={width}
+            />
+          )}
+        </InfiniteLoader>
       )}
-    </InfiniteLoader>
+    </AutoSizer>
   );
 };
 
@@ -146,7 +149,6 @@ GroupVirtualizedList = memo(GroupVirtualizedList);
 
 GroupVirtualizedList.propTypes = {
   maxHeight: PropTypes.number, // this prop is coming from react-select
-  maxWidth: PropTypes.number, // the style width 100% will override this prop, we need to set something big because it is a required field
   children: PropTypes.node.isRequired,
   optionHeight: PropTypes.number,
   groupHeaderHeight: PropTypes.number,
@@ -161,7 +163,6 @@ GroupVirtualizedList.propTypes = {
 
 GroupVirtualizedList.defaultProps = {
   valueGetter: (item) => item && item.value,
-  maxWidth: 1024,
   formatOptionLabel: undefined,
   minimumBatchSize: 1000,
 };

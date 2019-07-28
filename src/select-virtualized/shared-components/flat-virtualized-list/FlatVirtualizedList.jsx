@@ -1,4 +1,4 @@
-import { List, InfiniteLoader } from 'react-virtualized';
+import { List, InfiniteLoader, AutoSizer } from 'react-virtualized';
 import React, { useEffect, memo, useMemo, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { getListHeight, getScrollIndex, getNextRowIndex } from '../../shared-helpers/getters';
@@ -97,33 +97,36 @@ let FlatListVirtualized = (props) => {
   );
 
   return (
-    <InfiniteLoader
-      isRowLoaded={isRowLoaded}
-      threshold={props.threshold}
-      loadMoreRows={loadMoreRows}
-      rowCount={props.children.length || 0}
-      minimumBatchSize={props.minimumBatchSize}
-    >
-      {({ onRowsRendered, registerChild }) => (
-        <List
-          ref={(element) => {
-            registerChild(element);
-            listComponent = {
-              current: element,
-            };
-            return element;
-          }}
-          onRowsRendered={onRowsRendered}
-          style={{ width: '100%' }}
-          height={height}
-          scrollToIndex={scrollToIndex}
-          rowCount={props.children.length}
-          rowHeight={props.optionHeight}
-          rowRenderer={rowRenderer}
-          width={props.maxWidth}
-        />
+    <AutoSizer disableHeight>
+      {({ width }) => (
+        <InfiniteLoader
+          isRowLoaded={isRowLoaded}
+          threshold={props.threshold}
+          loadMoreRows={loadMoreRows}
+          rowCount={props.children.length || 0}
+          minimumBatchSize={props.minimumBatchSize}
+        >
+          {({ onRowsRendered, registerChild }) => (
+            <List
+              ref={(element) => {
+                registerChild(element);
+                listComponent = {
+                  current: element,
+                };
+                return element;
+              }}
+              onRowsRendered={onRowsRendered}
+              height={height}
+              scrollToIndex={scrollToIndex}
+              rowCount={props.children.length}
+              rowHeight={props.optionHeight}
+              rowRenderer={rowRenderer}
+              width={width}
+            />
+          )}
+        </InfiniteLoader>
       )}
-    </InfiniteLoader>
+    </AutoSizer>
   );
 };
 
@@ -131,7 +134,6 @@ FlatListVirtualized = memo(FlatListVirtualized);
 
 FlatListVirtualized.propTypes = {
   maxHeight: PropTypes.number, // this prop is coming from react-select
-  maxWidth: PropTypes.number, // the style width 100% will override this prop, we need to set something big because it is a required field
   children: PropTypes.node.isRequired,
   optionHeight: PropTypes.number,
   selectedValue: PropTypes.object,
@@ -143,7 +145,6 @@ FlatListVirtualized.propTypes = {
 
 FlatListVirtualized.defaultProps = {
   valueGetter: (item) => item && item.value,
-  maxWidth: 1024,
   maxHeight: 200,
   minimumBatchSize: 1000,
 };

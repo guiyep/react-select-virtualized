@@ -105,7 +105,6 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 | optionHeight                                 | number                                     | 31      | height of each option                                                         |
 | groupHeaderHeight                            | number                                     |         | header row height in the popover list                                         |
 | maxHeight (coming from react-select)         | number                                     | auto    | max height popover list                                                       |
-| maxWidth (coming from react-select)          | number                                     | 1024    | max width in the popover list, it is set to 1024 for performance reasons.     |  |
 
 ## What we do support and don't from react-select
 

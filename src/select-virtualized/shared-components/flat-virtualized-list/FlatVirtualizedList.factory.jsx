@@ -8,7 +8,6 @@ const FlatVirtualizedListFactory = ({
   defaultValue,
   valueGetter,
   formatOptionLabel,
-  maxWidth,
 }) =>
   memo((props) => {
     const selectedValue = props.getValue() ? props.getValue()[0] : undefined;
@@ -25,7 +24,6 @@ const FlatVirtualizedListFactory = ({
         defaultValue={defaultValue}
         valueGetter={valueGetter}
         formatOptionLabel={formatOptionLabel}
-        maxWidth={maxWidth}
       />
     );
   });

@@ -22,12 +22,14 @@ export default {
       format: 'cjs',
       sourcemap: !isProd,
       compact: isProd,
+      exports: 'named',
     },
     {
       file: pkg.module,
       format: 'es',
       sourcemap: !isProd,
       compact: isProd,
+      exports: 'named',
     },
   ],
   plugins: [

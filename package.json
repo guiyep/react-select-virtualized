@@ -1,12 +1,12 @@
 {
   "name": "react-select-virtualized",
-  "version": "2.0.14",
+  "version": "2.0.15",
   "description": "react-select v3 + react-virtualized + react hooks",
   "author": "guiyep",
   "license": "MIT",
   "repository": "guiyep/react-select-virtualized",
-  "main": "dist/index.js",
-  "module": "dist/index.es.js",
+  "main": "dist/index.min.js",
+  "module": "dist/index.min.es.js",
   "jsnext:main": "dist/index.es.js",
   "engines": {
     "node": ">=9",

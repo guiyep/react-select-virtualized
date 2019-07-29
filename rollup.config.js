@@ -20,15 +20,15 @@ export default {
     {
       file: pkg.main,
       format: 'cjs',
-      sourcemap: !isProd,
-      compact: isProd,
+      sourcemap: true,
+      compact: true,
       exports: 'named',
     },
     {
       file: pkg.module,
       format: 'es',
-      sourcemap: !isProd,
-      compact: isProd,
+      sourcemap: true,
+      compact: true,
       exports: 'named',
     },
   ],
@@ -57,7 +57,8 @@ export default {
       }),
     isProd &&
       terser({
-        sourcemap: false,
+        sourcemap: true,
+        toplevel: true,
       }),
   ],
 };

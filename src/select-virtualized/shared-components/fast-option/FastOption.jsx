@@ -1,5 +1,5 @@
 import React, { memo, Fragment } from 'react';
-import ReactHoverObserver from 'react-hover-observer';
+import { FastHover } from '../fast-hover';
 import PropTypes from 'prop-types';
 import { FastLabel } from '../fast-label';
 
@@ -18,7 +18,7 @@ const FastOption = memo(
         />
       )}
       {!isScrolling && isVisible && !isFocused && (
-        <ReactHoverObserver>
+        <FastHover>
           {({ isHovering }) => (
             <FastLabel
               data={data}
@@ -31,7 +31,7 @@ const FastOption = memo(
               formatOptionLabel={formatOptionLabel}
             />
           )}
-        </ReactHoverObserver>
+        </FastHover>
       )}
     </Fragment>
   ),

@@ -1,6 +1,6 @@
 {
   "name": "react-select-virtualized",
-  "version": "2.0.15",
+  "version": "2.0.16",
   "description": "react-select v3 + react-virtualized + react hooks",
   "author": "guiyep",
   "license": "MIT",
@@ -98,8 +98,5 @@
     "react-dom": "16.8.6",
     "react-virtualized": "9.21.1",
     "react-select": "3.0.4"
-  },
-  "dependencies": {
-    "react-hover-observer": "2.1.1"
   }
 }

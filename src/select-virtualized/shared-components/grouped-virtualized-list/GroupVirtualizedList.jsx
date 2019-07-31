@@ -74,7 +74,7 @@ let GroupVirtualizedList = (props) => {
     [flatCollection, optionHeight, groupHeaderHeight],
   );
 
-  const list = [];
+  let list = [];
 
   const rowRenderer = useMemo(
     () =>

@@ -7,10 +7,21 @@ import { defaultGroupFormat } from '../../shared-components/grouped-virtualized-
 import 'react-virtualized/styles.css';
 import { optionsPropTypes } from '../../shared-helpers/prop-types';
 
+const throwMixControlledError = () => {
+  throw new Error(
+    `react-select-virtualize do not support using defaultValue and value at the same time. Choose between uncontrolled or controlled component.
+    Clear and Select component methods can only be used with uncontrolled components.`,
+  );
+};
+
 let Select = (props, ref) => {
   const reactSelect = useRef('react-select');
 
-  const { grouped, formatGroupHeaderLabel, groupHeaderHeight, onChange, defaultValue, optionHeight } = props;
+  const { grouped, formatGroupHeaderLabel, groupHeaderHeight, onChange, defaultValue, value, optionHeight } = props;
+
+  if (defaultValue && value) {
+    throwMixControlledError();
+  }
 
   const [selection, setSelection] = useState(defaultValue);
 
@@ -34,23 +45,31 @@ let Select = (props, ref) => {
   }, [grouped, formatGroupHeaderLabel, groupHeaderHeight, optionHeight]);
 
   const onChangeHandler = useCallback(
-    (value, { action }) => {
+    (valueChanged, { action }) => {
       if (onChange) {
-        onChange(value, { action });
+        onChange(valueChanged, { action });
       }
-      setSelection(value);
+      setSelection(valueChanged);
     },
     [onChange, setSelection],
   );
 
   useImperativeHandle(ref, () => ({
     clear: () => {
+      if (value) {
+        throwMixControlledError();
+      }
       setSelection(null);
     },
     focus: () => {
       reactSelect.current.focus();
     },
-    select: (item) => setSelection(item),
+    select: (item) => {
+      if (value) {
+        throwMixControlledError();
+      }
+      setSelection(item);
+    },
   }));
 
   return (
@@ -59,7 +78,7 @@ let Select = (props, ref) => {
       {...defaultProps}
       {...props}
       styles={{ ...getStyles(), ...props.styles }} // keep react-select styles implementation and pass to any customization done
-      value={selection}
+      value={value || selection}
       onChange={onChangeHandler}
       options={props.options}
       components={{

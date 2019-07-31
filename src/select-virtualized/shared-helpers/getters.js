@@ -10,9 +10,20 @@ export const getListHeight = ({
 
 export const getScrollIndex = ({ children, selected, valueGetter }) => {
   if (children && selected && valueGetter)
-    return children.findIndex(
-      (child) => (valueGetter(child) || valueGetter(child.props.data)) === valueGetter(selected),
-    );
+    return children.findIndex((child) => {
+      // tru getting the value from the children
+      let value = valueGetter(child);
+      const selectedValue = valueGetter(selected);
+      if (value !== undefined && value === selectedValue) {
+        return true;
+      }
+      // try getting the item from the data otherwise
+      value = child.props && valueGetter(child.props.data);
+      if (value !== undefined && value === selectedValue) {
+        return true;
+      }
+      return false;
+    });
   return undefined;
 };
 

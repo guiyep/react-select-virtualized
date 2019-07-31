@@ -1,36 +1,41 @@
 import React, { memo, Fragment } from 'react';
-import ReactHoverObserver from 'react-hover-observer';
+import { FastHover } from '../fast-hover';
 import PropTypes from 'prop-types';
 import { FastLabel } from '../fast-label';
 
-const FastOption = memo(({ data, isScrolling, isVisible, setValue, optionHeight, isFocused, formatOptionLabel }) => (
-  <Fragment>
-    {(isScrolling || !isVisible || isFocused) && (
-      <FastLabel
-        data={data}
-        setValue={setValue}
-        isHovering={false}
-        isFocused={isFocused}
-        style={{ lineHeight: `${optionHeight}px` }}
-        formatOptionLabel={formatOptionLabel}
-      />
-    )}
-    {!isScrolling && isVisible && !isFocused && (
-      <ReactHoverObserver>
-        {({ isHovering }) => (
-          <FastLabel
-            data={data}
-            isFocused={isFocused}
-            setValue={setValue}
-            isHovering={isHovering}
-            style={{ lineHeight: `${optionHeight}px` }}
-            formatOptionLabel={formatOptionLabel}
-          />
-        )}
-      </ReactHoverObserver>
-    )}
-  </Fragment>
-));
+const FastOption = memo(
+  ({ data, isScrolling, isSelected, isVisible, setValue, optionHeight, isFocused, formatOptionLabel }) => (
+    <Fragment>
+      {(isScrolling || !isVisible || isFocused) && (
+        <FastLabel
+          data={data}
+          setValue={setValue}
+          isHovering={false}
+          isFocused={isFocused}
+          isSelected={isSelected}
+          style={{ lineHeight: `${optionHeight}px` }}
+          formatOptionLabel={formatOptionLabel}
+        />
+      )}
+      {!isScrolling && isVisible && !isFocused && (
+        <FastHover>
+          {({ isHovering }) => (
+            <FastLabel
+              data={data}
+              // wait for https://github.com/JedWatson/react-select/issues/3656
+              // isFocused={isFocused}
+              setValue={setValue}
+              isHovering={isHovering}
+              isSelected={isSelected}
+              style={{ lineHeight: `${optionHeight}px` }}
+              formatOptionLabel={formatOptionLabel}
+            />
+          )}
+        </FastHover>
+      )}
+    </Fragment>
+  ),
+);
 
 FastOption.propTypes = {
   data: PropTypes.object.isRequired,
@@ -38,7 +43,7 @@ FastOption.propTypes = {
   isVisible: PropTypes.bool.isRequired,
   setValue: PropTypes.func.isRequired,
   optionHeight: PropTypes.number.isRequired,
-  isFocused: PropTypes.bool.isRequired,
+  // isFocused: PropTypes.bool.isRequired,
 };
 
 export default FastOption;

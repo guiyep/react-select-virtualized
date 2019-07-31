@@ -2,7 +2,7 @@
 
 ![Alt text](./logo.png?raw=true 'react-select-virtualized')
 
-> react-select v2/3 + react-virtualized + react hooks!
+> react-select v3 + react-virtualized + react hooks!
 
 [![NPM](https://img.shields.io/npm/v/react-select-virtualized.svg)](https://www.npmjs.com/package/react-select-virtualized) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -13,7 +13,7 @@ I created a component that uses the Airbnb library called `react-virtualized` fo
 
 ## Note
 
-The select component will be the same from `react-select v2/3` so you will be able to use it with any select you already have.
+The select component will be the same from `react-select v3` so you will be able to use it with any select you already have.
 
 ## IMPORTANT
 
@@ -29,8 +29,6 @@ npm install --save react-select-virtualized
 
 remember to install them also if they are not already in your project.
 
-NOTE: "react-hover-observer" is temporary until I implement it myself will be a dependency (not a peer dep) until then.
-
 ```bash (v1.3.4)
 {
     "react": "^16.8.6",
@@ -39,6 +37,10 @@ NOTE: "react-hover-observer" is temporary until I implement it myself will be a 
     "react-select": "^3.0.4"
   }
 ```
+
+## Try It!!!
+
+https://codesandbox.io/s/vigilant-mclean-wpbk7
 
 ## Storybook
 
@@ -69,9 +71,12 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 - [x] upgrading packages and hooks.
 
 -- v 2.0.0 --
-- [X] adding react-select v3.
-- [X] fixing addon-info.
-- [X] remove classnames.
+
+- [x] adding react-select v3.
+- [x] fixing addon-info.
+- [x] remove classnames.
+- [x] improve packaging.
+- [x] remove react-hover-observer.
 
 -- v 2.1.0 --
 
@@ -83,14 +88,7 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 
 -- v 2.3.0 --
 
-- [ ] improve packaging.
-- [ ] remove react-hover-observer.
-
-
--- v 2.4.0 --
-
 - [ ] add multi value support.
-
 
 ## Documentation - Select Component - this are special to this library none is required
 
@@ -102,7 +100,6 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 | optionHeight                                 | number                                     | 31      | height of each option                                                         |
 | groupHeaderHeight                            | number                                     |         | header row height in the popover list                                         |
 | maxHeight (coming from react-select)         | number                                     | auto    | max height popover list                                                       |
-| maxWidth (coming from react-select)          | number                                     | 500     | max width in the popover list                                                 |
 
 ## What we do support and don't from react-select
 
@@ -204,10 +201,6 @@ const Example3 = () => <Async defaultOptions={options} {..ANY_REACT_ASYNC_SELECT
 
 const Example4 = () => <Async defaultOptions={opsGroup} {..ANY_REACT_ASYNC_SELECT_V2_PROP} loadOptions={loadOptions} grouped/>
 ```
-
-## React-select Issues
-
-- cacheOptions do not work with async select and grouped options. we will need to relay on filtering on infinite loader.
 
 ## License
 

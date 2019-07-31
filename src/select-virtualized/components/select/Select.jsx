@@ -7,19 +7,30 @@ import { defaultGroupFormat } from '../../shared-components/grouped-virtualized-
 import 'react-virtualized/styles.css';
 import { optionsPropTypes } from '../../shared-helpers/prop-types';
 
+const throwMixControlledError = () => {
+  throw new Error(
+    `react-select-virtualize do not support using defaultValue and value at the same time. Choose between uncontrolled or controlled component.
+    Clear and Select component methods can only be used with uncontrolled components.`,
+  );
+};
+
 let Select = (props, ref) => {
   const reactSelect = useRef('react-select');
 
   const {
     grouped,
     formatGroupHeaderLabel,
-    value,
     groupHeaderHeight,
     onChange,
     defaultValue,
+    value,
     optionHeight,
     creatable,
   } = props;
+
+  if (defaultValue && value) {
+    throwMixControlledError();
+  }
 
   const [selection, setSelection] = useState(defaultValue || value);
 
@@ -46,10 +57,10 @@ let Select = (props, ref) => {
   }, [grouped, formatGroupHeaderLabel, groupHeaderHeight, optionHeight]);
 
   const onChangeHandler = useCallback(
-    (value, { action }) => {
-      if (!value || (value && !value.__isNew__)) {
-        onChange(value, { action });
-        setSelection(value);
+    (valueChanged, { action }) => {
+      if (!valueChanged || (valueChanged && !valueChanged.__isNew__)) {
+        onChange(valueChanged, { action });
+        setSelection(valueChanged);
       }
     },
     [onChange, setSelection],
@@ -57,12 +68,20 @@ let Select = (props, ref) => {
 
   useImperativeHandle(ref, () => ({
     clear: () => {
+      if (value) {
+        throwMixControlledError();
+      }
       setSelection(null);
     },
     focus: () => {
       reactSelect.current.focus();
     },
-    select: (item) => setSelection(item),
+    select: (item) => {
+      if (value) {
+        throwMixControlledError();
+      }
+      setSelection(item);
+    },
   }));
 
   return (
@@ -72,7 +91,7 @@ let Select = (props, ref) => {
       {...defaultProps}
       {...props}
       styles={{ ...getStyles(), ...props.styles }} // keep react-select styles implementation and pass to any customization done
-      value={selection}
+      value={value || selection}
       onChange={onChangeHandler}
       options={props.options}
       components={{

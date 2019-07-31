@@ -13,9 +13,10 @@ export const flatVirtualizedListRowRenderer = ({ children, onOptionFocused, opti
   // since the actual behavior will be handled by the renderer
   const thisProps = children[index].props;
 
-  if (thisProps.isFocused && !isScrolling) {
-    onOptionFocused({ data: thisProps.data, index, isVisible, isScrolling });
-  }
+  // wait for https://github.com/JedWatson/react-select/issues/3656
+  // if (thisProps.isFocused && !isScrolling) {
+  //   onOptionFocused({ data: thisProps.data, index, isVisible, isScrolling });
+  // }
 
   return (
     <div className="flat-virtualized-item" key={key} style={style}>
@@ -25,7 +26,9 @@ export const flatVirtualizedListRowRenderer = ({ children, onOptionFocused, opti
         isVisible={isVisible}
         isScrolling={isScrolling}
         optionHeight={optionHeight}
-        isFocused={thisProps.isFocused}
+        // wait for https://github.com/JedWatson/react-select/issues/3656
+        // isFocused={thisProps.isFocused}
+        isSelected={thisProps.isSelected}
         formatOptionLabel={formatOptionLabel}
       />
     </div>

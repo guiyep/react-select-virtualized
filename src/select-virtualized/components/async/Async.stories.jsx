@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
+import { withState } from '@dump247/storybook-state';
 // this is a workaround for storybook, storybook and addon-info does not work with react.memo. I will create a wrapper to fix this.
 // here you will import the component per the documentation `import Select from 'path-to-select'`
 import Async from './_AsyncTablePropsStoryFix';
@@ -29,6 +30,8 @@ const loadGroupedOptions = (input, callback) =>
     callback(result);
   }, 800);
 
+  console.log(opsGroup20000);
+
 storiesOf(`React Select Virtualized/Async`, module)
   .addDecorator((story) => <div style={{ width: '30em' }}> {story()} </div>)
   .addDecorator(withInfo)
@@ -38,15 +41,40 @@ storiesOf(`React Select Virtualized/Async`, module)
       maxPropsIntoLine: 1,
     },
   })
-  .add('Async with default', () => {
+  .add('Async with default options', () => {
     return <Async defaultOptions={optionsDefault} loadOptions={loadListOptions} />;
   })
-  .add('Async without default', () => {
+  .add('Async without default options', () => {
     return <Async loadOptions={loadListOptions} />;
   })
-  .add('Async with default grouped', () => {
+  .add(
+    'Async with value controlled',
+    withState({ value: ops[0] })(({ store }) => (
+      <Async
+        value={store.state.value}
+        loadOptions={loadListOptions}
+        onChange={(val) => {
+          store.set({ value: val });
+        }}
+      />
+    )),
+  )
+  .add('Async with default options grouped', () => {
     return <Async defaultOptions={opsGroup20000} loadOptions={loadGroupedOptions} grouped />;
   })
-  .add('Async without default grouped', () => {
+  .add('Async without default options grouped', () => {
     return <Async loadOptions={loadGroupedOptions} grouped />;
-  });
+  })
+  .add(
+    'Async with value controlled grouped',
+    withState({ value: opsGroup20000[0].options[0] })(({ store }) => (
+      <Async
+        value={store.state.value}
+        loadOptions={loadGroupedOptions}
+        onChange={(val) => {
+          store.set({ value: val });
+        }}
+        grouped
+      />
+    )),
+  );

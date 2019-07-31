@@ -6,8 +6,9 @@ import resolve from 'rollup-plugin-node-resolve';
 import url from 'rollup-plugin-url';
 import svgr from '@svgr/rollup';
 import replace from 'rollup-plugin-replace';
-import minify from 'rollup-plugin-babel-minify';
 import gzipPlugin from 'rollup-plugin-gzip';
+import cleaner from 'rollup-plugin-cleaner';
+import { terser } from 'rollup-plugin-terser';
 
 import pkg from './package.json';
 
@@ -19,32 +20,29 @@ export default {
     {
       file: pkg.main,
       format: 'cjs',
-      sourcemap: !isProd,
-      compact: isProd,
+      sourcemap: true,
+      compact: true,
+      exports: 'named',
     },
     {
       file: pkg.module,
       format: 'es',
-      sourcemap: !isProd,
-      compact: isProd,
+      sourcemap: true,
+      compact: true,
+      exports: 'named',
     },
   ],
   plugins: [
     external(),
     postcss({
-      modules: true,
+      minimize: isProd,
     }),
     url(),
     svgr(),
     babel({
       exclude: 'node_modules/**',
-      plugins: ['@babel/external-helpers'],
+      runtimeHelpers: true,
     }),
-    isProd &&
-      minify({
-        comments: false,
-        sourceMap: false,
-      }),
     resolve({
       extensions: ['.mjs', '.js', '.jsx', '.json'],
     }),
@@ -53,5 +51,14 @@ export default {
       ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
     }),
     gzipPlugin(),
+    isProd &&
+      cleaner({
+        targets: ['./dist/'],
+      }),
+    isProd &&
+      terser({
+        sourcemap: true,
+        toplevel: true,
+      }),
   ],
 };

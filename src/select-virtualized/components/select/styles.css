@@ -34,6 +34,12 @@
   box-sizing: border-box;
 }
 
+.fast-option-selected {
+  background-color: rgb(38, 132, 255);
+  user-select: none;
+  box-sizing: border-box;
+}
+
 .grouped-virtualized-list-item div[role='option'] {
   cursor: pointer;
 }

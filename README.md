@@ -77,6 +77,7 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 - [x] remove classnames.
 - [x] improve packaging.
 - [x] remove react-hover-observer.
+- [x] Added controlled components support.
 
 -- v 2.1.0 --
 

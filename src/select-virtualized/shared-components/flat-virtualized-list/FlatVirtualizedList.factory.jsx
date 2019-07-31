@@ -12,8 +12,6 @@ const FlatVirtualizedListFactory = ({
   memo((props) => {
     const selectedValue = props.getValue() ? props.getValue()[0] : undefined;
 
-    console.log(selectedValue);
-
     if (props.children && !props.children.length) {
       return <ReactSelectComponents.NoOptionsMessage {...props.children.props} />;
     }

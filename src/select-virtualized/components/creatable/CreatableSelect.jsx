@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import Select from './Select';
+import Select from '../select/Select';
 import PropTypes from 'prop-types';
 
 const CreatableSelect = memo(({ onChange, ...props }) => {

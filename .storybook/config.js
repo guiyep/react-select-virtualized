@@ -4,6 +4,7 @@ function loadStories() {
   require('../src/select-virtualized/components/select/Select.stories');
   require('../src/select-virtualized/components/select/SelectBigLoad.stories');
   require('../src/select-virtualized/components/async/Async.stories');
+  require('../src/select-virtualized/components/creatable/CreatableSelect.stories');
   require('../src/select-virtualized/components/select/Select.stories.css');
 }
 

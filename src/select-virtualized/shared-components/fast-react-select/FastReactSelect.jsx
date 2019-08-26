@@ -1,8 +1,9 @@
 import React, { forwardRef, memo, Fragment, useMemo, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import ReactSelect from 'react-select';
-import ReactAsync from 'react-select/async'
-import ReactSelectCreatableSelect from 'react-select/creatable'
+import ReactAsync from 'react-select/async';
+import ReactSelectCreatableSelect from 'react-select/creatable';
+import ReactSelectAsyncCreatableSelect from 'react-select/async-creatable';
 import { calculateDebounce, mapLowercaseLabel, getFilteredItems } from './helpers/fast-react-select';
 import { calculateTotalListSize } from '../grouped-virtualized-list/helpers/grouped-list';
 import { optionsPropTypes } from '../../shared-helpers/prop-types';
@@ -79,8 +80,21 @@ let FastReactSelect = (
 
   return (
     <Fragment>
-      {creatable && (
+      {creatable && listSize <= LAG_INDICATOR && (
         <ReactSelectCreatableSelect ref={ref} {...props} options={memoOptions}></ReactSelectCreatableSelect>
+      )}
+      {creatable && listSize > LAG_INDICATOR && (
+        <ReactSelectAsyncCreatableSelect
+          ref={ref}
+          {...props}
+          loadingMessage={loadingMessage}
+          // this is a limitation on react-select and async, it does not work when caching options
+          cacheOptions={!props.grouped}
+          loadOptions={loadOptions}
+          defaultOptions={props.minimumInputSearch >= 1 || memoOptions.length === 0 ? true : memoOptions}
+          menuIsOpen={minimumInputSearchIsSet ? !!menuIsOpenState[menuIsOpenState.currentInput] : undefined}
+          onInputChange={onInputChange}
+        />
       )}
       {!creatable && listSize <= LAG_INDICATOR && !minimumInputSearchIsSet && !asyncLoadOptions && (
         <ReactSelect ref={ref} {...props} options={memoOptions} />

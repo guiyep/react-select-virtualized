@@ -30,8 +30,6 @@ const loadGroupedOptions = (input, callback) =>
     callback(result);
   }, 800);
 
-  console.log(opsGroup20000);
-
 storiesOf(`React Select Virtualized/Async`, module)
   .addDecorator((story) => <div style={{ width: '30em' }}> {story()} </div>)
   .addDecorator(withInfo)

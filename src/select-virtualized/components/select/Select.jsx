@@ -90,8 +90,8 @@ let Select = (props, ref) => {
       ref={reactSelect}
       {...defaultProps}
       {...props}
-      styles={{ ...getStyles(), ...props.styles }} // keep react-select styles implementation and pass to any customization done
-      value={value || selection}
+      styles={{ ...getStyles(), ...props.styles }} //  keep react-select styles implementation and pass to any customization done
+      value={value !== undefined ? value : selection}
       onChange={onChangeHandler}
       options={props.options}
       components={{

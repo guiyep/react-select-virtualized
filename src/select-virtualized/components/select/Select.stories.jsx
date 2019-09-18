@@ -22,13 +22,22 @@ storiesOf(`React Select Virtualized/props`, module)
   .add(
     'with value controlled',
     withState({ value: defaultValue })(({ store }) => (
-      <Select
-        value={store.state.value}
-        options={optionsDefault}
-        onChange={(val) => {
-          store.set({ value: val });
-        }}
-      />
+      <div>
+        <button
+          onClick={() => {
+            store.set({ value: null });
+          }}
+        >
+          reset
+        </button>
+        <Select
+          value={store.state.value}
+          options={optionsDefault}
+          onChange={(val) => {
+            store.set({ value: val });
+          }}
+        />
+      </div>
     )),
   )
   .add('with minimum input to 3', () => <Select options={op1500} minimumInputSearch={3} />)

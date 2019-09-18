@@ -77,6 +77,7 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 - [x] remove classnames.
 - [x] improve packaging.
 - [x] remove react-hover-observer.
+- [x] Added controlled components support.
 
 -- v 2.1.0 --
 
@@ -100,6 +101,8 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 | optionHeight                                 | number                                     | 31      | height of each option                                                         |
 | groupHeaderHeight                            | number                                     |         | header row height in the popover list                                         |
 | maxHeight (coming from react-select)         | number                                     | auto    | max height popover list                                                       |
+| defaultValue                                 | option                                     |         | will set default value and set the component as an uncontrolled component     |
+| value                                        | option                                     |         | will set the value and the component will be a controlled component           |
 
 ## What we do support and don't from react-select
 

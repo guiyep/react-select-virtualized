@@ -34,7 +34,7 @@ remember to install them also if they are not already in your project.
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-virtualized": "^9.21.1",
-    "react-select": "^3.0.4"
+    "react-select": "^3.0.5"
   }
 ```
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
-import CreatableSelect from './CreatableSelect';
+import CreatableSelect from './CreatableSelect.container';
 import { optionsDefault, opsGroup20000, ops2500 } from '../../../data';
 import { withState } from '@dump247/storybook-state';
 
@@ -15,11 +15,11 @@ storiesOf(`React Select Virtualized/Creatable`, module)
     },
   })
   .add('Basic', () => <CreatableSelect options={optionsDefault} />)
+  .add('Basic 2500 elements ', () => <CreatableSelect options={ops2500} />)
   .add(
-    'Basic with onCreateOption callback',
-    withState({ options: optionsDefault, selected: undefined })(({ store }) => {
-      const onCreateOption = (input) => {
-        const newItem = { label: input, value: input };
+    'Basic with onCreateOption callback (only with controlled)',
+    withState({ options: optionsDefault, selected: null })(({ store }) => {
+      const onCreateOption = (newItem) => {
         store.set({ options: store.state.options.concat([newItem]) });
         store.set({ selected: newItem });
       };
@@ -37,10 +37,9 @@ storiesOf(`React Select Virtualized/Creatable`, module)
     }),
   )
   .add(
-    'Basic 2500 elements with onCreateOption callback',
+    'Basic 2500 elements with onCreateOption callback (only with controlled)',
     withState({ options: ops2500, selected: undefined })(({ store }) => {
-      const onCreateOption = (input) => {
-        const newItem = { label: input, value: input };
+      const onCreateOption = (newItem) => {
         store.set({ options: store.state.options.concat([newItem]) });
         store.set({ selected: newItem });
       };
@@ -59,9 +58,8 @@ storiesOf(`React Select Virtualized/Creatable`, module)
   )
   .add(
     'Basic grouped to the first group',
-    withState({ options: opsGroup20000, selected: undefined })(({ store }) => {
-      const onCreateOption = (input) => {
-        const newItem = { label: input, value: input };
+    withState({ options: opsGroup20000, selected: null })(({ store }) => {
+      const onCreateOption = (newItem) => {
         store.set({ options: store.state.options[0].options.concat([newItem]) });
         store.set({ selected: newItem });
       };

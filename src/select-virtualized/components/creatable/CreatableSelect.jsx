@@ -1,59 +1,35 @@
-import React, { memo, useCallback, useState, useEffect } from 'react';
+import React, { memo, useCallback, useEffect } from 'react';
 import Select from '../select/Select';
 import PropTypes from 'prop-types';
 
-const CreatableSelect = memo(({ onChange, onCreateOption, ...props }) => {
-  const { options, grouped, value, defaultValue } = props;
-  const [optionsState, setOptionsState] = useState(options);
-  const [valueState, setValueState] = useState(value || defaultValue);
-
-  const onCreateOptionHandler = useCallback(
-    (newItem) => {
-      const newItemObj = { value: newItem, label: newItem, __isNew__: true };
-      if (!onCreateOption && !grouped) {
-        setOptionsState(optionsState.concat([newItemObj]));
-        setValueState(newItemObj);
-      }
-    },
-    [grouped, optionsState, onCreateOption],
-  );
-
-  const onChangeHandler = useCallback(() => {
-    
-  })
+const CreatableSelect = memo(({ onValueChange, onOptionsChange, onNewOption, ...props }) => {
+  const { options, value } = props;
 
   useEffect(() => {
     if (options) {
-      setOptionsState(options);
+      onOptionsChange(options);
     }
-  }, [options]);
+  }, [options, onOptionsChange]);
 
   useEffect(() => {
-    setValueState(value);
-  }, [value]);
+    onValueChange(value);
+  }, [value, onValueChange]);
 
-  return (
-    <Select
-      {...props}
-      value={valueState}
-      options={optionsState}
-      onCreateOption={onCreateOptionHandler}
-      onChange={onChange}
-      creatable
-    />
-  );
+  return <Select {...props} onCreateOption={onNewOption} onChange={onValueChange} creatable />;
 });
 
 CreatableSelect.displayName = 'CreatableSelect';
 
 CreatableSelect.propTypes = {
-  onCreateOption: PropTypes.func,
-  onChange: PropTypes.func,
+  onValueChange: PropTypes.func,
+  onOptionsChange: PropTypes.func,
+  onNewOption: PropTypes.func,
 };
 
 CreatableSelect.defaultProps = {
-  onCreateOption: undefined,
-  onChange: () => {},
+  onValueChange: () => {},
+  onOptionsChange: () => {},
+  onNewOption: () => {},
 };
 
 export default CreatableSelect;

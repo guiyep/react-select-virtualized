@@ -62,8 +62,8 @@
     "jest": "24.8.0",
     "jest-css-modules": "2.1.0",
     "prop-types": "15.7.2",
-    "react": "16.8.6",
-    "react-dom": "16.8.6",
+    "react": "16.9.0",
+    "react-dom": "16.9.0",
     "react-select": "3.0.5",
     "react-test-renderer": "16.8.6",
     "react-testing-library": "8.0.1",
@@ -89,8 +89,8 @@
     }
   },
   "peerDependencies": {
-    "react": "16.8.6",
-    "react-dom": "16.8.6",
+    "react": "16.9.0",
+    "react-dom": "16.9.0",
     "react-virtualized": "9.21.1",
     "react-select": "3.0.5"
   }

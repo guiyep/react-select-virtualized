@@ -1,7 +1,7 @@
 import React, { forwardRef, memo, Fragment, useMemo, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import ReactSelect from 'react-select';
-import ReactAsync from 'react-select/async'
+import ReactAsync from 'react-select/async';
 import { calculateDebounce, mapLowercaseLabel, getFilteredItems } from './helpers/fast-react-select';
 import { calculateTotalListSize } from '../grouped-virtualized-list/helpers/grouped-list';
 import { optionsPropTypes } from '../../shared-helpers/prop-types';
@@ -11,14 +11,18 @@ const LAG_INDICATOR = 1000;
 const loadingMessage = () => <div>...</div>;
 
 let FastReactSelect = (props, ref) => {
-  const minimumInputSearchIsSet = props.minimumInputSearch >= 1;
-
-  const { asyncLoadOptions, asyncInputChange, minimumInputSearch, options, formatOptionLabel, grouped } = props;
-
-  const listSize = useMemo(() => (grouped && calculateTotalListSize(options)) || options.length, [
+  const {
+    asyncLoadOptions,
+    asyncInputChange,
+    minimumInputSearch,
     options,
+    formatOptionLabel,
     grouped,
-  ]);
+  } = props;
+
+  const minimumInputSearchIsSet = minimumInputSearch >= 1;
+
+  const listSize = useMemo(() => (grouped && calculateTotalListSize(options)) || options.length, [options, grouped]);
   const debounceTime = useMemo(() => calculateDebounce(listSize), [listSize]);
   const [menuIsOpenState, setMenuIsOpen] = useState({ currentInput: '' });
 
@@ -71,7 +75,7 @@ let FastReactSelect = (props, ref) => {
         });
       }
       return setTimeout(() => {
-        // if we have asnyc options the loader will be the container async component
+        // if we have async options the loader will be the container async component
         callback(getFilteredItems({ inputValue, memoOptions, grouped }));
       }, debounceTime);
     },
@@ -80,18 +84,18 @@ let FastReactSelect = (props, ref) => {
 
   return (
     <Fragment>
-      {listSize <= LAG_INDICATOR && !minimumInputSearchIsSet && !props.asyncLoadOptions && (
-        <ReactSelect ref={ref} {...props} captureMenuScroll={false}/>
+      {listSize <= LAG_INDICATOR && !minimumInputSearchIsSet && !asyncLoadOptions && (
+        <ReactSelect ref={ref} {...props} captureMenuScroll={false} />
       )}
-      {(listSize > LAG_INDICATOR || minimumInputSearchIsSet || !!props.asyncLoadOptions) && (
+      {(listSize > LAG_INDICATOR || minimumInputSearchIsSet || !!asyncLoadOptions) && (
         <ReactAsync
           ref={ref}
           {...props}
           loadingMessage={loadingMessage}
           // this is a limitation on react-select and async, it does not work when caching options
-          cacheOptions={!props.grouped}
+          cacheOptions={!grouped}
           loadOptions={loadOptions}
-          defaultOptions={props.minimumInputSearch >= 1 || memoOptions.length === 0 ? true : memoOptions}
+          defaultOptions={minimumInputSearch >= 1 || memoOptions.length === 0 ? true : memoOptions}
           menuIsOpen={minimumInputSearchIsSet ? !!menuIsOpenState[menuIsOpenState.currentInput] : undefined}
           onInputChange={onInputChange}
           captureMenuScroll={false}

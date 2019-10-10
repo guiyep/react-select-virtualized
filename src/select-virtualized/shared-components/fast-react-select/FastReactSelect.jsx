@@ -81,7 +81,7 @@ let FastReactSelect = (props, ref) => {
   return (
     <Fragment>
       {listSize <= LAG_INDICATOR && !minimumInputSearchIsSet && !props.asyncLoadOptions && (
-        <ReactSelect ref={ref} {...props} />
+        <ReactSelect ref={ref} {...props} captureMenuScroll={false}/>
       )}
       {(listSize > LAG_INDICATOR || minimumInputSearchIsSet || !!props.asyncLoadOptions) && (
         <ReactAsync
@@ -94,6 +94,7 @@ let FastReactSelect = (props, ref) => {
           defaultOptions={props.minimumInputSearch >= 1 || memoOptions.length === 0 ? true : memoOptions}
           menuIsOpen={minimumInputSearchIsSet ? !!menuIsOpenState[menuIsOpenState.currentInput] : undefined}
           onInputChange={onInputChange}
+          captureMenuScroll={false}
         />
       )}
     </Fragment>

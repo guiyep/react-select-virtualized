@@ -17,7 +17,7 @@ The select component will be the same from `react-select v3` so you will be able
 
 ## IMPORTANT
 
-React Select introduced some braking changes in v3, so we will have to bump our version to 2.0.0 to don't stop anyone for using this library. If you use the react-select v2 your last usable version is 1.3.4.
+For using the react version grater than 16.8, please use `react-select` v 3.0.8 and the latest version of this library. If you are using react 16.9 please use the latest version but with `react-select` v 3.0.4.
 
 ## Install
 
@@ -31,10 +31,10 @@ remember to install them also if they are not already in your project.
 
 ```bash (v1.3.4)
 {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "react": "^16.8.x || 16.9.x || 16.10.x",
+    "react-dom": "^16.8.x || 16.9.x || 16.10.x",
     "react-virtualized": "^9.21.1",
-    "react-select": "^3.0.5"
+    "react-select": "^3.0.8"
   }
 ```
 

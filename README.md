@@ -17,7 +17,7 @@ The select component will be the same from `react-select v3` so you will be able
 
 ## IMPORTANT
 
-For using the react version grater than 16.8, please use `react-select` v 3.0.8 and the latest version of this library. If you are using react 16.9 please use the latest version but with `react-select` v 3.0.4.
+For using the react version grater than 16.8, please use `react-select` v 3.0.8 and the latest version of this library. If you are using react 16.8 please use the latest version but with `react-select` v 3.0.4.
 
 ## Install
 
@@ -34,7 +34,7 @@ remember to install them also if they are not already in your project.
     "react": "^16.8.x || 16.9.x || 16.10.x",
     "react-dom": "^16.8.x || 16.9.x || 16.10.x",
     "react-virtualized": "^9.21.1",
-    "react-select": "^3.0.8"
+    "react-select": "^3.0.x"
   }
 ```
 

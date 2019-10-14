@@ -7,9 +7,19 @@ export const calculateDebounce = (size) => {
 };
 
 // we have to go as low level as possible. so we get the best performance here. this is the most expensive operation
-export const filterByLowercaseLabel = (list, value) => {
+export const filterByLowercaseLabel = (list, value, filterOption) => {
   const result = [];
   const size = list.length;
+
+  if (typeof filterOption === 'function') {
+    for (var i = 0; i < size; i++) {
+      if (filterOption(list[i], value)) {
+        result.push(list[i]);
+      }
+    }
+    return result;
+  }
+
   for (var i = 0; i < size; i++) {
     if (list[i].lowercaseLabel.indexOf(value) >= 0) {
       result.push(list[i]);
@@ -28,23 +38,23 @@ export const mapLowercaseLabel = (list, formatOptionLabel = defaultFormatOptionL
   }));
 
 //todo improve this
-export const filterGroupedElementsBy = (list, inputValLowercase, filterBy) => {
+export const filterGroupedElementsBy = (list, inputValLowercase, filterBy, filterOption) => {
   return list.reduce((acc, item) => {
     acc.push({
       ...item,
-      options: filterBy(item.options, inputValLowercase),
+      options: filterBy(item.options, inputValLowercase, filterOption),
     });
     return acc;
   }, []);
 };
 
-export const getFilteredItems = ({ inputValue, memoOptions, grouped }) => {
+export const getFilteredItems = ({ inputValue, memoOptions, grouped, filterOption }) => {
   const inputValLowercase = inputValue && inputValue.toLowerCase();
   if (!inputValue) {
     return memoOptions;
   }
   if (grouped) {
-    return filterGroupedElementsBy(memoOptions, inputValLowercase, filterByLowercaseLabel);
+    return filterGroupedElementsBy(memoOptions, inputValLowercase, filterByLowercaseLabel, filterOption);
   }
-  return filterByLowercaseLabel(memoOptions, inputValLowercase);
+  return filterByLowercaseLabel(memoOptions, inputValLowercase, filterOption);
 };

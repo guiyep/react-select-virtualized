@@ -18,6 +18,7 @@ let FastReactSelect = (props, ref) => {
     options,
     formatOptionLabel,
     grouped,
+    filterOption,
   } = props;
 
   const minimumInputSearchIsSet = minimumInputSearch >= 1;
@@ -76,7 +77,7 @@ let FastReactSelect = (props, ref) => {
       }
       return setTimeout(() => {
         // if we have async options the loader will be the container async component
-        callback(getFilteredItems({ inputValue, memoOptions, grouped }));
+        callback(getFilteredItems({ inputValue, memoOptions, grouped, filterOption }));
       }, debounceTime);
     },
     [minimumInputSearchIsSet, menuIsOpenState, asyncLoadOptions, debounceTime, grouped, memoOptions],

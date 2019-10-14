@@ -1,6 +1,6 @@
 {
   "name": "react-select-virtualized",
-  "version": "2.0.20",
+  "version": "2.0.25",
   "description": "react-select v3 + react-virtualized + react hooks",
   "author": "guiyep",
   "license": "MIT",
@@ -36,11 +36,11 @@
     "@babel/preset-env": "7.4.5",
     "@babel/preset-react": "7.0.0",
     "@dump247/storybook-state": "^1.6.1",
-    "@storybook/addon-actions": "5.1.9",
-    "@storybook/addon-info": "5.1.9",
-    "@storybook/addon-links": "5.1.9",
-    "@storybook/addons": "5.1.9",
-    "@storybook/react": "5.1.9",
+    "@storybook/addon-actions": "5.2.3",
+    "@storybook/addon-info": "5.2.3",
+    "@storybook/addon-links": "5.2.3",
+    "@storybook/addons": "5.2.3",
+    "@storybook/react": "5.2.3",
     "babel-eslint": "8.2.5",
     "babel-loader": "8.0.6",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
@@ -62,9 +62,9 @@
     "jest": "24.8.0",
     "jest-css-modules": "2.1.0",
     "prop-types": "15.7.2",
-    "react": "16.8.6",
-    "react-dom": "16.8.6",
-    "react-select": "3.0.4",
+    "react": "16.10.1",
+    "react-dom": "16.10.1",
+    "react-select": "3.0.8",
     "react-test-renderer": "16.8.6",
     "react-testing-library": "8.0.1",
     "react-virtualized": "9.21.1",
@@ -85,13 +85,13 @@
   ],
   "jest": {
     "moduleNameMapper": {
-      "\\.(css|less|scss|sss|styl)$": "<rootDir>/node_modules/jest-css-modules"
+      "\\.(css|less|scss|sss|style)$": "<rootDir>/node_modules/jest-css-modules"
     }
   },
   "peerDependencies": {
-    "react": "16.8.6",
-    "react-dom": "16.8.6",
+    "react": "16.10.1",
+    "react-dom": "16.10.1",
     "react-virtualized": "9.21.1",
-    "react-select": "3.0.4"
+    "react-select": "3.0.8"
   }
 }

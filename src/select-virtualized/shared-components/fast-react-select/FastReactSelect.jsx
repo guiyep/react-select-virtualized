@@ -12,11 +12,20 @@ const LAG_INDICATOR = 1000;
 
 const loadingMessage = () => <div>...</div>;
 
-let FastReactSelect = (
-  { asyncLoadOptions, asyncInputChange, minimumInputSearch, options, formatOptionLabel, grouped, creatable, ...props },
-  ref,
-) => {
-  const minimumInputSearchIsSet = props.minimumInputSearch >= 1;
+let FastReactSelect = (props, ref) => {
+  const {
+    asyncLoadOptions,
+    asyncInputChange,
+    minimumInputSearch,
+    options,
+    formatOptionLabel,
+    grouped,
+    filterOption,
+    creatable,
+    ...props
+  } = props;
+
+  const minimumInputSearchIsSet = minimumInputSearch >= 1;
 
   const listSize = useMemo(() => (grouped && calculateTotalListSize(options)) || options.length, [options, grouped]);
   const debounceTime = useMemo(() => calculateDebounce(listSize), [listSize]);
@@ -71,8 +80,8 @@ let FastReactSelect = (
         });
       }
       return setTimeout(() => {
-        // if we have asnyc options the loader will be the container async component
-        callback(getFilteredItems({ inputValue, memoOptions, grouped }));
+        // if we have async options the loader will be the container async component
+        callback(getFilteredItems({ inputValue, memoOptions, grouped, filterOption }));
       }, debounceTime);
     },
     [minimumInputSearchIsSet, menuIsOpenState, asyncLoadOptions, debounceTime, grouped, memoOptions],
@@ -100,16 +109,20 @@ let FastReactSelect = (
         <ReactSelect ref={ref} {...props} options={memoOptions} />
       )}
       {((!creatable && listSize > LAG_INDICATOR) || minimumInputSearchIsSet || !!asyncLoadOptions) && (
+        <ReactSelect ref={ref} {...props} captureMenuScroll={false} />
+      )}
+      {(listSize > LAG_INDICATOR || minimumInputSearchIsSet || !!asyncLoadOptions) && (
         <ReactAsync
           ref={ref}
           {...props}
           loadingMessage={loadingMessage}
           // this is a limitation on react-select and async, it does not work when caching options
-          cacheOptions={!props.grouped}
+          cacheOptions={!grouped}
           loadOptions={loadOptions}
-          defaultOptions={props.minimumInputSearch >= 1 || memoOptions.length === 0 ? true : memoOptions}
+          defaultOptions={minimumInputSearch >= 1 || memoOptions.length === 0 ? true : memoOptions}
           menuIsOpen={minimumInputSearchIsSet ? !!menuIsOpenState[menuIsOpenState.currentInput] : undefined}
           onInputChange={onInputChange}
+          captureMenuScroll={false}
         />
       )}
     </Fragment>

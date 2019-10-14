@@ -41,6 +41,11 @@ storiesOf(`React Select Virtualized/props`, module)
     )),
   )
   .add('with minimum input to 3', () => <Select options={op1500} minimumInputSearch={3} />)
+  .add('with filterOptions(value with $$$number)', () => {
+    const op1500Mapped = op1500.map((option, index) => ({ ...option, value: option.value + `$$$${index}` }));
+    const customFilter = (option, rawInput) => option && option.value.indexOf(rawInput) >= 0;
+    return <Select options={op1500Mapped} filterOption={customFilter} />;
+  })
   .add('disabled select', () => <Select options={optionsDefault} isDisabled />)
   .add('empty options in the select', () => <Select noOptionsMessage={() => 'No Items...'} options={[]} />)
   .add('select with custom labels format', () => {
@@ -52,6 +57,10 @@ storiesOf(`React Select Virtualized/props`, module)
     return <Select options={ops2500} defaultValue={defaultValue} formatOptionLabel={labelFormat} />;
   })
   .add('grouped default', () => <Select options={opsGroup} defaultValue={defaultValue} grouped />)
+  .add('with grouped filterOptions(use index)', () => {
+    const customFilter = (option, rawInput) => option && option.value.indexOf(rawInput) >= 0;
+    return <Select options={opsGroup} filterOption={customFilter} grouped />;
+  })
   .add(
     'grouped with value controlled',
     withState({ value: defaultValue })(({ store }) => (

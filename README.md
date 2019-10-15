@@ -85,11 +85,19 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 
 -- v 2.2.0 --
 
-- [ ] add testing so we do not only relay on storybook.
+- [ ] move state to container in select and async.
 
 -- v 2.3.0 --
 
+- [ ] add testing so we do not only relay on storybook.
+
+-- v 3.0.0 --
+
 - [ ] add multi value support.
+
+## A WORD ABOUT CONTROLLED/UNCONTROLLED
+
+When you use the `defaultValue` you will be using the component as uncontrolled and the state will be managed for you internally. There are some prop that cannot be mixed and the component will let you know when that is the case. Same happens when you use `value`, but will render the component as a controlled component where you will be in charge of the component internal state.
 
 ## Documentation - Select Component - this are special to this library none is required
 

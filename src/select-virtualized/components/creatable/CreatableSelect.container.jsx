@@ -15,10 +15,16 @@ const CreatableSelectContainer = memo(({ onChange, onCreateOption, value, defaul
     );
 
     const onValueChangeHandler = useCallback((option) => {
-      if (option && option.__isNew__) {
-        return onNewOptionHandler(option.value);
+      const isDifferent =
+        (option && value && option.value != value.value) || (!option && !!value) || (!!option && !value);
+
+      if (isDifferent)
+        if (option && option.__isNew__) {
+          return onCreateOptionHandler(option.value);
+        }
+      if (isDifferent) {
+        return onChange(option);
       }
-      return onChange(option);
     });
 
     return (
@@ -65,7 +71,10 @@ const CreatableSelectContainer = memo(({ onChange, onCreateOption, value, defaul
   });
 
   const onValueChangeHandler = useCallback((option) => {
-    if (option !== state.value) {
+    const isDifferent =
+      (option && value && option.value != value.value) || (!option && !!value) || (!!option && !value);
+
+    if (isDifferent) {
       if (option && option.__isNew__) {
         return onNewOptionHandler(option.value);
       }

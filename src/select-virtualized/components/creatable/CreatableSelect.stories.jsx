@@ -4,6 +4,7 @@ import { withInfo } from '@storybook/addon-info';
 import CreatableSelect from './CreatableSelect.container';
 import { optionsDefault, opsGroup20000, ops2500 } from '../../../data';
 import { withState } from '@dump247/storybook-state';
+import { action } from '@storybook/addon-actions';
 
 storiesOf(`React Select Virtualized/Creatable`, module)
   .addDecorator((story) => <div style={{ width: '30em' }}> {story()} </div>)
@@ -22,9 +23,11 @@ storiesOf(`React Select Virtualized/Creatable`, module)
       const onCreateOption = (newItem) => {
         store.set({ options: store.state.options.concat([newItem]) });
         store.set({ selected: newItem });
+        action(`onCreateOption`)(newItem);
       };
       const onChange = (item) => {
         store.set({ selected: item });
+        action(`onChange`)(item);
       };
       return (
         <CreatableSelect
@@ -38,13 +41,15 @@ storiesOf(`React Select Virtualized/Creatable`, module)
   )
   .add(
     'Basic 2500 elements with onCreateOption callback (only with controlled)',
-    withState({ options: ops2500, selected: undefined })(({ store }) => {
+    withState({ options: ops2500, selected: null })(({ store }) => {
       const onCreateOption = (newItem) => {
         store.set({ options: store.state.options.concat([newItem]) });
         store.set({ selected: newItem });
+        action(`onCreateOption`)(newItem);
       };
       const onChange = (item) => {
         store.set({ selected: item });
+        action(`onChange`)(item);
       };
       return (
         <CreatableSelect
@@ -62,9 +67,11 @@ storiesOf(`React Select Virtualized/Creatable`, module)
       const onCreateOption = (newItem) => {
         store.set({ options: store.state.options[0].options.concat([newItem]) });
         store.set({ selected: newItem });
+        action(`onCreateOption`)(newItem);
       };
       const onChange = (item) => {
         store.set({ selected: item });
+        action(`onChange`)(item);
       };
       return (
         <CreatableSelect

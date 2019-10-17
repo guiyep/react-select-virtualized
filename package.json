@@ -41,7 +41,7 @@
     "@storybook/addon-links": "5.2.3",
     "@storybook/addons": "5.2.3",
     "@storybook/react": "5.2.3",
-    "babel-eslint": "8.2.6",
+    "babel-eslint": "10.0.3",
     "babel-loader": "8.0.6",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
     "babel-preset-minify": "0.5.1",

@@ -1,0 +1,5 @@
+{
+  "extends": ["config:base"],
+  "baseBranches": ["develop"],
+  "schedule": ["before 5:00am"]
+}

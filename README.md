@@ -81,6 +81,8 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 
 -- v 2.1.0 --
 
+- [x] Better debouncing
+- [ ] Better filtering
 - [ ] add support to create element props.
 
 -- v 2.2.0 --

@@ -3,6 +3,7 @@ import React, { useEffect, memo, useMemo, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { getListHeight, getScrollIndex, getNextRowIndex } from '../../shared-helpers/getters';
 import { flatVirtualizedListRowRenderer } from './helpers/flat-list.jsx';
+import { useDebouncedCallback } from '../../hooks/use-debaunced-callback';
 
 let FlatListVirtualized = (props) => {
   let listComponent;
@@ -80,7 +81,7 @@ let FlatListVirtualized = (props) => {
     [list],
   );
 
-  const loadMoreRows = useCallback(
+  const loadMoreRows = useDebouncedCallback(
     ({ startIndex, stopIndex }) => {
       return new Promise((resolve) => {
         setTimeout(() => {
@@ -93,7 +94,8 @@ let FlatListVirtualized = (props) => {
         }, 100);
       });
     },
-    [list, children],
+    0,
+    [(list, children)],
   );
 
   return (

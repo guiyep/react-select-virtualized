@@ -4,6 +4,7 @@ import { List, InfiniteLoader, AutoSizer } from 'react-virtualized';
 import { getListHeight, getScrollIndex, getNextRowIndex } from '../../shared-helpers/getters';
 import { groupVirtualizedListRowRenderer } from './helpers/grouped-list.jsx';
 import { getGroupRowHeight } from './helpers/getters';
+import { useDebouncedCallback } from '../../hooks/use-debaunced-callback';
 
 let GroupVirtualizedList = (props) => {
   const [focusedItemIndex, setFocusedItemIndex] = useState(undefined);
@@ -95,7 +96,7 @@ let GroupVirtualizedList = (props) => {
     [list],
   );
 
-  const loadMoreRows = useCallback(
+  const loadMoreRows = useDebouncedCallback(
     ({ startIndex, stopIndex }) => {
       return new Promise((resolve) => {
         setTimeout(() => {
@@ -108,6 +109,7 @@ let GroupVirtualizedList = (props) => {
         }, 100);
       });
     },
+    0
     [flatCollection, list],
   );
 

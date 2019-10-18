@@ -5,6 +5,7 @@ import ReactAsync from 'react-select/async';
 import { calculateDebounce, mapLowercaseLabel, getFilteredItems } from './helpers/fast-react-select';
 import { calculateTotalListSize } from '../grouped-virtualized-list/helpers/grouped-list';
 import { optionsPropTypes } from '../../shared-helpers/prop-types';
+import { useDebouncedCallback } from '../../hooks/use-debaunced-callback';
 
 const LAG_INDICATOR = 1000;
 
@@ -65,7 +66,7 @@ let FastReactSelect = (props, ref) => {
   );
 
   // debounce the filter since it is going to be an expensive operation
-  const loadOptions = useCallback(
+  const loadOptions = useDebouncedCallback(
     (inputValue, callback) => {
       if (minimumInputSearchIsSet && !menuIsOpenState[menuIsOpenState.currentInput]) {
         return callback(undefined);
@@ -75,11 +76,9 @@ let FastReactSelect = (props, ref) => {
           callback(newList);
         });
       }
-      return setTimeout(() => {
-        // if we have async options the loader will be the container async component
-        callback(getFilteredItems({ inputValue, memoOptions, grouped, filterOption }));
-      }, debounceTime);
+      return callback(getFilteredItems({ inputValue, memoOptions, grouped, filterOption }));
     },
+    debounceTime,
     [minimumInputSearchIsSet, menuIsOpenState, asyncLoadOptions, debounceTime, grouped, memoOptions],
   );
 

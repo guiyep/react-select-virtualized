@@ -82,16 +82,14 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 -- v 2.1.0 --
 
 - [x] Better debouncing
-- [ ] Better filtering
-- [ ] add support to create element props.
 
 -- v 2.2.0 --
 
-- [ ] add testing so we do not only relay on storybook.
+- [ ] add support to create element props.
 
 -- v 2.3.0 --
 
-- [ ] add multi value support.
+- [ ] add testing so we do not only relay on storybook.
 
 ## Documentation - Select Component - this are special to this library none is required
 

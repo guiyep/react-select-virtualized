@@ -88,7 +88,6 @@ let FlatListVirtualized = (props) => {
       // so it is safe to reassign the list
       // eslint-disable-next-line
       list = result;
-      resolve(result);
     },
     100,
     [(list, children)],

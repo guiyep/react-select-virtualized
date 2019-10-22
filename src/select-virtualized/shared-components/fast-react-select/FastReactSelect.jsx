@@ -72,9 +72,13 @@ let FastReactSelect = (props, ref) => {
         return callback(undefined);
       }
       if (!!asyncLoadOptions) {
-        return asyncLoadOptions(inputValue).then((newList) => {
+        // create an async function that will resolve the callback
+        const asyncLoad = async () => {
+          const newList = await asyncLoadOptions(inputValue);
           callback(newList);
-        });
+        }
+
+        return asyncLoad();
       }
       return callback(getFilteredItems({ inputValue, memoOptions, grouped, filterOption }));
     },

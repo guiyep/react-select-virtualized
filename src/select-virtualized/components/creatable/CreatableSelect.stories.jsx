@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
-import CreatableSelect from './CreatableSelect.container';
+import CreatableSelect from './CreatableSelectRenderer';
 import { optionsDefault, opsGroup20000, ops2500 } from '../../../data';
 import { withState } from '@dump247/storybook-state';
 import { action } from '@storybook/addon-actions';

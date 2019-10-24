@@ -3,6 +3,7 @@ import React, { useEffect, memo, useMemo, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { getListHeight, getScrollIndex, getNextRowIndex } from '../../shared-helpers/getters';
 import { flatVirtualizedListRowRenderer } from './helpers/flat-list.jsx';
+import { useDebouncedCallback } from '../../hooks/use-debaunced-callback';
 
 let FlatListVirtualized = (props) => {
   let listComponent;
@@ -80,20 +81,16 @@ let FlatListVirtualized = (props) => {
     [list],
   );
 
-  const loadMoreRows = useCallback(
+  const loadMoreRows = useDebouncedCallback(
     ({ startIndex, stopIndex }) => {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          const result = list.concat(children.slice(startIndex, stopIndex));
-          // we use useCallback to prevent re-renders and this callback will not re-render the component
-          // so it is safe to reassign the list
-          // eslint-disable-next-line
-          list = result;
-          resolve(result);
-        }, 100);
-      });
+      const result = list.concat(children.slice(startIndex, stopIndex));
+      // we use useCallback to prevent re-renders and this callback will not re-render the component
+      // so it is safe to reassign the list
+      // eslint-disable-next-line
+      list = result;
     },
-    [list, children],
+    100,
+    [(list, children)],
   );
 
   return (

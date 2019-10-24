@@ -31,8 +31,8 @@ remember to install them also if they are not already in your project.
 
 ```bash (v1.3.4)
 {
-    "react": "^16.8.x || 16.9.x || 16.10.x",
-    "react-dom": "^16.8.x || 16.9.x || 16.10.x",
+    "react": "^16.8.x || 16.9.x || 16.10.x || 16.11.x",
+    "react-dom": "^16.8.x || 16.9.x || 16.10.x || || 16.11.x",
     "react-virtualized": "^9.21.1",
     "react-select": "^3.0.x"
   }
@@ -81,19 +81,15 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 
 -- v 2.1.0 --
 
-- [ ] add support to create element props.
+- [x] Better debouncing
 
 -- v 2.2.0 --
 
-- [ ] move state to container in select and async.
+- [ ] add support to create element props.
 
 -- v 2.3.0 --
 
 - [ ] add testing so we do not only relay on storybook.
-
--- v 3.0.0 --
-
-- [ ] add multi value support.
 
 ## A WORD ABOUT CONTROLLED/UNCONTROLLED
 

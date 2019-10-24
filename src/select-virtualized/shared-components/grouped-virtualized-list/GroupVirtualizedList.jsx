@@ -4,6 +4,7 @@ import { List, InfiniteLoader, AutoSizer } from 'react-virtualized';
 import { getListHeight, getScrollIndex, getNextRowIndex } from '../../shared-helpers/getters';
 import { groupVirtualizedListRowRenderer } from './helpers/grouped-list.jsx';
 import { getGroupRowHeight } from './helpers/getters';
+import { useDebouncedCallback } from '../../hooks/use-debaunced-callback';
 
 let GroupVirtualizedList = (props) => {
   const [focusedItemIndex, setFocusedItemIndex] = useState(undefined);
@@ -95,19 +96,15 @@ let GroupVirtualizedList = (props) => {
     [list],
   );
 
-  const loadMoreRows = useCallback(
+  const loadMoreRows = useDebouncedCallback(
     ({ startIndex, stopIndex }) => {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          const result = list.concat(flatCollection.slice(startIndex, stopIndex));
-          // we  use useCallback to prevent re-renders and this callback will not re-render the component
-          // so it is safe to reassign the list
-          // eslint-disable-next-line
-          list = result;
-          resolve(result);
-        }, 100);
-      });
+      const result = list.concat(children.slice(startIndex, stopIndex));
+      // we use useCallback to prevent re-renders and this callback will not re-render the component
+      // so it is safe to reassign the list
+      // eslint-disable-next-line
+      list = result;
     },
+    50,
     [flatCollection, list],
   );
 

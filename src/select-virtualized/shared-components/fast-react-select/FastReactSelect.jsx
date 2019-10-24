@@ -7,6 +7,7 @@ import ReactSelectAsyncCreatableSelect from 'react-select/async-creatable';
 import { calculateDebounce, mapLowercaseLabel, getFilteredItems } from './helpers/fast-react-select';
 import { calculateTotalListSize } from '../grouped-virtualized-list/helpers/grouped-list';
 import { optionsPropTypes } from '../../shared-helpers/prop-types';
+import { useDebouncedCallback } from '../../hooks/use-debaunced-callback';
 
 const LAG_INDICATOR = 1000;
 
@@ -45,7 +46,6 @@ let FastReactSelect = (propsIn, ref) => {
   );
 
   // avoid destructuring to best performance
-  // TODO improve this
   const memoOptions = useMemo(() => {
     return mapLowercaseLabel(options, formatOptionLabel, (itemOption) => {
       if (itemOption.options && grouped) {
@@ -69,21 +69,23 @@ let FastReactSelect = (propsIn, ref) => {
   );
 
   // debounce the filter since it is going to be an expensive operation
-  const loadOptions = useCallback(
+  const loadOptions = useDebouncedCallback(
     (inputValue, callback) => {
       if (minimumInputSearchIsSet && !menuIsOpenState[menuIsOpenState.currentInput]) {
         return callback(undefined);
       }
       if (!!asyncLoadOptions) {
-        return asyncLoadOptions(inputValue).then((newList) => {
+        // create an async function that will resolve the callback
+        const asyncLoad = async () => {
+          const newList = await asyncLoadOptions(inputValue);
           callback(newList);
-        });
+        }
+
+        return asyncLoad();
       }
-      return setTimeout(() => {
-        // if we have async options the loader will be the container async component
-        callback(getFilteredItems({ inputValue, memoOptions, grouped, filterOption }));
-      }, debounceTime);
+      return callback(getFilteredItems({ inputValue, memoOptions, grouped, filterOption }));
     },
+    debounceTime,
     [minimumInputSearchIsSet, menuIsOpenState, asyncLoadOptions, debounceTime, grouped, memoOptions],
   );
 

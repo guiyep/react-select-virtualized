@@ -45,9 +45,6 @@ storiesOf(`React Select Virtualized/big data`, module)
   .add('with 30000 elements (you will need to wait for the creation of the elements)', () => (
     <Select options={buildOptionsSize(30000)} />
   ))
-  .add('with 100000 elements (you will need to wait for the creation of the elements)', () => (
-    <Select options={buildOptionsSize(100000)} />
-  ))
   .add('with 20000 grouped elements', () => <Select options={opsGroup20000} grouped />)
   .add('with 20000 grouped elements wit min 3', () => (
     <Select options={opsGroup20000} grouped minimumInputSearch={3} />

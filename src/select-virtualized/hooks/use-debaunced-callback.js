@@ -10,7 +10,8 @@ export const useDebouncedCallback = (onCallback, wait, deps = []) => {
     }
   };
 
-  useEffect(() => cleanup(), deps);
+  // TODO review this broke minimum input
+  // useEffect(() => () => cleanup(), deps);
 
   const debouncedCallback = (...args) => {
     argsRef.current = args;

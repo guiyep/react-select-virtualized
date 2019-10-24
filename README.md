@@ -31,8 +31,8 @@ remember to install them also if they are not already in your project.
 
 ```bash (v1.3.4)
 {
-    "react": "^16.8.x || 16.9.x || 16.10.x",
-    "react-dom": "^16.8.x || 16.9.x || 16.10.x",
+    "react": "^16.8.x || 16.9.x || 16.10.x || 16.11.x",
+    "react-dom": "^16.8.x || 16.9.x || 16.10.x || || 16.11.x",
     "react-virtualized": "^9.21.1",
     "react-select": "^3.0.x"
   }

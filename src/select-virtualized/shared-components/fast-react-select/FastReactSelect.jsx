@@ -42,7 +42,6 @@ let FastReactSelect = (props, ref) => {
   );
 
   // avoid destructuring to best performance
-  // TODO improve this
   const memoOptions = useMemo(() => {
     return mapLowercaseLabel(options, formatOptionLabel, (itemOption) => {
       if (itemOption.options && grouped) {

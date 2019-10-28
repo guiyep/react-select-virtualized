@@ -1,7 +1,7 @@
 import Select from './components/select/Select';
 import Async from './components/async/Async';
-import CreatableSelect from './components/creatable/CreatableSelect.container';
+import Creatable from './components/creatable/CreatableSelectRenderer';
 
-export { Select, Async, CreatableSelect };
+export { Select, Async, Creatable };
 
 export default Select;

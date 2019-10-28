@@ -43,7 +43,6 @@ let Select = (props, ref) => {
     blurInputOnSelect: true,
   };
 
-  // this is only so it is react-select like compatible I prefer to be more strict with defaultValue.
   useEffect(() => setSelection(value), [value]);
 
   const memoGroupHeaderOptions = useMemo(() => {

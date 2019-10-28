@@ -31,6 +31,8 @@ FastLabel.propTypes = {
   setValue: PropTypes.func,
   isHovering: PropTypes.bool.isRequired,
   // wait for https://github.com/JedWatson/react-select/issues/3656
+  // the problem is that the always start now from the beginning and not from the last selected. so
+  // the arrow functionality is lost between closing and opening again.
   // isFocused: PropTypes.bool.isRequired,
   isSelected: PropTypes.bool.isRequired,
   style: PropTypes.object,

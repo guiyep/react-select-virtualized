@@ -89,6 +89,10 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 
 -- v 2.3.0 --
 
+- [ ] add support to create element props with group.
+
+-- v 2.4.0 --
+
 - [ ] add testing so we do not only relay on storybook.
 
 ## A WORD ABOUT CONTROLLED/UNCONTROLLED
@@ -97,16 +101,17 @@ When you use the `defaultValue` you will be using the component as uncontrolled 
 
 ## Documentation - Select Component - this are special to this library none is required
 
-| Props                                        | Type                                       | Default | Description                                                                   |
-| -------------------------------------------- | ------------------------------------------ | ------- | ----------------------------------------------------------------------------- |
-| grouped                                      | boolean                                    | false   | specify if options are grouped                                                |
-| formatGroupHeaderLabel                       | function({ label, options}) => component   |         | will render a custom component in the popup grouped header (only for grouped) |
-| formatOptionLabel (coming from react-select) | function(option, { context }) => component |         | will render a custom component in the label                                   |
-| optionHeight                                 | number                                     | 31      | height of each option                                                         |
-| groupHeaderHeight                            | number                                     |         | header row height in the popover list                                         |
-| maxHeight (coming from react-select)         | number                                     | auto    | max height popover list                                                       |
-| defaultValue                                 | option                                     |         | will set default value and set the component as an uncontrolled component     |
-| value                                        | option                                     |         | will set the value and the component will be a controlled component           |
+| Props                                        | Type                                       | Default | Description                                                                          |
+| -------------------------------------------- | ------------------------------------------ | ------- | ------------------------------------------------------------------------------------ |
+| grouped                                      | boolean                                    | false   | specify if options are grouped                                                       |
+| formatGroupHeaderLabel                       | function({ label, options}) => component   |         | will render a custom component in the popup grouped header (only for grouped)        |
+| formatOptionLabel (coming from react-select) | function(option, { context }) => component |         | will render a custom component in the label                                          |
+| optionHeight                                 | number                                     | 31      | height of each option                                                                |
+| groupHeaderHeight                            | number                                     |         | header row height in the popover list                                                |
+| maxHeight (coming from react-select)         | number                                     | auto    | max height popover list                                                              |
+| defaultValue                                 | option                                     |         | will set default value and set the component as an uncontrolled component            |
+| value                                        | option                                     |         | will set the value and the component will be a controlled component                  |
+| onCreateOption (Only for Creatable)          | function(option) => nothing                |         | will be executed when a new option is created , it is only for controlled components |
 
 ## What we do support and don't from react-select
 
@@ -118,7 +123,7 @@ When you use the `defaultValue` you will be using the component as uncontrolled 
 
 ## Usage without group
 
-check storybook for more examples
+check storybook for more examples, it can be used controlled/uncontrolled.
 
 ```jsx
 const options = [
@@ -148,7 +153,7 @@ const Example3 = () => <Select options={options} {..ANY_REACT_SELECT_V2_PROP}/>
 
 ## Usage with group - tooooo easy!!!
 
-check storybook for more examples
+check storybook for more examples, it can be used controlled/uncontrolled.
 
 ```jsx
 const options = [
@@ -184,7 +189,7 @@ const Example3 = () => <Select options={options} {..ANY_REACT_SELECT_V2_PROP} gr
 
 ## Usage Async Loading!!!! also with group :)
 
-check storybook for more examples
+check storybook for more examples, it can be used controlled/uncontrolled.
 
 CLARIFICATION: filtering happens in the server.
 
@@ -208,6 +213,51 @@ const Example3 = () => <Async defaultOptions={options} {..ANY_REACT_ASYNC_SELECT
 
 const Example4 = () => <Async defaultOptions={opsGroup} {..ANY_REACT_ASYNC_SELECT_V2_PROP} loadOptions={loadOptions} grouped/>
 ```
+
+## Usage Creatable
+
+check storybook for more examples, it can be used controlled/uncontrolled.
+
+UNCONTROLLED:
+
+```jsx
+import React, { Component } from 'react';
+
+import { Creatable } from 'react-select-virtualized';
+
+const Example1 = () => <Creatable options={options} />;
+```
+
+CONTROLLED:
+
+```jsx
+import React, { Component } from 'react';
+
+import { Creatable } from 'react-select-virtualized';
+
+const onCreateOption = (newItem) => {
+  store.set({ options: store.state.options.concat([newItem]) });
+  store.set({ selected: newItem });
+};
+
+const onChange = (item) => {
+  store.set({ selected: item });
+  action(`onChange`)(item);
+};
+
+const Example1 = () => (
+  <Creatable
+    options={store.state.options}
+    value={store.state.selected}
+    onCreateOption={onCreateOption}
+    onChange={onChange}
+  />
+);
+```
+
+## Usage Creatable (With Group)
+
+NOT YET DONE.
 
 ## License
 

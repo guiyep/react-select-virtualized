@@ -4,7 +4,7 @@ import CreatableSelect from './CreatableSelect';
 import { isDifferentValueOption } from './lib/helpers';
 import reducer, { SET_VALUE, SET_OPTIONS } from './state-reducer';
 
-const CreatableSelectUncontrolledContainer = memo(({ onChange, defaultValue, value, options, ...props }) => {
+const CreatableSelectUncontrolledContainer = memo(({ defaultValue, value, options, ...props }) => {
   const [state, dispatch] = useReducer(reducer, {
     value: defaultValue,
     options,

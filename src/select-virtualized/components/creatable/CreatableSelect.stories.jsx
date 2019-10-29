@@ -15,8 +15,8 @@ storiesOf(`React Select Virtualized/Creatable`, module)
       maxPropsIntoLine: 1,
     },
   })
-  .add('Basic', () => <CreatableSelect options={optionsDefault} />)
-  .add('Basic 2500 elements ', () => <CreatableSelect options={ops2500} />)
+  .add('Basic', () => <CreatableSelect options={optionsDefault} onChange={action(`onChange`)}/>)
+  .add('Basic 2500 elements ', () => <CreatableSelect options={ops2500} onChange={action(`onChange`)} />)
   .add(
     'Basic with onCreateOption callback (only with controlled)',
     withState({ options: optionsDefault, selected: null })(({ store }) => {

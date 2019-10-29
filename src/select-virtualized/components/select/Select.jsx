@@ -6,11 +6,14 @@ import { buildListComponents, getStyles } from '../../shared-helpers/select';
 import { defaultGroupFormat } from '../../shared-components/grouped-virtualized-list/helpers/grouped-list.jsx';
 import 'react-virtualized/styles.css';
 import { optionsPropTypes } from '../../shared-helpers/prop-types';
+import { buildErrorText } from '../../shared-helpers/error-builder';
 
 const throwMixControlledError = () => {
   throw new Error(
-    `react-select-virtualize do not support using defaultValue and value at the same time. Choose between uncontrolled or controlled component.
-    Clear and Select component methods can only be used with uncontrolled components.`,
+    buildErrorText(
+      `Select do not support using defaultValue and value at the same time. Choose between uncontrolled or controlled component.
+    Clear and Select component methods can only be used with uncontrolled components`,
+    ),
   );
 };
 

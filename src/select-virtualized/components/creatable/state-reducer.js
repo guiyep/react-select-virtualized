@@ -1,3 +1,4 @@
+import { buildErrorText } from '../../shared-helpers/error-builder';
 export const SET_VALUE = 'set-value';
 export const SET_OPTIONS = 'set-options';
 
@@ -8,6 +9,6 @@ export default function reducer(state, action) {
     case SET_OPTIONS:
       return { ...state, options: action.payload };
     default:
-      throw new Error();
+      throw new Error(buildErrorText(`Unknown reducer action ${action}`));
   }
 }

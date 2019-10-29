@@ -8,6 +8,7 @@ import { calculateDebounce, mapLowercaseLabel, getFilteredItems } from './helper
 import { calculateTotalListSize } from '../grouped-virtualized-list/helpers/grouped-list';
 import { optionsPropTypes } from '../../shared-helpers/prop-types';
 import { useDebouncedCallback } from '../../hooks/use-debaunced-callback';
+import { buildErrorText } from '../../shared-helpers/error-builder';
 
 const LAG_INDICATOR = 1000;
 
@@ -79,7 +80,7 @@ let FastReactSelect = (propsIn, ref) => {
         const asyncLoad = async () => {
           const newList = await asyncLoadOptions(inputValue);
           callback(newList);
-        }
+        };
 
         return asyncLoad();
       }
@@ -131,7 +132,9 @@ let FastReactSelect = (propsIn, ref) => {
     );
   }
 
-  throw new Error('Nothing to render, something is wrong in FastReactSelect component from react-select-virtualized');
+  throw new Error(
+    buildErrorText('Nothing to render, something is wrong in FastReactSelect component'),
+  );
 };
 
 FastReactSelect = forwardRef(FastReactSelect);

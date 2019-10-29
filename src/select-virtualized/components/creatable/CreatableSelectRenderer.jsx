@@ -2,12 +2,13 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import CreatableSelectControlledContainer from './CreatableSelectControlledContainer';
 import CreatableSelectUncontrolledContainer from './CreatableSelectUncontrolledContainer';
+import { buildErrorText } from '../../shared-helpers/error-builder';
 
 const CreatableSelectRenderer = memo((props) => {
   const { value, onCreateOption, grouped } = props;
 
   if (grouped) {
-    throw new Error('react-select-virtualized - creatable component does not support grouped yet.');
+    throw new Error(buildErrorText('Creatable component does not support grouped yet'));
   }
 
   // render a controlled component
@@ -16,7 +17,7 @@ const CreatableSelectRenderer = memo((props) => {
   }
 
   if (onCreateOption) {
-    throw new Error('creatable component cannot be used as uncontrolled with onCreateOption');
+    throw new Error(buildErrorText('Creatable component cannot be used as uncontrolled with onCreateOption'));
   }
 
   // render an uncontrolled component

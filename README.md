@@ -85,7 +85,8 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 
 -- v 2.2.0 --
 
-- [ ] add support to create element props.
+- [x] add support to create element props.
+- [x] add  better error handling.
 
 -- v 2.3.0 --
 

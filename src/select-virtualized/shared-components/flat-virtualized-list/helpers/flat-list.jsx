@@ -14,6 +14,8 @@ export const flatVirtualizedListRowRenderer = ({ children, onOptionFocused, opti
   const thisProps = children[index].props;
 
   // wait for https://github.com/JedWatson/react-select/issues/3656
+  // the problem is that the always start now from the beginning and not from the last selected. so
+  // the arrow functionality is lost between closing and opening again.
   // if (thisProps.isFocused && !isScrolling) {
   //   onOptionFocused({ data: thisProps.data, index, isVisible, isScrolling });
   // }
@@ -27,6 +29,8 @@ export const flatVirtualizedListRowRenderer = ({ children, onOptionFocused, opti
         isScrolling={isScrolling}
         optionHeight={optionHeight}
         // wait for https://github.com/JedWatson/react-select/issues/3656
+        // the problem is that the always start now from the beginning and not from the last selected. so
+        // the arrow functionality is lost between closing and opening again.
         // isFocused={thisProps.isFocused}
         isSelected={thisProps.isSelected}
         formatOptionLabel={formatOptionLabel}

@@ -15,7 +15,9 @@ const FastLabel = memo(({ data, setValue, isHovering, isSelected, isFocused, sty
 
   return (
     <div
-      className={`${isSelected ? 'fast-option-selected' : isHovering || isFocused ? 'fast-option-focused' : ''} fast-option`}
+      className={`${
+        isSelected ? 'fast-option-selected' : isHovering || isFocused ? 'fast-option-focused' : ''
+      } fast-option ${data.__isNew__ ? 'fast-option-create' : ''}`}
       style={style}
       onClick={onClickHandler}
     >
@@ -29,6 +31,8 @@ FastLabel.propTypes = {
   setValue: PropTypes.func,
   isHovering: PropTypes.bool.isRequired,
   // wait for https://github.com/JedWatson/react-select/issues/3656
+  // the problem is that the always start now from the beginning and not from the last selected. so
+  // the arrow functionality is lost between closing and opening again.
   // isFocused: PropTypes.bool.isRequired,
   isSelected: PropTypes.bool.isRequired,
   style: PropTypes.object,

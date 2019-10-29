@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import { withState } from '@dump247/storybook-state';
+import { action } from '@storybook/addon-actions';
 // this is a workaround for storybook, storybook and addon-info does not work with react.memo. I will create a wrapper to fix this.
 // here you will import the component per the documentation `import Select from 'path-to-select'`
 import Select from './_SelectTablePropsStoryFix';
@@ -26,6 +27,7 @@ storiesOf(`React Select Virtualized/props`, module)
         <button
           onClick={() => {
             store.set({ value: null });
+            action(`clear`)({ value: null });
           }}
         >
           reset
@@ -69,6 +71,7 @@ storiesOf(`React Select Virtualized/props`, module)
         options={opsGroup}
         onChange={(val) => {
           store.set({ value: val });
+          action(`onChange`)(val);
         }}
         grouped
       />

@@ -1,5 +1,5 @@
-import { Select, Async } from './select-virtualized';
+import { Select, Async, CreatableSelect } from './select-virtualized';
 
-export { Select, Async };
+export { Select, Async, CreatableSelect };
 
 export default Select;

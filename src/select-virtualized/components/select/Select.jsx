@@ -1,29 +1,41 @@
 import { FastReactSelect } from '../../shared-components/fast-react-select';
 import PropTypes from 'prop-types';
-import React, { useRef, useImperativeHandle, useState, forwardRef, useMemo, memo, useCallback } from 'react';
+import React, { useRef, useImperativeHandle, useState, forwardRef, useMemo, memo, useCallback, useEffect } from 'react';
 import './styles.css';
 import { buildListComponents, getStyles } from '../../shared-helpers/select';
 import { defaultGroupFormat } from '../../shared-components/grouped-virtualized-list/helpers/grouped-list.jsx';
 import 'react-virtualized/styles.css';
 import { optionsPropTypes } from '../../shared-helpers/prop-types';
+import { buildErrorText } from '../../shared-helpers/error-builder';
 
 const throwMixControlledError = () => {
   throw new Error(
-    `react-select-virtualize do not support using defaultValue and value at the same time. Choose between uncontrolled or controlled component.
-    Clear and Select component methods can only be used with uncontrolled components.`,
+    buildErrorText(
+      `Select do not support using defaultValue and value at the same time. Choose between uncontrolled or controlled component.
+    Clear and Select component methods can only be used with uncontrolled components`,
+    ),
   );
 };
 
 let Select = (props, ref) => {
   const reactSelect = useRef('react-select');
 
-  const { grouped, formatGroupHeaderLabel, groupHeaderHeight, onChange, defaultValue, value, optionHeight } = props;
+  const {
+    grouped,
+    formatGroupHeaderLabel,
+    groupHeaderHeight,
+    onChange,
+    defaultValue,
+    value,
+    optionHeight,
+    creatable,
+  } = props;
 
   if (defaultValue && value) {
     throwMixControlledError();
   }
 
-  const [selection, setSelection] = useState(defaultValue);
+  const [selection, setSelection] = useState(defaultValue || value);
 
   const defaultProps = {
     isMulti: false,
@@ -33,6 +45,8 @@ let Select = (props, ref) => {
     isSearchable: true,
     blurInputOnSelect: true,
   };
+
+  useEffect(() => setSelection(value), [value]);
 
   const memoGroupHeaderOptions = useMemo(() => {
     if (!grouped && !formatGroupHeaderLabel && !groupHeaderHeight) return { formatGroupHeaderLabel: false };
@@ -46,9 +60,7 @@ let Select = (props, ref) => {
 
   const onChangeHandler = useCallback(
     (valueChanged, { action }) => {
-      if (onChange) {
-        onChange(valueChanged, { action });
-      }
+      onChange(valueChanged, { action });
       setSelection(valueChanged);
     },
     [onChange, setSelection],
@@ -74,6 +86,7 @@ let Select = (props, ref) => {
 
   return (
     <FastReactSelect
+      creatable={creatable}
       ref={reactSelect}
       {...defaultProps}
       {...props}
@@ -105,11 +118,14 @@ Select.propTypes = {
   optionHeight: PropTypes.number,
   groupHeaderHeight: PropTypes.number,
   defaultValue: PropTypes.object,
+  creatable: PropTypes.bool,
 };
 
 Select.defaultProps = {
   grouped: false,
   optionHeight: 31,
+  creatable: false,
+  onChange: () => {},
 };
 
 Select.displayName = 'Select';

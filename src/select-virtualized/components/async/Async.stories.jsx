@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import { withState } from '@dump247/storybook-state';
+import { action } from '@storybook/addon-actions';
 // this is a workaround for storybook, storybook and addon-info does not work with react.memo. I will create a wrapper to fix this.
 // here you will import the component per the documentation `import Select from 'path-to-select'`
 import Async from './_AsyncTablePropsStoryFix';
@@ -12,6 +13,7 @@ const ops = buildOptionsSize(2000);
 const loadListOptions = (input, callback) =>
   setTimeout(() => {
     const result = ops.filter(({ label }) => label.toLowerCase().includes(input));
+    action(`loadListOptions`)(result);
     callback(result);
   }, 800);
 
@@ -27,6 +29,7 @@ const loadGroupedOptions = (input, callback) =>
       }
       return acc;
     }, []);
+    action(`loadGroupedOptions`)(result);
     callback(result);
   }, 800);
 
@@ -53,6 +56,7 @@ storiesOf(`React Select Virtualized/Async`, module)
         loadOptions={loadListOptions}
         onChange={(val) => {
           store.set({ value: val });
+          action(`onChange`)(val);
         }}
       />
     )),
@@ -71,6 +75,7 @@ storiesOf(`React Select Virtualized/Async`, module)
         loadOptions={loadGroupedOptions}
         onChange={(val) => {
           store.set({ value: val });
+          action(`onChange`)(val);
         }}
         grouped
       />

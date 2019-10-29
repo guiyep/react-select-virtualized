@@ -2,16 +2,19 @@ import React, { forwardRef, memo, Fragment, useMemo, useState, useCallback } fro
 import PropTypes from 'prop-types';
 import ReactSelect from 'react-select';
 import ReactAsync from 'react-select/async';
+import ReactSelectCreatableSelect from 'react-select/creatable';
+import ReactSelectAsyncCreatableSelect from 'react-select/async-creatable';
 import { calculateDebounce, mapLowercaseLabel, getFilteredItems } from './helpers/fast-react-select';
 import { calculateTotalListSize } from '../grouped-virtualized-list/helpers/grouped-list';
 import { optionsPropTypes } from '../../shared-helpers/prop-types';
 import { useDebouncedCallback } from '../../hooks/use-debaunced-callback';
+import { buildErrorText } from '../../shared-helpers/error-builder';
 
 const LAG_INDICATOR = 1000;
 
 const loadingMessage = () => <div>...</div>;
 
-let FastReactSelect = (props, ref) => {
+let FastReactSelect = (propsIn, ref) => {
   const {
     asyncLoadOptions,
     asyncInputChange,
@@ -20,7 +23,9 @@ let FastReactSelect = (props, ref) => {
     formatOptionLabel,
     grouped,
     filterOption,
-  } = props;
+    creatable,
+    ...props
+  } = propsIn;
 
   const minimumInputSearchIsSet = minimumInputSearch >= 1;
 
@@ -75,7 +80,7 @@ let FastReactSelect = (props, ref) => {
         const asyncLoad = async () => {
           const newList = await asyncLoadOptions(inputValue);
           callback(newList);
-        }
+        };
 
         return asyncLoad();
       }
@@ -85,26 +90,50 @@ let FastReactSelect = (props, ref) => {
     [minimumInputSearchIsSet, menuIsOpenState, asyncLoadOptions, debounceTime, grouped, memoOptions],
   );
 
-  return (
-    <Fragment>
-      {listSize <= LAG_INDICATOR && !minimumInputSearchIsSet && !asyncLoadOptions && (
-        <ReactSelect ref={ref} {...props} captureMenuScroll={false} />
-      )}
-      {(listSize > LAG_INDICATOR || minimumInputSearchIsSet || !!asyncLoadOptions) && (
-        <ReactAsync
-          ref={ref}
-          {...props}
-          loadingMessage={loadingMessage}
-          // this is a limitation on react-select and async, it does not work when caching options
-          cacheOptions={!grouped}
-          loadOptions={loadOptions}
-          defaultOptions={minimumInputSearch >= 1 || memoOptions.length === 0 ? true : memoOptions}
-          menuIsOpen={minimumInputSearchIsSet ? !!menuIsOpenState[menuIsOpenState.currentInput] : undefined}
-          onInputChange={onInputChange}
-          captureMenuScroll={false}
-        />
-      )}
-    </Fragment>
+  if (creatable && listSize <= LAG_INDICATOR) {
+    return <ReactSelectCreatableSelect ref={ref} {...props} options={memoOptions} captureMenuScroll={false} />;
+  }
+
+  if (creatable && listSize > LAG_INDICATOR) {
+    return (
+      <ReactSelectAsyncCreatableSelect
+        ref={ref}
+        {...props}
+        loadingMessage={loadingMessage}
+        // this is a limitation on react-select and async, it does not work when caching options
+        cacheOptions={!grouped}
+        loadOptions={loadOptions}
+        defaultOptions={minimumInputSearch >= 1 || memoOptions.length === 0 ? true : memoOptions}
+        menuIsOpen={minimumInputSearchIsSet ? !!menuIsOpenState[menuIsOpenState.currentInput] : undefined}
+        onInputChange={onInputChange}
+        captureMenuScroll={false}
+      />
+    );
+  }
+
+  if (!creatable && listSize <= LAG_INDICATOR && !minimumInputSearchIsSet && !asyncLoadOptions) {
+    return <ReactSelect ref={ref} {...props} options={memoOptions} captureMenuScroll={false} />;
+  }
+
+  if (listSize > LAG_INDICATOR || minimumInputSearchIsSet || !!asyncLoadOptions) {
+    return (
+      <ReactAsync
+        ref={ref}
+        {...props}
+        loadingMessage={loadingMessage}
+        // this is a limitation on react-select and async, it does not work when caching options
+        cacheOptions={!grouped}
+        loadOptions={loadOptions}
+        defaultOptions={minimumInputSearch >= 1 || memoOptions.length === 0 ? true : memoOptions}
+        menuIsOpen={minimumInputSearchIsSet ? !!menuIsOpenState[menuIsOpenState.currentInput] : undefined}
+        onInputChange={onInputChange}
+        captureMenuScroll={false}
+      />
+    );
+  }
+
+  throw new Error(
+    buildErrorText('Nothing to render, something is wrong in FastReactSelect component'),
   );
 };
 
@@ -116,12 +145,14 @@ FastReactSelect.propTypes = {
   minimumInputSearch: PropTypes.number,
   asyncLoadOptions: PropTypes.func,
   asyncInputChange: PropTypes.func,
+  creatable: PropTypes.bool,
 };
 
 FastReactSelect.defaultProps = {
   minimumInputSearch: 0,
   asyncLoadOptions: undefined,
   asyncInputChange: () => {},
+  creatable: false,
 };
 
 export default FastReactSelect;

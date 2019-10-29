@@ -43,3 +43,7 @@
 .grouped-virtualized-list-item div[role='option'] {
   cursor: pointer;
 }
+
+.fast-option-create {
+  cursor: default !important;
+}

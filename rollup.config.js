@@ -6,6 +6,7 @@ import resolve from 'rollup-plugin-node-resolve';
 import replace from 'rollup-plugin-replace';
 import gzipPlugin from 'rollup-plugin-gzip';
 import cleaner from 'rollup-plugin-cleaner';
+import json from 'rollup-plugin-json';
 import { terser } from 'rollup-plugin-terser';
 
 import pkg from './package.json';
@@ -46,6 +47,7 @@ export default {
     replace({
       ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
     }),
+    json(),
     gzipPlugin(),
     isProd &&
       cleaner({

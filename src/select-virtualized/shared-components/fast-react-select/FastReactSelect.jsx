@@ -112,7 +112,9 @@ let FastReactSelect = (propsIn, ref) => {
   }
 
   if (!creatable && listSize <= LAG_INDICATOR && !minimumInputSearchIsSet && !asyncLoadOptions) {
-    return <ReactSelect ref={ref} {...props} options={memoOptions} captureMenuScroll={false} />;
+    return (
+      <ReactSelect ref={ref} {...props} filterOption={filterOption} options={memoOptions} captureMenuScroll={false} />
+    );
   }
 
   if (listSize > LAG_INDICATOR || minimumInputSearchIsSet || !!asyncLoadOptions) {
@@ -132,9 +134,7 @@ let FastReactSelect = (propsIn, ref) => {
     );
   }
 
-  throw new Error(
-    buildErrorText('Nothing to render, something is wrong in FastReactSelect component'),
-  );
+  throw new Error(buildErrorText('Nothing to render, something is wrong in FastReactSelect component'));
 };
 
 FastReactSelect = forwardRef(FastReactSelect);

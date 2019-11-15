@@ -30,9 +30,9 @@ export const filterByLowercaseLabel = (list, value, filterOption) => {
 
 export const defaultFormatOptionLabel = (item) => item.label;
 
-export const mapLowercaseLabel = (list, formatOptionLabel = defaultFormatOptionLabel, iterator = () => ({})) =>
+export const mapLowercaseLabel = (list, iterator = () => ({})) =>
   list.map((item) => ({
-    lowercaseLabel: formatOptionLabel(item, {}).toLowerCase(),
+    lowercaseLabel: defaultFormatOptionLabel(item, {}).toLowerCase(),
     ...item,
     ...iterator(item),
   }));

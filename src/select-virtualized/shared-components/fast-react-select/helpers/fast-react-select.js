@@ -1,3 +1,5 @@
+import { buildErrorText } from '../../../shared-helpers/error-builder';
+
 // this is very basic analize a bit more
 export const calculateDebounce = (size) => {
   if (size <= 30000) {
@@ -28,14 +30,27 @@ export const filterByLowercaseLabel = (list, value, filterOption) => {
   return result;
 };
 
-export const defaultFormatOptionLabel = (item) => item.label;
+export const defaultFormatOptionLabel = (item) => item && item.label;
 
-export const mapLowercaseLabel = (list, iterator = () => ({})) =>
-  list.map((item) => ({
-    lowercaseLabel: defaultFormatOptionLabel(item, {}).toLowerCase(),
-    ...item,
-    ...iterator(item),
-  }));
+export const mapLowercaseLabel = (list, formatOptionLabel = defaultFormatOptionLabel, iterator = () => ({})) =>
+  list.map((item) => {
+    let label = formatOptionLabel(item, {});
+
+    // this is not a plain text
+    if (typeof label !== 'string') {
+      label = defaultFormatOptionLabel(item);
+    }
+
+    if (!label) {
+      throw new Error(
+        buildErrorText(
+          'For performance reasons, if formatOptionLabel returns something different from text, the label element must be in the option. The label to display cannot be undefined or null.',
+        ),
+      );
+    }
+
+    return { lowercaseLabel: label.toLowerCase(), ...item, ...iterator(item) };
+  });
 
 //todo improve this
 export const filterGroupedElementsBy = (list, inputValLowercase, filterBy, filterOption) => {

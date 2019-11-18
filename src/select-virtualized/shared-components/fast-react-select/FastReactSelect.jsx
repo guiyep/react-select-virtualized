@@ -48,15 +48,15 @@ let FastReactSelect = (propsIn, ref) => {
 
   // avoid destructuring to best performance
   const memoOptions = useMemo(() => {
-    return mapLowercaseLabel(options, (itemOption) => {
+    return mapLowercaseLabel(options, formatOptionLabel, (itemOption) => {
       if (itemOption.options && grouped) {
         return {
-          options: mapLowercaseLabel(itemOption.options),
+          options: mapLowercaseLabel(itemOption.options, formatOptionLabel),
         };
       }
       return {};
     });
-  }, [options, grouped]);
+  }, [options, formatOptionLabel, grouped]);
 
   const onInputChange = useCallback(
     (inputValue) => {

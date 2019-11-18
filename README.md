@@ -47,10 +47,8 @@ Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
 Components: Select, Async, Creatable
 
 - [x] We support all the UI related props for the input. Extension also.
-      `List: (...To be completed)`
 
 - [x] We do not support any related prop to the popup list. We extend it. \*Sorry no extension of any component inside the list.\*
-      `List Props Supported: (...To be completed)`
 
 ## Documentation - this are special to this library none is required
 
@@ -186,12 +184,9 @@ const Example1 = () => (
 
 NOT YET DONE.
 
-## A WORD ABOUT CONTROLLED/UNCONTROLLED
-
-When you use the `defaultValue` you will be using the component as uncontrolled and the state will be managed for you internally. There are some prop that cannot be mixed and the component will let you know when that is the case. Same happens when you use `value`, but will render the component as a controlled component where you will be in charge of the component internal state.
-
-## Roadmap
-
+<details>
+  <summary>Roadmap</summary>
+  
 - [x] useCallback everywhere.
 - [x] move fast options to group.
 - [x] fix minimum input search on grouped component.
@@ -240,6 +235,8 @@ When you use the `defaultValue` you will be using the component as uncontrolled 
 -- v 2.4.0 --
 
 - [ ] add testing so we do not only relay on storybook.
+
+  </details>
 
 ## License
 

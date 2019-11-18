@@ -58,7 +58,15 @@ storiesOf(`React Select Virtualized/props`, module)
   .add('select with custom labels format', () => {
     const labelFormat = ({ label, lang }, { context }) => {
       if (context === 'value') return `${label} - ${lang}`;
-      return <div style={{border : '1px solid blue'}}>{`${label} - ${lang}`}</div>;
+      return <div style={{ border: '1px solid blue' }}>{`${label} - ${lang}`}</div>;
+    };
+
+    return <Select options={ops2500} defaultValue={defaultValue} formatOptionLabel={labelFormat} />;
+  })
+  .add('select with custom labels format 2', () => {
+    const labelFormat = ({ label, lang }, { context }) => {
+      if (context === 'value') return `${label} - ${lang}`;
+      return `${label} - this is great`;
     };
 
     return <Select options={ops2500} defaultValue={defaultValue} formatOptionLabel={labelFormat} />;

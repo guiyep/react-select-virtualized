@@ -1,4 +1,4 @@
-import { buildErrorText } from '../../../shared-helpers/error-builder';
+import { buildErrorText } from '@rsv-lib/error';
 
 // this is very basic analize a bit more
 export const calculateDebounce = (size) => {

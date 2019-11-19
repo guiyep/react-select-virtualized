@@ -2,11 +2,11 @@ import { FastReactSelect } from '../../shared-components/fast-react-select';
 import PropTypes from 'prop-types';
 import React, { useRef, useImperativeHandle, useState, forwardRef, useMemo, memo, useCallback, useEffect } from 'react';
 import './styles.css';
-import { buildListComponents, getStyles } from '../../shared-helpers/select';
+import { buildListComponents, getStyles } from '@rsv-lib/select';
 import { defaultGroupFormat } from '../../shared-components/grouped-virtualized-list/helpers/grouped-list.jsx';
 import 'react-virtualized/styles.css';
-import { optionsPropTypes } from '../../shared-helpers/prop-types';
-import { buildErrorText } from '../../shared-helpers/error-builder';
+import { optionsPropTypes } from '@rsv-lib/prop-types';
+import { buildErrorText } from '@rsv-lib/error';
 
 const throwMixControlledError = () => {
   throw new Error(

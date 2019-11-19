@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { optionsPropTypes } from '../../shared-helpers/prop-types';
+import { optionsPropTypes } from '@rsv-lib/prop-types';
 import SelectComponent from './Select';
 
 const Select = (props) => <SelectComponent {...props}></SelectComponent>;

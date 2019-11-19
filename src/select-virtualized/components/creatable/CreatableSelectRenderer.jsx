@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import CreatableSelectControlledContainer from './CreatableSelectControlledContainer';
 import CreatableSelectUncontrolledContainer from './CreatableSelectUncontrolledContainer';
-import { buildErrorText } from '../../shared-helpers/error-builder';
+import { buildErrorText } from '@rsv-lib/error';
 
 const CreatableSelectRenderer = memo((props) => {
   const { value, onCreateOption, grouped } = props;

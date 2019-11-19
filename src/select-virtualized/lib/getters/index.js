@@ -1,4 +1,4 @@
-import { offset } from './defaults';
+import { offset } from '../defaults';
 
 export const getListHeight = ({
   maxHeight = 0,

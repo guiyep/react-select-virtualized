@@ -6,9 +6,9 @@ import ReactSelectCreatableSelect from 'react-select/creatable';
 import ReactSelectAsyncCreatableSelect from 'react-select/async-creatable';
 import { calculateDebounce, mapLowercaseLabel, getFilteredItems } from './helpers/fast-react-select';
 import { calculateTotalListSize } from '../grouped-virtualized-list/helpers/grouped-list';
-import { optionsPropTypes } from '../../shared-helpers/prop-types';
+import { optionsPropTypes } from '@rsv-lib/prop-types';
 import { useDebouncedCallback } from '../../hooks/use-debaunced-callback';
-import { buildErrorText } from '../../shared-helpers/error-builder';
+import { buildErrorText } from '@rsv-lib/error';
 
 const LAG_INDICATOR = 1000;
 

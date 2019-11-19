@@ -127,10 +127,10 @@ const Example2 = () => <Async defaultOptions={options} loadOptions={loadOptions}
 const Example3 = () => <Async defaultOptions={opsGroup} loadOptions={loadOptions} grouped/>
 ```
 
-##### No Group
+##### Async - No Group
 [![Edit react-select-virtualized](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/quirky-swanson-egeh8)
 
-##### Grouped
+##### Async - Grouped
 [![Edit react-select-virtualized](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/runtime-cloud-jow57)
 
 ## Usage with creatable

@@ -48,25 +48,6 @@ Components: Select, Async, Creatable
 
 - [x] We do not support any related prop to the popup list. We extend it. \*Sorry no extension of any component inside the list.\*
 
-## Documentation - this are special to this library and none is required
-
-<details>
-  <summary>Toggle</summary>
-
-| Props                                        | Type                                       | Default | Description                                                                          |
-| -------------------------------------------- | ------------------------------------------ | ------- | ------------------------------------------------------------------------------------ |
-| grouped                                      | boolean                                    | false   | specify if options are grouped                                                       |
-| formatGroupHeaderLabel                       | function({ label, options}) => component   |         | will render a custom component in the popup grouped header (only for grouped)        |
-| formatOptionLabel (coming from react-select) | function(option, { context }) => component |         | will render a custom component in the label                                          |
-| optionHeight                                 | number                                     | 31      | height of each option                                                                |
-| groupHeaderHeight                            | number                                     |         | header row height in the popover list                                                |
-| maxHeight (coming from react-select)         | number                                     | auto    | max height popover list                                                              |
-| defaultValue                                 | option                                     |         | will set default value and set the component as an uncontrolled component            |
-| value                                        | option                                     |         | will set the value and the component will be a controlled component                  |
-| onCreateOption (Only for Creatable)          | function(option) => nothing                |         | will be executed when a new option is created , it is only for controlled components |
-
-  </details>
-
 # Examples
 
 ## Options Shape
@@ -105,7 +86,7 @@ import React from 'react';
 
 import Select from 'react-select-virtualized';
 
-const Example1 = () => <Select options={options} grouped />;
+const Example1 = () => <Select options={opsGroup} grouped />;
 ```
 
 [![Edit react-select-virtualized](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/angry-wing-5deq4)
@@ -128,9 +109,11 @@ const Example3 = () => <Async defaultOptions={opsGroup} loadOptions={loadOptions
 ```
 
 ##### Async - No Group
+
 [![Edit react-select-virtualized](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/quirky-swanson-egeh8)
 
 ##### Async - Grouped
+
 [![Edit react-select-virtualized](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/runtime-cloud-jow57)
 
 ## Usage with creatable
@@ -148,6 +131,42 @@ const Example1 = () => <Creatable options={options} />;
 ## Usage with creatable and group
 
 NOT YET DONE.
+
+## Custom Styles
+
+For custom styling of the Input component read the `react-select` [documentation](https://react-select.com/home#custom-styles).
+
+For styling the menu list and options, set the `menuIsOpen` prop to true, create an options list with less than 100 elements and use css for adjusting your css.
+
+Use this example as a guidance
+
+[![Edit react-select-virtualized](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/fragrant-thunder-bno6s)
+
+<details>
+  <summary>Possible classes</summary>
+  
+ `react-select-virtualized` `ReactVirtualized__Grid__innerScrollContainer` `flat-virtualized-item` `fast-option`
+
+</details>
+
+## Documentation - this are special to this library and none is required
+
+<details>
+  <summary>Toggle</summary>
+
+| Props                                        | Type                                       | Default | Description                                                                          |
+| -------------------------------------------- | ------------------------------------------ | ------- | ------------------------------------------------------------------------------------ |
+| grouped                                      | boolean                                    | false   | specify if options are grouped                                                       |
+| formatGroupHeaderLabel                       | function({ label, options}) => component   |         | will render a custom component in the popup grouped header (only for grouped)        |
+| formatOptionLabel (coming from react-select) | function(option, { context }) => component |         | will render a custom component in the label                                          |
+| optionHeight                                 | number                                     | 31      | height of each option                                                                |
+| groupHeaderHeight                            | number                                     |         | header row height in the popover list                                                |
+| maxHeight (coming from react-select)         | number                                     | auto    | max height popover list                                                              |
+| defaultValue                                 | option                                     |         | will set default value and set the component as an uncontrolled component            |
+| value                                        | option                                     |         | will set the value and the component will be a controlled component                  |
+| onCreateOption (Only for Creatable)          | function(option) => nothing                |         | will be executed when a new option is created , it is only for controlled components |
+
+  </details>
 
 ### Roadmap
 

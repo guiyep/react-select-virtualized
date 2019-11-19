@@ -27,7 +27,7 @@ Remember to install them (if they are not already in your project).
     "react-dom",
     "react-virtualized",
     "react-select"
-  }
+}
 ```
 
 ## Note
@@ -145,7 +145,7 @@ Use this example as a guidance
 <details>
   <summary>Possible classes</summary>
 
- `react-select-virtualized` `grouped-virtualized-list-item` `flat-virtualized-item` `fast-option` `fast-option` `fast-option-focused` `fast-option-selected` `fast-option-create`
+`react-select-virtualized` `grouped-virtualized-list-item` `flat-virtualized-item` `fast-option` `fast-option` `fast-option-focused` `fast-option-selected` `fast-option-create`
 
 </details>
 
@@ -168,7 +168,7 @@ Use this example as a guidance
 
   </details>
 
-### Roadmap
+## Roadmap
 
 <details>
   <summary>Toggle</summary>

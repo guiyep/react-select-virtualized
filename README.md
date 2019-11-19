@@ -19,15 +19,15 @@ npm install --save react-select-virtualized
 
 ### Peer Dependencies
 
-remember to install them (if they are not already in your project).
+Remember to install them (if they are not already in your project).
 
-```bash (v1.3.4)
+```bash
 {
-    "react": "^16.8.x || 16.9.x || 16.10.x || 16.11.x || 16.12.x",
-    "react-dom": "^16.8.x || 16.9.x || 16.10.x || 16.11.x || 16.12.x",
-    "react-virtualized": "^9.21.1",
-    "react-select": "^3.0.x"
-  }
+    "react",
+    "react-dom",
+    "react-virtualized",
+    "react-select"
+}
 ```
 
 ## Note
@@ -36,11 +36,9 @@ The select component will be the same from `react-select v3` so you will be able
 
 ## Try It!!!
 
-https://codesandbox.io/s/vigilant-mclean-wpbk7
+[![Edit react-select-virtualized](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/vigilant-mclean-wpbk7)
 
-## Storybook
-
-Do you want to see it working? -> https://serene-hawking-021d7a.netlify.com/
+Check [Storybook](https://serene-hawking-021d7a.netlify.com/) for more examples
 
 ## What we do support and don't from react-select
 
@@ -50,7 +48,111 @@ Components: Select, Async, Creatable
 
 - [x] We do not support any related prop to the popup list. We extend it. \*Sorry no extension of any component inside the list.\*
 
-## Documentation - this are special to this library none is required
+# Examples
+
+## Options Shape
+
+```jsx
+const options = [
+  {
+    value: 1,
+    label: `guiyep`,
+  },
+  ...
+];
+
+const opsGroup = [
+  { label: `Group Name Header`, options },
+  ...
+]
+```
+
+## Basic
+
+```jsx
+import React from 'react';
+
+import Select from 'react-select-virtualized';
+
+const Example1 = () => <Select options={options} />;
+```
+
+[![Edit react-select-virtualized](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/vigilant-mclean-wpbk7)
+
+## With group
+
+```jsx
+import React from 'react';
+
+import Select from 'react-select-virtualized';
+
+const Example1 = () => <Select options={opsGroup} grouped />;
+```
+
+[![Edit react-select-virtualized](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/angry-wing-5deq4)
+
+## Usage Async
+
+```jsx
+
+import React from 'react';
+
+import { Async } from 'react-select-virtualized';
+
+const loadOptions = (input, callback) => {...};
+
+const Example1 = () => <Async loadOptions={loadOptions}/>
+
+const Example2 = () => <Async defaultOptions={options} loadOptions={loadOptions}/>
+
+const Example3 = () => <Async defaultOptions={opsGroup} loadOptions={loadOptions} grouped/>
+```
+
+##### Async - No Group
+
+[![Edit react-select-virtualized](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/quirky-swanson-egeh8)
+
+##### Async - Grouped
+
+[![Edit react-select-virtualized](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/runtime-cloud-jow57)
+
+## Usage with creatable
+
+```jsx
+import React from 'react';
+
+import { Creatable } from 'react-select-virtualized';
+
+const Example1 = () => <Creatable options={options} />;
+```
+
+[![Edit react-select-virtualized](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/twilight-cloud-nqwz1)
+
+## Usage with creatable and group
+
+NOT YET DONE.
+
+## Custom Styles
+
+For custom styling of the Input component read the `react-select` [documentation](https://react-select.com/home#custom-styles).
+
+For styling the menu list and options, set the `menuIsOpen` prop to true, create an options list with less than 100 elements and use css for adjusting your css.
+
+Use this example as a guidance
+
+[![Edit react-select-virtualized](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/fragrant-thunder-bno6s)
+
+<details>
+  <summary>Possible classes</summary>
+
+`react-select-virtualized` `grouped-virtualized-list-item` `flat-virtualized-item` `fast-option` `fast-option` `fast-option-focused` `fast-option-selected` `fast-option-create`
+
+</details>
+
+## Documentation - this are special to this library and none is required
+
+<details>
+  <summary>Toggle</summary>
 
 | Props                                        | Type                                       | Default | Description                                                                          |
 | -------------------------------------------- | ------------------------------------------ | ------- | ------------------------------------------------------------------------------------ |
@@ -64,128 +166,12 @@ Components: Select, Async, Creatable
 | value                                        | option                                     |         | will set the value and the component will be a controlled component                  |
 | onCreateOption (Only for Creatable)          | function(option) => nothing                |         | will be executed when a new option is created , it is only for controlled components |
 
-## Usage select without group
+  </details>
 
-Check storybook for more examples, it can be used controlled/uncontrolled.
-
-```jsx
-const options = [
-  {
-    value: 1,
-    label: `guiyep`,
-  },
-  ...
-];
-```
-
-```jsx
-import React from 'react';
-
-import Select from 'react-select-virtualized';
-
-const Example1 = () => <Select options={options}/>
-
-const Example2 = () => <Select options={options} {..ANY_REACT_SELECT_V2_PROP}/>
-```
-
-## Usage select with group - tooooo easy!!!
-
-Check storybook for more examples, it can be used controlled/uncontrolled.
-
-```jsx
-const options = [
-  {
-    value: 1,
-    label: `guiyep`,
-  },
-  ...
-];
-
-
-const opsGroup = [
-  { label: `Group Name Header`, options },
-  ...
-]
-```
-
-```jsx
-import React from 'react';
-
-import Select from 'react-select-virtualized';
-
-const Example1 = () => <Select options={options} grouped/>
-
-const Example2 = () => <Select options={options} {..ANY_REACT_SELECT_V2_PROP} grouped/>
-```
-
-## Usage Async with/without group :)
-
-Check storybook for more examples, it can be used controlled/uncontrolled.
-
-CLARIFICATION: you are in charge of filtering the data.
-
-```jsx
-
-import React from 'react';
-
-import { Async } from 'react-select-virtualized';
-
-const loadOptions = (input, callback) => {...};
-
-const Example1 = () => <Async loadOptions={loadOptions}/>
-
-const Example2 = () => <Async defaultOptions={options} {..ANY_REACT_ASYNC_SELECT_V2_PROP} loadOptions={loadOptions}/>
-
-const Example3 = () => <Async defaultOptions={opsGroup} {..ANY_REACT_ASYNC_SELECT_V2_PROP} loadOptions={loadOptions} grouped/>
-```
-
-## Usage with creatable
-
-Check storybook for more examples, it can be used controlled/uncontrolled.
-
-UNCONTROLLED:
-
-```jsx
-import React from 'react';
-
-import { Creatable } from 'react-select-virtualized';
-
-const Example1 = () => <Creatable options={options} {..ANY_REACT_CREATABLE_SELECT_V2_PROP} />;
-```
-
-CONTROLLED:
-
-```jsx
-import React from 'react';
-
-import { Creatable } from 'react-select-virtualized';
-
-const onCreateOption = (newItem) => {
-  store.set({ options: store.state.options.concat([newItem]) });
-  store.set({ selected: newItem });
-};
-
-const onChange = (item) => {
-  store.set({ selected: item });
-};
-
-const Example1 = () => (
-  <Creatable
-    options={store.state.options}
-    value={store.state.selected}
-    onCreateOption={onCreateOption}
-    onChange={onChange}
-    {..ANY_REACT_CREATABLE_SELECT_V2_PROP}
-  />
-);
-```
-
-## Usage with creatable and group
-
-NOT YET DONE.
+## Roadmap
 
 <details>
-  <summary>Roadmap</summary>
+  <summary>Toggle</summary>
   
 - [x] useCallback everywhere.
 - [x] move fast options to group.
@@ -229,6 +215,7 @@ NOT YET DONE.
 
 -- v 2.3.0 --
 
+- [ ] move modules to lib.
 - [ ] move internal state of select and async select to reducer like creatable.
 - [ ] add support to create element props with group.
 

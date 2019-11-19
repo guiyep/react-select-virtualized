@@ -144,8 +144,8 @@ Use this example as a guidance
 
 <details>
   <summary>Possible classes</summary>
-  
- `react-select-virtualized` `ReactVirtualized__Grid__innerScrollContainer` `flat-virtualized-item` `fast-option`
+
+ `react-select-virtualized` `grouped-virtualized-list-item` `flat-virtualized-item` `fast-option` `fast-option` `fast-option-focused` `fast-option-selected` `fast-option-create`
 
 </details>
 

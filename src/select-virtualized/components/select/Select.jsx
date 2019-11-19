@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React, { useRef, useImperativeHandle, useState, forwardRef, useMemo, memo, useCallback, useEffect } from 'react';
 import './styles.css';
 import { buildListComponents, getStyles } from '@rsv-lib/select';
-import { defaultGroupFormat } from '../../shared-components/grouped-virtualized-list/helpers/grouped-list.jsx';
+import { defaultGroupFormat } from '@rsv-lib/renderers/grouped-list';
 import 'react-virtualized/styles.css';
 import { optionsPropTypes } from '@rsv-lib/prop-types';
 import { buildErrorText } from '@rsv-lib/error';

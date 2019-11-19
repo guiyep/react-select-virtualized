@@ -35,3 +35,10 @@ export const getNextRowIndex = (prevFocusIndex = 0, nextIndex = 0, options = [])
   const prevOffsetItem = toRow > 0 ? toRow : 0;
   return goingDown ? nextOffsetItem : prevOffsetItem;
 };
+
+export const isGroupHeader = ({ typeGroup }) => !!typeGroup;
+
+export const getGroupRowHeight = ({ children, optionHeight, groupHeaderHeight }) => ({ index }) => {
+  const thisProps = children[index].props || {};
+  return isGroupHeader(thisProps) ? groupHeaderHeight : optionHeight;
+};

@@ -1,20 +1,6 @@
 import React from 'react';
-import { isGroupHeader } from './getters';
-import { FastOption } from '../../fast-option';
-
-export const flattenOptions = (reactComponent) =>
-  (reactComponent && reactComponent.length ? reactComponent : [])
-    .map((child) => [
-      {
-        props: {
-          typeGroup: 'group',
-          label: child.props.data.label,
-          options: child.props.options,
-        },
-      },
-      ...child.props.children,
-    ])
-    .reduce((accumulator, currentValue) => accumulator.concat(currentValue), []);
+import { isGroupHeader } from '@rsv-lib/getters';
+import { FastOption } from '../../shared-components/fast-option';
 
 export const groupVirtualizedListRowRenderer = ({
   children,
@@ -59,9 +45,7 @@ export const groupVirtualizedListRowRenderer = ({
   );
 };
 
-// 1 is for the group item
-export const calculateTotalListSize = (options) => options.reduce((acc, item) => acc + 1 + item.options.length, 0);
-
+// TODO RENAME THIS
 export const defaultGroupFormat = (height) => {
   // this can be a css also
   const groupStyle = {

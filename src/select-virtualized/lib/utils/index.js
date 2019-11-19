@@ -73,3 +73,23 @@ export const getFilteredItems = ({ inputValue, memoOptions, grouped, filterOptio
   }
   return filterByLowercaseLabel(memoOptions, inputValLowercase, filterOption);
 };
+
+// TODO RENAME THIS
+export const flattenOptions = (reactComponent) =>
+  (reactComponent && reactComponent.length ? reactComponent : [])
+    .map((child) => [
+      {
+        props: {
+          typeGroup: 'group',
+          label: child.props.data.label,
+          options: child.props.options,
+        },
+      },
+      ...child.props.children,
+    ])
+    .reduce((accumulator, currentValue) => accumulator.concat(currentValue), []);
+
+
+// TODO RENAME THIS
+// 1 is for the group item
+export const calculateTotalListSize = (options) => options.reduce((acc, item) => acc + 1 + item.options.length, 0);

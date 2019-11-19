@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { FastOption } from '../../fast-option';
+import { FastOption } from '../../shared-components/fast-option';
 
 export const flatVirtualizedListRowRenderer = ({ children, onOptionFocused, optionHeight, formatOptionLabel }) => ({
   key,

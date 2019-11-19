@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
 import Select from '../select/Select';
 import PropTypes from 'prop-types';
 

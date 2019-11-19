@@ -2,7 +2,7 @@ import React, { memo, useCallback } from 'react';
 import CreatableSelect from './CreatableSelect';
 import PropTypes from 'prop-types';
 
-import { isDifferentValueOption } from './lib/helpers';
+import { isDifferentValueOption } from '@rsv-lib/creatable';
 
 const CreatableSelectControlledContainer = memo(({ onChange, onCreateOption, value, options, ...props }) => {
   const onCreateOptionHandler = useCallback(

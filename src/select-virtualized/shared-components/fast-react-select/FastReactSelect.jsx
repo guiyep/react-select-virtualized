@@ -4,7 +4,7 @@ import ReactSelect from 'react-select';
 import ReactAsync from 'react-select/async';
 import ReactSelectCreatableSelect from 'react-select/creatable';
 import ReactSelectAsyncCreatableSelect from 'react-select/async-creatable';
-import { calculateDebounce, mapLowercaseLabel, getFilteredItems } from './helpers/fast-react-select';
+import { calculateDebounce, mapLowercaseLabel, getFilteredItems } from '@rsv-lib/utils';
 import { calculateTotalListSize } from '../grouped-virtualized-list/helpers/grouped-list';
 import { optionsPropTypes } from '@rsv-lib/prop-types';
 import { useDebouncedCallback } from '../../hooks/use-debaunced-callback';

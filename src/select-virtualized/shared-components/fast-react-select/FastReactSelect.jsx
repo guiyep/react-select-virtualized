@@ -7,7 +7,7 @@ import ReactSelectAsyncCreatableSelect from 'react-select/async-creatable';
 import { calculateDebounce, mapLowercaseLabel, getFilteredItems } from '@rsv-lib/utils';
 import { calculateTotalListSize } from '@rsv-lib/utils';
 import { optionsPropTypes } from '@rsv-lib/prop-types';
-import { useDebouncedCallback } from '../../hooks/use-debaunced-callback';
+import { useDebouncedCallback } from '@rsv-hooks/use-debaunced-callback';
 import { buildErrorText } from '@rsv-lib/error';
 
 const LAG_INDICATOR = 1000;

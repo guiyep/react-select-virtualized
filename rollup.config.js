@@ -53,6 +53,7 @@ export default {
     importAlias({
       Paths: {
         '@rsv-lib': './src/select-virtualized/lib',
+        '@rsv-hooks': './src/select-virtualized/hooks',
       },
       Extensions: ['js'],
     }),

@@ -4,7 +4,7 @@ import { List, InfiniteLoader, AutoSizer } from 'react-virtualized';
 import { getListHeight, getScrollIndex, getNextRowIndex } from '@rsv-lib/getters';
 import { groupVirtualizedListRowRenderer } from '@rsv-lib/renderers/grouped-list';
 import { getGroupRowHeight } from '@rsv-lib/getters';
-import { useDebouncedCallback } from '../../hooks/use-debaunced-callback';
+import { useDebouncedCallback } from '@rsv-hooks/use-debaunced-callback';
 
 let GroupVirtualizedList = (props) => {
   const [focusedItemIndex, setFocusedItemIndex] = useState(undefined);

@@ -1,4 +1,4 @@
-import { Select, Async, Creatable } from './select-virtualized';
+import { Select, Async, Creatable } from './components';
 
 export { Select, Async, Creatable };
 

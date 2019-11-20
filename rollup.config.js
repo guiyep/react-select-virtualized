@@ -52,8 +52,8 @@ export default {
     gzipPlugin(),
     importAlias({
       Paths: {
-        '@rsv-lib': './src/select-virtualized/lib',
-        '@rsv-hooks': './src/select-virtualized/hooks',
+        '@rsv-lib': './src/lib',
+        '@rsv-hooks': './src/hooks',
       },
       Extensions: ['js'],
     }),

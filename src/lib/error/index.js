@@ -1,4 +1,4 @@
-import pkg from '../../../../package.json';
+import pkg from '../../../package.json';
 
 export const buildErrorText = (error) =>
   `REACT-SELECT-VIRTUALIZED: V:${pkg.version}- Problem Found: ${error ||

@@ -1,11 +1,11 @@
 import { configure } from '@storybook/react';
 
 function loadStories() {
-  require('../src/select-virtualized/components/select/Select.stories');
-  require('../src/select-virtualized/components/select/SelectBigLoad.stories');
-  require('../src/select-virtualized/components/async/Async.stories');
-  require('../src/select-virtualized/components/creatable/CreatableSelect.stories');
-  require('../src/select-virtualized/components/select/Select.stories.css');
+  require('../src/components/select/Select.stories');
+  require('../src/components/select/SelectBigLoad.stories');
+  require('../src/components/async/Async.stories');
+  require('../src/components/creatable/CreatableSelect.stories');
+  require('../src/components/select/Select.stories.css');
 }
 
 configure(loadStories, module);

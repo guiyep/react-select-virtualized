@@ -1,6 +1,6 @@
 import React from 'react';
 import { isGroupHeader } from '@rsv-lib/getters';
-import { FastOption } from '../../shared-components/fast-option';
+import { FastOption } from '../../components/fast-option';
 
 export const groupVirtualizedListRowRenderer = ({
   children,

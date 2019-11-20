@@ -1,4 +1,4 @@
-import { FastReactSelect } from '../../shared-components/fast-react-select';
+import { FastReactSelect } from '../fast-react-select';
 import PropTypes from 'prop-types';
 import React, { useRef, useImperativeHandle, useState, forwardRef, useMemo, memo, useCallback, useEffect } from 'react';
 import './styles.css';

@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 // this is a workaround for storybook, storybook and addon-info does not work with react.memo. I will create a wrapper to fix this.
 // here you will import the component per the documentation `import Select from 'path-to-select'`
 import Async from './_AsyncTablePropsStoryFix';
-import { optionsDefault, opsGroup20000, buildOptionsSize } from '../../../data';
+import { optionsDefault, opsGroup20000, buildOptionsSize } from '@rsv-lib/data';
 
 const ops = buildOptionsSize(2000);
 

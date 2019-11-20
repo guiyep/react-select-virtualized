@@ -1,7 +1,7 @@
 import React from 'react';
 import Async from './Async';
 import renderer from 'react-test-renderer';
-import { defaultValueStatic } from '../../data';
+import { defaultValueStatic } from '@rsv-lib/data';
 
 const loadListOptions = jest.fn();
 

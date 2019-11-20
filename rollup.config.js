@@ -8,6 +8,7 @@ import gzipPlugin from 'rollup-plugin-gzip';
 import cleaner from 'rollup-plugin-cleaner';
 import json from 'rollup-plugin-json';
 import { terser } from 'rollup-plugin-terser';
+import importAlias from 'rollup-plugin-import-alias';
 
 import pkg from './package.json';
 
@@ -49,6 +50,14 @@ export default {
     }),
     json(),
     gzipPlugin(),
+    importAlias({
+      Paths: {
+        '@rsv-lib': './src/lib',
+        '@rsv-hooks': './src/hooks',
+        '@rsv-components': './src/components',
+      },
+      Extensions: ['js'],
+    }),
     isProd &&
       cleaner({
         targets: ['./dist/'],

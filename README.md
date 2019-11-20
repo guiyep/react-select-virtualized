@@ -215,7 +215,7 @@ Use this example as a guidance
 
 -- v 2.3.0 --
 
-- [ ] move modules to lib.
+- [x] move modules to lib.
 - [ ] move internal state of select and async select to reducer like creatable.
 - [ ] add support to create element props with group.
 

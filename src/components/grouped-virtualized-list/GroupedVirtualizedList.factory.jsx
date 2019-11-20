@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { components as ReactSelectComponents } from 'react-select';
 import GroupListVirtualized from './GroupVirtualizedList';
 import { menuListItemHeight } from '@rsv-lib/defaults';
-import { flattenOptions } from '@rsv-lib/utils';
+import { flattenGroupedOptions } from '@rsv-lib/utils';
 
 const GroupedVirtualizedListFactory = ({
   formatGroupHeader,
@@ -12,7 +12,7 @@ const GroupedVirtualizedListFactory = ({
   valueGetter,
 }) =>
   memo((props) => {
-    const children = [...flattenOptions(props.children)];
+    const children = [...flattenGroupedOptions(props.children)];
     const selectedValue = props.getValue() ? props.getValue()[0] : undefined;
 
     if (props.children && !props.children.length) {

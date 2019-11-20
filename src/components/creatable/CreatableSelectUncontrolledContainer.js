@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useReducer } from 'react';
 import CreatableSelect from './CreatableSelect';
 
-import { isDifferentValueOption } from '@rsv-lib/creatable';
+import { isDifferentValueOption } from '@rsv-lib/utils';
 import reducer, { SET_VALUE, SET_OPTIONS } from './state-reducer';
 
 const CreatableSelectUncontrolledContainer = memo(({ onChange, defaultValue, value, options, ...props }) => {

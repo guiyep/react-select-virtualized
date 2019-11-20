@@ -54,6 +54,7 @@ export default {
       Paths: {
         '@rsv-lib': './src/lib',
         '@rsv-hooks': './src/hooks',
+        '@rsv-components': './src/components',
       },
       Extensions: ['js'],
     }),

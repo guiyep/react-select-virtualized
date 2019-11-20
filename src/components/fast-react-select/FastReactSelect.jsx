@@ -5,7 +5,7 @@ import ReactAsync from 'react-select/async';
 import ReactSelectCreatableSelect from 'react-select/creatable';
 import ReactSelectAsyncCreatableSelect from 'react-select/async-creatable';
 import { calculateDebounce, mapLowercaseLabel, getFilteredItems } from '@rsv-lib/utils';
-import { calculateTotalListSize } from '@rsv-lib/utils';
+import { calculateTotalGroupedListSize } from '@rsv-lib/utils';
 import { optionsPropTypes } from '@rsv-lib/prop-types';
 import { useDebouncedCallback } from '@rsv-hooks/use-debaunced-callback';
 import { buildErrorText } from '@rsv-lib/error';
@@ -29,7 +29,7 @@ let FastReactSelect = (propsIn, ref) => {
 
   const minimumInputSearchIsSet = minimumInputSearch >= 1;
 
-  const listSize = useMemo(() => (grouped && calculateTotalListSize(options)) || options.length, [options, grouped]);
+  const listSize = useMemo(() => (grouped && calculateTotalGroupedListSize(options)) || options.length, [options, grouped]);
   const debounceTime = useMemo(() => calculateDebounce(listSize), [listSize]);
   const [menuIsOpenState, setMenuIsOpen] = useState({ currentInput: '' });
 

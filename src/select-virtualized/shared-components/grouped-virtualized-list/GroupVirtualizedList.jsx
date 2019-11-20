@@ -2,7 +2,7 @@ import React, { useEffect, useCallback, memo, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { List, InfiniteLoader, AutoSizer } from 'react-virtualized';
 import { getListHeight, getScrollIndex, getNextRowIndex } from '@rsv-lib/getters';
-import { groupVirtualizedListRowRenderer } from '@rsv-lib/renderers/grouped-list';
+import { groupVirtualizedListRowRenderer } from '@rsv-lib/renderers';
 import { getGroupRowHeight } from '@rsv-lib/getters';
 import { useDebouncedCallback } from '@rsv-hooks/use-debaunced-callback';
 

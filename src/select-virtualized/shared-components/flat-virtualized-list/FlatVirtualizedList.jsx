@@ -2,7 +2,7 @@ import { List, InfiniteLoader, AutoSizer } from 'react-virtualized';
 import React, { useEffect, memo, useMemo, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { getListHeight, getScrollIndex, getNextRowIndex } from '@rsv-lib/getters';
-import { flatVirtualizedListRowRenderer } from '@rsv-lib/renderers/flat-list';
+import { flatVirtualizedListRowRenderer } from '@rsv-lib/renderers';
 import { useDebouncedCallback } from '@rsv-hooks/use-debaunced-callback';
 
 let FlatListVirtualized = (props) => {

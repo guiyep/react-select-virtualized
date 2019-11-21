@@ -98,13 +98,11 @@ let GroupVirtualizedList = (props) => {
 
   const loadMoreRows = useDebouncedCallback(
     ({ startIndex, stopIndex }) => {
-      const result = list.concat(children.slice(startIndex, stopIndex));
-      // we use useCallback to prevent re-renders and this callback will not re-render the component
-      // so it is safe to reassign the list
-      // eslint-disable-next-line
-      list = result;
+      for (let i = startIndex; i <= stopIndex; i++) {
+        list.push(children[i]);
+      }
     },
-    50,
+    100,
     [flatCollection, list],
   );
 

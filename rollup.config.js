@@ -20,17 +20,17 @@ export default {
     {
       file: pkg.main,
       format: 'cjs',
-      sourcemap: true,
+      sourcemap: !isProd,
       compact: true,
       exports: 'named',
     },
-    {
-      file: pkg.module,
-      format: 'es',
-      sourcemap: true,
-      compact: true,
-      exports: 'named',
-    },
+    //  {
+    //   file: pkg.module,
+    //   format: 'es',
+    //   sourcemap: !isProd,
+    //   compact: true,
+    //   exports: 'named',
+    // },
   ],
   plugins: [
     external(),
@@ -49,7 +49,7 @@ export default {
       ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
     }),
     json(),
-    gzipPlugin(),
+    !isProd && gzipPlugin(),
     importAlias({
       Paths: {
         '@rsv-lib': './src/lib',

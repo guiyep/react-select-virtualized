@@ -136,7 +136,11 @@ NOT YET DONE.
 
 For custom styling of the Input component read the `react-select` [documentation](https://react-select.com/home#custom-styles).
 
-For styling the menu list and options, set the `menuIsOpen` prop to true, create an options list with less than 100 elements and use css for adjusting your css.
+The styling in the menu list is by css.
+
+#### How to leave the menu open so I can style my menu?
+
+Set the `menuIsOpen` prop to true, create an options list with less than 100 elements and use css for adjusting your css.
 
 Use this example as a guidance
 

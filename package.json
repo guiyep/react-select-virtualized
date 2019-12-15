@@ -68,7 +68,7 @@
     "react-test-renderer": "16.12.0",
     "react-testing-library": "8.0.1",
     "react-virtualized": "9.21.2",
-    "rollup": "1.27.12",
+    "rollup": "1.27.13",
     "rollup-plugin-babel": "4.3.3",
     "rollup-plugin-babel-minify": "9.1.1",
     "rollup-plugin-cleaner": "1.0.0",

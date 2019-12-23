@@ -4,7 +4,7 @@ import ReactSelect from 'react-select';
 import ReactAsync from 'react-select/async';
 import ReactSelectCreatableSelect from 'react-select/creatable';
 import ReactSelectAsyncCreatableSelect from 'react-select/async-creatable';
-import { calculateDebounce, mapLowercaseLabel, getFilteredItems } from '@rsv-lib/utils';
+import { mapLowercaseLabel, getFilteredItems } from '@rsv-lib/utils';
 import { calculateTotalGroupedListSize } from '@rsv-lib/utils';
 import { optionsPropTypes } from '@rsv-lib/prop-types';
 import { useDebouncedCallback } from '@rsv-hooks/use-debaunced-callback';
@@ -30,7 +30,6 @@ let FastReactSelect = (propsIn, ref) => {
   const minimumInputSearchIsSet = minimumInputSearch >= 1;
 
   const listSize = useMemo(() => (grouped && calculateTotalGroupedListSize(options)) || options.length, [options, grouped]);
-  const debounceTime = useMemo(() => calculateDebounce(listSize), [listSize]);
   const [menuIsOpenState, setMenuIsOpen] = useState({ currentInput: '' });
 
   const updateSetMenuIsOpen = useCallback(
@@ -86,8 +85,6 @@ let FastReactSelect = (propsIn, ref) => {
       }
       return callback(getFilteredItems({ inputValue, memoOptions, grouped, filterOption }));
     },
-    debounceTime,
-    [minimumInputSearchIsSet, menuIsOpenState, asyncLoadOptions, debounceTime, grouped, memoOptions],
   );
 
   if (creatable && listSize <= LAG_INDICATOR) {

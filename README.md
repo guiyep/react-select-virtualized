@@ -19,8 +19,6 @@ npm install --save react-select-virtualized
 
 ### Peer Dependencies
 
-Remember to install them (if they are not already in your project).
-
 ```bash
 {
     "react",
@@ -42,7 +40,7 @@ Check [Storybook](https://serene-hawking-021d7a.netlify.com/) for more examples
 
 ## What we do support and don't from react-select
 
-Components: Select, Async, Creatable
+Components: `Select`, `Async`, `Creatable`
 
 - [x] We support all the UI related props for the input. Extension also.
 
@@ -160,15 +158,15 @@ Use this example as a guidance
 
 | Props                                        | Type                                       | Default | Description                                                                          |
 | -------------------------------------------- | ------------------------------------------ | ------- | ------------------------------------------------------------------------------------ |
-| grouped                                      | boolean                                    | false   | specify if options are grouped                                                       |
-| formatGroupHeaderLabel                       | function({ label, options}) => component   |         | will render a custom component in the popup grouped header (only for grouped)        |
-| formatOptionLabel (coming from react-select) | function(option, { context }) => component |         | will render a custom component in the label                                          |
-| optionHeight                                 | number                                     | 31      | height of each option                                                                |
-| groupHeaderHeight                            | number                                     |         | header row height in the popover list                                                |
-| maxHeight (coming from react-select)         | number                                     | auto    | max height popover list                                                              |
-| defaultValue                                 | option                                     |         | will set default value and set the component as an uncontrolled component            |
-| value                                        | option                                     |         | will set the value and the component will be a controlled component                  |
-| onCreateOption (Only for Creatable)          | function(option) => nothing                |         | will be executed when a new option is created , it is only for controlled components |
+| grouped                                      | boolean                                    | false   | Specify if options are grouped                                                       |
+| formatGroupHeaderLabel                       | function({ label, options}) => component   |         | Will render a custom component in the popup grouped header (only for grouped)        |
+| formatOptionLabel (coming from react-select) | function(option, { context }) => component |         | Will render a custom component in the label                                          |
+| optionHeight                                 | number                                     | 31      | Height of each option                                                                |
+| groupHeaderHeight                            | number                                     |         | Header row height in the popover list                                                |
+| maxHeight (coming from react-select)         | number                                     | auto    | Max height popover list                                                              |
+| defaultValue                                 | option                                     |         | Will set default value and set the component as an uncontrolled component            |
+| value                                        | option                                     |         | Will set the value and the component will be a controlled component                  |
+| onCreateOption (Only for Creatable)          | function(option) => nothing                |         | Will be executed when a new option is created , it is only for controlled components |
 
   </details>
 
@@ -178,34 +176,34 @@ Use this example as a guidance
   <summary>Toggle</summary>
   
 - [x] useCallback everywhere.
-- [x] move fast options to group.
-- [x] fix minimum input search on grouped component.
-- [x] upgrade alpha version.
-- [x] review all the TODOs.
-- [x] improve filtering function in `fast-react-select`.
-  - [x] improved performance by 50%
-- [x] add gzip.
-- [x] review support to all the react-select props. Should all work but multi-val.
+- [x] Move fast options to group.
+- [x] Fix minimum input search on grouped component.
+- [x] Upgrade alpha version.
+- [x] Review all the TODOs.
+- [x] Improve filtering function in `fast-react-select`.
+  - [x] Improved performance by 50%
+- [x] Add gzip.
+- [x] Review support to all the react-select props. Should all work but multi-val.
 
 -- v 1.0.0 --
 
-- [x] add support to AsyncSelect.
+- [x] Add support to AsyncSelect.
 
 -- v 1.1.0 --
 
-- [x] add support to AsyncSelect with group.
+- [x] Add support to AsyncSelect with group.
 
 -- v 1.2.0 --
 
-- [x] upgrading packages and hooks.
+- [x] Upgrading packages and hooks.
 
 -- v 2.0.0 --
 
-- [x] adding react-select v3.
-- [x] fixing addon-info.
-- [x] remove classnames.
-- [x] improve packaging.
-- [x] remove react-hover-observer.
+- [x] Adding react-select v3.
+- [x] Fixing addon-info.
+- [x] Remove classnames.
+- [x] Improve packaging.
+- [x] Remove react-hover-observer.
 - [x] Added controlled components support.
 
 -- v 2.1.0 --
@@ -214,18 +212,19 @@ Use this example as a guidance
 
 -- v 2.2.0 --
 
-- [x] add support to create element props.
-- [x] add better error handling.
+- [x] Add support to create element props.
+- [x] Add better error handling.
 
 -- v 2.3.0 --
 
-- [x] move modules to lib.
-- [ ] move internal state of select and async select to reducer like creatable.
-- [ ] add support to create element props with group.
+- [x] Move modules to lib.
+- [x] Improve debounce.
+- [ ] Move internal state of select and async select to reducer like creatable.
+- [ ] Add support to create element props with group.
 
 -- v 2.4.0 --
 
-- [ ] add testing so we do not only relay on storybook.
+- [ ] Add testing so we do not only relay on storybook.
 
   </details>
 

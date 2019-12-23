@@ -8,19 +8,18 @@ export const defaultValueStatic = optionsDefaultStatic[0];
 
 export const optionsDefault = new Array(20).fill(null).map(() => ({
   value: random.guid(),
-  label: `${random.maleFirstName()} - ${random.email('test.com.au')}`,
+  label: `${random.maleFirstName()} - ${random.email(`${random.maleFirstName()}.com.au`)}`,
   lang: random.language(),
 }));
 
 export const defaultValue = { ...optionsDefault[random.int(1, 19)] };
 
 const guid = random.guid();
-const email = random.email('test.com.au');
 
 export const buildOptionsSize = (size) => {
   return new Array(Math.round(size)).fill(null).map((item, index) => ({
     value: `${guid}-${index}`,
-    label: `${random.maleFirstName()} - ${index} - ${email}`,
+    label: `${random.maleFirstName()} - ${index} - ${random.email(`${random.lower(random.maleFirstName())}.com.au`)}`,
     lang: random.language(),
   }));
 };

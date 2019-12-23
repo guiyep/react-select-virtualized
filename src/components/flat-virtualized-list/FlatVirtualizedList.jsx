@@ -81,15 +81,11 @@ let FlatListVirtualized = (props) => {
     [list],
   );
 
-  const loadMoreRows = useDebouncedCallback(
-    ({ startIndex, stopIndex }) => {
-      for (let i = startIndex; i <= stopIndex; i++) {
-        list.push(children[i]);
-      }
-    },
-    100,
-    [list, children],
-  );
+  const loadMoreRows = useDebouncedCallback(({ startIndex, stopIndex }) => {
+    for (let i = startIndex; i <= stopIndex; i++) {
+      list.push(children[i]);
+    }
+  }, 100);
 
   return (
     <AutoSizer disableHeight>

@@ -46,6 +46,8 @@ Components: `Select`, `Async`, `Creatable`
 
 - [x] We do not support any related prop to the popup list. We extend it. \*Sorry no extension of any component inside the list.\*
 
+- [x] Sorry no multi selection yet. (no `isMulti`)
+
 # Examples
 
 ## Options Shape

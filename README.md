@@ -232,7 +232,7 @@ Use this example as a guidance
 
 ## More from me :)
 
-- my-form-state [![NPM](https://img.shields.io/npm/v/react-select-virtualized.svg)](https://www.npmjs.com/package/my-form-state)
+> my-form-state [![NPM](https://img.shields.io/npm/v/my-form-state.svg)](https://www.npmjs.com/package/my-form-state)
 
 ## License
 

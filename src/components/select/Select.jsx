@@ -76,6 +76,9 @@ let Select = (props, ref) => {
     focus: () => {
       reactSelect.current.focus();
     },
+    blur: () => {
+      reactSelect.current.blur();
+    },
     select: (item) => {
       if (value) {
         throwMixControlledError();

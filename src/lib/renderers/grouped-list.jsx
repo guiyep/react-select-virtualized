@@ -12,12 +12,9 @@ export const groupVirtualizedListRowRenderer = ({
   const thisProps = children[index].props;
   const isGroupHeaderValue = isGroupHeader(thisProps);
 
-  // wait for https://github.com/JedWatson/react-select/issues/3656
-  // the problem is that the always start now from the beginning and not from the last selected. so
-  // the arrow functionality is lost between closing and opening again.
-  // if (thisProps.isSelected && !isGroupHeaderValue) {
-  //   onOptionFocused({ data: thisProps.data, index, isVisible, isScrolling });
-  // }
+  if (thisProps.isSelected && !isGroupHeaderValue) {
+    onOptionFocused({ data: thisProps.data, index, isVisible, isScrolling });
+  }
 
   return (
     <div className="grouped-virtualized-list-item" key={key} style={style}>
@@ -33,10 +30,7 @@ export const groupVirtualizedListRowRenderer = ({
           isVisible={isVisible}
           isScrolling={isScrolling}
           optionHeight={optionHeight}
-          // wait for https://github.com/JedWatson/react-select/issues/3656
-          // the problem is that the always start now from the beginning and not from the last selected. so
-          // the arrow functionality is lost between closing and opening again.
-          // isFocused={thisProps.isSelected}
+          isFocused={thisProps.isFocused}
           isSelected={thisProps.isSelected}
           formatOptionLabel={formatOptionLabel}
         />

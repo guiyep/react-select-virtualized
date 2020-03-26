@@ -32,11 +32,14 @@ let FlatListVirtualized = (props) => {
 
   const onOptionFocused = useCallback(
     ({ index, isVisible }) => {
-      if (index !== undefined && focusedItemIndex !== index && isVisible) {
-        setFocusedItemIndex(index);
-      } else if (index !== undefined && !isVisible && !queueScrollToIdx) {
-        setQueueScrollToIdx(index);
-      }
+      // enqueue the changes to the task queue so we do not interrupt rendering
+      setTimeout(() => {
+        if (index !== undefined && focusedItemIndex !== index && isVisible) {
+          setFocusedItemIndex(index);
+        } else if (index !== undefined && !isVisible && !queueScrollToIdx) {
+          setQueueScrollToIdx(index);
+        }
+      }, 100);
     },
     [setFocusedItemIndex, focusedItemIndex, setQueueScrollToIdx, queueScrollToIdx],
   );

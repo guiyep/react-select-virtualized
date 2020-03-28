@@ -46,6 +46,8 @@ Components: `Select`, `Async`, `Creatable`
 
 - [x] We do not support any related prop to the popup list. We extend it. \*Sorry no extension of any component inside the list.\*
 
+- [x] Sorry no multi selection yet. (no `isMulti`)
+
 # Examples
 
 ## Options Shape
@@ -227,6 +229,10 @@ Use this example as a guidance
 - [ ] Add testing so we do not only relay on storybook.
 
   </details>
+
+## More from me :)
+
+> my-form-state [![NPM](https://img.shields.io/npm/v/my-form-state.svg)](https://www.npmjs.com/package/my-form-state)
 
 ## License
 

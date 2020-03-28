@@ -1,6 +1,6 @@
 {
   "name": "react-select-virtualized",
-  "version": "2.5.0",
+  "version": "2.5.1",
   "description": "Select virtualized component using: react-select v3 + react-virtualized + react hooks",
   "author": "guiyep",
   "license": "MIT",
@@ -97,6 +97,6 @@
     "react-select": "3.1.0"
   },
   "dependencies": {
-    "lodash.debounce": "^4.0.8"
+    "lodash.debounce": "4.0.8"
   }
 }

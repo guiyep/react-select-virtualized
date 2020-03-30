@@ -59,7 +59,7 @@
     "eslint-plugin-standard": "4.0.1",
     "extend-shallow": "3.0.2",
     "generate-random-data": "0.0.3",
-    "jest": "25.2.3",
+    "jest": "25.2.4",
     "jest-css-modules": "2.1.0",
     "prop-types": "15.7.2",
     "react": "16.13.1",

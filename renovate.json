@@ -1,5 +1,11 @@
 {
   "extends": ["config:base"],
   "baseBranches": ["develop"],
-  "schedule": ["before 5:00am"]
+  "schedule": ["before 5:00am"],
+  "packageRules": [
+    {
+      "updateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true
+    }
+  ]
 }

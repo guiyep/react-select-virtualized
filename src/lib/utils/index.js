@@ -41,7 +41,7 @@ export const mapLowercaseLabel = (list, formatOptionLabel = defaultFormatOptionL
       label = defaultFormatOptionLabel(item);
     }
 
-    if (!label) {
+    if (label === undefined || label === null) {
       throw new Error(
         buildErrorText(
           'For performance reasons, if formatOptionLabel returns something different from text, the label element must be in the option. The label to display cannot be undefined or null.',

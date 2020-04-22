@@ -21,7 +21,7 @@ export const flatVirtualizedListRowRenderer = ({ children, onOptionFocused, opti
     <div className="flat-virtualized-item" key={key} style={style}>
       <FastOption
         data={thisProps.data}
-        setValue={thisProps.setValue}
+        selectOption={thisProps.selectOption}
         isVisible={isVisible}
         isScrolling={isScrolling}
         optionHeight={optionHeight}

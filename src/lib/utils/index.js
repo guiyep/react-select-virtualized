@@ -1,5 +1,11 @@
 import { buildErrorText } from '@rsv-lib/error';
 
+export const cleanValue = (value) => {
+  if (Array.isArray(value)) return value.filter(Boolean);
+  if (typeof value === 'object' && value !== null) return [value];
+  return [];
+};
+
 // this is very basic analize a bit more
 export const calculateDebounce = (size) => {
   if (size <= 30000) {
@@ -89,7 +95,8 @@ export const flattenGroupedOptions = (reactComponent) =>
     .reduce((accumulator, currentValue) => accumulator.concat(currentValue), []);
 
 // 1 is for the group item
-export const calculateTotalGroupedListSize = (options) => options.reduce((acc, item) => acc + 1 + item.options.length, 0);
+export const calculateTotalGroupedListSize = (options) =>
+  options.reduce((acc, item) => acc + 1 + item.options.length, 0);
 
 export const isDifferentValueOption = (op, val) =>
   (op && val && op.value != val.value) || (!op && !!val) || (!!op && !val);

@@ -26,7 +26,7 @@ export const groupVirtualizedListRowRenderer = ({
       ) : (
         <FastOption
           data={thisProps.data}
-          setValue={thisProps.setValue}
+          selectOption={thisProps.selectOption}
           isVisible={isVisible}
           isScrolling={isScrolling}
           optionHeight={optionHeight}

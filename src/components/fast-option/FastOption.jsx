@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import { FastLabel } from '../fast-label';
 
 const FastOption = memo(
-  ({ data, isScrolling, isSelected, isVisible, setValue, optionHeight, isFocused, formatOptionLabel }) => (
+  ({ data, isScrolling, isSelected, isVisible, selectOption, optionHeight, isFocused, formatOptionLabel }) => (
     <Fragment>
       {(isScrolling || !isVisible || isFocused) && (
         <FastLabel
           data={data}
-          setValue={setValue}
+          selectOption={selectOption}
           isHovering={false}
           isFocused={isFocused}
           isSelected={isSelected}
@@ -23,7 +23,7 @@ const FastOption = memo(
             <FastLabel
               data={data}
               isFocused={isFocused}
-              setValue={setValue}
+              selectOption={selectOption}
               isHovering={isHovering}
               isSelected={isSelected}
               style={{ lineHeight: `${optionHeight}px` }}
@@ -40,7 +40,7 @@ FastOption.propTypes = {
   data: PropTypes.object.isRequired,
   isScrolling: PropTypes.bool.isRequired,
   isVisible: PropTypes.bool.isRequired,
-  setValue: PropTypes.func.isRequired,
+  selectOption: PropTypes.func.isRequired,
   optionHeight: PropTypes.number.isRequired,
   // isFocused: PropTypes.bool.isRequired,
 };

@@ -18,6 +18,7 @@ storiesOf(`React Select Virtualized/props`, module)
     },
   })
   .add('Basic', () => <Select options={optionsDefault} />)
+  .add('Multi', () => <Select options={optionsDefault} isMulti />)
   .add('with default value uncontrolled', () => <Select defaultValue={defaultValue} options={optionsDefault} />)
   .add('with default value controlled', () => <Select value={defaultValue} options={optionsDefault} />)
   .add(

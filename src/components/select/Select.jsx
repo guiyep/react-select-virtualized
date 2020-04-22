@@ -7,6 +7,7 @@ import { defaultGroupFormat } from '@rsv-lib/renderers';
 import 'react-virtualized/styles.css';
 import { optionsPropTypes } from '@rsv-lib/prop-types';
 import { buildErrorText } from '@rsv-lib/error';
+import { cleanValue } from '@rsv-lib/utils';
 
 const throwMixControlledError = () => {
   throw new Error(
@@ -35,7 +36,7 @@ let Select = (props, ref) => {
     throwMixControlledError();
   }
 
-  const [selection, setSelection] = useState(defaultValue || value);
+  const [selection, setSelection] = useState(cleanValue(defaultValue || value));
 
   const defaultProps = {
     isMulti: false,
@@ -66,12 +67,14 @@ let Select = (props, ref) => {
     [onChange, setSelection],
   );
 
+  const isMulti = props.isMulti || defaultProps.isMulti;
+
   useImperativeHandle(ref, () => ({
     clear: () => {
       if (value) {
         throwMixControlledError();
       }
-      setSelection(null);
+      setSelection(isMulti ? [] : null);
     },
     focus: () => {
       reactSelect.current.focus();

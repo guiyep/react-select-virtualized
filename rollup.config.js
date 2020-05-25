@@ -64,7 +64,6 @@ export default {
       }),
     isProd &&
       terser({
-        sourcemap: true,
         toplevel: true,
       }),
   ],

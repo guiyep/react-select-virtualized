@@ -11,7 +11,6 @@ const FastOption = memo(
           data={data}
           setValue={setValue}
           isHovering={false}
-          isFocused={isFocused}
           isSelected={isSelected}
           style={{ lineHeight: `${optionHeight}px` }}
           formatOptionLabel={formatOptionLabel}
@@ -22,7 +21,6 @@ const FastOption = memo(
           {({ isHovering }) => (
             <FastLabel
               data={data}
-              isFocused={isFocused}
               setValue={setValue}
               isHovering={isHovering}
               isSelected={isSelected}
@@ -42,7 +40,6 @@ FastOption.propTypes = {
   isVisible: PropTypes.bool.isRequired,
   setValue: PropTypes.func.isRequired,
   optionHeight: PropTypes.number.isRequired,
-  // isFocused: PropTypes.bool.isRequired,
 };
 
 export default FastOption;

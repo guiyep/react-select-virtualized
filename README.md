@@ -232,7 +232,9 @@ Use this example as a guidance
 
 ## More from me :)
 
-> my-form-state [![NPM](https://img.shields.io/npm/v/my-form-state.svg)](https://www.npmjs.com/package/my-form-state)
+> my-react-form-state [![NPM](https://img.shields.io/npm/v/my-react-form-state.svg)](https://www.npmjs.com/package/my-react-form-state)
+
+This is a React form state management library that works with React/Redux/React-Native.
 
 ## License
 

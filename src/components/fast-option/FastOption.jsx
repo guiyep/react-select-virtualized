@@ -12,6 +12,7 @@ const FastOption = memo(
           setValue={setValue}
           isHovering={false}
           isSelected={isSelected}
+          isFocused={isFocused}
           style={{ lineHeight: `${optionHeight}px` }}
           formatOptionLabel={formatOptionLabel}
         />

@@ -24,6 +24,7 @@ let FastReactSelect = (propsIn, ref) => {
     grouped,
     filterOption,
     creatable,
+    menuIsOpen,
     ...props
   } = propsIn;
 
@@ -88,7 +89,7 @@ let FastReactSelect = (propsIn, ref) => {
   );
 
   if (creatable && listSize <= LAG_INDICATOR) {
-    return <ReactSelectCreatableSelect ref={ref} {...props} options={memoOptions} captureMenuScroll={false} />;
+    return <ReactSelectCreatableSelect ref={ref} {...props} options={memoOptions} captureMenuScroll={false} menuIsOpen={menuIsOpen}/>;
   }
 
   if (creatable && listSize > LAG_INDICATOR) {
@@ -101,7 +102,7 @@ let FastReactSelect = (propsIn, ref) => {
         cacheOptions={!grouped}
         loadOptions={loadOptions}
         defaultOptions={minimumInputSearch >= 1 || memoOptions.length === 0 ? true : memoOptions}
-        menuIsOpen={minimumInputSearchIsSet ? !!menuIsOpenState[menuIsOpenState.currentInput] : undefined}
+        menuIsOpen={minimumInputSearchIsSet ? !!menuIsOpenState[menuIsOpenState.currentInput] : menuIsOpen}
         onInputChange={onInputChange}
         captureMenuScroll={false}
       />
@@ -110,7 +111,7 @@ let FastReactSelect = (propsIn, ref) => {
 
   if (!creatable && listSize <= LAG_INDICATOR && !minimumInputSearchIsSet && !asyncLoadOptions) {
     return (
-      <ReactSelect ref={ref} {...props} filterOption={filterOption} options={memoOptions} captureMenuScroll={false} />
+      <ReactSelect ref={ref} {...props} filterOption={filterOption} options={memoOptions} captureMenuScroll={false} menuIsOpen={menuIsOpen}/>
     );
   }
 
@@ -124,7 +125,7 @@ let FastReactSelect = (propsIn, ref) => {
         cacheOptions={!grouped}
         loadOptions={loadOptions}
         defaultOptions={minimumInputSearch >= 1 || memoOptions.length === 0 ? true : memoOptions}
-        menuIsOpen={minimumInputSearchIsSet ? !!menuIsOpenState[menuIsOpenState.currentInput] : undefined}
+        menuIsOpen={minimumInputSearchIsSet ? !!menuIsOpenState[menuIsOpenState.currentInput] : menuIsOpen}
         onInputChange={onInputChange}
         captureMenuScroll={false}
       />

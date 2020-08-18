@@ -71,7 +71,7 @@
     "rollup-plugin-babel-minify": "10.0.0",
     "rollup-plugin-cleaner": "1.0.0",
     "rollup-plugin-commonjs": "10.1.0",
-    "rollup-plugin-gzip": "2.3.0",
+    "rollup-plugin-gzip": "2.5.0",
     "rollup-plugin-import-alias": "1.0.10",
     "rollup-plugin-json": "4.0.0",
     "rollup-plugin-node-resolve": "5.2.0",

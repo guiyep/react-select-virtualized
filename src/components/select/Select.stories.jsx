@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import { withState } from '@dump247/storybook-state';
@@ -116,5 +116,16 @@ storiesOf(`React Select Virtualized/props`, module)
         groupHeaderHeight={groupHeaderHeight}
         grouped
       />
+    );
+  })
+  .add('menuIsOpen passed from outside', () => {
+    const [isMenuOpen, setMenuStateOpen] = useState(true);
+    return (
+      <>
+        <button onClick={() => setMenuStateOpen((currentMenuState) => !currentMenuState)}>
+          Toggle Menu Open State
+        </button>
+        <Select options={op1500} menuIsOpen={isMenuOpen} />
+      </>
     );
   });

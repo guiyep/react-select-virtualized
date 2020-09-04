@@ -22,6 +22,7 @@ export const groupVirtualizedListRowRenderer = ({
         formatGroupHeader({
           label: thisProps.label,
           options: thisProps.options,
+          config: thisProps.config
         })
       ) : (
         <FastOption

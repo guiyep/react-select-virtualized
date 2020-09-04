@@ -82,6 +82,7 @@ export const flattenGroupedOptions = (reactComponent) =>
           typeGroup: 'group',
           label: child.props.data.label,
           options: child.props.options,
+          config: child.props.data.config
         },
       },
       ...child.props.children,

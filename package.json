@@ -1,10 +1,13 @@
 {
-  "name": "react-select-virtualized",
-  "version": "2.5.11",
+  "name": "@vvitto/react-select-virtualized",
+  "version": "2.5.15",
   "description": "Select virtualized component using: react-select v3 + react-virtualized + react hooks",
   "author": "guiyep",
   "license": "MIT",
-  "repository": "guiyep/react-select-virtualized",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vvitto/react-select-virtualized.git"
+  },
   "main": "dist/index.min.js",
   "engines": {
     "node": ">=9",
@@ -96,5 +99,9 @@
   },
   "dependencies": {
     "lodash.debounce": "4.0.8"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/vvitto/react-select-virtualized/issues"
+  },
+  "homepage": "https://github.com/vvitto/react-select-virtualized#readme"
 }

@@ -6,6 +6,7 @@ import { flattenGroupedOptions } from '@rsv-lib/utils';
 
 const GroupedVirtualizedListFactory = ({
   formatGroupHeader,
+  formatOptionLabel,
   optionHeight = menuListItemHeight,
   groupHeaderHeight = menuListItemHeight,
   defaultValue,
@@ -25,6 +26,7 @@ const GroupedVirtualizedListFactory = ({
         flatCollection={children}
         selectedValue={selectedValue}
         formatGroupHeader={formatGroupHeader}
+        formatOptionLabel={formatOptionLabel}
         optionHeight={optionHeight}
         groupHeaderHeight={groupHeaderHeight}
         valueGetter={valueGetter}

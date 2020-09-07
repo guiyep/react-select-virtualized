@@ -108,11 +108,16 @@ storiesOf(`React Select Virtualized/props`, module)
       </div>
     );
 
+    const labelFormat = ({ label, lang }, { context }) => {
+      return <div style={{ border: '2px solid blue' }}>{`${label} - ${lang}`}</div>;
+    };
+
     return (
       <Select
         options={opsGroup}
         defaultValue={defaultValue}
         formatGroupHeaderLabel={groupFormat}
+        formatOptionLabel={labelFormat}
         groupHeaderHeight={groupHeaderHeight}
         grouped
       />

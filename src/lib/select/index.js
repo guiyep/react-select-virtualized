@@ -6,6 +6,7 @@ export const buildListComponents = (props) => {
   components.MenuList = props.grouped
     ? GroupVirtualizedListFactory({
         formatGroupHeader: props.formatGroupHeaderLabel,
+        formatOptionLabel: props.formatOptionLabel,
         groupHeaderHeight: props.groupHeaderHeight,
         optionHeight: props.optionHeight,
         defaultValue: props.defaultValue,

@@ -22,6 +22,7 @@ export const groupVirtualizedListRowRenderer = ({
         formatGroupHeader({
           label: thisProps.label,
           options: thisProps.options,
+          isDisabled: thisProps.isDisabled
         })
       ) : (
         <FastOption
@@ -32,6 +33,7 @@ export const groupVirtualizedListRowRenderer = ({
           optionHeight={optionHeight}
           isFocused={thisProps.isFocused}
           isSelected={thisProps.isSelected}
+          isDisabled={thisProps.isDisabled}
           formatOptionLabel={formatOptionLabel}
         />
       )}

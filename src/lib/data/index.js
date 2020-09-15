@@ -77,3 +77,9 @@ export const opsGroupF = () => [
   { label: `Group ${random.maleFirstName()}`, options: group7 },
   { label: `Group ${random.maleFirstName()}`, options: group8 },
 ];
+
+export const simpleDisabledOptions = [{ label: 'Disabled Option', value: null, isDisabled: true }, ...group1]
+
+export const groupedDisabledOptions = [
+  { label: `Group ${random.maleFirstName()}`, options: simpleDisabledOptions },
+]

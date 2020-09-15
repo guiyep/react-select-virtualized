@@ -27,6 +27,7 @@ export const flatVirtualizedListRowRenderer = ({ children, onOptionFocused, opti
         optionHeight={optionHeight}
         isFocused={thisProps.isFocused}
         isSelected={thisProps.isSelected}
+        isDisabled={thisProps.isDisabled}
         formatOptionLabel={formatOptionLabel}
       />
     </div>

@@ -5,8 +5,12 @@ const configFastLabelOption = {
   context: 'menu',
 };
 
-const FastLabel = memo(({ data, setValue, isHovering, isSelected, isFocused, style, formatOptionLabel }) => {
-  const onClickHandler = () => setValue(data);
+const FastLabel = memo(({ data, setValue, isHovering, isSelected, isFocused, isDisabled, style, formatOptionLabel }) => {
+  const onClickHandler = () => {
+    if(!isDisabled) {
+      setValue(data)
+    }
+  };
 
   const label = useMemo(() => (formatOptionLabel ? formatOptionLabel(data, configFastLabelOption) : data.label), [
     data,

@@ -6,7 +6,16 @@ import { action } from '@storybook/addon-actions';
 // this is a workaround for storybook, storybook and addon-info does not work with react.memo. I will create a wrapper to fix this.
 // here you will import the component per the documentation `import Select from 'path-to-select'`
 import Select from './_SelectTablePropsStoryFix';
-import { optionsDefault, opsGroup, defaultValue, op1500, ops2500, op100 } from '@rsv-lib/data';
+import { 
+  optionsDefault, 
+  opsGroup, 
+  defaultValue, 
+  op1500, 
+  ops2500, 
+  op100, 
+  simpleDisabledOptions,
+  groupedDisabledOptions
+} from '@rsv-lib/data';
 
 storiesOf(`React Select Virtualized/props`, module)
   .addDecorator((story) => <div style={{ width: '30em' }}> {story()} </div>)
@@ -117,6 +126,25 @@ storiesOf(`React Select Virtualized/props`, module)
         grouped
       />
     );
+  })
+  .add('disabled simple option', () => {
+    return (
+      <Select
+        options={simpleDisabledOptions}
+        defaultValue={defaultValue}
+      />
+    )
+  })
+  .add('disabled option in group', () => {    
+    return (
+      <>
+        <Select
+          options={groupedDisabledOptions}
+          defaultValue={defaultValue}
+          grouped
+        />
+      </>
+    )
   })
   .add('menuIsOpen passed from outside', () => {
     const [isMenuOpen, setMenuStateOpen] = useState(true);

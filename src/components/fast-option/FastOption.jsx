@@ -4,20 +4,21 @@ import PropTypes from 'prop-types';
 import { FastLabel } from '../fast-label';
 
 const FastOption = memo(
-  ({ data, isScrolling, isSelected, isVisible, setValue, optionHeight, isFocused, formatOptionLabel }) => (
+  ({ data, isScrolling, isSelected, isVisible, isDisabled, setValue, optionHeight, isFocused, formatOptionLabel }) => (
     <Fragment>
-      {(isScrolling || !isVisible || isFocused) && (
+      {(isScrolling || !isVisible || isFocused || isDisabled) && (
         <FastLabel
           data={data}
           setValue={setValue}
           isHovering={false}
           isSelected={isSelected}
           isFocused={isFocused}
+          isDisabled={isDisabled}
           style={{ lineHeight: `${optionHeight}px` }}
           formatOptionLabel={formatOptionLabel}
         />
       )}
-      {!isScrolling && isVisible && !isFocused && (
+      {!isScrolling && isVisible && !isFocused && !isDisabled && (
         <FastHover>
           {({ isHovering }) => (
             <FastLabel
@@ -25,6 +26,7 @@ const FastOption = memo(
               setValue={setValue}
               isHovering={isHovering}
               isSelected={isSelected}
+              isDisabled={isDisabled}
               style={{ lineHeight: `${optionHeight}px` }}
               formatOptionLabel={formatOptionLabel}
             />

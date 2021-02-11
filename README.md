@@ -2,7 +2,7 @@
 
 ![Alt text](./logo.png?raw=true 'react-select-virtualized')
 
-> react-select v3 + react-virtualized + react hooks!
+> react-select v4 + react-virtualized + react hooks!
 
 [![NPM](https://img.shields.io/npm/v/react-select-virtualized.svg)](https://www.npmjs.com/package/react-select-virtualized) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -30,7 +30,9 @@ npm install --save react-select-virtualized
 
 ## Note
 
-The select component will be the same from `react-select v3` so you will be able to use it with any select you already have.
+The select component will be the same from `react-select v4` so you will be able to use it with any select you already have.
+
+For using this package with react-select 3.x, please use version 2.5.11.
 
 ## Try It!!!
 
@@ -221,14 +223,17 @@ Use this example as a guidance
 
 - [x] Move modules to lib.
 - [x] Improve debounce.
-- [ ] Move internal state of select and async select to reducer like creatable.
+
+-- v3.0.0 --
+
+- [x] Move internal state of select and async select to reducer like creatable.
+
+-- v 3.1.0 --
+
 - [ ] Add support to create element props with group.
-
--- v 2.4.0 --
-
 - [ ] Add testing so we do not only relay on storybook.
 
-  </details>
+</details>
 
 ## More from me :)
 

@@ -7,7 +7,6 @@
     "production": {
       "presets": ["minify"],
       "plugins": [
-        ["@babel/plugin-transform-runtime"],
         [
           "transform-react-remove-prop-types",
           {

@@ -1,13 +1,12 @@
 {
   "presets": [
-    "@babel/preset-env",
+    ["@babel/preset-env", { "useBuiltIns": "usage", "corejs": { "version": "3.15", "proposals": true } }],
     "@babel/preset-react"
   ],
   "env": {
     "production": {
       "presets": ["minify"],
       "plugins": [
-        ["@babel/plugin-transform-runtime"],
         [
           "transform-react-remove-prop-types",
           {

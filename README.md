@@ -2,7 +2,7 @@
 
 ![Alt text](./logo.png?raw=true 'react-select-virtualized')
 
-> react-select v4 + react-virtualized + react hooks!
+> react-select v5 + react-virtualized + react hooks!
 
 [![NPM](https://img.shields.io/npm/v/react-select-virtualized.svg)](https://www.npmjs.com/package/react-select-virtualized) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -30,11 +30,9 @@ npm install --save react-select-virtualized
 
 ## Note
 
-The select component will be the same from `react-select v4` so you will be able to use it with any select you already have.
+The select component will be the same from `react-select v5` so you will be able to use it with any select you already have.
 
-For using this package with react-select 3.x, please use version 2.5.11.
-
-## Try It!!!
+## Try It
 
 [![Edit react-select-virtualized](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/vigilant-mclean-wpbk7)
 

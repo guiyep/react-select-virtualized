@@ -1,5 +1,3 @@
 import FastOption from './FastOption';
 
-export {
-  FastOption
-}
+export { FastOption };

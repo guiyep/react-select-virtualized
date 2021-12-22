@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { buildErrorText } from '@rsv-lib/error';
 
 // this is very basic analize a bit more
@@ -52,16 +53,15 @@ export const mapLowercaseLabel = (list, formatOptionLabel = defaultFormatOptionL
     return { lowercaseLabel: label.toLowerCase(), ...item, ...iterator(item) };
   });
 
-//todo improve this
-export const filterGroupedElementsBy = (list, inputValLowercase, filterBy, filterOption) => {
-  return list.reduce((acc, item) => {
+// todo improve this
+export const filterGroupedElementsBy = (list, inputValLowercase, filterBy, filterOption) =>
+  list.reduce((acc, item) => {
     acc.push({
       ...item,
       options: filterBy(item.options, inputValLowercase, filterOption),
     });
     return acc;
   }, []);
-};
 
 export const getFilteredItems = ({ inputValue, memoOptions, grouped, filterOption }) => {
   const inputValLowercase = inputValue && inputValue.toLowerCase();
@@ -89,7 +89,8 @@ export const flattenGroupedOptions = (reactComponent) =>
     .reduce((accumulator, currentValue) => accumulator.concat(currentValue), []);
 
 // 1 is for the group item
-export const calculateTotalGroupedListSize = (options) => options.reduce((acc, item) => acc + 1 + item.options.length, 0);
+export const calculateTotalGroupedListSize = (options) =>
+  options.reduce((acc, item) => acc + 1 + item.options.length, 0);
 
 export const isDifferentValueOption = (op, val) =>
   (op && val && op.value != val.value) || (!op && !!val) || (!!op && !val);

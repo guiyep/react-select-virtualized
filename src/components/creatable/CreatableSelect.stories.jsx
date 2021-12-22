@@ -1,10 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
-import CreatableSelect from './CreatableSelectRenderer';
 import { optionsDefault, opsGroup20000, ops2500 } from '@rsv-lib/data';
 import { withState } from '@dump247/storybook-state';
 import { action } from '@storybook/addon-actions';
+import CreatableSelect from './CreatableSelectRenderer';
 
 storiesOf(`React Select Virtualized/Creatable`, module)
   .addDecorator((story) => <div style={{ width: '30em' }}> {story()} </div>)
@@ -15,7 +15,7 @@ storiesOf(`React Select Virtualized/Creatable`, module)
       maxPropsIntoLine: 1,
     },
   })
-  .add('Basic', () => <CreatableSelect options={optionsDefault} onChange={action(`onChange`)}/>)
+  .add('Basic', () => <CreatableSelect options={optionsDefault} onChange={action(`onChange`)} />)
   .add('Basic 2500 elements ', () => <CreatableSelect options={ops2500} onChange={action(`onChange`)} />)
   .add(
     'Basic with onCreateOption callback (only with controlled)',

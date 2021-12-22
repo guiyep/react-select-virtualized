@@ -24,13 +24,6 @@ export default {
       compact: true,
       exports: 'named',
     },
-    //  {
-    //   file: pkg.module,
-    //   format: 'es',
-    //   sourcemap: !isProd,
-    //   compact: true,
-    //   exports: 'named',
-    // },
   ],
   plugins: [
     external(),

@@ -1,12 +1,11 @@
 import React, { useEffect, useCallback, memo, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { List, InfiniteLoader, AutoSizer } from 'react-virtualized';
-import { getListHeight, getScrollIndex, getNextRowIndex } from '@rsv-lib/getters';
+import { getListHeight, getScrollIndex, getNextRowIndex, getGroupRowHeight } from '@rsv-lib/getters';
 import { groupVirtualizedListRowRenderer } from '@rsv-lib/renderers';
-import { getGroupRowHeight } from '@rsv-lib/getters';
 import { useDebouncedCallback } from '@rsv-hooks/use-debaunced-callback';
 
-let GroupVirtualizedList = (props) => {
+const GroupVirtualizedListComponent = (props) => {
   const [focusedItemIndex, setFocusedItemIndex] = useState(undefined);
   const [queueScrollToIdx, setQueueScrollToIdx] = useState(undefined);
   let listComponent;
@@ -78,7 +77,7 @@ let GroupVirtualizedList = (props) => {
     [flatCollection, optionHeight, groupHeaderHeight],
   );
 
-  let list = [];
+  const list = useMemo(() => [], []);
 
   const rowRenderer = useMemo(
     () =>
@@ -92,12 +91,7 @@ let GroupVirtualizedList = (props) => {
     [flatCollection, formatGroupHeader, onOptionFocused, optionHeight, formatOptionLabel],
   );
 
-  const isRowLoaded = useCallback(
-    ({ index }) => {
-      return !!list[index];
-    },
-    [list],
-  );
+  const isRowLoaded = useCallback(({ index }) => !!list[index], [list]);
 
   const loadMoreRows = useDebouncedCallback(
     ({ startIndex, stopIndex }) => {
@@ -143,7 +137,7 @@ let GroupVirtualizedList = (props) => {
   );
 };
 
-GroupVirtualizedList = memo(GroupVirtualizedList);
+const GroupVirtualizedList = memo(GroupVirtualizedListComponent);
 
 GroupVirtualizedList.propTypes = {
   maxHeight: PropTypes.number, // this prop is coming from react-select

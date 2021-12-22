@@ -5,22 +5,14 @@ import { getListHeight, getScrollIndex, getNextRowIndex } from '@rsv-lib/getters
 import { flatVirtualizedListRowRenderer } from '@rsv-lib/renderers';
 import { useDebouncedCallback } from '@rsv-hooks/use-debaunced-callback';
 
-let FlatListVirtualized = (props) => {
+const FlatListVirtualizedComponent = (props) => {
   let listComponent;
 
   const [focusedItemIndex, setFocusedItemIndex] = useState(undefined);
   const [queueScrollToIdx, setQueueScrollToIdx] = useState(undefined);
 
-  const {
-    maxHeight,
-    children,
-    optionHeight,
-    options,
-    selectedValue,
-    defaultValue,
-    valueGetter,
-    formatOptionLabel,
-  } = props;
+  const { maxHeight, children, optionHeight, options, selectedValue, defaultValue, valueGetter, formatOptionLabel } =
+    props;
 
   useEffect(() => {
     // only scroll to index when we have something in the queue of focused and not visible
@@ -75,14 +67,9 @@ let FlatListVirtualized = (props) => {
     [children, onOptionFocused, optionHeight, formatOptionLabel],
   );
 
-  let list = [];
+  const list = useMemo(() => [], []);
 
-  const isRowLoaded = useCallback(
-    ({ index }) => {
-      return !!list[index];
-    },
-    [list],
-  );
+  const isRowLoaded = useCallback(({ index }) => !!list[index], [list]);
 
   const loadMoreRows = useDebouncedCallback(({ startIndex, stopIndex }) => {
     for (let i = startIndex; i <= stopIndex; i++) {
@@ -124,7 +111,7 @@ let FlatListVirtualized = (props) => {
   );
 };
 
-FlatListVirtualized = memo(FlatListVirtualized);
+const FlatListVirtualized = memo(FlatListVirtualizedComponent);
 
 FlatListVirtualized.propTypes = {
   maxHeight: PropTypes.number, // this prop is coming from react-select

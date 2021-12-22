@@ -1,8 +1,8 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
+import { buildErrorText } from '@rsv-lib/error';
 import CreatableSelectControlledContainer from './CreatableSelectControlledContainer';
 import CreatableSelectUncontrolledContainer from './CreatableSelectUncontrolledContainer';
-import { buildErrorText } from '@rsv-lib/error';
 
 const CreatableSelectRenderer = memo((props) => {
   const { value, onCreateOption, grouped } = props;
@@ -28,6 +28,8 @@ CreatableSelectRenderer.displayName = 'CreatableSelectRenderer';
 
 CreatableSelectRenderer.propTypes = {
   onCreateOption: PropTypes.func,
+  value: PropTypes.any,
+  grouped: PropTypes.bool,
 };
 
 CreatableSelectRenderer.defaultProps = {

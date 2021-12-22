@@ -1,4 +1,3 @@
-import { FastReactSelect } from '../fast-react-select';
 import PropTypes from 'prop-types';
 import React, { useRef, useImperativeHandle, useState, forwardRef, useMemo, memo, useCallback, useEffect } from 'react';
 import './styles.css';
@@ -7,6 +6,7 @@ import { defaultGroupFormat } from '@rsv-lib/renderers';
 import 'react-virtualized/styles.css';
 import { optionsPropTypes } from '@rsv-lib/prop-types';
 import { buildErrorText } from '@rsv-lib/error';
+import { FastReactSelect } from '../fast-react-select';
 
 const throwMixControlledError = () => {
   throw new Error(
@@ -17,19 +17,11 @@ const throwMixControlledError = () => {
   );
 };
 
-let Select = (props, ref) => {
+const SelectComponent = (props, ref) => {
   const reactSelect = useRef('react-select');
 
-  const {
-    grouped,
-    formatGroupHeaderLabel,
-    groupHeaderHeight,
-    onChange,
-    defaultValue,
-    value,
-    optionHeight,
-    creatable,
-  } = props;
+  const { grouped, formatGroupHeaderLabel, groupHeaderHeight, onChange, defaultValue, value, optionHeight, creatable } =
+    props;
 
   if (defaultValue && value) {
     throwMixControlledError();
@@ -108,9 +100,9 @@ let Select = (props, ref) => {
   );
 };
 
-Select = forwardRef(Select);
+const SelectForward = forwardRef(SelectComponent);
 
-Select = memo(Select);
+const Select = memo(SelectForward);
 
 Select.propTypes = {
   ...FastReactSelect.propTypes,

@@ -2,42 +2,38 @@ import React from 'react';
 import { isGroupHeader } from '@rsv-lib/getters';
 import { FastOption } from '@rsv-components/fast-option';
 
-export const groupVirtualizedListRowRenderer = ({
-  children,
-  formatGroupHeader,
-  formatOptionLabel,
-  optionHeight,
-  onOptionFocused,
-}) => ({ key, index, style, isVisible, isScrolling }) => {
-  const thisProps = children[index].props;
-  const isGroupHeaderValue = isGroupHeader(thisProps);
+export const groupVirtualizedListRowRenderer =
+  ({ children, formatGroupHeader, formatOptionLabel, optionHeight, onOptionFocused }) =>
+  ({ key, index, style, isVisible, isScrolling }) => {
+    const thisProps = children[index].props;
+    const isGroupHeaderValue = isGroupHeader(thisProps);
 
-  if (thisProps.isSelected && !isGroupHeaderValue) {
-    onOptionFocused({ data: thisProps.data, index, isVisible, isScrolling });
-  }
+    if (thisProps.isSelected && !isGroupHeaderValue) {
+      onOptionFocused({ data: thisProps.data, index, isVisible, isScrolling });
+    }
 
-  return (
-    <div className="grouped-virtualized-list-item" key={key} style={style}>
-      {isGroupHeaderValue ? (
-        formatGroupHeader({
-          label: thisProps.label,
-          options: thisProps.options,
-        })
-      ) : (
-        <FastOption
-          data={thisProps.data}
-          setValue={thisProps.setValue}
-          isVisible={isVisible}
-          isScrolling={isScrolling}
-          optionHeight={optionHeight}
-          isFocused={thisProps.isFocused}
-          isSelected={thisProps.isSelected}
-          formatOptionLabel={formatOptionLabel}
-        />
-      )}
-    </div>
-  );
-};
+    return (
+      <div className="grouped-virtualized-list-item" key={key} style={style}>
+        {isGroupHeaderValue ? (
+          formatGroupHeader({
+            label: thisProps.label,
+            options: thisProps.options,
+          })
+        ) : (
+          <FastOption
+            data={thisProps.data}
+            setValue={thisProps.setValue}
+            isVisible={isVisible}
+            isScrolling={isScrolling}
+            optionHeight={optionHeight}
+            isFocused={thisProps.isFocused}
+            isSelected={thisProps.isSelected}
+            formatOptionLabel={formatOptionLabel}
+          />
+        )}
+      </div>
+    );
+  };
 
 // TODO RENAME THIS
 export const defaultGroupFormat = (height) => {

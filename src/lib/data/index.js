@@ -16,13 +16,12 @@ export const defaultValue = { ...optionsDefault[random.int(1, 19)] };
 
 const guid = random.guid();
 
-export const buildOptionsSize = (size) => {
-  return new Array(Math.round(size)).fill(null).map((item, index) => ({
+export const buildOptionsSize = (size) =>
+  new Array(Math.round(size)).fill(null).map((item, index) => ({
     value: `${guid}-${index}`,
     label: `${random.maleFirstName()} - ${index} - ${random.email(`${random.lower(random.maleFirstName())}.com.au`)}`,
     lang: random.language(),
   }));
-};
 
 export const op50 = buildOptionsSize(50);
 export const op100 = buildOptionsSize(100);

@@ -1,11 +1,11 @@
 import React, { memo, Fragment } from 'react';
-import { FastHover } from '../fast-hover';
 import PropTypes from 'prop-types';
+import { FastHover } from '../fast-hover';
 import { FastLabel } from '../fast-label';
 
 const FastOption = memo(
   ({ data, isScrolling, isSelected, isVisible, setValue, optionHeight, isFocused, formatOptionLabel }) => (
-    <Fragment>
+    <>
       {(isScrolling || !isVisible || isFocused) && (
         <FastLabel
           data={data}
@@ -31,7 +31,7 @@ const FastOption = memo(
           )}
         </FastHover>
       )}
-    </Fragment>
+    </>
   ),
 );
 
@@ -41,6 +41,9 @@ FastOption.propTypes = {
   isVisible: PropTypes.bool.isRequired,
   setValue: PropTypes.func.isRequired,
   optionHeight: PropTypes.number.isRequired,
+  isFocused: PropTypes.bool,
+  isSelected: PropTypes.bool,
+  formatOptionLabel: PropTypes.func,
 };
 
 export default FastOption;

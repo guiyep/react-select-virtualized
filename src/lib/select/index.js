@@ -19,14 +19,12 @@ export const buildListComponents = (props) => {
   return components;
 };
 
-export const getStyles = () => {
-  return {
-    clearIndicator: (provided) => ({
-      ...provided,
-      ':hover': {
-        cursor: 'pointer',
-        color: '#f22',
-      },
-    }),
-  };
-};
+export const getStyles = () => ({
+  clearIndicator: (provided) => ({
+    ...provided,
+    ':hover': {
+      cursor: 'pointer',
+      color: '#f22',
+    },
+  }),
+});

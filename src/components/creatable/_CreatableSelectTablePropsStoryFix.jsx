@@ -4,7 +4,7 @@ import React from 'react';
 import { optionsPropTypes } from '@rsv-lib/prop-types';
 import CreatableSelect from './CreatableSelect';
 
-const Select = (props) => <CreatableSelect {...props}></CreatableSelect>;
+const Select = (props) => <CreatableSelect {...props} />;
 
 Select.propTypes = {
   minimumInputSearch: PropTypes.number,

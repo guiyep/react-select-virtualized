@@ -4,7 +4,7 @@ import React from 'react';
 import { optionsPropTypes } from '@rsv-lib/prop-types';
 import AsyncComponent from './Async';
 
-const Async = (props) => <AsyncComponent {...props}></AsyncComponent>;
+const Async = (props) => <AsyncComponent {...props} />;
 
 Async.propTypes = {
   minimumInputSearch: PropTypes.number,

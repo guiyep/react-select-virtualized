@@ -38,7 +38,9 @@ export const getNextRowIndex = (prevFocusIndex = 0, nextIndex = 0, options = [])
 
 export const isGroupHeader = ({ typeGroup }) => !!typeGroup;
 
-export const getGroupRowHeight = ({ children, optionHeight, groupHeaderHeight }) => ({ index }) => {
-  const thisProps = children[index].props || {};
-  return isGroupHeader(thisProps) ? groupHeaderHeight : optionHeight;
-};
+export const getGroupRowHeight =
+  ({ children, optionHeight, groupHeaderHeight }) =>
+  ({ index }) => {
+    const thisProps = children[index].props || {};
+    return isGroupHeader(thisProps) ? groupHeaderHeight : optionHeight;
+  };

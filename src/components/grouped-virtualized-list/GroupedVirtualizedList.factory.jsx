@@ -1,8 +1,8 @@
 import React, { memo } from 'react';
 import { components as ReactSelectComponents } from 'react-select';
-import GroupListVirtualized from './GroupVirtualizedList';
 import { menuListItemHeight } from '@rsv-lib/defaults';
 import { flattenGroupedOptions } from '@rsv-lib/utils';
+import GroupListVirtualized from './GroupVirtualizedList';
 
 const GroupedVirtualizedListFactory = ({
   formatGroupHeader,

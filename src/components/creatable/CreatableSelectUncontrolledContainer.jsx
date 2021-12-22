@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useReducer } from 'react';
+import { isDifferentValueOption } from '@rsv-lib/utils';
 import CreatableSelect from './CreatableSelect';
 
-import { isDifferentValueOption } from '@rsv-lib/utils';
 import reducer, { SET_VALUE, SET_OPTIONS } from './state-reducer';
 
 const CreatableSelectUncontrolledContainer = memo(({ onChange, defaultValue, value, options, ...props }) => {
@@ -17,26 +17,33 @@ const CreatableSelectUncontrolledContainer = memo(({ onChange, defaultValue, val
       dispatch({ type: SET_VALUE, payload: newItemObj });
       return newItemObj;
     },
-    [state],
+    [state.options, dispatch],
   );
 
-  const onOptionsChangeHandler = useCallback((options) => {
-    if (options !== state.options) {
-      dispatch({ type: SET_OPTIONS, payload: options });
-    }
-  });
-
-  const onValueChangeHandler = useCallback((option) => {
-    if (isDifferentValueOption(option, state.value)) {
-      if (option && option.__isNew__) {
-        return onNewOptionHandler(option.value);
+  const onOptionsChangeHandler = useCallback(
+    (changeOptions) => {
+      if (changeOptions !== state.options) {
+        dispatch({ type: SET_OPTIONS, payload: changeOptions });
       }
-      return dispatch({ type: SET_VALUE, payload: option });
-    }
-    if (onChange) {
-      onChange(option);
-    }
-  });
+    },
+    [dispatch, state.options],
+  );
+
+  const onValueChangeHandler = useCallback(
+    (option) => {
+      if (isDifferentValueOption(option, state.value)) {
+        if (option && option.isNew) {
+          onNewOptionHandler(option.value);
+        } else {
+          dispatch({ type: SET_VALUE, payload: option });
+        }
+      }
+      if (onChange) {
+        onChange(option);
+      }
+    },
+    [dispatch, onNewOptionHandler, onChange, state.value],
+  );
 
   return (
     <CreatableSelect

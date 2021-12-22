@@ -1,19 +1,18 @@
 import React, { memo, useMemo, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import Select from '../select/Select';
 import { optionsPropTypes } from '@rsv-lib/prop-types';
+import Select from '../select/Select';
 
 const Async = memo(({ defaultOptions, loadOptions, cacheOptions, onInputChange, minimumInputSearch, ...props }) => {
   const options = useMemo(() => defaultOptions || [], [defaultOptions]);
 
   const asyncLoadOptions = useCallback(
-    (inputValue) => {
-      return new Promise((resolve) => {
+    (inputValue) =>
+      new Promise((resolve) => {
         loadOptions(inputValue, (result) => {
           resolve(result);
         });
-      });
-    },
+      }),
     [loadOptions],
   );
 

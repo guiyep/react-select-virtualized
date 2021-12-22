@@ -8,16 +8,17 @@ const configFastLabelOption = {
 const FastLabel = memo(({ data, setValue, isHovering, isSelected, isFocused, style, formatOptionLabel }) => {
   const onClickHandler = () => setValue(data);
 
-  const label = useMemo(() => (formatOptionLabel ? formatOptionLabel(data, configFastLabelOption) : data.label), [
-    data,
-    formatOptionLabel,
-  ]);
+  const label = useMemo(
+    () => (formatOptionLabel ? formatOptionLabel(data, configFastLabelOption) : data.label),
+    [data, formatOptionLabel],
+  );
 
   return (
     <div
       className={`${
+        // eslint-disable-next-line
         isSelected ? 'fast-option-selected' : isHovering || isFocused ? 'fast-option-focused' : ''
-      } fast-option ${data.__isNew__ ? 'fast-option-create' : ''}`}
+      } fast-option ${data.isNew ? 'fast-option-create' : ''}`}
       style={style}
       onClick={onClickHandler}
     >

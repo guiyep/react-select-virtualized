@@ -1,8 +1,8 @@
 import React, { memo, useCallback } from 'react';
-import CreatableSelect from './CreatableSelect';
 import PropTypes from 'prop-types';
 
 import { isDifferentValueOption } from '@rsv-lib/utils';
+import CreatableSelect from './CreatableSelect';
 
 const CreatableSelectControlledContainer = memo(({ onChange, onCreateOption, value, options, ...props }) => {
   const onCreateOptionHandler = useCallback(
@@ -12,14 +12,18 @@ const CreatableSelectControlledContainer = memo(({ onChange, onCreateOption, val
     [onCreateOption],
   );
 
-  const onValueChangeHandler = useCallback((option) => {
-    if (isDifferentValueOption(option, value)) {
-      if (option && option.__isNew__) {
-        return onCreateOptionHandler(option.value);
+  const onValueChangeHandler = useCallback(
+    (option) => {
+      if (isDifferentValueOption(option, value)) {
+        if (option && option.isNew) {
+          onCreateOptionHandler(option.value);
+        } else {
+          onChange(option);
+        }
       }
-      return onChange(option);
-    }
-  });
+    },
+    [onChange, onCreateOptionHandler, value],
+  );
 
   return (
     <CreatableSelect
@@ -36,6 +40,9 @@ CreatableSelectControlledContainer.displayName = 'CreatableSelectControlledConta
 
 CreatableSelectControlledContainer.propTypes = {
   onCreateOption: PropTypes.func,
+  options: PropTypes.object,
+  value: PropTypes.any,
+  onChange: PropTypes.func,
 };
 
 CreatableSelectControlledContainer.defaultProps = {

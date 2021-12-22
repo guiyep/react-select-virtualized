@@ -1,6 +1,6 @@
 import React, { memo, useEffect } from 'react';
-import Select from '../select/Select';
 import PropTypes from 'prop-types';
+import Select from '../select/Select';
 
 const CreatableSelect = memo(({ onValueChange, onOptionsChange, onNewOption, ...props }) => {
   const { options, value } = props;
@@ -24,6 +24,8 @@ CreatableSelect.propTypes = {
   onValueChange: PropTypes.func,
   onOptionsChange: PropTypes.func,
   onNewOption: PropTypes.func,
+  options: PropTypes.object,
+  value: PropTypes.any,
 };
 
 CreatableSelect.defaultProps = {

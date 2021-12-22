@@ -1,7 +1,7 @@
 import { components as ReactSelectComponents } from 'react-select';
 import React, { memo } from 'react';
-import FlatVirtualizedList from './FlatVirtualizedList';
 import { menuListItemHeight } from '@rsv-lib/defaults';
+import FlatVirtualizedList from './FlatVirtualizedList';
 
 const FlatVirtualizedListFactory = ({
   optionHeight = menuListItemHeight,

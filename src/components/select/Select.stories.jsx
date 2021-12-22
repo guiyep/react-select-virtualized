@@ -3,10 +3,8 @@ import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import { withState } from '@dump247/storybook-state';
 import { action } from '@storybook/addon-actions';
-// this is a workaround for storybook, storybook and addon-info does not work with react.memo. I will create a wrapper to fix this.
-// here you will import the component per the documentation `import Select from 'path-to-select'`
-import Select from './_SelectTablePropsStoryFix';
 import { optionsDefault, opsGroup, defaultValue, op1500, ops2500, op100 } from '@rsv-lib/data';
+import Select from './_SelectTablePropsStoryFix';
 
 storiesOf(`React Select Virtualized/props`, module)
   .addDecorator((story) => <div style={{ width: '30em' }}> {story()} </div>)
@@ -25,6 +23,7 @@ storiesOf(`React Select Virtualized/props`, module)
     withState({ value: defaultValue })(({ store }) => (
       <div>
         <button
+          type="button"
           onClick={() => {
             store.set({ value: null });
             action(`clear`)({ value: null });
@@ -44,12 +43,12 @@ storiesOf(`React Select Virtualized/props`, module)
   )
   .add('with minimum input to 3', () => <Select options={op1500} minimumInputSearch={3} />)
   .add('with filterOptions(value with $$$number) less than 1000', () => {
-    const op1500Mapped = op100.map((option, index) => ({ ...option, value: option.value + `$$$${index}` }));
+    const op1500Mapped = op100.map((option, index) => ({ ...option, value: `${option.value}$$$${index}` }));
     const customFilter = (option, rawInput) => option && option.value.indexOf(rawInput) >= 0;
     return <Select options={op1500Mapped} filterOption={customFilter} />;
   })
   .add('with filterOptions(value with $$$number)', () => {
-    const op1500Mapped = op1500.map((option, index) => ({ ...option, value: option.value + `$$$${index}` }));
+    const op1500Mapped = op1500.map((option, index) => ({ ...option, value: `${option.value}$$$${index}` }));
     const customFilter = (option, rawInput) => option && option.value.indexOf(rawInput) >= 0;
     return <Select options={op1500Mapped} filterOption={customFilter} />;
   })
@@ -122,7 +121,7 @@ storiesOf(`React Select Virtualized/props`, module)
     const [isMenuOpen, setMenuStateOpen] = useState(true);
     return (
       <>
-        <button onClick={() => setMenuStateOpen((currentMenuState) => !currentMenuState)}>
+        <button type="button" onClick={() => setMenuStateOpen((currentMenuState) => !currentMenuState)}>
           Toggle Menu Open State
         </button>
         <Select options={op1500} menuIsOpen={isMenuOpen} />

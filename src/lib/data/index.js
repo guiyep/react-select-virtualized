@@ -1,4 +1,6 @@
-import random from 'generate-random-data';
+import faker from 'faker';
+
+faker.seed(999);
 
 export const optionsDefaultStatic = new Array(20)
   .fill(null)
@@ -7,20 +9,20 @@ export const optionsDefaultStatic = new Array(20)
 export const defaultValueStatic = optionsDefaultStatic[0];
 
 export const optionsDefault = new Array(20).fill(null).map(() => ({
-  value: random.guid(),
-  label: `${random.maleFirstName()} - ${random.email(`${random.maleFirstName()}.com.au`)}`,
-  lang: random.language(),
+  value: faker.random.uuid(),
+  label: `${faker.name.firstName()} - ${faker.internet.email()}`,
+  lang: faker.address.country(),
 }));
 
-export const defaultValue = { ...optionsDefault[random.int(1, 19)] };
+export const defaultValue = { ...optionsDefault[faker.random.number(19)] };
 
-const guid = random.guid();
+const guid = faker.random.uuid();
 
 export const buildOptionsSize = (size) =>
   new Array(Math.round(size)).fill(null).map((item, index) => ({
     value: `${guid}-${index}`,
-    label: `${random.maleFirstName()} - ${index} - ${random.email(`${random.lower(random.maleFirstName())}.com.au`)}`,
-    lang: random.language(),
+    label: `${faker.name.firstName()} - ${index} - ${faker.internet.email()}`,
+    lang: faker.address.country(),
   }));
 
 export const op50 = buildOptionsSize(50);
@@ -45,34 +47,34 @@ export const group7 = buildOptionsSize(40);
 export const group8 = buildOptionsSize(40);
 
 export const opsGroup = [
-  { label: `Group ${random.maleFirstName()}`, options: group1 },
-  { label: `Group ${random.maleFirstName()}`, options: group2 },
-  { label: `Group ${random.maleFirstName()}`, options: group3 },
-  { label: `Group ${random.maleFirstName()}`, options: group4 },
-  { label: `Group ${random.maleFirstName()}`, options: group5 },
-  { label: `Group ${random.maleFirstName()}`, options: group6 },
-  { label: `Group ${random.maleFirstName()}`, options: group7 },
-  { label: `Group ${random.maleFirstName()}`, options: group8 },
+  { label: `Group ${faker.name.firstName()}`, options: group1 },
+  { label: `Group ${faker.name.firstName()}`, options: group2 },
+  { label: `Group ${faker.name.firstName()}`, options: group3 },
+  { label: `Group ${faker.name.firstName()}`, options: group4 },
+  { label: `Group ${faker.name.firstName()}`, options: group5 },
+  { label: `Group ${faker.name.firstName()}`, options: group6 },
+  { label: `Group ${faker.name.firstName()}`, options: group7 },
+  { label: `Group ${faker.name.firstName()}`, options: group8 },
 ];
 
 export const opsGroup20000 = [
-  { label: `Group ${random.maleFirstName()}`, options: ops2500 },
-  { label: `Group ${random.maleFirstName()}`, options: ops2500 },
-  { label: `Group ${random.maleFirstName()}`, options: ops2500 },
-  { label: `Group ${random.maleFirstName()}`, options: ops2500 },
-  { label: `Group ${random.maleFirstName()}`, options: ops2500 },
-  { label: `Group ${random.maleFirstName()}`, options: ops2500 },
-  { label: `Group ${random.maleFirstName()}`, options: ops2500 },
-  { label: `Group ${random.maleFirstName()}`, options: ops2500 },
+  { label: `Group ${faker.name.firstName()}`, options: ops2500 },
+  { label: `Group ${faker.name.firstName()}`, options: ops2500 },
+  { label: `Group ${faker.name.firstName()}`, options: ops2500 },
+  { label: `Group ${faker.name.firstName()}`, options: ops2500 },
+  { label: `Group ${faker.name.firstName()}`, options: ops2500 },
+  { label: `Group ${faker.name.firstName()}`, options: ops2500 },
+  { label: `Group ${faker.name.firstName()}`, options: ops2500 },
+  { label: `Group ${faker.name.firstName()}`, options: ops2500 },
 ];
 
 export const opsGroupF = () => [
-  { label: `Group ${random.maleFirstName()}`, options: group1 },
-  { label: `Group ${random.maleFirstName()}`, options: group2 },
-  { label: `Group ${random.maleFirstName()}`, options: group3 },
-  { label: `Group ${random.maleFirstName()}`, options: group4 },
-  { label: `Group ${random.maleFirstName()}`, options: group5 },
-  { label: `Group ${random.maleFirstName()}`, options: group6 },
-  { label: `Group ${random.maleFirstName()}`, options: group7 },
-  { label: `Group ${random.maleFirstName()}`, options: group8 },
+  { label: `Group ${faker.name.firstName()}`, options: group1 },
+  { label: `Group ${faker.name.firstName()}`, options: group2 },
+  { label: `Group ${faker.name.firstName()}`, options: group3 },
+  { label: `Group ${faker.name.firstName()}`, options: group4 },
+  { label: `Group ${faker.name.firstName()}`, options: group5 },
+  { label: `Group ${faker.name.firstName()}`, options: group6 },
+  { label: `Group ${faker.name.firstName()}`, options: group7 },
+  { label: `Group ${faker.name.firstName()}`, options: group8 },
 ];

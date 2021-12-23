@@ -1,6 +1,6 @@
 {
   "name": "react-select-virtualized",
-  "version": "4.2.1",
+  "version": "5.0.0",
   "description": "Select virtualized component using: react-select v4 + react-virtualized + react hooks",
   "author": "guiyep",
   "license": "MIT",
@@ -100,10 +100,10 @@
     "dist"
   ],
   "peerDependencies": {
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-select": "5.1.0",
-    "react-virtualized": "9.22.3"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-select": "^5.1.0",
+    "react-virtualized": "^9.22.3"
   },
   "dependencies": {
     "lodash.debounce": "4.0.8",

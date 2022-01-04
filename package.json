@@ -6,10 +6,6 @@
   "license": "MIT",
   "repository": "guiyep/react-select-virtualized",
   "main": "dist/index.min.js",
-  "engines": {
-    "node": ">=9",
-    "npm": ">=6"
-  },
   "keywords": [
     "react",
     "select",

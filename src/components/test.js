@@ -5,6 +5,6 @@ describe('exports expected', () => {
     expect(defaultSelect).toStrictEqual(Select);
     expect(Select).toBeDefined();
     expect(Async).toBeDefined();
-    expect(Creatable).toBeDefined();
+    expect(Creatable).not.toBeDefined();
   });
 });

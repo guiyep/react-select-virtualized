@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
-import { optionsDefault, opsGroup20000, ops2500 } from '@rsv-lib/data';
+import { optionsDefault, ops2500 } from '@rsv-lib/data';
 import { withState } from '@dump247/storybook-state';
 import { action } from '@storybook/addon-actions';
 import CreatableSelect from './CreatableSelectRenderer';
@@ -60,27 +60,27 @@ storiesOf(`React Select Virtualized/Creatable`, module)
         />
       );
     }),
-  )
-  .add(
-    'Basic grouped to the first group',
-    withState({ options: opsGroup20000, selected: null })(({ store }) => {
-      const onCreateOption = (newItem) => {
-        store.set({ options: store.state.options[0].options.concat([newItem]) });
-        store.set({ selected: newItem });
-        action(`onCreateOption`)(newItem);
-      };
-      const onChange = (item) => {
-        store.set({ selected: item });
-        action(`onChange`)(item);
-      };
-      return (
-        <CreatableSelect
-          options={store.state.options}
-          value={store.state.selected}
-          onCreateOption={onCreateOption}
-          onChange={onChange}
-          grouped
-        />
-      );
-    }),
   );
+// .add(
+//   'Basic grouped to the first group',
+//   withState({ options: opsGroup20000, selected: null })(({ store }) => {
+//     const onCreateOption = (newItem) => {
+//       store.set({ options: store.state.options[0].options.concat([newItem]) });
+//       store.set({ selected: newItem });
+//       action(`onCreateOption`)(newItem);
+//     };
+//     const onChange = (item) => {
+//       store.set({ selected: item });
+//       action(`onChange`)(item);
+//     };
+//     return (
+//       <CreatableSelect
+//         options={store.state.options}
+//         value={store.state.selected}
+//         onCreateOption={onCreateOption}
+//         onChange={onChange}
+//         grouped
+//       />
+//     );
+//   }),
+// );

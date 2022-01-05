@@ -127,4 +127,5 @@ storiesOf(`React Select Virtualized/props`, module)
         <Select options={op1500} menuIsOpen={isMenuOpen} />
       </>
     );
-  });
+  })
+  .add('open selector', () => <Select options={op1500} defaultValue={op1500[3]} menuIsOpen />);

@@ -52,7 +52,6 @@
     "babel-loader": "8.2.3",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
     "babel-preset-minify": "0.5.1",
-    "core-js": "3.20.2",
     "eslint": "8.6.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "8.3.0",

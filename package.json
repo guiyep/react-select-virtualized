@@ -41,6 +41,7 @@
     "@applitools/eyes-storybook": "^3.27.2",
     "@babel/core": "7.16.7",
     "@babel/preset-react": "7.16.7",
+    "@babel/preset-env": "7.16.7",
     "@dump247/storybook-state": "1.6.1",
     "@storybook/addon-actions": "6.4.9",
     "@storybook/addon-info": "5.3.21",

@@ -1,5 +1,5 @@
 name: Visual Regression
-on: push
+on: [push, pull_request]
 
 env:
   APPLITOOLS_API_KEY: ${{ secrets.APPLITOOLS_API_KEY }}

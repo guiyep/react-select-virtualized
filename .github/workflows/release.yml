@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          path: master
 
       - uses: actions/setup-node@v2
         with:
@@ -37,9 +39,10 @@ jobs:
 
       - run: yarn bundle-size
 
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - name: Commit and Push size.json
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: "[CI] publish new bundle size"
+          commit_message: '[CI] publish new bundle size'
           commit_user_name: Guillermo Polit
           commit_user_email: guiyep@gmail.com
           commit_author: guiyep <guiyep@gmail.com>

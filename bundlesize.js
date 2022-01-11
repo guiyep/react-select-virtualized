@@ -26,6 +26,9 @@ const exec = () => {
       fs.writeFile('./size.json', JSON.stringify(sizeObj), (err) => {
         if (err) throw err;
         console.log('File is created successfully.');
+        if (delta > 8000) {
+          console.log('Delta is bigger than 8k.');
+        }
       });
     });
   } catch (err) {

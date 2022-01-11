@@ -9,7 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        ref: master
 
       - uses: actions/setup-node@v2
         with:
@@ -41,6 +40,7 @@ jobs:
       - name: Commit and Push size.json
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
+          branch: master
           commit_message: '[CI] publish new bundle size'
           commit_user_name: Guillermo Polit
           commit_user_email: guiyep@gmail.com

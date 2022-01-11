@@ -34,3 +34,12 @@ jobs:
       - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - run: yarn bundle-size
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "[CI] publish new bundle size"
+          commit_user_name: Guillermo Polit
+          commit_user_email: guiyep@gmail.com
+          commit_author: guiyep <guiyep@gmail.com>

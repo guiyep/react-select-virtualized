@@ -5,6 +5,7 @@ import { withState } from '@dump247/storybook-state';
 import { action } from '@storybook/addon-actions';
 import { optionsDefault, opsGroup, defaultValue, op1500, ops2500, op100 } from '@rsv-lib/data';
 import Select from './_SelectTablePropsStoryFix';
+import fileSizeRef from '../../../size.json';
 
 storiesOf(`React Select Virtualized/props`, module)
   .addDecorator((story) => <div style={{ width: '30em' }}> {story()} </div>)
@@ -128,4 +129,11 @@ storiesOf(`React Select Virtualized/props`, module)
       </>
     );
   })
-  .add('open selector', () => <Select options={op1500} defaultValue={op1500[3]} menuIsOpen />);
+  .add('open selector', () => <Select options={op1500} defaultValue={op1500[3]} menuIsOpen />)
+  .add('Bundle size exceed 8kb max', () => {
+    const delta = fileSizeRef.new.delta;
+    if (delta > 8000) {
+      return `your file size exceeds the 8kb delta between builds. It is ${fileSizeRef.new.prettyDelta}, original: ${fileSizeRef.old.prettySize}, new: ${fileSizeRef.new.prettySize}`;
+    }
+    return 'your file size is OK.';
+  });

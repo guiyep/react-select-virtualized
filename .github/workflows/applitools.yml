@@ -15,4 +15,6 @@ jobs:
           node-version: '16.x'
 
       - run: yarn install
+      - run: yarn build-prod
+      - run: yarn bundle-size
       - run: yarn eyes-storybook

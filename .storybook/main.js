@@ -10,6 +10,9 @@ module.exports = {
     '@storybook/addon-essentials',
   ],
   framework: '@storybook/react',
+  core: {
+    builder: 'webpack5',
+  },
   webpackFinal: async (config, { configType }) => {
     config.resolve.alias['@rsv-lib'] = path.resolve(__dirname, '../src/lib');
     config.resolve.alias['@rsv-hooks'] = path.resolve(__dirname, '../src/hooks');

@@ -22,7 +22,7 @@
   "scripts": {
     "test": "jest",
     "build": "rollup -c",
-    "build-prod": "NODE_ENV=production BABEL_ENV=production rollup -c",
+    "build-prod": "NODE_ENV=production BABEL_ENV=production rollup -c --bundleConfigAsCjs",
     "start": "rollup -c -w",
     "deploy": "gh-pages -d",
     "storybook": "start-storybook -p 9009",

@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { filesize } = require('filesize');
+const filesize = require('filesize');
 const oldFile = require('./size.json');
 
 const exec = () => {
@@ -7,14 +7,12 @@ const exec = () => {
     const stats = fs.statSync('./dist/index.min.js');
     const size = stats.size;
 
-    console.log('Sizes', { size });
-
     fs.unlink('./size.json', () => {
-      const delta = size - oldFile?.new?.size || 0;
+      const delta = size - oldFile.new.size || 0;
 
       const sizeObj = {
         old: {
-          ...(oldFile?.new || {}),
+          ...(oldFile.new || {}),
           old: undefined,
         },
         new: {

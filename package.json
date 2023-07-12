@@ -1,6 +1,6 @@
 {
   "name": "react-select-virtualized",
-  "version": "5.2.0",
+  "version": "5.4.0",
   "description": "Select virtualized component using: react-select v4 + react-virtualized + react hooks",
   "author": "guiyep",
   "license": "MIT",

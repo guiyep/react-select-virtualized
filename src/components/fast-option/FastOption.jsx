@@ -1,4 +1,4 @@
-import React, { memo, Fragment } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { FastHover } from '../fast-hover';
 import { FastLabel } from '../fast-label';

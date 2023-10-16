@@ -1,6 +1,6 @@
 {
   "name": "react-select-virtualized",
-  "version": "5.5.0",
+  "version": "5.5.1",
   "description": "Select virtualized component using: react-select v4 + react-virtualized + react hooks",
   "author": "guiyep",
   "license": "MIT",
@@ -36,7 +36,8 @@
     "lint-s": "lint-staged",
     "eyes-storybook": "eyes-storybook",
     "bundle-size": "node ./bundlesize.js",
-    "audit-fix": "yarn-audit-fix"
+    "audit-fix": "yarn-audit-fix",
+    "doc": "docsify serve ./docs"
   },
   "devDependencies": {
     "@applitools/eyes-storybook": "^3.27.2",
@@ -53,6 +54,7 @@
     "babel-loader": "8.2.3",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
     "babel-preset-minify": "0.5.1",
+    "docsify-cli": "^4.4.4",
     "eslint": "8.6.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "8.3.0",
